@@ -1,9 +1,6 @@
 name: places
-
 description: A new Flutter project.
-
 publish_to: 'none'
-
 version: 1.0.1
 
 environment:
@@ -26,6 +23,6 @@ flutter:
   fonts:
     - family: Roboto
       fonts:
-        - asset: fonts/Roboto-Regular.ttf
+        - asset: res/fonts/Roboto-Regular.ttf
 
 
