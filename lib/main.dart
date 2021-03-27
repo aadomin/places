@@ -26,7 +26,9 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+
+      home: MyBodyStateless(), // Чередуем это с MyBodyStatefull
+      
     );
   }
 }
@@ -112,6 +114,66 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+
+
+// Независимый от виджетов счетчик
+class CallsCounter {
+  int callsOfStatelessBuild = 0;
+  int callsOfStatefullBuild = 0;
+}
+var callsCounter = CallsCounter();
+
+
+
+// Stateless
+class MyBodyStateless extends StatelessWidget {
+  int callsOfStatelessBuild = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    callsCounter.callsOfStatelessBuild += 1; //Внешний счетчик
+    print(
+        'STATELESS. ВНЕШНИЙ СЧЕТЧИК: ВЫЗОВ №: ${callsCounter.callsOfStatelessBuild}');
+
+    callsOfStatelessBuild += 1; //Счетчик внутри виджета - сбрасывается
+    print('STATELESS. СЧЕТЧИК ВНУТРИ ВИДЖЕТА: ВЫЗОВ №: $callsOfStatelessBuild');
+
+    return Container(
+      child: Center(
+        child: Text('Hello!'),
+      ),
+    );
+  }
+}
+
+
+
+// Statefull
+class MyBodyStatefull extends StatefulWidget {
+  @override
+  _MyBodyStatefullState createState() => _MyBodyStatefullState();
+}
+
+class _MyBodyStatefullState extends State<MyBodyStatefull> {
+  int callsOfStatefullBuild = 0; //Счетчик внутри виджета
+
+  @override
+  Widget build(BuildContext context) {
+    callsCounter.callsOfStatefullBuild += 1; //Внешний счетчик
+    print(
+        'STATEFULL. ВНЕШНИЙ СЧЕТЧИК: ВЫЗОВ №: ${callsCounter.callsOfStatefullBuild}');
+
+    callsOfStatefullBuild += 1; //Счетчик внутри виджета
+    print('STATEFULL. СЧЕТЧИК ВНУТРИ ВИДЖЕТА: ВЫЗОВ №: $callsOfStatefullBuild');
+
+    return Container(
+      child: Center(
+        child: Text('Hello!'),
+      ),
     );
   }
 }
