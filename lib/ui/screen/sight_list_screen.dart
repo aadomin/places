@@ -9,60 +9,35 @@ class _SightListScreenState extends State<SightListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Название экрана'),
-        backgroundColor: Colors.red.shade100,
-        actions: [
-          IconButton(icon: Icon(Icons.arrow_back), onPressed: () {}),
-          IconButton(icon: Icon(Icons.sd_card), onPressed: () {}),
-          PopupMenuButton(
-            icon: Icon(Icons.more_vert),
-            itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-              PopupMenuItem(
-                child: ListTile(
-                  leading: Icon(Icons.add),
-                  title: Text('Меню 1'),
-                ),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(130.0), // here the desired height
+        child: AppBar(
+          title: SizedBox(
+            width: 300,
+            height: 100,
+            child: Text(
+              'Список интересных мест',
+              maxLines: 2,
+              style: TextStyle(
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
-              PopupMenuItem(
-                child: ListTile(
-                  leading: Icon(Icons.anchor),
-                  title: Text('Меню 2'),
-                ),
-              ),
-              PopupMenuDivider(),
-              PopupMenuItem(child: Text('Меню 3')),
-              PopupMenuItem(child: Text('Меню 4')),
-            ],
+            ),
           ),
-        ],
+          backgroundColor: Colors.white,
+          elevation: 0,
+          toolbarHeight: 50,
+        ),
       ),
-      drawer: Drawer(child: Text('3'),),
       body: Center(
         child: ListView.builder(
-          itemCount: 56,
+          itemCount: 77,
           itemBuilder: (context, i) {
             return Text('Lorem ispirum');
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // action
-        },
-        child: Icon(Icons.money),
-        backgroundColor: Colors.green.shade100,
-      ),
-      persistentFooterButtons: [
-        TextButton(
-          child: Text('Кнопка'),
-          onPressed: () {},
-        ),
-        TextButton(
-          child: Text('И еще одна'),
-          onPressed: () {},
-        ),
-      ],
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Дом'),
