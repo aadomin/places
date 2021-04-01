@@ -18,14 +18,36 @@ class _SightListScreenState extends State<SightListScreen> {
           child: SizedBox(
             width: 250,
             height: 80,
-            child: Text(
-              'Список интересных мест',
-              maxLines: 2,
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey.shade700,
-              ),
+            child: RichText(
+              text: TextSpan(children: [
+                TextSpan(
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey.shade700,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: 'С',
+                      style: TextStyle(
+                        color: Colors.green,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'писок ',
+                    ),
+                    TextSpan(
+                      text: 'и',
+                      style: TextStyle(
+                        color: Colors.yellow,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'нтересных мест',
+                    ),
+                  ],
+                ),
+              ]),
             ),
           ),
         ),
