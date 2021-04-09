@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'sight_card.dart';
+import '../../domain/sight.dart';
 
 class SightListScreen extends StatefulWidget {
   @override
@@ -55,12 +57,7 @@ class _SightListScreenState extends State<SightListScreen> {
         elevation: 0,
       ),
       body: Center(
-        child: ListView.builder(
-          itemCount: 100,
-          itemBuilder: (context, i) {
-            return Text('$i. Lorem ipsum');
-          },
-        ),
+        child: SightCard(Sight()),
       ),
     );
   }
