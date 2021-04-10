@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../domain/sight.dart';
+import '../res/text_styles.dart';
 
 class SightCard extends StatelessWidget {
   final Sight sight;
@@ -19,32 +20,27 @@ class SightCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.red,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
+                    topLeft: Radius.circular(12),
+                    topRight: Radius.circular(12),
                   ),
                 ),
                 width: double.infinity,
                 height: 100,
               ),
               Container(
-                padding: EdgeInsets.all(16),
+                padding: EdgeInsets.only(top: 16, right: 16, left: 16),
                 alignment: Alignment.topLeft,
                 child: Text(
                   sight.name,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey.shade700,
-                  ),
+                  style: styleH3,
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(16),
+                padding: EdgeInsets.only(top: 4, right: 16, left: 16),
                 alignment: Alignment.topLeft,
                 child: Text(
                   sight.details,
-                  style: TextStyle(
-                    color: Colors.grey.shade400,
-                  ),
+                  style: styleH6,
                 ),
               ),
             ],
@@ -54,9 +50,7 @@ class SightCard extends StatelessWidget {
             padding: EdgeInsets.all(16),
             child: Text(
               sight.type,
-              style: TextStyle(
-                color: Colors.white,
-              ),
+              style: styleOfLabel,
             ),
             width: double.infinity,
           ),
@@ -66,8 +60,8 @@ class SightCard extends StatelessWidget {
             padding: EdgeInsets.all(16),
             child: Container(
               color: Colors.white,
-              height: 10,
-              width: 10,
+              height: 30,
+              width: 30,
             ),
           ),
         ],
