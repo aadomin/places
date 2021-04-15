@@ -21,9 +21,8 @@ class _SightListScreenState extends State<SightListScreen> {
           ),
           child: Container(
             width: 290,
-            //color: Colors.yellow.shade100,
             height: 90,
-            padding: EdgeInsets.only(bottom:10),
+            padding: EdgeInsets.only(bottom: 10),
             child: RichText(
               text: TextSpan(children: [
                 TextSpan(
