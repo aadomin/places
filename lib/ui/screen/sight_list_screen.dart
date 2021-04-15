@@ -13,16 +13,18 @@ class _SightListScreenState extends State<SightListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 140,
-        title: Padding(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(140.0), // here the desired height
+        child: Container(
+          alignment: Alignment.topLeft,
           padding: EdgeInsets.only(
             top: 60,
+            left: 16,
+            bottom: 0,
           ),
-          child: Container(
-            width: 290,
-            height: 90,
-            padding: EdgeInsets.only(bottom: 10),
+          child: SizedBox(
+            height: 140,
+            width: MediaQuery.of(context).size.width * 18 / 30,
             child: RichText(
               text: TextSpan(children: [
                 TextSpan(
@@ -37,8 +39,6 @@ class _SightListScreenState extends State<SightListScreen> {
             ),
           ),
         ),
-        backgroundColor: Colors.white,
-        elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Column(
