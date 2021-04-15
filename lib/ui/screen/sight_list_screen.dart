@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'sight_card.dart';
+import '../../domain/sight.dart';
+import '../../mocks.dart';
+import '../res/text_styles.dart';
 
 class SightListScreen extends StatefulWidget {
   @override
@@ -15,35 +19,18 @@ class _SightListScreenState extends State<SightListScreen> {
           padding: EdgeInsets.only(
             top: 60,
           ),
-          child: SizedBox(
-            width: 250,
-            height: 80,
+          child: Container(
+            width: 290,
+            //color: Colors.yellow.shade100,
+            height: 90,
+            padding: EdgeInsets.only(bottom:10),
             child: RichText(
               text: TextSpan(children: [
                 TextSpan(
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey.shade700,
-                  ),
+                  style: styleH1,
                   children: [
                     TextSpan(
-                      text: 'С',
-                      style: TextStyle(
-                        color: Colors.green,
-                      ),
-                    ),
-                    TextSpan(
-                      text: 'писок ',
-                    ),
-                    TextSpan(
-                      text: 'и',
-                      style: TextStyle(
-                        color: Colors.yellow,
-                      ),
-                    ),
-                    TextSpan(
-                      text: 'нтересных мест',
+                      text: 'Список интересных мест',
                     ),
                   ],
                 ),
@@ -54,12 +41,18 @@ class _SightListScreenState extends State<SightListScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: Center(
-        child: ListView.builder(
-          itemCount: 100,
-          itemBuilder: (context, i) {
-            return Text('$i. Lorem ipsum');
-          },
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SightCard(mocks[0]),
+              SightCard(mocks[1]),
+              SightCard(mocks[2]),
+            ],
+            mainAxisSize: MainAxisSize.min,
+          ),
         ),
       ),
     );
