@@ -41,18 +41,14 @@ class _SightListScreenState extends State<SightListScreen> {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SightCard(mocks[0]),
-              SightCard(mocks[1]),
-              SightCard(mocks[2]),
-            ],
-            mainAxisSize: MainAxisSize.min,
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SightCard(mocks[0]),
+            SightCard(mocks[1]),
+            SightCard(mocks[2]),
+          ],
+          mainAxisSize: MainAxisSize.min,
         ),
       ),
     );
