@@ -1,27 +1,21 @@
-
 class Sight {
-  String name = '';
-  double lat = 0;
-  double lon = 0;
-  String url = '';
-  String details = '';
-  String type = '';
+  final String name;
+  final double lat;
+  final double lon;
+  final String url;
+  final String details;
+  final String type;final String timeOfWork;
+  
 
   Sight({
-    String name = 'Example obj',
-    double lat = 0,
-    double lon = 0,
-    String url = 'http:',
-    String details = 'Description',
-    String type = 'Type',
-  }) {
-    this.name = name;
-    this.lat = lat;
-    this.lon = lon;
-    this.url = url;
-    this.details = details;
-    this.type = type;
-  }
+    this.name = 'Example object',
+    this.lat = 0,
+    this.lon = 0,
+    this.url = 'http:',
+    this.details = 'Description',
+    this.type = 'Type',
+    this.timeOfWork = 'Закрыто до 09:00'
+  });
 
   @override
   String toString() {

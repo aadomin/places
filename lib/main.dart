@@ -12,7 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Hey, Flutter!',
-      home: SightDetailsScreen(mocks[1]),
+      home:
+          // SightDetailsScreen(mocks[1])
+          SightListScreen(),
     );
   }
 }
