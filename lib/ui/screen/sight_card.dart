@@ -11,7 +11,6 @@ class SightCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16),
-      //height: 120,
       child: Stack(
         children: [
           Column(
@@ -46,7 +45,6 @@ class SightCard extends StatelessWidget {
             ],
           ),
           Container(
-            //color: Colors.green,
             padding: EdgeInsets.all(16),
             child: Text(
               sight.type,
@@ -56,7 +54,6 @@ class SightCard extends StatelessWidget {
           ),
           Container(
             alignment: Alignment.topRight,
-            //color: Colors.yellow,
             padding: EdgeInsets.all(16),
             child: Container(
               color: Colors.white,
