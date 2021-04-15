@@ -14,7 +14,7 @@ class _SightListScreenState extends State<SightListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(140.0), // here the desired height
+        preferredSize: Size.fromHeight(140.0),
         child: Container(
           alignment: Alignment.topLeft,
           padding: EdgeInsets.only(
