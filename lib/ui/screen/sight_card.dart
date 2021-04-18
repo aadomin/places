@@ -16,15 +16,29 @@ class SightCard extends StatelessWidget {
           Column(
             children: [
               Container(
-                decoration: BoxDecoration(
-                  color: Colors.red,
+                width: double.infinity,
+                height: 100,
+                child: ClipRRect(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(12),
                     topRight: Radius.circular(12),
                   ),
+                  child: Image.network(
+                    sight.url,
+                    fit: BoxFit.fitWidth,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Center(
+                        child: SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(),
+                        ),
+                      );
+                      // You can use LinearProgressIndicator or CircularProgressIndicator instead
+                    },
+                  ),
                 ),
-                width: double.infinity,
-                height: 100,
               ),
               Container(
                 padding: EdgeInsets.only(top: 16, right: 16, left: 16),
@@ -55,10 +69,9 @@ class SightCard extends StatelessWidget {
           Container(
             alignment: Alignment.topRight,
             padding: EdgeInsets.all(16),
-            child: Container(
+            child: Icon(
+              Icons.favorite_outline,
               color: Colors.white,
-              height: 30,
-              width: 30,
             ),
           ),
         ],
