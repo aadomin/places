@@ -35,7 +35,6 @@ class SightCard extends StatelessWidget {
                           child: CircularProgressIndicator(),
                         ),
                       );
-                      // You can use LinearProgressIndicator or CircularProgressIndicator instead
                     },
                   ),
                 ),
