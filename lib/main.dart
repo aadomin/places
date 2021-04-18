@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
       title: 'Hey, Flutter!',
       home:
           // временное переключение между экранами
-          // SightDetailsScreen(mocks[1])  
-          SightListScreen(),
+          SightDetailsScreen(mocks[0]),
+      // SightListScreen(),
     );
   }
 }
