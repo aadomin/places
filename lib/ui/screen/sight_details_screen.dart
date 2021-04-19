@@ -23,7 +23,6 @@ class SightDetailsScreen extends StatelessWidget {
                       Container(
                         height: 300,
                         width: 300,
-                        color: Colors.brown.shade400,
                         child: Image.network(
                           sight.url,
                           fit: BoxFit.fitHeight,
@@ -38,7 +37,6 @@ class SightDetailsScreen extends StatelessWidget {
                       Container(
                         height: 300,
                         width: 300,
-                        color: Colors.green.shade200,
                         child: Image.network(
                           sight.url,
                           fit: BoxFit.fitHeight,
@@ -53,7 +51,6 @@ class SightDetailsScreen extends StatelessWidget {
                       Container(
                         height: 300,
                         width: 300,
-                        color: Colors.blue.shade200,
                         child: Image.network(
                           sight.url,
                           fit: BoxFit.fitHeight,
