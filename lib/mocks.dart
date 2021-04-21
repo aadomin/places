@@ -5,7 +5,7 @@ final List<Sight> mocks = [
     name: 'Воронежский областной краеведческий музей',
     lat: 3424324.423,
     lon: 8385733.384,
-    url: 'moskva.com',
+    url: 'https://image.shutterstock.com/image-photo/one-top-tourist-attractions-veniceitaly-600w-1075881518.jpg',
     details:
         'Описание достопримечательности невозможно описать, можно лишь наслаждаться ее прекрасными видами и думать о вечном, размышляя о странном.',
     type: 'музей',
@@ -14,7 +14,7 @@ final List<Sight> mocks = [
     name: 'Ресторан "Игнатов"',
     lat: 10251534.423,
     lon: 23535344.344,
-    url: 'kva.com',
+    url: 'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
     details:
         'Созерцание вечности развлекает разум не меньше, чем прекрасные женские юбки. Хотя, снег тает, и самооценка на фоне этого тоже тает.',
     type: 'ресторан',
@@ -23,7 +23,7 @@ final List<Sight> mocks = [
     name: 'Вилладж',
     lat: 34515324.823,
     lon: 23452343.234,
-    url: 'skv.com',
+    url: 'https://wallpaperscave.ru/images/original/18/08-22/man-made-building-78015.jpg',
     details:
         'Глубина мысли показывает обширность жизненного опыта. Наслаждение мыслью показывает его качество.',
     type: 'вилла',
