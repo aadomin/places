@@ -23,7 +23,7 @@ class _SightListScreenState extends State<SightListScreen> {
             width: 290,
             //color: Colors.yellow.shade100,
             height: 90,
-            padding: EdgeInsets.only(bottom:10),
+            padding: EdgeInsets.only(bottom: 10),
             child: RichText(
               text: TextSpan(children: [
                 TextSpan(
@@ -44,12 +44,35 @@ class _SightListScreenState extends State<SightListScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SightCard(mocks[0]),
-            SightCard(mocks[1]),
-            SightCard(mocks[2]),
+            SightCard(mocks[0], cartType: 'general'),
+            SightCard(mocks[1], cartType: 'general'),
+            SightCard(mocks[2], cartType: 'general'),
           ],
           mainAxisSize: MainAxisSize.min,
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: '1',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map),
+            label: '2',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border),
+            label: '3',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: '4',
+          ),
+        ],
       ),
     );
   }
