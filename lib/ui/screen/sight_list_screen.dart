@@ -51,29 +51,6 @@ class _SightListScreenState extends State<SightListScreen> {
           mainAxisSize: MainAxisSize.min,
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: '1',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            label: '2',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
-            label: '3',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: '4',
-          ),
-        ],
-      ),
     );
   }
 }
