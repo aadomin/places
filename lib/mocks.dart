@@ -5,7 +5,7 @@ final List<Sight> mocks = [
     name: 'Воронежский областной краеведческий музей',
     lat: 3424324.423,
     lon: 8385733.384,
-    url: 'https://image.shutterstock.com/image-photo/one-top-tourist-attractions-veniceitaly-600w-1075881518.jpg',
+    url: 'http://i.mycdn.me/i?r=AzEPZsRbOZEKgBhR0XGMT1RkYyO-1zLFV43SyU6kn1i2PaaKTM5SRkZCeTgDn6uOyic',
     details:
         'Описание достопримечательности невозможно описать, можно лишь наслаждаться ее прекрасными видами и думать о вечном, размышляя о странном.',
     type: 'музей',

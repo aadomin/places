@@ -199,7 +199,7 @@ class Tab2 extends StatelessWidget {
               ],
             ),
           ),
-          decoration: BoxDecoration(color: Colors.white),
+          decoration: BoxDecoration(color: Theme.of(context).canvasColor),
         ),
       ],
     );
@@ -241,7 +241,7 @@ class Tab1 extends StatelessWidget {
               ],
             ),
           ),
-          decoration: BoxDecoration(color: Colors.white),
+          decoration: BoxDecoration(color: Theme.of(context).canvasColor),
         ),
       ],
     );
