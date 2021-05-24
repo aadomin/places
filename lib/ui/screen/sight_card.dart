@@ -4,8 +4,53 @@ import '../res/text_styles.dart';
 
 class SightCard extends StatelessWidget {
   final Sight sight;
+  final String cartType;
 
-  SightCard(this.sight);
+  SightCard(this.sight, {this.cartType = 'common'});
+
+  Widget _cardIcons() {
+    switch (cartType) {
+      case 'general':
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: EdgeInsets.only(left: 16),
+              child: Icon(Icons.favorite_outline, color: Colors.white),
+            ),
+          ],
+        );
+      case 'wish':
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: EdgeInsets.only(left: 16),
+              child: Icon(Icons.calendar_today, color: Colors.white),
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 16),
+              child: Icon(Icons.close, color: Colors.white),
+            ),
+          ],
+        );
+      case 'seen':
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              padding: EdgeInsets.only(left: 16),
+              child: Icon(Icons.share, color: Colors.white),
+            ),
+            Container(
+              padding: EdgeInsets.only(left: 16),
+              child: Icon(Icons.close, color: Colors.white),
+            ),
+          ],
+        );
+    }
+    return Center(child: Text('Error'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +102,8 @@ class SightCard extends StatelessWidget {
               ),
             ],
           ),
+          //
+          // Type of place on the top of card
           Container(
             padding: EdgeInsets.all(16),
             child: Text(
@@ -65,13 +112,12 @@ class SightCard extends StatelessWidget {
             ),
             width: double.infinity,
           ),
+          //
+          // Icons on the top of card
           Container(
             alignment: Alignment.topRight,
             padding: EdgeInsets.all(16),
-            child: Icon(
-              Icons.favorite_outline,
-              color: Colors.white,
-            ),
+            child: _cardIcons(),
           ),
         ],
       ),
