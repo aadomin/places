@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import "../res/text_styles.dart";
+import 'package:provider/provider.dart';
+import '../ui_models.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -12,7 +13,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).canvasColor,
           elevation: 0,
           title: Container(
             alignment: Alignment.topCenter,
@@ -21,7 +22,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
               padding: const EdgeInsets.all(40.0),
               child: Text(
                 'Настройки',
-                style: visitingScreenHeader,
+                style: TextStyle(
+                  color: Theme.of(context).primaryColorDark,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
               ),
             ),
           ),
@@ -29,12 +34,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
         body: Center(
           child: Column(children: [
             ElevatedButton(
-              child: Text('Светлая тема'),
-              onPressed: () {},
-            ),
-            ElevatedButton(
-              child: Text('Темная тема'),
-              onPressed: () {},
+              child: Text(context.watch<MyThemeModel>().isDarkTheme
+                  ? 'Светлая тема'
+                  : 'Темная тема'),
+              onPressed: () {
+                context.read<MyThemeModel>().changeTheme();
+              },
             ),
           ]),
         ),

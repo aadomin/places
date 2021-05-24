@@ -21,24 +21,21 @@ class _SightListScreenState extends State<SightListScreen> {
           ),
           child: Container(
             width: 290,
-            //color: Colors.yellow.shade100,
             height: 90,
             padding: EdgeInsets.only(bottom: 10),
             child: RichText(
-              text: TextSpan(children: [
-                TextSpan(
-                  style: styleH1,
-                  children: [
-                    TextSpan(
-                      text: 'Список интересных мест',
-                    ),
-                  ],
+              text: TextSpan(
+                style: TextStyle(
+                  fontSize: 34,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor,
                 ),
-              ]),
+                text: 'Список интересных мест',
+              ),
             ),
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).canvasColor,
         elevation: 0,
       ),
       body: SingleChildScrollView(

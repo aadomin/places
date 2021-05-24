@@ -89,7 +89,11 @@ class SightCard extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: Text(
                   sight.name,
-                  style: styleH3,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Theme.of(context).primaryColor,
+                  ),
                 ),
               ),
               Container(
@@ -97,7 +101,9 @@ class SightCard extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: Text(
                   sight.details,
-                  style: styleH6,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColorLight,
+                  ),
                 ),
               ),
             ],
@@ -108,7 +114,9 @@ class SightCard extends StatelessWidget {
             padding: EdgeInsets.all(16),
             child: Text(
               sight.type,
-              style: styleOfLabel,
+              style: TextStyle(
+                color: Colors.white,
+              ),
             ),
             width: double.infinity,
           ),

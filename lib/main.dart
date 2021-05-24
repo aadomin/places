@@ -5,9 +5,15 @@ import 'mocks.dart';
 import 'ui/screen/visiting_screen.dart';
 import 'ui/screen/settings_screen.dart';
 import 'ui/res/themes.dart';
+import 'package:provider/provider.dart';
+import 'ui/ui_models.dart';
 
+//Provider добавил для динамической смены тем. Через vanilla ну никак не получалось.
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => MyThemeModel(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -15,22 +21,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Hey, Flutter!',
-      theme: lightTheme,
-      home: //VisitingScreen(),
-          // временное переключение между экранами
-          // SightDetailsScreen(mocks[0]),
-          // SightListScreen(),
-          BottomBarExample(),
+      theme: context.watch<MyThemeModel>().isDarkTheme ? darkTheme : lightTheme,
+      home: AllMainScreens(),
     );
   }
 }
 
-class BottomBarExample extends StatefulWidget {
+class AllMainScreens extends StatefulWidget {
   @override
-  _BottomBarExampleState createState() => new _BottomBarExampleState();
+  _AllMainScreensState createState() => new _AllMainScreensState();
 }
 
-class _BottomBarExampleState extends State<BottomBarExample> {
+class _AllMainScreensState extends State<AllMainScreens> {
   int _page = 0;
   PageController _c;
   @override
@@ -57,19 +59,19 @@ class _BottomBarExampleState extends State<BottomBarExample> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
-            label: '1',
+            label: 'Список мест',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
-            label: '2',
+            label: 'Карта',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border),
-            label: '3',
+            label: 'Избранное',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: '4',
+            label: 'Настройки',
           ),
         ],
       ),
@@ -82,7 +84,7 @@ class _BottomBarExampleState extends State<BottomBarExample> {
         },
         children: [
           Center(child: SightListScreen()),
-          Center(child: SightDetailsScreen(mocks[0])),
+          Center(child: SightDetailsScreen(mocks[0])), //здесь временно
           Center(child: VisitingScreen()),
           Center(child: SettingsScreen()),
         ],

@@ -35,7 +35,7 @@ class _VisitingScreenState extends State<VisitingScreen>
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 120,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).canvasColor,
         elevation: 0,
         title: Container(
           alignment: Alignment.center,
@@ -46,7 +46,11 @@ class _VisitingScreenState extends State<VisitingScreen>
                 padding: EdgeInsets.all(16),
                 child: Text(
                   'Избранное',
-                  style: visitingScreenHeader,
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColorDark,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
                 ),
               ),
               Stack(
@@ -61,7 +65,7 @@ class _VisitingScreenState extends State<VisitingScreen>
                           _uiDefaultButtonHeight / 2,
                         ),
                       ),
-                      color: Color(0xFFF5F5F5),
+                      color: Theme.of(context).disabledColor,
                     ),
                   ),
                   SizedBox(
@@ -85,7 +89,7 @@ class _VisitingScreenState extends State<VisitingScreen>
                                   _uiDefaultButtonHeight / 2,
                                 ),
                               ),
-                              color: Color(0xFF3B3E5B),
+                              color: Theme.of(context).selectedRowColor,
                             ),
                           ),
                         ),
@@ -108,9 +112,13 @@ class _VisitingScreenState extends State<VisitingScreen>
                             padding: EdgeInsets.all(_uiDefaultPadding),
                             child: Text(
                               'Хочу посетить',
-                              style: _indicatorPosition == 0
-                                  ? visitingScreenActiveTab
-                                  : visitingScreenInactiveTab,
+                              style: TextStyle(
+                                color: _indicatorPosition == 0
+                                    ? Theme.of(context).canvasColor
+                                    : Theme.of(context).primaryColorLight,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                         ),
@@ -129,9 +137,13 @@ class _VisitingScreenState extends State<VisitingScreen>
                             padding: EdgeInsets.all(16),
                             child: Text(
                               'Посетил',
-                              style: _indicatorPosition == 1
-                                  ? visitingScreenActiveTab
-                                  : visitingScreenInactiveTab,
+                              style: TextStyle(
+                                color: _indicatorPosition == 0
+                                    ? Theme.of(context).primaryColorLight
+                                    : Theme.of(context).canvasColor,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                         ),
@@ -199,7 +211,9 @@ class Tab2 extends StatelessWidget {
               ],
             ),
           ),
-          decoration: BoxDecoration(color: Theme.of(context).canvasColor),
+          decoration: BoxDecoration(
+            color: Theme.of(context).canvasColor,
+          ),
         ),
       ],
     );
@@ -241,7 +255,9 @@ class Tab1 extends StatelessWidget {
               ],
             ),
           ),
-          decoration: BoxDecoration(color: Theme.of(context).canvasColor),
+          decoration: BoxDecoration(
+            color: Theme.of(context).canvasColor,
+          ),
         ),
       ],
     );
