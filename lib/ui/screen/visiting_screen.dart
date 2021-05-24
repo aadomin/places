@@ -29,8 +29,8 @@ class _VisitingScreenState extends State<VisitingScreen>
   @override
   Widget build(BuildContext context) {
     final double _widthOfWindows = MediaQuery.of(context).size.width;
-    final double _uiDefaultPadding = 16;
-    final double _uiDefaultButtonHeight = 55;
+    const double _uiDefaultPadding = 16;
+    const double _uiDefaultButtonHeight = 55;
 
     return Scaffold(
       appBar: AppBar(
