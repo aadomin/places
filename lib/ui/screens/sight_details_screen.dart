@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../domain/sight.dart';
-import '../res/text_styles.dart';
+
 
 class SightDetailsScreen extends StatelessWidget {
   final Sight sight;

@@ -70,6 +70,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 },
               ),
             ),
+            TextButton(onPressed: (){Navigator.pushNamed(context, '/filter');},child:Text('ФИЛЬТР'),),
           ]),
         ),
       ),
