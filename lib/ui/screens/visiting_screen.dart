@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "../res/text_styles.dart";
 import '../../mocks.dart';
-import 'sight_card.dart';
+import '../elements/sight_card.dart';
 
 class VisitingScreen extends StatefulWidget {
   @override

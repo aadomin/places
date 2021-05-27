@@ -54,7 +54,9 @@ class SightCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: (){},
+      onPressed: () {
+        Navigator.pushNamed(context, '/details');
+      },
       child: Container(
         padding: EdgeInsets.all(8),
         child: Stack(

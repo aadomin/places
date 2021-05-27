@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'ui/screens/sight_list_screen.dart';
 import 'ui/screens/sight_details_screen.dart';
-import 'mocks.dart';
 import 'ui/screens/visiting_screen.dart';
 import 'ui/screens/settings_screen.dart';
+import 'mocks.dart';
+
 import 'ui/res/themes.dart';
-import 'package:provider/provider.dart';
 import 'ui/ui_models.dart';
 
 //Provider добавил для динамической смены тем. Через vanilla ну никак не получалось.
@@ -22,7 +23,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hey, Flutter!',
       theme: context.watch<MyThemeModel>().isDarkTheme ? darkTheme : lightTheme,
-      home: AllMainScreens(),
+      //
+      initialRoute: '/',
+      routes: {
+        '/': (BuildContext context) => AllMainScreens(),
+        '/details': (BuildContext context) => SightDetailsScreen(mocks[0])
+      },
     );
   }
 }

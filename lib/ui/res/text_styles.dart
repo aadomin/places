@@ -12,6 +12,6 @@ var tsVisitingScreenNoItemsText = TextStyle(
   fontSize: 12,
 );
 
-var styleButtons = TextStyle(
-  fontSize: 24,
-);
+//var styleButtons = TextStyle(
+//  fontSize: 24,
+//);

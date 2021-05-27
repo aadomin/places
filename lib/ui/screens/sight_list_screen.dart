@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'sight_card.dart';
+import '../elements/sight_card.dart';
 import '../../mocks.dart';
 
 class SightListScreen extends StatefulWidget {

@@ -64,23 +64,31 @@ class SightDetailsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  width: 36,
-                  height: 36,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(12),
-                    ),
-                  ),
-                  margin: EdgeInsets.only(
-                    top: 32,
-                    left: 16,
-                  ),
-                  child: Center(
-                    child: Text(
-                      '<',
-                      style: styleButtons,
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: SizedBox(
+                    width: 40,
+                    height: 40,
+                    child: FittedBox(
+                      fit: BoxFit.fitHeight,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          backgroundColor: Theme.of(context).canvasColor,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          child: Text(
+                            '<',
+                            style: TextStyle(fontSize: 40),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -171,55 +179,58 @@ class SightDetailsScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        child: TextButton(
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 32),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        TextButton(
                           onPressed: () {
                             print('запланировать');
                           },
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.play_arrow,
-                                size: 12,
-                              ),
-                              Text(
-                                '  Запланировать',
-                                style: TextStyle(
-                                  fontSize: 14,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(16, 6, 16, 6),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.play_arrow,
+                                  size: 12,
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  '  Запланировать',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        child: TextButton(
+                        TextButton(
                           onPressed: () {
                             print('в избранное');
                           },
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.favorite,
-                                size: 12,
-                              ),
-                              Text(
-                                '  В избранное',
-                                style: TextStyle(
-                                  fontSize: 14,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(16, 6, 16, 6),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.favorite,
+                                  size: 12,
                                 ),
-                              ),
-                            ],
+                                Text(
+                                  '  В избранное',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),
