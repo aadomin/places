@@ -41,6 +41,35 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 context.read<MyThemeModel>().changeTheme();
               },
             ),
+            ListTile(
+              title: Text('Включить темную тему'),
+              leading: Switch(
+                value: context.watch<MyThemeModel>().isDarkTheme,
+                onChanged: (currentValue) {
+                  context.read<MyThemeModel>().changeTheme();
+                },
+              ),
+            ),
+            ListTile(
+              title: Text('Темная тема'),
+              leading: Radio(
+                value: true,
+                groupValue: context.watch<MyThemeModel>().isDarkTheme,
+                onChanged: (currentValue) {
+                  context.read<MyThemeModel>().changeTheme();
+                },
+              ),
+            ),
+            ListTile(
+              title: Text('Светлая тема'),
+              leading: Radio(
+                value: false,
+                groupValue: context.watch<MyThemeModel>().isDarkTheme,
+                onChanged: (currentValue) {
+                  context.read<MyThemeModel>().changeTheme();
+                },
+              ),
+            ),
           ]),
         ),
       ),

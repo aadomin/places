@@ -11,6 +11,18 @@ final lightTheme = ThemeData(
   disabledColor: Color(0xfff5f5f5),
   //
   selectedRowColor: Color(0xff3b3e5b),
+  //
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      primary: Color(0xFF4CAF50),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+    ),
+  ),
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(primary: Color(0xff3b3e5b)),
+  ),
 );
 
 final darkTheme = ThemeData(
@@ -24,4 +36,16 @@ final darkTheme = ThemeData(
   disabledColor: Color(0xff1A1A20),
   //
   selectedRowColor: Colors.white,
+  //
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      primary: Color(0xFF4CAF50),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+    ),
+  ),
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(primary: Colors.white),
+  ),
 );
