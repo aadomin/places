@@ -4,6 +4,7 @@ import 'ui/screens/sight_list_screen.dart';
 import 'ui/screens/sight_details_screen.dart';
 import 'ui/screens/visiting_screen.dart';
 import 'ui/screens/settings_screen.dart';
+import 'ui/screens/filters_screen.dart';
 import 'mocks.dart';
 
 import 'ui/res/themes.dart';
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (BuildContext context) => AllMainScreens(),
-        '/details': (BuildContext context) => SightDetailsScreen(mocks[0])
+        '/details': (BuildContext context) => SightDetailsScreen(mocks[0]),
+        '/filter': (BuildContext context) => FiltersScreen()
       },
     );
   }
@@ -90,7 +92,10 @@ class _AllMainScreensState extends State<AllMainScreens> {
         },
         children: [
           Center(child: SightListScreen()),
-          Center(child: SightDetailsScreen(mocks[0])), //здесь временно
+          Center(
+              child: Center(
+            child: Text('Карта'),
+          )), //здесь временно
           Center(child: VisitingScreen()),
           Center(child: SettingsScreen()),
         ],
