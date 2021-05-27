@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'ui/screen/sight_list_screen.dart';
-import 'ui/screen/sight_details_screen.dart';
+import 'ui/screens/sight_list_screen.dart';
+import 'ui/screens/sight_details_screen.dart';
 import 'mocks.dart';
-import 'ui/screen/visiting_screen.dart';
-import 'ui/screen/settings_screen.dart';
+import 'ui/screens/visiting_screen.dart';
+import 'ui/screens/settings_screen.dart';
 import 'ui/res/themes.dart';
 import 'package:provider/provider.dart';
 import 'ui/ui_models.dart';
