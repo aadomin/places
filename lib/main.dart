@@ -9,13 +9,23 @@ import 'mocks.dart';
 
 import 'ui/res/themes.dart';
 import 'ui/models/ui_theme_model.dart';
+import 'ui/models/ui_filter_model.dart';
 
 //Provider добавил для динамической смены тем. Через vanilla ну никак не получалось.
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => MyThemeModel(),
-    child: MyApp(),
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => MyThemeModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => MyFilterModel(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
