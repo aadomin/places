@@ -8,7 +8,7 @@ import 'ui/screens/filters_screen.dart';
 import 'mocks.dart';
 
 import 'ui/res/themes.dart';
-import 'ui/ui_models.dart';
+import 'ui/models/ui_theme_model.dart';
 
 //Provider добавил для динамической смены тем. Через vanilla ну никак не получалось.
 void main() {

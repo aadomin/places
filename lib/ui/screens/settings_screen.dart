@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../ui_models.dart';
+import '../models/ui_theme_model.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override

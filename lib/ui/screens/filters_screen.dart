@@ -64,7 +64,13 @@ class FiltersScreen extends StatelessWidget {
                                 height: _radiusOfRoundElement * 2,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Image.network('https://flutter.dev/assets/flutter-lockup-1caf6476beed76adec3c477586da54de6b552b2f42108ec5bc68dc63bae2df75.png'),
+                                  child: Center(
+                                    child: Image.asset(
+                                      'res/images/hotel.png',
+                                      width: 32,
+                                      height: 32,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -83,7 +89,7 @@ class FiltersScreen extends StatelessWidget {
                                       padding: const EdgeInsets.all(1.0),
                                       child: Icon(
                                         Icons.done,
-                                        size: 18,
+                                        size: 17,
                                         color: Theme.of(context).canvasColor,
                                       ),
                                     ),
@@ -154,7 +160,8 @@ class FiltersScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ),TextButton(
+                  ),
+                  TextButton(
                     onPressed: () {},
                     child: Column(
                       children: [
