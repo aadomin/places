@@ -104,7 +104,11 @@ class SightDetailsScreen extends StatelessWidget {
                     ),
                     child: Text(
                       sight.name,
-                      style: styleH2,
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).primaryColor,
+                      ),
                     ),
                   ),
                   Align(
@@ -113,11 +117,18 @@ class SightDetailsScreen extends StatelessWidget {
                       children: [
                         Text(
                           sight.type,
-                          style: styleDetailType,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey.shade700,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         Text(
                           '    закрыто до 09:00',
-                          style: styleDetailClosed,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Theme.of(context).accentColor,
+                          ),
                         ),
                       ],
                     ),
@@ -127,13 +138,15 @@ class SightDetailsScreen extends StatelessWidget {
                     margin: EdgeInsets.fromLTRB(0, 24, 0, 0),
                     child: Text(
                       sight.details,
-                      style: styleMainText,
+                      style: TextStyle(
+                        color: Theme.of(context).primaryColorLight,
+                      ),
                     ),
                   ),
                   Container(
                     padding: EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: Colors.green,
+                      color: Theme.of(context).accentColor,
                       borderRadius: BorderRadius.all(
                         Radius.circular(12),
                       ),
@@ -144,7 +157,11 @@ class SightDetailsScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'ПОСТРОИТЬ МАРШРУТ',
-                        style: styleMaterialButtonsW,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
@@ -160,14 +177,20 @@ class SightDetailsScreen extends StatelessWidget {
                           padding: EdgeInsets.all(16),
                           child: Text(
                             'Запланировать',
-                            style: styleMaterialButtonsB,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Theme.of(context).primaryColor,
+                            ),
                           ),
                         ),
                         Container(
                           padding: EdgeInsets.all(16),
                           child: Text(
                             'В Избранное',
-                            style: styleMaterialButtonsB,
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Theme.of(context).primaryColor,
+                            ),
                           ),
                         ),
                       ],

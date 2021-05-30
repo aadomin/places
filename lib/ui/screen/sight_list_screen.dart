@@ -21,24 +21,21 @@ class _SightListScreenState extends State<SightListScreen> {
           ),
           child: Container(
             width: 290,
-            //color: Colors.yellow.shade100,
             height: 90,
             padding: EdgeInsets.only(bottom: 10),
             child: RichText(
-              text: TextSpan(children: [
-                TextSpan(
-                  style: styleH1,
-                  children: [
-                    TextSpan(
-                      text: 'Список интересных мест',
-                    ),
-                  ],
+              text: TextSpan(
+                style: TextStyle(
+                  fontSize: 34,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor,
                 ),
-              ]),
+                text: 'Список интересных мест',
+              ),
             ),
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).canvasColor,
         elevation: 0,
       ),
       body: SingleChildScrollView(
@@ -50,29 +47,6 @@ class _SightListScreenState extends State<SightListScreen> {
           ],
           mainAxisSize: MainAxisSize.min,
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: '1',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.map),
-            label: '2',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border),
-            label: '3',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: '4',
-          ),
-        ],
       ),
     );
   }
