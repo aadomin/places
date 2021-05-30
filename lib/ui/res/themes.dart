@@ -23,6 +23,14 @@ final lightTheme = ThemeData(
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(primary: Color(0xff3b3e5b)),
   ),
+  sliderTheme: SliderThemeData.fromPrimaryColors(
+    primaryColor: Color(0xFF4CAF50),
+    primaryColorDark: Color(0xff252849),
+    primaryColorLight: Color(0xff7c7e92),
+    valueIndicatorTextStyle: TextStyle(
+      fontSize: 14,
+    ),
+  ),
 );
 
 final darkTheme = ThemeData(
@@ -33,7 +41,7 @@ final darkTheme = ThemeData(
   //
   canvasColor: Color(0xff21222C),
   unselectedWidgetColor: Color(0x7f7C7E92),
-  disabledColor: Color(0xff1A1A20),
+  disabledColor: Color(0x5f1A1A20),
   //
   selectedRowColor: Colors.white,
   //

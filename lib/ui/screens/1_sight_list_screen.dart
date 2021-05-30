@@ -39,6 +39,12 @@ class _SightListScreenState extends State<SightListScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/filter');
+              },
+              child: Text('ФИЛЬТР'),
+            ),
             SightCard(mocks[0], cartType: 'general'),
             SightCard(mocks[1], cartType: 'general'),
             SightCard(mocks[2], cartType: 'general'),

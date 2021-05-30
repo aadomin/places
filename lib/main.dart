@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'ui/screens/sight_list_screen.dart';
+import 'ui/screens/1_sight_list_screen.dart';
+import 'ui/screens/2_map_screen.dart';
+import 'ui/screens/3_visiting_screen.dart';
+import 'ui/screens/4_settings_screen.dart';
 import 'ui/screens/sight_details_screen.dart';
-import 'ui/screens/visiting_screen.dart';
-import 'ui/screens/settings_screen.dart';
 import 'ui/screens/filters_screen.dart';
 import 'mocks.dart';
 
@@ -102,10 +103,7 @@ class _AllMainScreensState extends State<AllMainScreens> {
         },
         children: [
           Center(child: SightListScreen()),
-          Center(
-              child: Center(
-            child: Text('Карта'),
-          )), //здесь временно
+          Center(child: MapsScreen()),
           Center(child: VisitingScreen()),
           Center(child: SettingsScreen()),
         ],

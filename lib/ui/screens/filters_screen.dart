@@ -3,14 +3,33 @@ import 'package:provider/provider.dart';
 
 import 'package:places/ui/models/ui_filter_model.dart';
 
-class FiltersScreen extends StatelessWidget {
+class FiltersScreen extends StatefulWidget {
+  @override
+  _FiltersScreenState createState() => _FiltersScreenState();
+}
+
+class _FiltersScreenState extends State<FiltersScreen> {
   final _radiusOfRoundElement = 26.0;
 
-  List<FilterItem> _listOfFilterItems;
+  double _sliderValue = 0;
+
+  final List<String> _distanceList = [
+    'от 1м до 50м',
+    'от 50м до 100м',
+    'от 100м до 200м',
+    'от 200м до 300м',
+    'от 400м до 600м',
+    'от 600м до 1км',
+    'от 1км до 2км',
+    'от 2км до 5км',
+    'от 5км до 10км',
+    'от 10км до 50км',
+    'от 50км до 200км',
+  ];
 
   @override
   Widget build(BuildContext context) {
-    List<int> _filterItemsIndexes = [0, 1, 2, 3, 4, 5];
+    final List<int> _filterItemsIndexes = [0, 1, 2, 3, 4, 5];
 
     return Container(
       child: Scaffold(
@@ -76,7 +95,7 @@ class FiltersScreen extends StatelessWidget {
                                     Radius.circular(_radiusOfRoundElement),
                                   ),
                                   child: Container(
-                                    color: Colors.grey.shade300,
+                                    color: Color(0x4fbAbAbF),
                                     width: _radiusOfRoundElement * 2,
                                     height: _radiusOfRoundElement * 2,
                                     child: Padding(
@@ -122,6 +141,33 @@ class FiltersScreen extends StatelessWidget {
                     ),
                 ],
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+              child: ListTile(
+                title: Text(
+                  'Расстояние',
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+                trailing: Text(
+                  _distanceList[(_sliderValue * 10).toInt()].toString(),
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColorLight,
+                  ),
+                ),
+                onTap: () {},
+              ),
+            ),
+            Slider(
+              divisions: 10,
+              value: _sliderValue,
+              onChanged: (newValue) {
+                setState(() {
+                  _sliderValue = newValue;
+                });
+              },
             ),
           ],
         ),

@@ -15,7 +15,12 @@ class SightCard extends StatelessWidget {
           children: [
             Container(
               padding: EdgeInsets.only(left: 16),
-              child: Icon(Icons.favorite_outline, color: Colors.white),
+              child: InkWell(
+                child: Icon(Icons.favorite_outline, color: Colors.white),
+                onTap: () {
+                  print('General, like');
+                },
+              ),
             ),
           ],
         );
@@ -25,11 +30,21 @@ class SightCard extends StatelessWidget {
           children: [
             Container(
               padding: EdgeInsets.only(left: 16),
-              child: Icon(Icons.calendar_today, color: Colors.white),
+              child: InkWell(
+                child: Icon(Icons.calendar_today, color: Colors.white),
+                onTap: () {
+                  print('Wish, calendar');
+                },
+              ),
             ),
             Container(
               padding: EdgeInsets.only(left: 16),
-              child: Icon(Icons.close, color: Colors.white),
+              child: InkWell(
+                child: Icon(Icons.close, color: Colors.white),
+                onTap: () {
+                  print('Wish, delete');
+                },
+              ),
             ),
           ],
         );
@@ -39,11 +54,21 @@ class SightCard extends StatelessWidget {
           children: [
             Container(
               padding: EdgeInsets.only(left: 16),
-              child: Icon(Icons.share, color: Colors.white),
+              child: InkWell(
+                child: Icon(Icons.share, color: Colors.white),
+                onTap: () {
+                  print('Seen, share');
+                },
+              ),
             ),
             Container(
               padding: EdgeInsets.only(left: 16),
-              child: Icon(Icons.close, color: Colors.white),
+              child: InkWell(
+                child: Icon(Icons.close, color: Colors.white),
+                onTap: () {
+                  print('Wish, delete');
+                },
+              ),
             ),
           ],
         );
