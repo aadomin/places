@@ -1,19 +1,32 @@
 import 'package:flutter/material.dart';
-import 'ui/screen/sight_list_screen.dart';
-import 'ui/screen/sight_details_screen.dart';
-import 'mocks.dart';
-import 'ui/screen/visiting_screen.dart';
-import 'ui/screen/settings_screen.dart';
-import 'ui/res/themes.dart';
 import 'package:provider/provider.dart';
-import 'ui/ui_models.dart';
+import 'ui/screens/1_sight_list_screen.dart';
+import 'ui/screens/2_map_screen.dart';
+import 'ui/screens/3_visiting_screen.dart';
+import 'ui/screens/4_settings_screen.dart';
+import 'ui/screens/sight_details_screen.dart';
+import 'ui/screens/filters_screen.dart';
+import 'mocks.dart';
+
+import 'ui/res/themes.dart';
+import 'ui/models/ui_theme_model.dart';
+import 'ui/models/ui_filter_model.dart';
 
 //Provider добавил для динамической смены тем. Через vanilla ну никак не получалось.
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => MyThemeModel(),
-    child: MyApp(),
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => MyThemeModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => MyFilterModel(),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +35,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hey, Flutter!',
       theme: context.watch<MyThemeModel>().isDarkTheme ? darkTheme : lightTheme,
-      home: AllMainScreens(),
+      //
+      initialRoute: '/',
+      routes: {
+        '/': (BuildContext context) => AllMainScreens(),
+        '/details': (BuildContext context) => SightDetailsScreen(mocks[0]),
+        '/filter': (BuildContext context) => FiltersScreen()
+      },
     );
   }
 }
@@ -84,7 +103,7 @@ class _AllMainScreensState extends State<AllMainScreens> {
         },
         children: [
           Center(child: SightListScreen()),
-          Center(child: SightDetailsScreen(mocks[0])), //здесь временно
+          Center(child: MapsScreen()),
           Center(child: VisitingScreen()),
           Center(child: SettingsScreen()),
         ],

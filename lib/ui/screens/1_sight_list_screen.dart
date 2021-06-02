@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'sight_card.dart';
-import '../../domain/sight.dart';
+import '../elements/sight_card.dart';
 import '../../mocks.dart';
-import '../res/text_styles.dart';
 
 class SightListScreen extends StatefulWidget {
   @override
@@ -41,6 +39,12 @@ class _SightListScreenState extends State<SightListScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/filter');
+              },
+              child: Text('ФИЛЬТР'),
+            ),
             SightCard(mocks[0], cartType: 'general'),
             SightCard(mocks[1], cartType: 'general'),
             SightCard(mocks[2], cartType: 'general'),

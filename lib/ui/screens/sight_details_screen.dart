@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../domain/sight.dart';
-import '../../mocks.dart';
-import '../res/text_styles.dart';
+
 
 class SightDetailsScreen extends StatelessWidget {
   final Sight sight;
@@ -65,23 +64,31 @@ class SightDetailsScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  width: 36,
-                  height: 36,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(12),
-                    ),
-                  ),
-                  margin: EdgeInsets.only(
-                    top: 32,
-                    left: 16,
-                  ),
-                  child: Center(
-                    child: Text(
-                      '<',
-                      style: styleButtons,
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: SizedBox(
+                    width: 40,
+                    height: 40,
+                    child: FittedBox(
+                      fit: BoxFit.fitHeight,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          backgroundColor: Theme.of(context).canvasColor,
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          child: Text(
+                            '<',
+                            style: TextStyle(fontSize: 40),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -144,52 +151,81 @@ class SightDetailsScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).accentColor,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(12),
-                      ),
-                    ),
-                    margin: EdgeInsets.only(
-                      top: 32,
-                    ),
-                    child: Center(
-                      child: Text(
-                        'ПОСТРОИТЬ МАРШРУТ',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                    padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        print('построить');
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.play_arrow,
+                              size: 12,
+                            ),
+                            Text(
+                              '  ПОСТРОИТЬ МАРШРУТ',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(
-                      top: 8,
-                    ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 32),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          child: Text(
-                            'Запланировать',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Theme.of(context).primaryColor,
+                        TextButton(
+                          onPressed: () {
+                            print('запланировать');
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(16, 6, 16, 6),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.play_arrow,
+                                  size: 12,
+                                ),
+                                Text(
+                                  '  Запланировать',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          child: Text(
-                            'В Избранное',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Theme.of(context).primaryColor,
+                        TextButton(
+                          onPressed: () {
+                            print('в избранное');
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(16, 6, 16, 6),
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.favorite,
+                                  size: 12,
+                                ),
+                                Text(
+                                  '  В избранное',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ),

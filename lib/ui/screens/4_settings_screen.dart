@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../ui_models.dart';
+import '../models/ui_theme_model.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -33,14 +33,40 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         body: Center(
           child: Column(children: [
-            ElevatedButton(
-              child: Text(context.watch<MyThemeModel>().isDarkTheme
-                  ? 'Светлая тема'
-                  : 'Темная тема'),
-              onPressed: () {
+            ListTile(
+              onTap: () {
                 context.read<MyThemeModel>().changeTheme();
               },
+              title: Text(
+                'Темная тема',
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+              trailing: Switch(
+                value: context.watch<MyThemeModel>().isDarkTheme,
+                onChanged: (currentValue) {
+                  context.read<MyThemeModel>().changeTheme();
+                },
+              ),
             ),
+            ListTile(
+              title: Text(
+                'Смотреть туториал',
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+              trailing: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
+                child: Image.asset(
+                  'res/images/info.png',
+                  width: 20,
+                  height: 20,
+                ),
+              ),
+              onTap: () {},
+            )
           ]),
         ),
       ),
