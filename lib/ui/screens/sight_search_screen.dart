@@ -6,6 +6,7 @@ import 'package:places/ui/models/my_places_model.dart';
 import '../elements/sight_card.dart';
 import '../../mocks.dart';
 import '../../domain/sight.dart';
+import '../elements/sight_card_for_search.dart';
 
 class SightSearchScreen extends StatelessWidget {
   FocusNode focusNode1 = FocusNode();
@@ -96,9 +97,9 @@ class WidgetSearchResult extends StatelessWidget {
     return Column(
       children: [
         for (var i = 0; i < searchResults.length; i++)
-          //ListTile(leading: Image.network('http'),),
-          SightCard(context.watch<MySearchModel>().searchResult[i],
-              cartType: 'general'),
+          SightCartForSearch(
+            context.watch<MySearchModel>().searchResult[i],
+          ),
       ],
     );
   }
@@ -116,8 +117,23 @@ class WidgetSearchEmpty extends StatelessWidget {
         for (var i = 0;
             i < context.watch<MySearchModel>().lastSearches.length;
             i++)
-          Text(context.watch<MySearchModel>().lastSearches[i]),
-        Text('пусто'),
+          Column(
+            children: [
+              ListTile(
+                title: Text(
+                  context.watch<MySearchModel>().lastSearches[i],
+                  style: TextStyle(color: Theme.of(context).primaryColorLight),
+                ),
+                trailing: IconButton(
+                  icon: Icon(Icons.close),
+                  onPressed: () {
+                    context.read<MySearchModel>().removeItemFromHistory(i);
+                  },
+                ),
+              ),
+              Divider(),
+            ],
+          ),
       ],
     );
   }
@@ -131,8 +147,28 @@ class WidgetSearchNotFound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
       children: [
-        Text('Ничего не найдено'),
+        Center(
+            child: Column(
+          children: [
+            Icon(Icons.search,
+                size: 30, color: Theme.of(context).primaryColorLight),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Ничего не найдено',
+                style: TextStyle(
+                    fontSize: 20, color: Theme.of(context).primaryColorLight),
+              ),
+            ),
+            Text(
+              'Попробуйте изменить параметры поиска',
+              style: TextStyle(color: Theme.of(context).primaryColorLight),
+            )
+          ],
+        )),
       ],
     );
   }

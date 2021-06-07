@@ -52,18 +52,31 @@ class MySearchModel with ChangeNotifier {
     var now = DateTime.now();
     int diffOfTime = now.difference(_lastSearchDateTime).inSeconds;
 
-    if (diffOfTime > 3) {
+    // если прошло больше 1 секунды => это уже новый запрос
+    if (diffOfTime > 1) {
       _lastSearches.insert(0, searchText);
       if (_lastSearches.length > 5) {
         _lastSearches.removeAt(_lastSearches.length - 1);
       }
     } else {
       if (_lastSearches.length == 0) {
-        _lastSearches.add(searchText);
+        if (searchText != '') {
+          _lastSearches.add(searchText);
+        }
       } else {
         _lastSearches[0] = searchText;
       }
     }
+    for (var i = 0; i < _lastSearches.length; i++) {
+      if (_lastSearches[i] == '') {
+        _lastSearches.removeAt(i);
+      }
+    }
     _lastSearchDateTime = now;
+  }
+
+  void removeItemFromHistory(int index) {
+    _lastSearches.removeAt(index);
+    notifyListeners();
   }
 }
