@@ -43,7 +43,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
             alignment: Alignment.centerRight,
             child: TextButton(
               onPressed: () {
-                context.read<MyFilterModel>().crearCheckboxes();
+                context.read<MyFilterModel>().clearCheckboxes();
               },
               child: Text(
                 'Очистить',

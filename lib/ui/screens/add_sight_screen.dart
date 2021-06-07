@@ -4,11 +4,21 @@ import 'package:flutter/services.dart';
 import 'package:places/ui/models/ui_categories_model.dart';
 import '../models/my_places_model.dart';
 
-class AddSightScreen extends StatelessWidget {
-  FocusNode focusNode1 = FocusNode();
-  FocusNode focusNode2 = FocusNode();
-  FocusNode focusNode3 = FocusNode();
-  FocusNode focusNode4 = FocusNode();
+class AddSightScreen extends StatefulWidget {
+  @override
+  _AddSightScreenState createState() => _AddSightScreenState();
+}
+
+class _AddSightScreenState extends State<AddSightScreen> {
+  FocusNode focusNodeName = FocusNode();
+  FocusNode focusNodeLat = FocusNode();
+  FocusNode focusNodeLon = FocusNode();
+  FocusNode focusNodeDescription = FocusNode();
+
+  final textControllerName = TextEditingController();
+  final textControllerLat = TextEditingController();
+  final textControllerLon = TextEditingController();
+  final textControllerDescription = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +80,7 @@ class AddSightScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 8, 0, 16),
+                        padding: const EdgeInsets.fromLTRB(12, 12, 0, 12),
                         child: Text(_currentlySelectedCategory),
                       ),
                     ),
@@ -85,12 +95,16 @@ class AddSightScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: TextField(
-                  focusNode: focusNode1,
+                  focusNode: focusNodeName,
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.sentences,
                   maxLines: 1,
                   maxLengthEnforcement: MaxLengthEnforcement.none,
+                  controller: textControllerName,
+                  onSubmitted: (String value) {
+                    focusNodeLat.requestFocus();
+                  },
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(
                       vertical: 10,
@@ -110,12 +124,16 @@ class AddSightScreen extends StatelessWidget {
                       children: [
                         CategoryNameWidget('ШИРОТА'),
                         TextField(
-                          focusNode: focusNode2,
-                          keyboardType: TextInputType.text,
+                          controller: textControllerLat,
+                          focusNode: focusNodeLat,
+                          keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
                           textCapitalization: TextCapitalization.sentences,
                           maxLines: 1,
                           maxLengthEnforcement: MaxLengthEnforcement.none,
+                          onSubmitted: (String value) {
+                            focusNodeLon.requestFocus();
+                          },
                           decoration: InputDecoration(
                             hintText: 'Введите широту',
                             border: OutlineInputBorder(),
@@ -136,12 +154,16 @@ class AddSightScreen extends StatelessWidget {
                       children: [
                         CategoryNameWidget('ДОЛГОТА'),
                         TextField(
-                          focusNode: focusNode3,
-                          keyboardType: TextInputType.text,
+                          controller: textControllerLon,
+                          focusNode: focusNodeLon,
+                          keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
                           textCapitalization: TextCapitalization.sentences,
                           maxLines: 1,
                           maxLengthEnforcement: MaxLengthEnforcement.none,
+                          onSubmitted: (String value) {
+                            focusNodeDescription.requestFocus();
+                          },
                           decoration: InputDecoration(
                             hintText: 'Введите долготу',
                             border: OutlineInputBorder(),
@@ -168,12 +190,16 @@ class AddSightScreen extends StatelessWidget {
               ),
               CategoryNameWidget('ОПИСАНИЕ'),
               TextField(
-                focusNode: focusNode4,
+                controller: textControllerDescription,
+                focusNode: focusNodeDescription,
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.done,
                 textCapitalization: TextCapitalization.sentences,
                 maxLines: null,
                 maxLengthEnforcement: MaxLengthEnforcement.none,
+                onSubmitted: (String value) {
+                  focusNodeDescription.unfocus();
+                },
                 decoration: InputDecoration(
                   hintText: 'Введите текст',
                   border: OutlineInputBorder(),
@@ -182,6 +208,9 @@ class AddSightScreen extends StatelessWidget {
                     horizontal: 10,
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 100,
               ),
             ],
           ),
@@ -193,12 +222,19 @@ class AddSightScreen extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
           child: ElevatedButton(
             onPressed: () {
-              context.read<MyPlacesModel>().save();
+              context.read<MyPlacesModel>().save(
+                    name: textControllerName.text,
+                    lat: double.parse(textControllerLat.text),
+                    lon: double.parse(textControllerLon.text),
+                    url: 'исправить',
+                    details: textControllerDescription.text,
+                    type: context.read<MyCategoriesModel>().currentlySelected,
+                  );
               Navigator.pop(context);
             },
             child: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text('СОХРАНИТЬ2'),
+              child: Text('СОЗДАТЬ'),
             ),
           ),
         ),
@@ -208,7 +244,7 @@ class AddSightScreen extends StatelessWidget {
 }
 
 class CategoryNameWidget extends StatelessWidget {
-  String categoryName = '';
+  final String categoryName;
   CategoryNameWidget(
     this.categoryName, {
     Key key,

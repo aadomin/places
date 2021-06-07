@@ -18,6 +18,7 @@ class MyCategoriesModel with ChangeNotifier {
   void switchCategoryCheck(int index) {
     if (_myCategories[index].isSelected) {
       _myCategories[index].isSelected = false;
+      _myCategories[0].isSelected = true;
     } else {
       for (var i in _myCategories) {
         i.isSelected = false;
@@ -37,8 +38,6 @@ class MyCategoriesModel with ChangeNotifier {
     }
     return result;
   }
-
-  
 }
 
 class CategoryItem {

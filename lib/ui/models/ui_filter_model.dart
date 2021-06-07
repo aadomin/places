@@ -17,7 +17,7 @@ class MyFilterModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void crearCheckboxes() {
+  void clearCheckboxes() {
     for (var item in _filterItems) {
       item.isSelected = false;
     }
