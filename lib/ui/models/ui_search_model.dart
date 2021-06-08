@@ -52,6 +52,10 @@ class MySearchModel with ChangeNotifier {
     var now = DateTime.now();
     int diffOfTime = now.difference(_lastSearchDateTime).inSeconds;
 
+    if (searchText == '') {
+      return;
+    }
+
     // если прошло больше 1 секунды => это уже новый запрос
     if (diffOfTime > 1) {
       _lastSearches.insert(0, searchText);

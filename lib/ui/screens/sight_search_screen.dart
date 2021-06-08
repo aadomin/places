@@ -11,6 +11,8 @@ import '../elements/sight_card_for_search.dart';
 class SightSearchScreen extends StatelessWidget {
   FocusNode focusNode1 = FocusNode();
 
+  var textController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,21 +49,37 @@ class SightSearchScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: TextField(
                 focusNode: focusNode1,
+                controller: textController,
                 onChanged: (String value) {
                   context.read<MySearchModel>().newSearch(value);
                 },
                 decoration: InputDecoration(
                   prefixIcon: Icon(Icons.search, size: 15),
-                  suffixIcon: IconButton(
-                      onPressed: () {
-                        focusNode1.unfocus();
-                        Navigator.pushNamed(context, '/filter');
-                      },
-                      icon: Icon(
-                        Icons.settings,
-                        size: 15,
-                        color: Theme.of(context).accentColor,
-                      )),
+                  suffixIcon: InkWell(
+                    onTap: () {
+                      textController.clear();
+                      context.read<MySearchModel>().newSearch('');
+                    },
+                    child: UnconstrainedBox(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        child: SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: Container(
+                            color: Theme.of(context).primaryColor,
+                            child: Icon(
+                              Icons.close,
+                              size: 14,
+                              color: Theme.of(context).canvasColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.0),
                   ),
