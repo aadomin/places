@@ -1,13 +1,14 @@
-import 'package:places/mocks.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
+import '../../common.dart';
 import '../../domain/sight.dart';
+import 'package:places/mocks.dart';
 
 class MySearchModel with ChangeNotifier {
-  String searchStatus = 'empty';
+  var searchStatus = SearchStatus.empty;
   List<Sight> _searchResult = [];
   String _searchText = '';
+
   List<String> _lastSearches = [];
   DateTime _lastSearchDateTime = DateTime.now();
 
@@ -30,7 +31,7 @@ class MySearchModel with ChangeNotifier {
     List<Sight> result = [];
 
     if (_searchText == '') {
-      searchStatus = 'empty';
+      searchStatus = SearchStatus.empty;
     } else {
       // TODO запрос к БД
       for (var i = 0; i < mocks.length; i++) {
@@ -40,9 +41,9 @@ class MySearchModel with ChangeNotifier {
       }
 
       if (result.length > 0) {
-        searchStatus = 'have result';
+        searchStatus = SearchStatus.haveResult;
       } else {
-        searchStatus = 'not found';
+        searchStatus = SearchStatus.notFound;
       }
     }
     _searchResult = result;

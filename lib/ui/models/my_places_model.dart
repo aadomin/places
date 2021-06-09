@@ -33,8 +33,4 @@ class MyPlacesModel with ChangeNotifier {
     //TODO запросы к бд или серверу
     return mocks;
   }
-
-
-
-  
 }

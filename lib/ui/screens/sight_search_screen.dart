@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:places/ui/models/ui_search_model.dart';
 import 'package:provider/provider.dart';
 
-import 'package:places/ui/models/my_places_model.dart';
-import '../elements/sight_card.dart';
-import '../../mocks.dart';
 import '../../domain/sight.dart';
 import '../elements/sight_card_for_search.dart';
+
+import '../../common.dart';
 
 class SightSearchScreen extends StatelessWidget {
   FocusNode focusNode1 = FocusNode();
@@ -89,11 +88,11 @@ class SightSearchScreen extends StatelessWidget {
                 ),
               ),
             ),
-            if (context.watch<MySearchModel>().searchStatus == 'have result')
+            if (context.watch<MySearchModel>().searchStatus == SearchStatus.haveResult)
               WidgetSearchResult(),
-            if (context.watch<MySearchModel>().searchStatus == 'empty')
+            if (context.watch<MySearchModel>().searchStatus == SearchStatus.empty)
               WidgetSearchEmpty(),
-            if (context.watch<MySearchModel>().searchStatus == 'not found')
+            if (context.watch<MySearchModel>().searchStatus == SearchStatus.notFound)
               WidgetSearchNotFound(),
           ],
           mainAxisSize: MainAxisSize.min,

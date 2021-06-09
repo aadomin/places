@@ -13,7 +13,7 @@ class MyCategoriesModel with ChangeNotifier {
     CategoryItem('Кафе', false),
   ];
 
-  List get myCategories => _myCategories;
+  List<CategoryItem> get myCategories => _myCategories;
 
   void switchCategoryCheck(int index) {
     if (_myCategories[index].isSelected) {

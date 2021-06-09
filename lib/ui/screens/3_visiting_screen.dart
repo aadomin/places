@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import '../res/text_styles.dart';
 import '../../mocks.dart';
 import '../elements/sight_card.dart';
+import '../elements/headers.dart';
 
 class VisitingScreen extends StatefulWidget {
   @override
@@ -32,6 +33,8 @@ class _VisitingScreenState extends State<VisitingScreen>
     const double _uiDefaultPadding = 16;
     const double _uiDefaultButtonHeight = 55;
 
+    final String _header = 'Избранное';
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 120,
@@ -42,17 +45,7 @@ class _VisitingScreenState extends State<VisitingScreen>
           width: double.infinity,
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.all(16),
-                child: Text(
-                  'Избранное',
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColorDark,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-              ),
+              WidgetMyHeader(header: _header),
               Stack(
                 children: [
                   Container(
