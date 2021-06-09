@@ -3,6 +3,7 @@ import '../res/text_styles.dart';
 import '../../mocks.dart';
 import '../elements/sight_card.dart';
 import '../elements/headers.dart';
+import '../../common.dart';
 
 class VisitingScreen extends StatefulWidget {
   @override
@@ -199,8 +200,8 @@ class Tab2 extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SightCard(mocks[0], cartType: 'seen'),
-                SightCard(mocks[1], cartType: 'seen'),
+                SightCard(mocks[0], placeCardType: PlaceCardType.seen),
+                SightCard(mocks[1], placeCardType: PlaceCardType.seen),
               ],
             ),
           ),
@@ -243,8 +244,8 @@ class Tab1 extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SightCard(mocks[1], cartType: 'wish'),
-                SightCard(mocks[2], cartType: 'wish'),
+                SightCard(mocks[1], placeCardType: PlaceCardType.wish),
+                SightCard(mocks[2], placeCardType: PlaceCardType.wish),
               ],
             ),
           ),

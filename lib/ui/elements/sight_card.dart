@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import '../../domain/sight.dart';
+import '../../common.dart';
 
 class SightCard extends StatelessWidget {
   final Sight sight;
-  final String cartType;
+  PlaceCardType placeCardType;
 
-  SightCard(this.sight, {this.cartType = 'common'});
+  SightCard(this.sight, {this.placeCardType = PlaceCardType.general});
 
   Widget _cardIcons() {
-    switch (cartType) {
-      case 'general':
+    switch (placeCardType) {
+      case PlaceCardType.general:
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -24,7 +25,7 @@ class SightCard extends StatelessWidget {
             ),
           ],
         );
-      case 'wish':
+      case PlaceCardType.wish:
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -48,7 +49,7 @@ class SightCard extends StatelessWidget {
             ),
           ],
         );
-      case 'seen':
+      case PlaceCardType.seen:
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -73,7 +74,6 @@ class SightCard extends StatelessWidget {
           ],
         );
     }
-    return Center(child: Text('Error'));
   }
 
   @override

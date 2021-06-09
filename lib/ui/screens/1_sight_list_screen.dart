@@ -5,6 +5,8 @@ import 'package:places/ui/models/my_places_model.dart';
 import '../elements/sight_card.dart';
 import '../../mocks.dart';
 
+import '../../common.dart';
+
 class SightListScreen extends StatelessWidget {
   FocusNode focusNode1 = FocusNode();
 
@@ -84,7 +86,7 @@ class SightListScreen extends StatelessWidget {
                     for (var i = 0; i < mocks.length; i++)
                       SightCard(
                           context.watch<MyPlacesModel>().interestingPlaces[i],
-                          cartType: 'general'),
+                          placeCardType: PlaceCardType.general),
                   ],
                 ),
               ],
