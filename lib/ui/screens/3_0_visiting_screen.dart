@@ -1,9 +1,9 @@
 import "package:flutter/material.dart";
-import '../res/text_styles.dart';
-import '../../mocks.dart';
-import '../elements/sight_card.dart';
+
 import '../elements/headers.dart';
-import '../../common.dart';
+
+import '3_1_tab_wished.dart';
+import '3_2_tab_seen.dart';
 
 class VisitingScreen extends StatefulWidget {
   @override
@@ -157,103 +157,15 @@ class _VisitingScreenState extends State<VisitingScreen>
             controller: _tabController,
             children: [
               Tab(
-                child: Tab1(),
+                child: TabWished(),
               ),
               Tab(
-                child: Tab2(),
+                child: TabSeen(),
               ),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class Tab2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.monochrome_photos,
-                color: Colors.grey.shade300,
-                size: 40,
-              ),
-              Text('Пусто',
-                  style: tsVisitingScreenNoItemsHeader,
-                  textAlign: TextAlign.center),
-              Text(
-                'Отмечайте понравившиеся места \nи они появятся здесь',
-                style: tsVisitingScreenNoItemsText,
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-        ),
-        Container(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SightCard(mocks[0], placeCardType: PlaceCardType.seen),
-                SightCard(mocks[1], placeCardType: PlaceCardType.seen),
-              ],
-            ),
-          ),
-          decoration: BoxDecoration(
-            color: Theme.of(context).canvasColor,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class Tab1 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.monochrome_photos,
-                color: Colors.grey.shade300,
-                size: 40,
-              ),
-              Text('Пусто',
-                  style: tsVisitingScreenNoItemsHeader,
-                  textAlign: TextAlign.center),
-              Text(
-                'Отмечайте понравившиеся места \nи они появятся здесь',
-                style: tsVisitingScreenNoItemsText,
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
-        ),
-        Container(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SightCard(mocks[1], placeCardType: PlaceCardType.wish),
-                SightCard(mocks[2], placeCardType: PlaceCardType.wish),
-              ],
-            ),
-          ),
-          decoration: BoxDecoration(
-            color: Theme.of(context).canvasColor,
-          ),
-        ),
-      ],
     );
   }
 }

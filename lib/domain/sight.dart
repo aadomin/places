@@ -4,8 +4,10 @@ class Sight {
   final double lon;
   final String url;
   final String details;
-  final String type;final String timeOfWork;
-  
+  final String type;
+  final String timeOfWork;
+  bool wished;
+  bool seen;
 
   Sight({
     this.name = 'Example object',
@@ -14,7 +16,9 @@ class Sight {
     this.url = 'http:',
     this.details = 'Description',
     this.type = 'Type',
-    this.timeOfWork = 'Закрыто до 09:00'
+    this.timeOfWork = 'Закрыто до 09:00',
+    this.wished = false,
+    this.seen = false,
   });
 
   @override

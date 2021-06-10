@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import '../../mocks.dart';
 import '../../domain/sight.dart';
 
@@ -11,6 +10,7 @@ class MyPlacesModel with ChangeNotifier {
     String url,
     String details,
     String type,
+    bool wished,
   }) {
     mocks.add(
       Sight(
@@ -25,12 +25,9 @@ class MyPlacesModel with ChangeNotifier {
     notifyListeners();
   }
 
-  List<Sight> get interestingPlaces {
-    return mocks;
-  }
+  List<Sight> get interestingPlaces => mocks;
 
-  List<Sight> getSearchResults(_searchText) {
-    //TODO запросы к бд или серверу
-    return mocks;
-  }
+  List<Sight> get wishedPlaces => mocks.where((s) => s.wished).toList();
+
+  List<Sight> get seenPlaces => mocks.where((s) => s.seen).toList();
 }

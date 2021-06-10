@@ -4,13 +4,13 @@ import '../../common.dart';
 
 class SightCard extends StatelessWidget {
   final Sight sight;
-  PlaceCardType placeCardType;
+  final SightCardType placeCardType;
 
-  SightCard(this.sight, {this.placeCardType = PlaceCardType.general});
+  SightCard(this.sight, {this.placeCardType = SightCardType.general});
 
   Widget _cardIcons() {
     switch (placeCardType) {
-      case PlaceCardType.general:
+      case SightCardType.general:
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -25,7 +25,7 @@ class SightCard extends StatelessWidget {
             ),
           ],
         );
-      case PlaceCardType.wish:
+      case SightCardType.wished:
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -49,7 +49,7 @@ class SightCard extends StatelessWidget {
             ),
           ],
         );
-      case PlaceCardType.seen:
+      case SightCardType.seen:
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [

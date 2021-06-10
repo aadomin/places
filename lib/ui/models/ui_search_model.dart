@@ -35,7 +35,7 @@ class MySearchModel with ChangeNotifier {
     } else {
       // TODO запрос к БД
       for (var i = 0; i < mocks.length; i++) {
-        if (mocks[i].name.contains(_searchText)) {
+        if (mocks[i].name.toLowerCase().contains(_searchText.toLowerCase())) {
           result.add(mocks[i]);
         }
       }

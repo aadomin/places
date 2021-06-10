@@ -83,10 +83,17 @@ class SightListScreen extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    for (var i = 0; i < mocks.length; i++)
+                    for (var i = 0;
+                        i <
+                            context
+                                .watch<MyPlacesModel>()
+                                .interestingPlaces
+                                .length;
+                        i++)
                       SightCard(
-                          context.watch<MyPlacesModel>().interestingPlaces[i],
-                          placeCardType: PlaceCardType.general),
+                        context.watch<MyPlacesModel>().interestingPlaces[i],
+                        placeCardType: SightCardType.general,
+                      ),
                   ],
                 ),
               ],
