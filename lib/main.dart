@@ -4,7 +4,7 @@ import 'package:places/ui/models/ui_search_model.dart';
 import 'package:provider/provider.dart';
 import 'ui/screens/1_sight_list_screen.dart';
 import 'ui/screens/2_map_screen.dart';
-import 'ui/screens/3_visiting_screen.dart';
+import 'ui/screens/3_0_visiting_screen.dart';
 import 'ui/screens/4_settings_screen.dart';
 import 'ui/screens/sight_details_screen.dart';
 import 'ui/screens/filters_screen.dart';
