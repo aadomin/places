@@ -8,9 +8,9 @@ import '../elements/sight_card_for_search.dart';
 import '../../common.dart';
 
 class SightSearchScreen extends StatelessWidget {
-  FocusNode focusNode1 = FocusNode();
+  final FocusNode focusNode1 = FocusNode();
 
-  var textController = TextEditingController();
+  final textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

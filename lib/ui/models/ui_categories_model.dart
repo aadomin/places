@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../mocks.dart';
-import '../../domain/sight.dart';
 
 class MyCategoriesModel with ChangeNotifier {
   List<CategoryItem> _myCategories = [
