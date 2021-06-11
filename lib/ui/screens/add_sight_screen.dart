@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:places/ui/models/ui_categories_model.dart';
 import '../models/my_places_model.dart';
+import '../../routes.dart';
 
 class AddSightScreen extends StatefulWidget {
   @override
@@ -73,7 +74,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
               CategoryNameWidget('КАТЕГОРИЯ'),
               InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, '/select_category');
+                  Navigator.pushNamed(context, ROUTE_SELECT_CATEGORY);
                 },
                 child: Row(
                   mainAxisSize: MainAxisSize.max,

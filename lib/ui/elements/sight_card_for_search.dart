@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../domain/sight.dart';
+import '../../routes.dart';
 
 class SightCartForSearch extends StatelessWidget {
   final Sight sight;
@@ -12,7 +13,7 @@ class SightCartForSearch extends StatelessWidget {
       children: [
         ListTile(
           onTap: () {
-            Navigator.pushNamed(context, '/details');
+            Navigator.pushNamed(context, ROUTE_DETAILS);
           },
           leading: WidgetImageWithRoundedCorners(sight: sight),
           title: WidgetSearchDescriptionOfPlace(sight: sight),

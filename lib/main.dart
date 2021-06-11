@@ -19,6 +19,7 @@ import 'ui/models/ui_filter_model.dart';
 import 'ui/models/ui_categories_model.dart';
 import 'ui/models/my_places_model.dart';
 import 'ui/models/ui_search_model.dart';
+import 'routes.dart';
 
 void main() {
   runApp(
@@ -52,14 +53,14 @@ class MyApp extends StatelessWidget {
       title: 'Hey, Flutter!',
       theme: context.watch<MyThemeModel>().isDarkTheme ? darkTheme : lightTheme,
       //
-      initialRoute: '/',
+      initialRoute: ROUTE_HOME,
       routes: {
-        '/': (BuildContext context) => AllMainScreens(),
-        '/details': (BuildContext context) => SightDetailsScreen(mocks[0]),
-        '/filter': (BuildContext context) => FiltersScreen(),
-        '/add': (BuildContext context) => AddSightScreen(),
-        '/select_category': (BuildContext context) => SelectCategory(),
-        '/search': (BuildContext context) => SightSearchScreen(),
+        ROUTE_HOME: (BuildContext context) => AllMainScreens(),
+        ROUTE_DETAILS: (BuildContext context) => SightDetailsScreen(mocks[0]),
+        ROUTE_FILTER: (BuildContext context) => FiltersScreen(),
+        ROUTE_ADD: (BuildContext context) => AddSightScreen(),
+        ROUTE_SELECT_CATEGORY: (BuildContext context) => SelectCategory(),
+        ROUTE_SEARCH: (BuildContext context) => SightSearchScreen(),
       },
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../domain/sight.dart';
 import '../../common.dart';
+import '../../routes.dart';
 
 class SightCard extends StatelessWidget {
   final Sight sight;
@@ -74,13 +75,14 @@ class SightCard extends StatelessWidget {
           ],
         );
     }
+    return Text('ошибка');
   }
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        Navigator.pushNamed(context, '/details');
+        Navigator.pushNamed(context, ROUTE_DETAILS);
       },
       child: Container(
         padding: EdgeInsets.all(8),

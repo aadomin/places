@@ -3,12 +3,12 @@ import 'package:provider/provider.dart';
 
 import 'package:places/ui/models/my_places_model.dart';
 import '../elements/sight_card.dart';
-import '../../mocks.dart';
 
+import '../../routes.dart';
 import '../../common.dart';
 
 class SightListScreen extends StatelessWidget {
-  FocusNode focusNode1 = FocusNode();
+  final FocusNode focusNode1 = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class SightListScreen extends StatelessWidget {
                         readOnly: true,
                         onTap: () {
                           focusNode1.unfocus();
-                          Navigator.pushNamed(context, '/search');
+                          Navigator.pushNamed(context, ROUTE_SEARCH);
                         },
                         decoration: InputDecoration(
                           prefixIcon: Icon(Icons.search, size: 15),
@@ -69,7 +69,7 @@ class SightListScreen extends StatelessWidget {
                         child: IconButton(
                           onPressed: () {
                             focusNode1.unfocus();
-                            Navigator.pushNamed(context, '/filter');
+                            Navigator.pushNamed(context, ROUTE_FILTER);
                           },
                           icon: Icon(
                             Icons.settings,
@@ -109,7 +109,7 @@ class SightListScreen extends StatelessWidget {
                 height: 40,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/add');
+                    Navigator.pushNamed(context, ROUTE_ADD);
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
