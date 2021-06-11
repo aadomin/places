@@ -93,6 +93,7 @@ class SightListScreen extends StatelessWidget {
                       SightCard(
                         context.watch<MyPlacesModel>().interestingPlaces[i],
                         placeCardType: SightCardType.general,
+                        onTap: () {},
                       ),
                   ],
                 ),

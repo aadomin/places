@@ -5,9 +5,16 @@ import '../../routes.dart';
 
 class SightCard extends StatelessWidget {
   final Sight sight;
+  final Function onTap;
   final SightCardType placeCardType;
+  final Key key;
 
-  SightCard(this.sight, {this.placeCardType = SightCardType.general});
+  SightCard(
+    this.sight, {
+    this.key,
+    this.placeCardType = SightCardType.general,
+    this.onTap,
+  });
 
   Widget _cardIcons() {
     switch (placeCardType) {
@@ -43,9 +50,7 @@ class SightCard extends StatelessWidget {
               padding: EdgeInsets.only(left: 16),
               child: InkWell(
                 child: Icon(Icons.close, color: Colors.white),
-                onTap: () {
-                  print('Wish, delete');
-                },
+                onTap: onTap,
               ),
             ),
           ],
@@ -67,9 +72,7 @@ class SightCard extends StatelessWidget {
               padding: EdgeInsets.only(left: 16),
               child: InkWell(
                 child: Icon(Icons.close, color: Colors.white),
-                onTap: () {
-                  print('Wish, delete');
-                },
+                onTap: onTap,
               ),
             ),
           ],

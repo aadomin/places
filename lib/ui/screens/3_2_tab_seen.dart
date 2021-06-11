@@ -6,18 +6,19 @@ import '../elements/sight_card.dart';
 import '../models/my_places_model.dart';
 
 import '../res/text_styles.dart';
+import '../../domain/sight.dart';
 
-class TabSeen extends StatelessWidget {
+class TabSeen extends StatefulWidget {
+  @override
+  _TabSeenState createState() => _TabSeenState();
+}
+
+class _TabSeenState extends State<TabSeen> {
+  List<Sight> _listOfItems;
   @override
   Widget build(BuildContext context) {
-    List<Widget> _listOfSeenPlaces = context
-        .watch<MyPlacesModel>()
-        .seenPlaces
-        .map((i) => SightCard(
-              i,
-              placeCardType: SightCardType.seen,
-            ))
-        .toList();
+    if (_listOfItems == null)
+      _listOfItems = context.watch<MyPlacesModel>().seenPlaces;
 
     return Stack(
       children: [
@@ -45,7 +46,21 @@ class TabSeen extends StatelessWidget {
         Container(
           child: SingleChildScrollView(
             child: Column(
-              children: _listOfSeenPlaces,
+              children: _listOfItems
+                  .asMap()
+                  .entries
+                  .map((i) => SightCard(
+                        i.value,
+                        placeCardType: SightCardType.seen,
+                        onTap: () {
+                          setState(() {
+                            // реализовать потом удаление в модели
+                            // context.watch<MyPlacesModel>().delFromSeen(i.key);
+                            _listOfItems.removeAt(i.key);
+                          });
+                        },
+                      ))
+                  .toList(),
             ),
           ),
           decoration: BoxDecoration(
