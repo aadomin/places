@@ -3,6 +3,8 @@ import '../../domain/sight.dart';
 import '../../common.dart';
 import '../../routes.dart';
 
+import 'sight_card_icons.dart';
+
 class SightCard extends StatelessWidget {
   final Sight sight;
   final Function onDeleteFromList;
@@ -16,124 +18,60 @@ class SightCard extends StatelessWidget {
     this.onDeleteFromList,
   });
 
-  Widget _cardIcons() {
-    switch (placeCardType) {
-      case SightCardType.general:
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              padding: EdgeInsets.only(left: 16),
-              child: InkWell(
-                child: Icon(Icons.favorite_outline, color: Colors.white),
-                onTap: () {
-                  print('Wish, calendar');
-                },
-              ),
-            ),
-          ],
-        );
-      case SightCardType.wished:
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              padding: EdgeInsets.only(left: 16),
-              child: InkWell(
-                child: Icon(Icons.calendar_today, color: Colors.white),
-                onTap: () {
-                  print('Wish, calendar');
-                },
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 16),
-              child: InkWell(
-                child: Icon(Icons.close, color: Colors.white),
-                onTap: onDeleteFromList,
-              ),
-            ),
-          ],
-        );
-      case SightCardType.seen:
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              padding: EdgeInsets.only(left: 16),
-              child: InkWell(
-                child: Icon(Icons.share, color: Colors.white),
-                onTap: () {
-                  print('Seen, share');
-                },
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 16),
-              child: InkWell(
-                child: Icon(Icons.close, color: Colors.white),
-                onTap: onDeleteFromList,
-              ),
-            ),
-          ],
-        );
-    }
-    return Text('ошибка');
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Dismissible(
-      key: ObjectKey(sight),
-      onDismissed: (direction) {
-        onDeleteFromList();
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, ROUTE_DETAILS);
       },
-      background: Container(
-        alignment: Alignment.centerLeft,
-        color: Colors.red,
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.restore_from_trash,
-                  color: Theme.of(context).canvasColor),
-              Text(
-                'Удалить',
-                style: TextStyle(
-                  color: Theme.of(context).canvasColor,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-      secondaryBackground: Container(
-        alignment: Alignment.centerRight,
-        color: Colors.red,
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.restore_from_trash,
-                  color: Theme.of(context).canvasColor),
-              Text(
-                'Удалить',
-                style: TextStyle(
-                  color: Theme.of(context).canvasColor,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-      child: TextButton(
-        onPressed: () {
-          Navigator.pushNamed(context, ROUTE_DETAILS);
+      child: Dismissible(
+        key: ObjectKey(sight),
+        onDismissed: (direction) {
+          onDeleteFromList();
         },
+        background: Container(
+          alignment: Alignment.centerLeft,
+          color: Colors.red,
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.restore_from_trash,
+                    color: Theme.of(context).canvasColor),
+                Text(
+                  'Удалить',
+                  style: TextStyle(
+                    color: Theme.of(context).canvasColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        secondaryBackground: Container(
+          alignment: Alignment.centerRight,
+          color: Colors.red,
+          child: Padding(
+            padding: const EdgeInsets.all(24.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.restore_from_trash,
+                    color: Theme.of(context).canvasColor),
+                Text(
+                  'Удалить',
+                  style: TextStyle(
+                    color: Theme.of(context).canvasColor,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
         child: Container(
-          padding: EdgeInsets.all(8),
+          padding: EdgeInsets.only(bottom: 16),
+          margin: EdgeInsets.only(bottom: 16),
           child: Stack(
             children: [
               Column(
@@ -203,7 +141,9 @@ class SightCard extends StatelessWidget {
               Container(
                 alignment: Alignment.topRight,
                 padding: EdgeInsets.all(16),
-                child: _cardIcons(),
+                child: WidgetSightCardIcons(
+                    placeCardType: placeCardType,
+                    onDeleteFromList: onDeleteFromList),
               ),
             ],
           ),

@@ -22,27 +22,31 @@ class _TabSeenState extends State<TabSeen> {
       _listOfItems = context.watch<MyPlacesModel>().seenPlaces;
 
     if (_listOfItems.isEmpty) {
-      return WidgetEmptyList('Отмечайте посещенные места \nи они появятся здесь');
+      return WidgetEmptyList(
+          'Отмечайте посещенные места \nи они появятся здесь');
     } else {
       return Container(
         alignment: Alignment.topCenter,
         child: SingleChildScrollView(
-          child: Column(
-            children: _listOfItems
-                .asMap()
-                .entries
-                .map((i) => SightCard(
-                      i.value,
-                      placeCardType: SightCardType.seen,
-                      onDeleteFromList: () {
-                        setState(() {
-                          // реализовать потом удаление в модели
-                          // context.watch<MyPlacesModel>().delFromSeen(i.key);
-                          _listOfItems.removeAt(i.key);
-                        });
-                      },
-                    ))
-                .toList(),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+            child: Column(
+              children: _listOfItems
+                  .asMap()
+                  .entries
+                  .map((i) => SightCard(
+                        i.value,
+                        placeCardType: SightCardType.seen,
+                        onDeleteFromList: () {
+                          setState(() {
+                            // реализовать потом удаление в модели
+                            // context.watch<MyPlacesModel>().delFromSeen(i.key);
+                            _listOfItems.removeAt(i.key);
+                          });
+                        },
+                      ))
+                  .toList(),
+            ),
           ),
         ),
         decoration: BoxDecoration(
@@ -52,4 +56,3 @@ class _TabSeenState extends State<TabSeen> {
     }
   }
 }
-

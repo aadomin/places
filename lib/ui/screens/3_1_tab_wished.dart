@@ -27,23 +27,26 @@ class _TabWishedState extends State<TabWished> {
       return Container(
         alignment: Alignment.topCenter,
         child: SingleChildScrollView(
-          child: Column(
-            children: _listOfItems
-                .asMap()
-                .entries
-                .map((i) => SightCard(
-                      i.value,
-                      // key: GlobalKey(),
-                      placeCardType: SightCardType.wished,
-                      onDeleteFromList: () {
-                        setState(() {
-                          // реализовать потом удаление в модели
-                          // context.watch<MyPlacesModel>().delFromWished(i.key);
-                          _listOfItems.removeAt(i.key);
-                        });
-                      },
-                    ))
-                .toList(),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+            child: Column(
+              children: _listOfItems
+                  .asMap()
+                  .entries
+                  .map((i) => SightCard(
+                        i.value,
+                        // key: GlobalKey(),
+                        placeCardType: SightCardType.wished,
+                        onDeleteFromList: () {
+                          setState(() {
+                            // реализовать потом удаление в модели
+                            // context.watch<MyPlacesModel>().delFromWished(i.key);
+                            _listOfItems.removeAt(i.key);
+                          });
+                        },
+                      ))
+                  .toList(),
+            ),
           ),
         ),
         decoration: BoxDecoration(
