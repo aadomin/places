@@ -4,9 +4,9 @@ import '../../common.dart';
 
 import '../elements/sight_card.dart';
 import '../models/my_places_model.dart';
-
-import '../res/text_styles.dart';
 import '../../domain/sight.dart';
+
+import '3_3_empty_list.dart';
 
 class TabWished extends StatefulWidget {
   @override
@@ -20,55 +20,36 @@ class _TabWishedState extends State<TabWished> {
     if (_listOfItems == null)
       _listOfItems = context.watch<MyPlacesModel>().wishedPlaces;
 
-    return Stack(
-      children: [
-        Center(
+    if (_listOfItems.isEmpty) {
+      return WidgetEmptyList(
+          'Отмечайте понравившиеся места \nи они появятся здесь');
+    } else {
+      return Container(
+        alignment: Alignment.topCenter,
+        child: SingleChildScrollView(
           child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.monochrome_photos,
-                color: Colors.grey.shade300,
-                size: 40,
-              ),
-              Text('Пусто',
-                  style: tsVisitingScreenNoItemsHeader,
-                  textAlign: TextAlign.center),
-              Text(
-                'Отмечайте понравившиеся места \nи они появятся здесь',
-                style: tsVisitingScreenNoItemsText,
-                textAlign: TextAlign.center,
-              ),
-            ],
+            children: _listOfItems
+                .asMap()
+                .entries
+                .map((i) => SightCard(
+                      i.value,
+                      // key: GlobalKey(),
+                      placeCardType: SightCardType.wished,
+                      onDeleteFromList: () {
+                        setState(() {
+                          // реализовать потом удаление в модели
+                          // context.watch<MyPlacesModel>().delFromWished(i.key);
+                          _listOfItems.removeAt(i.key);
+                        });
+                      },
+                    ))
+                .toList(),
           ),
         ),
-        Container(
-          child: SingleChildScrollView(
-            child: Column(
-              children: _listOfItems
-                  .asMap()
-                  .entries
-                  .map((i) => SightCard(
-                        i.value,
-                        // key: GlobalKey(),
-                        placeCardType: SightCardType.wished,
-                        onTap: () {
-                          setState(() {
-                            // реализовать потом удаление в модели
-                            // context.watch<MyPlacesModel>().delFromWished(i.key);
-                            _listOfItems.removeAt(i.key);
-                          });
-                        },
-                      ))
-                  .toList(),
-            ),
-          ),
-          decoration: BoxDecoration(
-            color: Theme.of(context).canvasColor,
-          ),
+        decoration: BoxDecoration(
+          color: Theme.of(context).canvasColor,
         ),
-      ],
-    );
+      );
+    }
   }
 }
