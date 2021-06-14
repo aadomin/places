@@ -24,10 +24,10 @@ class SightCard extends StatelessWidget {
           children: [
             Container(
               padding: EdgeInsets.only(left: 16),
-              child: IconButton(
-                icon: Icon(Icons.favorite_outline, color: Colors.white),
-                onPressed: () {
-                  print('General, like');
+              child: InkWell(
+                child: Icon(Icons.favorite_outline, color: Colors.white),
+                onTap: () {
+                  print('Wish, calendar');
                 },
               ),
             ),
@@ -89,6 +89,26 @@ class SightCard extends StatelessWidget {
         onDeleteFromList();
       },
       background: Container(
+        alignment: Alignment.centerLeft,
+        color: Colors.red,
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.restore_from_trash,
+                  color: Theme.of(context).canvasColor),
+              Text(
+                'Удалить',
+                style: TextStyle(
+                  color: Theme.of(context).canvasColor,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      secondaryBackground: Container(
         alignment: Alignment.centerRight,
         color: Colors.red,
         child: Padding(
