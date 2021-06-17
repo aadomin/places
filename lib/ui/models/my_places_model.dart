@@ -30,4 +30,12 @@ class MyPlacesModel with ChangeNotifier {
   List<Sight> get wishedPlaces => mocks.where((s) => s.wished).toList();
 
   List<Sight> get seenPlaces => mocks.where((s) => s.seen).toList();
+
+  void delFromWished(int index) {
+    mocks[index].wished = false;
+  }
+
+  void delFromSeen(int index) {
+    mocks[index].wished = false;
+  }
 }

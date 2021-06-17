@@ -81,20 +81,24 @@ class SightListScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Column(
-                  children: [
-                    for (var i = 0;
-                        i <
-                            context
-                                .watch<MyPlacesModel>()
-                                .interestingPlaces
-                                .length;
-                        i++)
-                      SightCard(
-                        context.watch<MyPlacesModel>().interestingPlaces[i],
-                        placeCardType: SightCardType.general,
-                      ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      for (var i = 0;
+                          i <
+                              context
+                                  .watch<MyPlacesModel>()
+                                  .interestingPlaces
+                                  .length;
+                          i++)
+                        SightCard(
+                          context.watch<MyPlacesModel>().interestingPlaces[i],
+                          placeCardType: SightCardType.general,
+                          onDeleteFromList: () {},
+                        ),
+                    ],
+                  ),
                 ),
               ],
               mainAxisSize: MainAxisSize.min,
