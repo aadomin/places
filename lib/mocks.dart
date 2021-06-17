@@ -34,7 +34,7 @@ final List<Sight> mocks = [
     details:
         'Глубина мысли показывает обширность жизненного опыта. Наслаждение мыслью показывает его качество.',
     type: 'вилла',
-    wished: false,
+    wished: true,
     seen: true,
   ),
 ];
