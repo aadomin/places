@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:places/ui/models/ui_categories_model.dart';
@@ -20,6 +21,8 @@ class _AddSightScreenState extends State<AddSightScreen> {
   final textControllerLat = TextEditingController();
   final textControllerLon = TextEditingController();
   final textControllerDescription = TextEditingController();
+
+  List<int> _listOfPhotos = [0, 1, 2, 3, 4, 5];
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +74,91 @@ class _AddSightScreenState extends State<AddSightScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(right: 16),
+                      padding: EdgeInsets.all(1),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14),
+                        color: Theme.of(context).accentColor,
+                      ),
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(13),
+                          color: Theme.of(context).canvasColor,
+                        ),
+                        child: SizedBox(
+                          width: 50,
+                          height: 50,
+                          child: Center(
+                            child: Icon(Icons.add,
+                                size: 30, color: Theme.of(context).accentColor),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: _listOfPhotos.asMap().entries.map((item) {
+                        return Dismissible(
+                          background: Container(
+                            padding: EdgeInsets.all(16),
+                            margin: EdgeInsets.only(right: 16),
+                            child: Center(
+                              child: Icon(
+                                Icons.restore_from_trash,
+                                size: 20,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ),
+                          key: ObjectKey(item),
+                          direction: DismissDirection.vertical,
+                          onDismissed: (direction) {},
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _listOfPhotos.removeAt(item.key);
+                              });
+                              print(_listOfPhotos.toString());
+                            },
+                            child: Stack(
+                              alignment: Alignment.topRight,
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.only(right: 16),
+                                  child: SizedBox(
+                                    width: 72,
+                                    height: 72,
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(13),
+                                        child: Image.network(
+                                          'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+                                          fit: BoxFit.fill,
+                                        )),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(top: 12, right: 24),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    color: Theme.of(context).canvasColor,
+                                  ),
+                                  child: Icon(Icons.close,
+                                      size: 16, color: Colors.black),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                  ],
+                ),
+              ),
               CategoryNameWidget('КАТЕГОРИЯ'),
               InkWell(
                 onTap: () {
