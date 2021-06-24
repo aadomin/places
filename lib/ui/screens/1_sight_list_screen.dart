@@ -7,6 +7,8 @@ import '../elements/sight_card.dart';
 import '../../routes.dart';
 import '../../common.dart';
 
+import 'dart:io';
+
 class SightListScreen extends StatelessWidget {
   final FocusNode focusNode1 = FocusNode();
 
@@ -40,50 +42,53 @@ class SightListScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          SingleChildScrollView(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Stack(
-                    children: [
-                      TextField(
-                        focusNode: focusNode1,
-                        readOnly: true,
-                        onTap: () {
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Stack(
+                  children: [
+                    TextField(
+                      focusNode: focusNode1,
+                      readOnly: true,
+                      onTap: () {
+                        focusNode1.unfocus();
+                        Navigator.pushNamed(context, ROUTE_SEARCH);
+                      },
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.search, size: 15),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        hintText: 'Поиск',
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 10),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: IconButton(
+                        onPressed: () {
                           focusNode1.unfocus();
-                          Navigator.pushNamed(context, ROUTE_SEARCH);
+                          Navigator.pushNamed(context, ROUTE_FILTER);
                         },
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.search, size: 15),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          hintText: 'Поиск',
-                          contentPadding: const EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 10),
+                        icon: Icon(
+                          Icons.settings,
+                          size: 15,
+                          color: Theme.of(context).accentColor,
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: IconButton(
-                          onPressed: () {
-                            focusNode1.unfocus();
-                            Navigator.pushNamed(context, ROUTE_FILTER);
-                          },
-                          icon: Icon(
-                            Icons.settings,
-                            size: 15,
-                            color: Theme.of(context).accentColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                Padding(
+              ),
+              Expanded(
+                child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Column(
+                  child: ListView(
+                    physics: Platform.isAndroid
+                        ? ClampingScrollPhysics()
+                        : BouncingScrollPhysics(),
                     children: [
                       for (var i = 0;
                           i <
@@ -100,9 +105,9 @@ class SightListScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-              ],
-              mainAxisSize: MainAxisSize.min,
-            ),
+              ),
+            ],
+            mainAxisSize: MainAxisSize.min,
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
