@@ -85,24 +85,19 @@ class SightListScreen extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: ListView(
+                  child: ListView.builder(
                     physics: Platform.isAndroid
                         ? ClampingScrollPhysics()
                         : BouncingScrollPhysics(),
-                    children: [
-                      for (var i = 0;
-                          i <
-                              context
-                                  .watch<MyPlacesModel>()
-                                  .interestingPlaces
-                                  .length;
-                          i++)
-                        SightCard(
-                          context.watch<MyPlacesModel>().interestingPlaces[i],
-                          placeCardType: SightCardType.general,
-                          onDeleteFromList: () {},
-                        ),
-                    ],
+                    itemCount:
+                        context.watch<MyPlacesModel>().interestingPlaces.length,
+                    itemBuilder: (context, i) {
+                      return SightCard(
+                        context.watch<MyPlacesModel>().interestingPlaces[i],
+                        placeCardType: SightCardType.general,
+                        onDeleteFromList: () {},
+                      );
+                    },
                   ),
                 ),
               ),

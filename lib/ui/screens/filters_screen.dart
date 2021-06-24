@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 
 import 'package:places/ui/models/ui_filter_model.dart';
 
+import 'dart:io';
+
 class FiltersScreen extends StatefulWidget {
   @override
   _FiltersScreenState createState() => _FiltersScreenState();
@@ -76,6 +78,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: GridView.count(
                   crossAxisCount: 3,
+                  physics: Platform.isAndroid
+                        ? ClampingScrollPhysics()
+                        : BouncingScrollPhysics(),
                   children: [
                     for (var i in _filterItemsIndexes)
                       SizedBox(
