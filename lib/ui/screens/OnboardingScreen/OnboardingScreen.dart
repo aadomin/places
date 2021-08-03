@@ -12,6 +12,20 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
 
+  double currentPage = 1;
+
+  @override
+  void initState() {
+    _pageController
+      ..addListener(() {
+        setState(() {
+          currentPage = _pageController.page;
+          print(currentPage);
+        });
+      });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +44,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
             Expanded(
               flex: 1,
-              child: _pageController.initialPage ==1 
+              child: currentPage == 2
                   ? SizedBox.shrink()
                   : TextButton(
                       onPressed: () {
@@ -51,21 +65,35 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ],
         ),
       ),
-      body: Container(
-        child: PageView(
-          scrollDirection: Axis.horizontal,
-          physics: BouncingScrollPhysics(),
-          reverse: false,
-          onPageChanged: (value) {
-            setState(() {});
-          },
-          controller: _pageController,
-          children: [
-            OnboardingPage1(pageController: _pageController),
-            OnboardingPage2(pageController: _pageController),
-            OnboardingPage3(pageController: _pageController),
-          ],
-        ),
+      body: Stack(
+        children: [
+          Container(
+            child: PageView(
+              scrollDirection: Axis.horizontal,
+              physics: BouncingScrollPhysics(),
+              reverse: false,
+              onPageChanged: (value) {
+                setState(() {});
+              },
+              controller: _pageController,
+              children: [
+                OnboardingPage1(pageController: _pageController),
+                OnboardingPage2(pageController: _pageController),
+                OnboardingPage3(pageController: _pageController),
+              ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.all(120),
+              child: Image.asset(
+                'res/images/points.png',
+                width: 40,
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
