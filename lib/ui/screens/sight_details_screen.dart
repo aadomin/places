@@ -15,6 +15,8 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
 
   double _selectedPage = 0;
 
+  int _countOfPages = 4;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +39,7 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                         });
                       },
                       children: [
-                        for (var i = 1; i <= 3; i++)
+                        for (var i = 1; i <= _countOfPages; i++)
                           Container(
                             height: 300,
                             width: 300,
@@ -58,28 +60,24 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                     BackButtonWidget(),
                     Align(
                       alignment: Alignment.bottomLeft,
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: _selectedPage *
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            left: _selectedPage *
                                 MediaQuery.of(context).size.width /
-                                3,
-                            height: 6,
-                            child: Text('1'),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width / 3,
-                            height: 6,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(3),
-                              ),
-                              child: Container(
-                                color: Color(0xFF252849),
-                              ),
+                                _countOfPages),
+                        child: SizedBox(
+                          width:
+                              MediaQuery.of(context).size.width / _countOfPages,
+                          height: 6,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(3),
+                            ),
+                            child: Container(
+                              color: Color(0xFF252849),
                             ),
                           ),
-                        ],
+                        ),
                       ),
                     )
                   ],
