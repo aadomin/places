@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:places/ui/models/ui_categories_model.dart';
 import '../models/my_places_model.dart';
 import '../../routes.dart';
+import 'dart:io';
 
 class AddSightScreen extends StatefulWidget {
   @override
@@ -74,8 +75,8 @@ class _AddSightScreenState extends State<AddSightScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
+              SizedBox(
+                height: 75,
                 child: Row(
                   children: [
                     Container(
@@ -101,60 +102,66 @@ class _AddSightScreenState extends State<AddSightScreen> {
                         ),
                       ),
                     ),
-                    Row(
-                      children: _listOfPhotos.asMap().entries.map((item) {
-                        return Dismissible(
-                          background: Container(
-                            padding: EdgeInsets.all(16),
-                            margin: EdgeInsets.only(right: 16),
-                            child: Center(
-                              child: Icon(
-                                Icons.restore_from_trash,
-                                size: 20,
-                                color: Colors.red,
+                    Expanded(
+                      child: ListView(
+                        scrollDirection: Axis.horizontal,
+                        physics: Platform.isAndroid
+                        ? ClampingScrollPhysics()
+                        : BouncingScrollPhysics(),
+                        children: _listOfPhotos.asMap().entries.map((item) {
+                          return Dismissible(
+                            background: Container(
+                              padding: EdgeInsets.all(16),
+                              margin: EdgeInsets.only(right: 16),
+                              child: Center(
+                                child: Icon(
+                                  Icons.restore_from_trash,
+                                  size: 20,
+                                  color: Colors.red,
+                                ),
                               ),
                             ),
-                          ),
-                          key: ObjectKey(item),
-                          direction: DismissDirection.vertical,
-                          onDismissed: (direction) {},
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _listOfPhotos.removeAt(item.key);
-                              });
-                              print(_listOfPhotos.toString());
-                            },
-                            child: Stack(
-                              alignment: Alignment.topRight,
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(right: 16),
-                                  child: SizedBox(
-                                    width: 72,
-                                    height: 72,
-                                    child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(13),
-                                        child: Image.network(
-                                          'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-                                          fit: BoxFit.fill,
-                                        )),
+                            key: ObjectKey(item),
+                            direction: DismissDirection.vertical,
+                            onDismissed: (direction) {},
+                            child: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _listOfPhotos.removeAt(item.key);
+                                });
+                                print(_listOfPhotos.toString());
+                              },
+                              child: Stack(
+                                alignment: Alignment.topRight,
+                                children: [
+                                  Container(
+                                    margin: EdgeInsets.only(right: 16),
+                                    child: SizedBox(
+                                      width: 72,
+                                      height: 72,
+                                      child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(13),
+                                          child: Image.network(
+                                            'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+                                            fit: BoxFit.fill,
+                                          )),
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(top: 12, right: 24),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(16),
-                                    color: Theme.of(context).canvasColor,
+                                  Container(
+                                    margin: EdgeInsets.only(top: 12, right: 24),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      color: Theme.of(context).canvasColor,
+                                    ),
+                                    child: Icon(Icons.close,
+                                        size: 16, color: Colors.black),
                                   ),
-                                  child: Icon(Icons.close,
-                                      size: 16, color: Colors.black),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      }).toList(),
+                          );
+                        }).toList(),
+                      ),
                     ),
                   ],
                 ),

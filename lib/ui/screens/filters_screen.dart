@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 
 import 'package:places/ui/models/ui_filter_model.dart';
 
+import 'dart:io';
+
 class FiltersScreen extends StatefulWidget {
   @override
   _FiltersScreenState createState() => _FiltersScreenState();
@@ -70,95 +72,95 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child: Wrap(
-                direction: Axis.horizontal,
-                spacing: 1.0,
-                runSpacing: 10.0,
-                alignment: WrapAlignment.spaceEvenly,
-                children: [
-                  for (var i in _filterItemsIndexes)
-                    SizedBox(
-                      width: 110,
-                      height: 95,
-                      child: TextButton(
-                        onPressed: () {
-                          context.read<MyFilterModel>().switchCheckbox(i);
-                        },
-                        child: Column(
-                          children: [
-                            Stack(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(_radiusOfRoundElement),
-                                  ),
-                                  child: Container(
-                                    color: Color(0x4fbAbAbF),
-                                    width: _radiusOfRoundElement * 2,
-                                    height: _radiusOfRoundElement * 2,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Center(
-                                        child: Image.asset(
-                                          context
-                                              .watch<MyFilterModel>()
-                                              .filterItems[i]
-                                              .assetPath,
-                                          width: 32,
-                                          height: 32,
+            SizedBox(
+              height: 240,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: GridView.count(
+                  crossAxisCount: 3,
+                  physics: Platform.isAndroid
+                        ? ClampingScrollPhysics()
+                        : BouncingScrollPhysics(),
+                  children: [
+                    for (var i in _filterItemsIndexes)
+                      SizedBox(
+                        width: 110,
+                        height: 95,
+                        child: TextButton(
+                          onPressed: () {
+                            context.read<MyFilterModel>().switchCheckbox(i);
+                          },
+                          child: Column(
+                            children: [
+                              Stack(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(_radiusOfRoundElement),
+                                    ),
+                                    child: Container(
+                                      color: Color(0x4fbAbAbF),
+                                      width: _radiusOfRoundElement * 2,
+                                      height: _radiusOfRoundElement * 2,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Center(
+                                          child: Image.asset(
+                                            context
+                                                .watch<MyFilterModel>()
+                                                .filterItems[i]
+                                                .assetPath,
+                                            width: 32,
+                                            height: 32,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                context
-                                        .watch<MyFilterModel>()
-                                        .filterItems[i]
-                                        .isSelected
-                                    ? CheckmarkWidget(
-                                        radiusOfRoundElement:
-                                            _radiusOfRoundElement)
-                                    : Text(''),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.fromLTRB(4, 12, 4, 0),
-                              child: Text(
-                                context
-                                    .watch<MyFilterModel>()
-                                    .filterItems[i]
-                                    .name,
-                                style: TextStyle(
-                                  fontSize: 13,
+                                  context
+                                          .watch<MyFilterModel>()
+                                          .filterItems[i]
+                                          .isSelected
+                                      ? CheckmarkWidget(
+                                          radiusOfRoundElement:
+                                              _radiusOfRoundElement)
+                                      : Text(''),
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(4, 12, 4, 0),
+                                child: Text(
+                                  context
+                                      .watch<MyFilterModel>()
+                                      .filterItems[i]
+                                      .name,
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
-              child: ListTile(
-                title: Text(
-                  'Расстояние',
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                  ),
+            ListTile(
+              title: Text(
+                'Расстояние',
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
                 ),
-                trailing: Text(
-                  _distanceList[(_sliderValue * 10).toInt()].toString(),
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColorLight,
-                  ),
-                ),
-                onTap: () {},
               ),
+              trailing: Text(
+                _distanceList[(_sliderValue * 10).toInt()].toString(),
+                style: TextStyle(
+                  color: Theme.of(context).primaryColorLight,
+                ),
+              ),
+              onTap: () {},
             ),
             Slider(
               divisions: 10,
