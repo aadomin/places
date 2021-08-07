@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../domain/sight.dart';
+import '../elements/image.dart';
 
 class SightDetailsScreen extends StatefulWidget {
   final Sight sight;
@@ -43,16 +44,9 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                           Container(
                             height: 300,
                             width: 300,
-                            child: Image.network(
-                              widget.sight.url,
+                            child: MyImageWidget(
+                              url: widget.sight.url,
                               fit: BoxFit.fitHeight,
-                              loadingBuilder:
-                                  (context, child, loadingProgress) {
-                                if (loadingProgress == null) return child;
-                                return Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              },
                             ),
                           ),
                       ],

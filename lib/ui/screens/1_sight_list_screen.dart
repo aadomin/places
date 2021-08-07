@@ -7,7 +7,7 @@ import '../elements/sight_card.dart';
 import '../../routes.dart';
 import '../../common.dart';
 
-import 'dart:io';
+import '../my_scroll_physics.dart';
 
 class SightListScreen extends StatelessWidget {
   final FocusNode focusNode1 = FocusNode();
@@ -86,9 +86,7 @@ class SightListScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: ListView.builder(
-                    physics: Platform.isAndroid
-                        ? ClampingScrollPhysics()
-                        : BouncingScrollPhysics(),
+                    physics: MyScrollPhysics.physics,
                     itemCount:
                         context.watch<MyPlacesModel>().interestingPlaces.length,
                     itemBuilder: (context, i) {

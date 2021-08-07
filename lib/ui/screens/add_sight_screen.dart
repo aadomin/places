@@ -5,7 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:places/ui/models/ui_categories_model.dart';
 import '../models/my_places_model.dart';
 import '../../routes.dart';
-import 'dart:io';
+import '../my_scroll_physics.dart';
+import '../elements/image.dart';
 
 class AddSightScreen extends StatefulWidget {
   @override
@@ -105,9 +106,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
                     Expanded(
                       child: ListView(
                         scrollDirection: Axis.horizontal,
-                        physics: Platform.isAndroid
-                        ? ClampingScrollPhysics()
-                        : BouncingScrollPhysics(),
+                        physics: MyScrollPhysics.physics,
                         children: _listOfPhotos.asMap().entries.map((item) {
                           return Dismissible(
                             background: Container(
@@ -141,8 +140,8 @@ class _AddSightScreenState extends State<AddSightScreen> {
                                       height: 72,
                                       child: ClipRRect(
                                           borderRadius: BorderRadius.circular(13),
-                                          child: Image.network(
-                                            'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+                                          child: MyImageWidget(
+                                            url: 'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
                                             fit: BoxFit.fill,
                                           )),
                                     ),

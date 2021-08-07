@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../domain/sight.dart';
 import '../../routes.dart';
+import 'image.dart';
 
 class SightCartForSearch extends StatelessWidget {
   final Sight sight;
@@ -74,19 +75,9 @@ class WidgetImageWithRoundedCorners extends StatelessWidget {
         borderRadius: BorderRadius.all(
           Radius.circular(12),
         ),
-        child: Image.network(
-          sight.url,
+        child: MyImageWidget(
+          url: sight.url,
           fit: BoxFit.cover,
-          loadingBuilder: (context, child, loadingProgress) {
-            if (loadingProgress == null) return child;
-            return Center(
-              child: SizedBox(
-                width: 20,
-                height: 20,
-                child: CircularProgressIndicator(),
-              ),
-            );
-          },
         ),
       ),
     );

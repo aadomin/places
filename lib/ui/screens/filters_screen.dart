@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:places/ui/models/ui_filter_model.dart';
 
-import 'dart:io';
+import '../my_scroll_physics.dart';
 
 class FiltersScreen extends StatefulWidget {
   @override
@@ -78,9 +78,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 padding: EdgeInsets.zero,
                 child: GridView.count(
                   crossAxisCount: 3,
-                  physics: Platform.isAndroid
-                      ? ClampingScrollPhysics()
-                      : BouncingScrollPhysics(),
+                  physics: MyScrollPhysics.physics,
                   children: [
                     for (var i in _filterItemsIndexes)
                       SizedBox(

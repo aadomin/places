@@ -9,7 +9,7 @@ import '../../domain/sight.dart';
 
 import '3_3_empty_list.dart';
 
-import 'dart:io';
+import '../my_scroll_physics.dart';
 
 class TabSeen extends StatefulWidget {
   @override
@@ -37,9 +37,7 @@ class _TabSeenState extends State<TabSeen> {
         child: Padding(
           padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
           child: ListView(
-            physics: Platform.isAndroid
-                ? ClampingScrollPhysics()
-                : BouncingScrollPhysics(),
+            physics: MyScrollPhysics.physics,
             children: _listOfItems
                 .asMap()
                 .entries

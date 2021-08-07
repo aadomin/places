@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../domain/sight.dart';
 import '../../common.dart';
 import '../../routes.dart';
+import 'image.dart';
 
 import 'sight_card_icons.dart';
 
@@ -84,19 +85,9 @@ class SightCard extends StatelessWidget {
                         topLeft: Radius.circular(12),
                         topRight: Radius.circular(12),
                       ),
-                      child: Image.network(
-                        sight.url,
+                      child: MyImageWidget(
+                        url: sight.url,
                         fit: BoxFit.fitWidth,
-                        loadingBuilder: (context, child, loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return Center(
-                            child: SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: CircularProgressIndicator(),
-                            ),
-                          );
-                        },
                       ),
                     ),
                   ),
