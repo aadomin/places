@@ -1,21 +1,22 @@
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
-import '../../common.dart';
+import '../../my_enums.dart';
 
-import '../elements/sight_card.dart';
-import '../models/my_places_model.dart';
-import '../../domain/sight.dart';
+import '../../widgets/sight_card.dart';
+import 'my_places_model.dart';
+
+import '../../../domain/sight.dart';
 
 import '3_3_empty_list.dart';
 
-import '../my_scroll_physics.dart';
+import '../../my_scroll_physics.dart';
 
-class TabWished extends StatefulWidget {
+class TabSeen extends StatefulWidget {
   @override
-  _TabWishedState createState() => _TabWishedState();
+  _TabSeenState createState() => _TabSeenState();
 }
 
-class _TabWishedState extends State<TabWished> {
+class _TabSeenState extends State<TabSeen> {
   List<Sight> _listOfItems;
 
   GlobalKey globalKey = GlobalKey();
@@ -25,11 +26,11 @@ class _TabWishedState extends State<TabWished> {
   @override
   Widget build(BuildContext context) {
     if (_listOfItems == null)
-      _listOfItems = context.watch<MyPlacesModel>().wishedPlaces;
+      _listOfItems = context.watch<MyPlacesModel>().seenPlaces;
 
     if (_listOfItems.isEmpty) {
       return WidgetEmptyList(
-          'Отмечайте понравившиеся места \nи они появятся здесь');
+          'Отмечайте посещенные места \nи они появятся здесь');
     } else {
       return Container(
         alignment: Alignment.topCenter,
@@ -57,11 +58,11 @@ class _TabWishedState extends State<TabWished> {
                           child: SightCard(
                             i.value,
                             // key: GlobalKey(),
-                            placeCardType: SightCardType.wished,
+                            placeCardType: SightCardType.seen,
                             onDeleteFromList: () {
                               setState(() {
                                 // реализовать потом удаление в модели
-                                // context.watch<MyPlacesModel>().delFromWished(i.key);
+                                // context.watch<MyPlacesModel>().delFromSeen(i.key);
                                 _listOfItems.removeAt(i.key);
                               });
                             },

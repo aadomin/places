@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:places/ui/models/my_places_model.dart';
-import '../elements/sight_card.dart';
+import 'package:places/ui/screens/main_screen/my_places_model.dart';
+import '../../widgets/sight_card.dart';
 
-import '../../routes.dart';
-import '../../common.dart';
+import '../../my_app/routes.dart';
+import '../../my_enums.dart';
 
-import '../my_scroll_physics.dart';
+import '../../my_scroll_physics.dart';
 
 class SightListScreen extends StatelessWidget {
   final FocusNode focusNode1 = FocusNode();

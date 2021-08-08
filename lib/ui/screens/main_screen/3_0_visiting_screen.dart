@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 
-import '../elements/headers.dart';
+import '../../widgets/headers.dart';
 
 import '3_1_tab_wished.dart';
 import '3_2_tab_seen.dart';

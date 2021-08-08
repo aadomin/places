@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../domain/sight.dart';
-import '../elements/image.dart';
+import '../../../domain/sight.dart';
+import '../../widgets/image.dart';
 
 class SightDetailsScreen extends StatefulWidget {
   final Sight sight;

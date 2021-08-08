@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui/models/ui_search_model.dart';
+import 'package:places/ui/screens/sight_search_screen/sight_search_model.dart';
 import 'package:provider/provider.dart';
 
-import '../../domain/sight.dart';
-import '../elements/sight_card_for_search.dart';
+import '../../../domain/sight.dart';
+import '../../widgets/sight_card_for_search.dart';
 
-import '../../common.dart';
+import '../../my_enums.dart';
 
 class SightSearchScreen extends StatelessWidget {
   final FocusNode focusNode1 = FocusNode();

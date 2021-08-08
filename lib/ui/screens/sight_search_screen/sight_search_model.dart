@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../common.dart';
-import '../../domain/sight.dart';
-import 'package:places/mocks.dart';
+import '../../my_enums.dart';
+import '../../../domain/sight.dart';
+import 'package:places/data/mocks.dart';
 
 class MySearchModel with ChangeNotifier {
   var searchStatus = SearchStatus.empty;

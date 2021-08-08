@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui/models/ui_categories_model.dart';
+import 'package:places/ui/screens/select_category_screen/select_category_model.dart';
 import 'package:provider/provider.dart';
 
 class SelectCategory extends StatelessWidget {

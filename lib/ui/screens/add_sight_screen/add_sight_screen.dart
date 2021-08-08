@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
-import 'package:places/ui/models/ui_categories_model.dart';
-import '../models/my_places_model.dart';
-import '../../routes.dart';
-import '../my_scroll_physics.dart';
-import '../elements/image.dart';
+import 'package:places/ui/screens/select_category_screen/select_category_model.dart';
+import '../main_screen/my_places_model.dart';
+import '../../my_app/routes.dart';
+import '../../my_scroll_physics.dart';
+import '../../widgets/image.dart';
 
 class AddSightScreen extends StatefulWidget {
   @override

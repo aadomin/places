@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../mocks.dart';
-import '../../domain/sight.dart';
+import '../../../data/mocks.dart';
+import '../../../domain/sight.dart';
 
 class MyPlacesModel with ChangeNotifier {
   void save({

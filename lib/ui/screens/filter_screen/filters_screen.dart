@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:places/ui/models/ui_filter_model.dart';
+import 'package:places/ui/screens/filter_screen/filters_model.dart';
 
-import '../my_scroll_physics.dart';
+import '../../my_scroll_physics.dart';
 
 class FiltersScreen extends StatefulWidget {
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../res/text_styles.dart';
+import '../../res/text_styles.dart';
 
 class WidgetEmptyList extends StatelessWidget {
   final String commentLine;

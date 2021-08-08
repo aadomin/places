@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 bool isMocking = true;
 
+/// Для отладки - для того, чтобы работал flutter for web подменяет
+/// url картинки моковой картинкой
 class MyImageWidget extends StatelessWidget {
   const MyImageWidget({
     Key key,
