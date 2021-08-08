@@ -1,14 +1,6 @@
-import 'package:flutter/material.dart';
+import '../domain/FilterItem.dart';
 
-class FilterItem {
-  String name = "";
-  String assetPath = "";
-  bool isSelected = true;
-
-  FilterItem(this.name, this.assetPath);
-}
-
-class MyFilterModel with ChangeNotifier {
+class CoreFilter {
   List<FilterItem> _filterItems = [
     FilterItem('Отель', 'res/images/hotel.png'),
     FilterItem('Ресторан', 'res/images/rest.png'),
@@ -22,13 +14,11 @@ class MyFilterModel with ChangeNotifier {
 
   void switchCheckbox(int index) {
     _filterItems[index].isSelected = !_filterItems[index].isSelected;
-    notifyListeners();
   }
 
   void clearCheckboxes() {
-    for (var item in _filterItems) {
-      item.isSelected = false;
+    for (var element in _filterItems) {
+      element.isSelected = false;
     }
-    notifyListeners();
   }
 }

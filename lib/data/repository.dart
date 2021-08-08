@@ -1,6 +1,11 @@
 import '../domain/sight.dart';
 
-class Repository {
+import 'filter.dart';
 
+class Repository {
+  final filter = CoreFilter();
+
+  Repository();
 }
 
+final repository = Repository();
