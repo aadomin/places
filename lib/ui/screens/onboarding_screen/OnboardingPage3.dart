@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:places/ui/res/UiImagePaths.dart';
+
 class OnboardingPage3 extends StatelessWidget {
   const OnboardingPage3({
     @required PageController pageController,
@@ -16,7 +18,7 @@ class OnboardingPage3 extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 70, bottom: 20),
               child: Image.asset(
-                'res/images/onboarding_page3.png',
+                UiImagePaths.onboardingPage3,
                 width: 100,
                 height: 100,
               ),

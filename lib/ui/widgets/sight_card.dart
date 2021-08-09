@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../domain/sight.dart';
 import '../my_enums.dart';
 import '../my_app/routes.dart';
-import 'image.dart';
+import 'MyImageWidget.dart';
 
 import 'sight_card_icons.dart';
 

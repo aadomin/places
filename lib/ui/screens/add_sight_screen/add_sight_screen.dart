@@ -6,7 +6,7 @@ import 'package:places/ui/screens/select_category_screen/select_category_model.d
 import '../main_screen/my_places_model.dart';
 import '../../my_app/routes.dart';
 import '../../my_scroll_physics.dart';
-import '../../widgets/image.dart';
+import '../../widgets/MyImageWidget.dart';
 
 class AddSightScreen extends StatefulWidget {
   @override
@@ -139,9 +139,11 @@ class _AddSightScreenState extends State<AddSightScreen> {
                                       width: 72,
                                       height: 72,
                                       child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(13),
+                                          borderRadius:
+                                              BorderRadius.circular(13),
                                           child: MyImageWidget(
-                                            url: 'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+                                            url:
+                                                'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
                                             fit: BoxFit.fill,
                                           )),
                                     ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../my_app/my_app_model.dart';
 import '../../my_app/routes.dart';
+import 'package:places/ui/res/UiImagePaths.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -61,7 +62,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               trailing: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
                 child: Image.asset(
-                  'res/images/info.png',
+                  UiImagePaths.info,
                   width: 20,
                   height: 20,
                 ),

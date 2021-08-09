@@ -4,6 +4,8 @@ import 'OnboardingPage1.dart';
 import 'OnboardingPage2.dart';
 import 'OnboardingPage3.dart';
 
+import 'package:places/ui/res/UiImagePaths.dart';
+
 class OnboardingScreen extends StatefulWidget {
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
@@ -88,7 +90,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             child: Padding(
               padding: const EdgeInsets.all(120),
               child: Image.asset(
-                'res/images/points.png',
+                UiImagePaths.points,
                 width: 40,
               ),
             ),

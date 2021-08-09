@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../domain/sight.dart';
 import '../my_app/routes.dart';
-import 'image.dart';
+import 'MyImageWidget.dart';
 
 class SightCartForSearch extends StatelessWidget {
   final Sight sight;
