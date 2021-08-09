@@ -15,93 +15,82 @@ class SightListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 140,
-        title: Padding(
-          padding: EdgeInsets.only(
-            top: 60,
-          ),
-          child: Container(
-            width: 290,
-            height: 90,
-            padding: EdgeInsets.only(bottom: 10),
-            child: RichText(
-              text: TextSpan(
-                style: TextStyle(
-                  fontSize: 34,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).primaryColor,
-                ),
-                text: 'Список интересных мест',
-              ),
-            ),
-          ),
-        ),
-        backgroundColor: Theme.of(context).canvasColor,
-        elevation: 0,
-      ),
       body: Stack(
         children: [
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Stack(
-                  children: [
-                    TextField(
-                      focusNode: focusNode1,
-                      readOnly: true,
-                      onTap: () {
-                        focusNode1.unfocus();
-                        Navigator.pushNamed(context, ROUTE_SEARCH);
-                      },
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.search, size: 15),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        hintText: 'Поиск',
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 10.0, horizontal: 10),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: IconButton(
-                        onPressed: () {
-                          focusNode1.unfocus();
-                          Navigator.pushNamed(context, ROUTE_FILTER);
-                        },
-                        icon: Icon(
-                          Icons.settings,
-                          size: 15,
-                          color: Theme.of(context).accentColor,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+          CustomScrollView(
+            slivers: [
+              // Свой AppBar
+              SliverPersistentHeader(
+                delegate: _MySliverAppBar(expandedHeight: 150.0),
+                pinned: true,
               ),
-              Expanded(
+
+              // Поиск
+              SliverToBoxAdapter(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: ListView.builder(
-                    physics: MyScrollPhysics.physics,
-                    itemCount:
-                        context.watch<MyPlacesModel>().interestingPlaces.length,
-                    itemBuilder: (context, i) {
-                      return SightCard(
-                        context.watch<MyPlacesModel>().interestingPlaces[i],
-                        placeCardType: SightCardType.general,
-                        onDeleteFromList: () {},
-                      );
-                    },
+                  child: Stack(
+                    children: [
+                      TextField(
+                        focusNode: focusNode1,
+                        readOnly: true,
+                        onTap: () {
+                          focusNode1.unfocus();
+                          Navigator.pushNamed(context, ROUTE_SEARCH);
+                        },
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.search, size: 15),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          hintText: 'Поиск',
+                          contentPadding: const EdgeInsets.symmetric(
+                              vertical: 10.0, horizontal: 10),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: IconButton(
+                          onPressed: () {
+                            focusNode1.unfocus();
+                            Navigator.pushNamed(context, ROUTE_FILTER);
+                          },
+                          icon: Icon(
+                            Icons.settings,
+                            size: 15,
+                            color: Theme.of(context).accentColor,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
+
+              // ОСНОВНОЙ СПИСОК
+              SliverList(
+                delegate: SliverChildListDelegate([
+                  for (var i = 0;
+                      i <
+                          context
+                              .watch<MyPlacesModel>()
+                              .interestingPlaces
+                              .length;
+                      i++)
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: SightCard(
+                        context.watch<MyPlacesModel>().interestingPlaces[i],
+                        placeCardType: SightCardType.general,
+                        onDeleteFromList: () {},
+                      ),
+                    ),
+                ]),
+              ),
             ],
-            mainAxisSize: MainAxisSize.min,
           ),
+
+          // Кнопка НОВОЕ МЕСТО
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Align(
@@ -134,5 +123,73 @@ class SightListScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _MySliverAppBar extends SliverPersistentHeaderDelegate {
+  _MySliverAppBar({@required this.expandedHeight});
+
+  final double expandedHeight;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Stack(
+      children: [
+        // Первоначальный заголовок
+        Opacity(
+          opacity: 1 - shrinkOffset / expandedHeight,
+          child: Container(
+            color: Theme.of(context).canvasColor,
+            padding: EdgeInsets.only(
+              top: 40,
+              bottom: 10,
+              left: 50,
+            ),
+            width: 350,
+            alignment: Alignment.centerLeft,
+            child: RichText(
+              text: TextSpan(
+                style: TextStyle(
+                  fontSize: 34,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor,
+                ),
+                text: 'Список интересных мест',
+              ),
+            ),
+          ),
+        ),
+
+        // Постоянный заголовок
+        Opacity(
+          opacity: shrinkOffset / expandedHeight,
+          child: Container(
+            color: Theme.of(context).canvasColor,
+            child: Center(
+              child: Text(
+                "Список интересных мест",
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.bold,
+                  backgroundColor: Theme.of(context).canvasColor,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  @override
+  double get maxExtent => expandedHeight;
+
+  @override
+  double get minExtent => 50;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    return true;
   }
 }
