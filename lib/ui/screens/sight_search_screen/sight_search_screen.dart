@@ -6,6 +6,8 @@ import '../../../domain/sight.dart';
 import '../../widgets/sight_card_for_search.dart';
 
 import '../../my_enums.dart';
+import 'package:places/ui/widgets/headers.dart';
+import 'package:places/ui/res/UiStrings.dart';
 
 class SightSearchScreen extends StatelessWidget {
   final FocusNode focusNode1 = FocusNode();
@@ -17,27 +19,7 @@ class SightSearchScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        toolbarHeight: 140,
-        title: Padding(
-          padding: EdgeInsets.only(
-            top: 60,
-          ),
-          child: Container(
-            width: 290,
-            height: 90,
-            padding: EdgeInsets.only(bottom: 10),
-            child: RichText(
-              text: TextSpan(
-                style: TextStyle(
-                  fontSize: 34,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).primaryColor,
-                ),
-                text: 'Список интересных мест',
-              ),
-            ),
-          ),
-        ),
+        title: WidgetMyHeader(header: UiStrings.searching),
         backgroundColor: Theme.of(context).canvasColor,
         elevation: 0,
       ),
@@ -88,11 +70,14 @@ class SightSearchScreen extends StatelessWidget {
                 ),
               ),
             ),
-            if (context.watch<MySearchModel>().searchStatus == SearchStatus.haveResult)
+            if (context.watch<MySearchModel>().searchStatus ==
+                SearchStatus.haveResult)
               WidgetSearchResult(),
-            if (context.watch<MySearchModel>().searchStatus == SearchStatus.empty)
+            if (context.watch<MySearchModel>().searchStatus ==
+                SearchStatus.empty)
               WidgetSearchEmpty(),
-            if (context.watch<MySearchModel>().searchStatus == SearchStatus.notFound)
+            if (context.watch<MySearchModel>().searchStatus ==
+                SearchStatus.notFound)
               WidgetSearchNotFound(),
           ],
           mainAxisSize: MainAxisSize.min,
@@ -156,6 +141,7 @@ class WidgetSearchEmpty extends StatelessWidget {
   }
 }
 
+// Ничего не найдено
 class WidgetSearchNotFound extends StatelessWidget {
   const WidgetSearchNotFound({
     Key key,
@@ -168,24 +154,25 @@ class WidgetSearchNotFound extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: [
         Center(
-            child: Column(
-          children: [
-            Icon(Icons.search,
-                size: 30, color: Theme.of(context).primaryColorLight),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Ничего не найдено',
-                style: TextStyle(
-                    fontSize: 20, color: Theme.of(context).primaryColorLight),
+          child: Column(
+            children: [
+              Icon(Icons.search,
+                  size: 30, color: Theme.of(context).primaryColorLight),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  '${UiStrings.nothingIsFounded}',
+                  style: TextStyle(
+                      fontSize: 20, color: Theme.of(context).primaryColorLight),
+                ),
               ),
-            ),
-            Text(
-              'Попробуйте изменить параметры поиска',
-              style: TextStyle(color: Theme.of(context).primaryColorLight),
-            )
-          ],
-        )),
+              Text(
+                '${UiStrings.tryToChangeParametersOfSearch}',
+                style: TextStyle(color: Theme.of(context).primaryColorLight),
+              )
+            ],
+          ),
+        ),
       ],
     );
   }

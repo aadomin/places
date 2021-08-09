@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       theme: context.watch<MyThemeModel>().isDarkTheme ? darkTheme : lightTheme,
       //
       initialRoute: ROUTE_ONBOARDING,
+      debugShowCheckedModeBanner: false,
       routes: {
         ROUTE_HOME: (BuildContext context) => AllMainScreens(),
         ROUTE_DETAILS: (BuildContext context) => SightDetailsScreen(mocks[0]),

@@ -51,7 +51,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         Navigator.pushReplacementNamed(context, '/');
                       },
                       child: Align(
-                        alignment: Alignment.centerLeft,
+                        alignment: Alignment.center,
                         child: Text(
                           'Пропустить',
                           style: TextStyle(fontSize: 16),

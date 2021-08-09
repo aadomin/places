@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui/screens/main_screen/my_places_model.dart';
-import '../../widgets/sight_card.dart';
+import 'package:places/ui/widgets/sight_card.dart';
 
-import '../../my_app/routes.dart';
-import '../../my_enums.dart';
+import 'package:places/ui/my_app/routes.dart';
+import 'package:places/ui/my_enums.dart';
 
-import '../../my_scroll_physics.dart';
+import 'package:places/ui/widgets/headers.dart';
+import 'package:places/ui/res/UiStrings.dart';
 
 class SightListScreen extends StatelessWidget {
   final FocusNode focusNode1 = FocusNode();
@@ -43,7 +44,7 @@ class SightListScreen extends StatelessWidget {
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12.0),
                           ),
-                          hintText: 'Поиск',
+                          hintText: UiStrings.searching,
                           contentPadding: const EdgeInsets.symmetric(
                               vertical: 10.0, horizontal: 10),
                         ),
@@ -112,7 +113,7 @@ class SightListScreen extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                        child: Text('НОВОЕ МЕСТО'),
+                        child: Text(UiStrings.newPlace),
                       ),
                     ],
                   ),
@@ -155,7 +156,7 @@ class _MySliverAppBar extends SliverPersistentHeaderDelegate {
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).primaryColor,
                 ),
-                text: 'Список интересных мест',
+                text: UiStrings.listOfInterestingPlaces,
               ),
             ),
           ),
@@ -167,14 +168,7 @@ class _MySliverAppBar extends SliverPersistentHeaderDelegate {
           child: Container(
             color: Theme.of(context).canvasColor,
             child: Center(
-              child: Text(
-                "Список интересных мест",
-                style: TextStyle(
-                  color: Theme.of(context).primaryColor,
-                  fontWeight: FontWeight.bold,
-                  backgroundColor: Theme.of(context).canvasColor,
-                ),
-              ),
+              child: WidgetMyHeader(header: UiStrings.listOfInterestingPlaces),
             ),
           ),
         ),
