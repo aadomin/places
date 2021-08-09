@@ -11,7 +11,6 @@ import 'ui/screens/sight_search_screen/sight_search_model.dart';
 import 'ui/screens/main_screen/my_places_model.dart';
 import 'ui/my_app/my_app_model.dart';
 
-
 void main() {
   runApp(
     MultiProvider(

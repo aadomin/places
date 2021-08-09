@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../domain/sight.dart';
 import '../../widgets/MyImageWidget.dart';
 import 'package:places/ui/res/UiStrings.dart';
+import 'package:places/ui/my_scroll_physics.dart';
 
 class SightDetailsScreen extends StatefulWidget {
   final Sight sight;
@@ -27,10 +28,10 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
           height: double.infinity,
           width: double.infinity,
           child: CustomScrollView(
+            physics: MyScrollPhysics.physics,
             slivers: [
               SliverAppBar(
                 expandedHeight: 250,
-                
                 flexibleSpace: Container(
                   height: 250,
                   child: Stack(

@@ -10,6 +10,8 @@ import 'package:places/ui/my_enums.dart';
 import 'package:places/ui/widgets/headers.dart';
 import 'package:places/ui/res/UiStrings.dart';
 
+import 'package:places/ui/my_scroll_physics.dart';
+
 class SightListScreen extends StatelessWidget {
   final FocusNode focusNode1 = FocusNode();
 
@@ -19,6 +21,7 @@ class SightListScreen extends StatelessWidget {
       body: Stack(
         children: [
           CustomScrollView(
+            physics: MyScrollPhysics.physics,
             slivers: [
               // Свой AppBar
               SliverPersistentHeader(
