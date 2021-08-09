@@ -75,12 +75,12 @@ class _FiltersScreenState extends State<FiltersScreen> {
             SizedBox(
               height: 240,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                padding: EdgeInsets.zero,
                 child: GridView.count(
                   crossAxisCount: 3,
                   physics: Platform.isAndroid
-                        ? ClampingScrollPhysics()
-                        : BouncingScrollPhysics(),
+                      ? ClampingScrollPhysics()
+                      : BouncingScrollPhysics(),
                   children: [
                     for (var i in _filterItemsIndexes)
                       SizedBox(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/ui_theme_model.dart';
+import '../../routes.dart';
 
 class SettingsScreen extends StatefulWidget {
   @override
@@ -65,7 +66,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   height: 20,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamed(ROUTE_ONBOARDING);
+              },
             )
           ]),
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui/models/my_places_model.dart';
 import 'package:places/ui/models/ui_search_model.dart';
+import 'package:places/ui/screens/OnboardingScreen/OnboardingScreen.dart';
 import 'package:provider/provider.dart';
 import 'ui/screens/1_sight_list_screen.dart';
 import 'ui/screens/2_map_screen.dart';
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
       title: 'Hey, Flutter!',
       theme: context.watch<MyThemeModel>().isDarkTheme ? darkTheme : lightTheme,
       //
-      initialRoute: ROUTE_HOME,
+      initialRoute: ROUTE_ONBOARDING,
       routes: {
         ROUTE_HOME: (BuildContext context) => AllMainScreens(),
         ROUTE_DETAILS: (BuildContext context) => SightDetailsScreen(mocks[0]),
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
         ROUTE_ADD: (BuildContext context) => AddSightScreen(),
         ROUTE_SELECT_CATEGORY: (BuildContext context) => SelectCategory(),
         ROUTE_SEARCH: (BuildContext context) => SightSearchScreen(),
+        ROUTE_ONBOARDING: (BuildContext context) => OnboardingScreen(),
       },
     );
   }
