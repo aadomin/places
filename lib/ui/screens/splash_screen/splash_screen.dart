@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui/my_app/routes.dart';
+import 'package:places/ui/res/UiImagePaths.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -39,9 +40,21 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          child: CircularProgressIndicator(),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xff4CAF50),
+              Color(0xffFCDD3D),
+            ],
+          ),
+        ),
+        child: Center(
+          child: Image.asset(
+            UiImagePaths.logo,
+            width: 100,
+            height: 100,
+          ),
         ),
       ),
     );
