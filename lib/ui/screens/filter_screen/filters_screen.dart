@@ -45,7 +45,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
             alignment: Alignment.centerRight,
             child: TextButton(
               onPressed: () {
-                context.read<MyFilterModel>().clearCheckboxes();
+                context.read<MyFilterModel>().clearSelection();
               },
               child: Text(
                 'Очистить',
@@ -86,7 +86,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                         height: 95,
                         child: TextButton(
                           onPressed: () {
-                            context.read<MyFilterModel>().switchCheckbox(i);
+                            context.read<MyFilterModel>().switchSelection(i);
                           },
                           child: Column(
                             children: [
