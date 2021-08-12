@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
-
-class FilterItem {
-  String name = "";
-  String assetPath = "";
-  bool isSelected = true;
-
-  FilterItem(this.name, this.assetPath);
-}
+import 'package:places/data/filter.dart';
+import 'package:places/domain/FilterItem.dart';
 
 class MyFilterModel with ChangeNotifier {
   List<FilterItem> _filterItems = [
@@ -20,12 +14,14 @@ class MyFilterModel with ChangeNotifier {
 
   List<FilterItem> get filterItems => _filterItems;
 
-  void switchCheckbox(int index) {
+  // Stream<Counter> getCounter() => _storage.counter.map((c) => Counter(c));
+
+  void switchSelection(int index) {
     _filterItems[index].isSelected = !_filterItems[index].isSelected;
     notifyListeners();
   }
 
-  void clearCheckboxes() {
+  void clearSelection() {
     for (var item in _filterItems) {
       item.isSelected = false;
     }
