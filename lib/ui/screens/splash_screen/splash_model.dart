@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui/my_app/routes.dart';
-import 'dart:isolate';
 import 'dart:math';
 
 class MySplashModel with ChangeNotifier {
@@ -12,18 +11,10 @@ class MySplashModel with ChangeNotifier {
     Navigator.of(context).pushReplacementNamed(ROUTE_ONBOARDING);
   }
 
-  /// процедура загрузки: в изоляте
+  /// процедура загрузки: Future
   static Future<void> _doInitializeApp() async {
     print("loading started at: ${DateTime.now()}");
-
-    final port = ReceivePort();
-    final isolate = await Isolate.spawn(_hardWork, port.sendPort);
-    await for (dynamic message in port) {
-      if (message == 'done') {
-        isolate.kill();
-        break;
-      }
-    }
+    _hardWork();
     print("loading done at: ${DateTime.now()}");
   }
 
@@ -34,20 +25,20 @@ class MySplashModel with ChangeNotifier {
     print("delaying done at: ${DateTime.now()}");
     return true;
   }
-}
 
-/// имитация сложной загрузки
-void _hardWork(SendPort port) {
-  print('Hello. I am isolate');
+  /// имитация сложной загрузки
+  static void _hardWork() {
+    print('Hard work started');
 
-  List<String> list = [];
-  var random = Random();
+    List<String> list = [];
+    var random = Random();
 
-  list = List.generate(200000, (int index) => random.nextDouble().toString());
-  print(list.toString().substring(0, 100));
+    list = List.generate(200000, (int index) => random.nextDouble().toString());
+    print(list.toString().substring(0, 100));
 
-  list = list.map((str) => str.split('').reversed.join()).toList();
-  print(list.toString().substring(0, 100));
+    list = list.map((str) => str.split('').reversed.join()).toList();
+    print(list.toString().substring(0, 100));
 
-  port.send('Isolate done');
+    print('Hard work done');
+  }
 }
