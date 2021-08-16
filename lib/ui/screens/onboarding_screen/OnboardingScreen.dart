@@ -6,6 +6,8 @@ import 'OnboardingPage3.dart';
 
 import 'package:places/ui/res/UiImagePaths.dart';
 
+import 'package:places/ui/my_app/routes.dart';
+
 class OnboardingScreen extends StatefulWidget {
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
@@ -50,7 +52,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ? SizedBox.shrink()
                   : TextButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(context, '/');
+                        Navigator.pushReplacementNamed(context, ROUTE_HOME);
                       },
                       child: Align(
                         alignment: Alignment.center,

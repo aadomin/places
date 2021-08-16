@@ -19,7 +19,7 @@ void main() {
           create: (context) => MyThemeModel(),
         ),
         ChangeNotifierProvider(
-          create: (context) => MyFilterModel(),
+          create: (context) => MyFilterModel(1),
         ),
         ChangeNotifierProvider(
           create: (context) => MyCategoriesModel(),
@@ -35,3 +35,5 @@ void main() {
     ),
   );
 }
+
+//TODO: Поднять версию SDK до 2.12.0

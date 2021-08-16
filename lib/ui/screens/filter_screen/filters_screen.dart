@@ -31,8 +31,6 @@ class _FiltersScreenState extends State<FiltersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<int> _filterItemsIndexes = [0, 1, 2, 3, 4, 5];
-
     return Container(
       child: Scaffold(
         appBar: AppBar(
@@ -80,7 +78,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
                   crossAxisCount: 3,
                   physics: MyScrollPhysics.physics,
                   children: [
-                    for (var i in _filterItemsIndexes)
+                    for (var i = 0;
+                        i < context.watch<MyFilterModel>().filterItems.length;
+                        i++)
                       SizedBox(
                         width: 110,
                         height: 95,
