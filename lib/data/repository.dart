@@ -1,7 +1,15 @@
-import 'filter.dart';
+import 'categories_filter.dart';
 
 class Repository {
-  final coreFilter = CoreFilter();
-}
+  
+  // Singleton
+  static Repository _instance;
+  Repository._internal() {
+    _instance = this;
+  }
+  factory Repository() => _instance ?? Repository._internal();
 
-final repository = Repository();
+  // general
+  CategoriesFilter categoriesFilter = CategoriesFilter();
+  // TODO добавить остальные части бизнес-логики
+}

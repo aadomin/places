@@ -1,30 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:places/data/filter.dart';
+import 'package:places/data/repository.dart';
 import 'package:places/domain/FilterItem.dart';
 
 class MyFilterModel with ChangeNotifier {
-  List<FilterItem> _filterItems = [
-    FilterItem('Отель', 'res/images/hotel.png'),
-    FilterItem('Ресторан', 'res/images/rest.png'),
-    FilterItem('Особое место', 'res/images/special.png'),
-    FilterItem('Парк', 'res/images/park.png'),
-    FilterItem('Музей', 'res/images/museum.png'),
-    FilterItem('Кафе', 'res/images/cafe.png'),
-  ];
+  MyFilterModel(i) {
+    repository = Repository();
+    
+    // при появлении объекта из стрима обновляем интерфейс
+    repository.categoriesFilter.items.listen((items) {
+      _filterItems = items;
+      notifyListeners();
+    });
+  }
+  Repository repository;
 
+  List<FilterItem> _filterItems;
   List<FilterItem> get filterItems => _filterItems;
 
-  // Stream<Counter> getCounter() => _storage.counter.map((c) => Counter(c));
-
   void switchSelection(int index) {
-    _filterItems[index].isSelected = !_filterItems[index].isSelected;
-    notifyListeners();
+    repository.categoriesFilter.switchSelection(index);
   }
 
   void clearSelection() {
-    for (var item in _filterItems) {
-      item.isSelected = false;
-    }
-    notifyListeners();
+    repository.categoriesFilter.clearSelection();
   }
 }

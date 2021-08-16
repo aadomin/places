@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui/my_app/routes.dart';
 import 'package:places/ui/res/UiImagePaths.dart';
+import 'dart:isolate';
 
 class SplashScreen extends StatefulWidget {
   @override
