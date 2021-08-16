@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui/my_app/routes.dart';
 import 'package:places/ui/res/UiImagePaths.dart';
-import 'dart:isolate';
+
+import 'package:places/ui/screens/splash_screen/splash_model.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -9,33 +9,10 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  /// имитация загрузки
-  Future<bool> isInitialized() async {
-    await Future.delayed(Duration(seconds: 2));
-    print("loading done");
-    return true;
-  }
-
-  /// задержка для красоты (если загрузка выполнилась меньше чем за 2 секунды)
-  Future<bool> isDelayDone() async {
-    await Future.delayed(Duration(seconds: 2));
-    print("delaying done");
-    return true;
-  }
-
   @override
   void initState() {
-    _navigateToNext();
+    MySplashModel.initAppAndThenChangeScreen(context);
     super.initState();
-  }
-
-  void _navigateToNext() async {
-    print('starting of application');
-    var initProcess = isInitialized();
-    var delayProcess = isDelayDone();
-    await initProcess;
-    await delayProcess;
-    Navigator.of(context).pushReplacementNamed(ROUTE_ONBOARDING);
   }
 
   @override
