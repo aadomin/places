@@ -9,6 +9,7 @@ import 'ui/screens/filter_screen/filters_model.dart';
 import 'ui/screens/select_category_screen/select_category_model.dart';
 import 'ui/screens/sight_search_screen/sight_search_model.dart';
 import 'ui/screens/main_screen/my_places_model.dart';
+import 'ui/screens/splash_screen/splash_model.dart';
 import 'ui/my_app/my_app_model.dart';
 
 void main() {
@@ -30,6 +31,10 @@ void main() {
         ChangeNotifierProvider(
           create: (context) => MySearchModel(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => MySplashModel(),
+        ),
+        
       ],
       child: MyApp(),
     ),
