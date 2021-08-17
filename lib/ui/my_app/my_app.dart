@@ -18,7 +18,7 @@ import 'routes.dart';
 import 'my_app_model.dart';
 
 class MyApp extends StatelessWidget {
-  MyApp ({ Key key, Repository repository}) : super(key: key);
+  MyApp({Key key, Repository repository}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,7 +29,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: {
         ROUTE_HOME: (BuildContext context) => AllMainScreens(),
-        ROUTE_DETAILS: (BuildContext context) => SightDetailsScreen(mocks[0]),
+        ROUTE_DETAILS: (BuildContext context) =>
+            SightDetailsScreen(), //mocks[0]
         ROUTE_FILTER: (BuildContext context) => FiltersScreen(),
         ROUTE_ADD: (BuildContext context) => AddSightScreen(),
         ROUTE_SELECT_CATEGORY: (BuildContext context) => SelectCategory(),
@@ -40,4 +41,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

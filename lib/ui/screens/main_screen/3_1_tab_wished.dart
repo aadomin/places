@@ -10,6 +10,8 @@ import '3_3_empty_list.dart';
 
 import '../../my_scroll_physics.dart';
 
+import 'package:places/ui/my_app/routes.dart';
+
 class TabWished extends StatefulWidget {
   @override
   _TabWishedState createState() => _TabWishedState();
@@ -55,7 +57,13 @@ class _TabWishedState extends State<TabWished> {
                                 color: Theme.of(context).accentColor),
                           ),
                           child: SightCard(
-                            i.value,
+                            sight: i.value,
+                            onTap: () {
+                              Navigator.of(context).pushNamed(
+                                ROUTE_DETAILS,
+                                arguments: i.value.id,
+                              );
+                            },
                             // key: GlobalKey(),
                             placeCardType: SightCardType.wished,
                             onDeleteFromList: () {

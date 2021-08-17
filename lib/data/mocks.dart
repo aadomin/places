@@ -12,6 +12,7 @@ final List<Sight> mocks = [
     type: 'музей',
     wished: true,
     seen: false,
+    id: 0,
   ),
   Sight(
     name: 'Ресторан "Игнатов"',
@@ -24,6 +25,7 @@ final List<Sight> mocks = [
     type: 'ресторан',
     wished: true,
     seen: true,
+    id: 1,
   ),
   Sight(
     name: 'Вилладж',
@@ -36,5 +38,6 @@ final List<Sight> mocks = [
     type: 'вилла',
     wished: true,
     seen: true,
+    id: 2,
   ),
 ];

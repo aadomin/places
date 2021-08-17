@@ -8,6 +8,8 @@ import '../../my_app/routes.dart';
 import '../../my_scroll_physics.dart';
 import '../../widgets/MyImageWidget.dart';
 
+// TODO architecture refactoring
+
 class AddSightScreen extends StatefulWidget {
   @override
   _AddSightScreenState createState() => _AddSightScreenState();
