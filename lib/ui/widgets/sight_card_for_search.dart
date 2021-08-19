@@ -14,7 +14,7 @@ class SightCartForSearch extends StatelessWidget {
       children: [
         ListTile(
           onTap: () {
-            Navigator.pushNamed(context, ROUTE_DETAILS);
+            Navigator.of(context).pushNamed(ROUTE_DETAILS, arguments: sight.id);
           },
           leading: WidgetImageWithRoundedCorners(sight: sight),
           title: WidgetSearchDescriptionOfPlace(sight: sight),
