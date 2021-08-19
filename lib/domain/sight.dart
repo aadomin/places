@@ -8,7 +8,7 @@ class Sight {
   final String timeOfWork;
   bool wished;
   bool seen;
-  final int id;
+  final int? id;
 
   Sight({
     this.name = 'Example object',

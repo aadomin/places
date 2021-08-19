@@ -19,11 +19,11 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
 
   int _countOfPages = 4;
 
-  Sight sight;
+  late Sight sight;
 
   @override
   Widget build(BuildContext context) {
-    final routeData = ModalRoute.of(context).settings.arguments as int;
+    final routeData = ModalRoute.of(context)?.settings.arguments as int;
     sight = context.watch<SightDetailsModel>().sights[routeData];
     return Scaffold(
       body: SafeArea(
@@ -242,7 +242,7 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
 
 class BackButtonWidget extends StatelessWidget {
   const BackButtonWidget({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

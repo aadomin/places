@@ -4,13 +4,13 @@ import '../my_enums.dart';
 
 class WidgetSightCardIcons extends StatelessWidget {
   const WidgetSightCardIcons({
-    Key key,
-    @required this.placeCardType,
-    @required this.onDeleteFromList,
+    Key? key,
+    required this.placeCardType,
+    required this.onDeleteFromList,
   }) : super(key: key);
 
   final SightCardType placeCardType;
-  final Function onDeleteFromList;
+  final void Function() onDeleteFromList;
 
   @override
   Widget build(BuildContext context) {
@@ -75,6 +75,5 @@ class WidgetSightCardIcons extends StatelessWidget {
           ],
         );
     }
-    return Text('ошибка');
   }
 }

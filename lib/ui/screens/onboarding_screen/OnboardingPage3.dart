@@ -4,8 +4,8 @@ import 'package:places/ui/res/UiImagePaths.dart';
 
 class OnboardingPage3 extends StatelessWidget {
   const OnboardingPage3({
-    @required PageController pageController,
-    Key key,
+    required PageController pageController,
+    Key? key,
   }) : super(key: key);
 
   @override

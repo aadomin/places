@@ -7,17 +7,17 @@ import 'sight_card_icons.dart';
 
 class SightCard extends StatelessWidget {
   final Sight sight;
-  final Key key;
+  final Key? key;
   final SightCardType placeCardType;
   final Function onTap;
-  final Function onDeleteFromList;
+  final VoidCallback onDeleteFromList;
 
   SightCard({
-    @required this.sight,
+    required this.sight,
     this.key,
-    @required this.placeCardType,
-    @required this.onTap,
-    @required this.onDeleteFromList,
+    required this.placeCardType,
+    required this.onTap,
+    required this.onDeleteFromList,
   });
 
   @override

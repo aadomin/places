@@ -89,7 +89,7 @@ class SightSearchScreen extends StatelessWidget {
 
 class WidgetSearchResult extends StatelessWidget {
   const WidgetSearchResult({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -109,7 +109,7 @@ class WidgetSearchResult extends StatelessWidget {
 
 class WidgetSearchEmpty extends StatelessWidget {
   const WidgetSearchEmpty({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -144,7 +144,7 @@ class WidgetSearchEmpty extends StatelessWidget {
 // Ничего не найдено
 class WidgetSearchNotFound extends StatelessWidget {
   const WidgetSearchNotFound({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

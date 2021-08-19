@@ -328,6 +328,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
                     url: 'исправить',
                     details: textControllerDescription.text,
                     type: context.read<MyCategoriesModel>().currentlySelected,
+                    wished: false,
                   );
               Navigator.pop(context);
             },
@@ -346,7 +347,7 @@ class CategoryNameWidget extends StatelessWidget {
   final String categoryName;
   CategoryNameWidget(
     this.categoryName, {
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

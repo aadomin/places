@@ -16,7 +16,7 @@ class TabSeen extends StatefulWidget {
 }
 
 class _TabSeenState extends State<TabSeen> {
-  List<Sight> _listOfItems;
+  late List<Sight> _listOfItems;
 
   GlobalKey globalKey = GlobalKey();
   bool isDrag = false;
@@ -24,8 +24,7 @@ class _TabSeenState extends State<TabSeen> {
 
   @override
   Widget build(BuildContext context) {
-    if (_listOfItems == null)
-      _listOfItems = context.watch<MyPlacesModel>().seenPlaces;
+    _listOfItems = context.watch<MyPlacesModel>().seenPlaces;
 
     if (_listOfItems.isEmpty) {
       return WidgetEmptyList(
@@ -114,7 +113,7 @@ class _TabSeenState extends State<TabSeen> {
                                 ),
                               );
                             },
-                            onWillAccept: (int data) {
+                            onWillAccept: (int? data) {
                               isDragOn = i.key;
                               return true;
                             },

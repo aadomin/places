@@ -16,6 +16,7 @@ import 'ui/my_app/my_app_model.dart';
 
 void main() {
   runApp(
+    // Версия SDK до 2.12.0
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -43,5 +44,4 @@ void main() {
       child: MyApp(),
     ),
   );
-  // TODO : Поднять версию SDK до 2.12.0
 }

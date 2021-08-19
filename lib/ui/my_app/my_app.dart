@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:places/data/repository.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui/screens/onboarding_screen/OnboardingScreen.dart';
@@ -15,7 +14,7 @@ import 'routes.dart';
 import 'my_app_model.dart';
 
 class MyApp extends StatelessWidget {
-  MyApp({Key key, Repository repository}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

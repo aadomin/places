@@ -139,7 +139,9 @@ class SightListScreen extends StatelessWidget {
 }
 
 class _MySliverAppBar extends SliverPersistentHeaderDelegate {
-  _MySliverAppBar({@required this.expandedHeight});
+  _MySliverAppBar({
+    required this.expandedHeight,
+  });
 
   final double expandedHeight;
 

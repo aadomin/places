@@ -5,16 +5,16 @@ import 'package:places/domain/FilterItem.dart';
 class MyFilterModel with ChangeNotifier {
   MyFilterModel() {
     repository = Repository();
-    
+
     // при появлении объекта из стрима обновляем интерфейс
     repository.categoriesFilter.items.listen((items) {
       _filterItems = items;
       notifyListeners();
     });
   }
-  Repository repository;
+  late Repository repository;
 
-  List<FilterItem> _filterItems;
+  late List<FilterItem> _filterItems;
   List<FilterItem> get filterItems => _filterItems;
 
   void switchSelection(int index) {

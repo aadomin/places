@@ -7,7 +7,7 @@ class CategoriesFilter {
     _streamItems = BehaviorSubject<List<FilterItem>>.seeded(_filterItems);
   }
 
-  BehaviorSubject<List<FilterItem>> _streamItems;
+  late BehaviorSubject<List<FilterItem>> _streamItems;
   Stream<List<FilterItem>> get items => _streamItems.stream;
 
   void switchSelection(int index) {

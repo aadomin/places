@@ -179,8 +179,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
 // Галочка
 class CheckmarkWidget extends StatelessWidget {
   const CheckmarkWidget({
-    Key key,
-    @required double radiusOfRoundElement,
+    Key? key,
+    required double radiusOfRoundElement,
   })  : _radiusOfRoundElement = radiusOfRoundElement,
         super(key: key);
 

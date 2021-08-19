@@ -27,8 +27,8 @@ class SightCartForSearch extends StatelessWidget {
 
 class WidgetSearchDescriptionOfPlace extends StatelessWidget {
   const WidgetSearchDescriptionOfPlace({
-    Key key,
-    @required this.sight,
+    Key? key,
+    required this.sight,
   }) : super(key: key);
 
   final Sight sight;
@@ -60,8 +60,8 @@ class WidgetSearchDescriptionOfPlace extends StatelessWidget {
 
 class WidgetImageWithRoundedCorners extends StatelessWidget {
   const WidgetImageWithRoundedCorners({
-    Key key,
-    @required this.sight,
+    Key? key,
+    required this.sight,
   }) : super(key: key);
 
   final Sight sight;

@@ -4,13 +4,13 @@ import '../../../domain/sight.dart';
 
 class MyPlacesModel with ChangeNotifier {
   void save({
-    String name,
-    double lat,
-    double lon,
-    String url,
-    String details,
-    String type,
-    bool wished,
+    required String name,
+    required double lat,
+    required double lon,
+    required String url,
+    required String details,
+    required String type,
+    required bool wished,
   }) {
     mocks.add(
       Sight(

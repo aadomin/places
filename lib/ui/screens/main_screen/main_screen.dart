@@ -12,7 +12,7 @@ class AllMainScreens extends StatefulWidget {
 
 class _AllMainScreensState extends State<AllMainScreens> {
   int _page = 0;
-  PageController _c;
+  late PageController _c;
   @override
   void initState() {
     _c = new PageController(
