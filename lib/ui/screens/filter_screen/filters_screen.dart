@@ -71,7 +71,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
               ),
             ),
             SizedBox(
-              height: 240,
+              height: 260,
               child: Padding(
                 padding: EdgeInsets.zero,
                 child: GridView.count(
@@ -122,7 +122,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                                       ? CheckmarkWidget(
                                           radiusOfRoundElement:
                                               _radiusOfRoundElement)
-                                      : Text(''),
+                                      : SizedBox.shrink(),
                                 ],
                               ),
                               Padding(
