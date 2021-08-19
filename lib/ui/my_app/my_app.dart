@@ -10,9 +10,6 @@ import 'package:places/ui/screens/select_category_screen/select_category_screen.
 import 'package:places/ui/screens/sight_search_screen/sight_search_screen.dart';
 import 'package:places/ui/screens/main_screen/main_screen.dart';
 import 'package:places/ui/screens/splash_screen/splash_screen.dart';
-
-import '../../data/mocks.dart';
-
 import 'themes.dart';
 import 'routes.dart';
 import 'my_app_model.dart';

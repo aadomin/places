@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../domain/sight.dart';
 import '../my_enums.dart';
-import '../my_app/routes.dart';
 import 'MyImageWidget.dart';
 
 import 'sight_card_icons.dart';
@@ -16,7 +15,7 @@ class SightCard extends StatelessWidget {
   SightCard({
     @required this.sight,
     this.key,
-    @required this.placeCardType = SightCardType.general,
+    @required this.placeCardType,
     @required this.onTap,
     @required this.onDeleteFromList,
   });

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:places/data/mocks.dart';
-import 'package:places/ui/screens/filter_screen/filters_model.dart';
 import 'package:places/ui/screens/sight_details_screen/sight_details_model.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/widgets/MyImageWidget.dart';
