@@ -11,12 +11,12 @@ import 'ui/screens/sight_search_screen/sight_search_model.dart';
 import 'ui/screens/main_screen/my_places_model.dart';
 import 'ui/screens/splash_screen/splash_model.dart';
 import 'ui/screens/sight_details_screen/sight_details_model.dart';
+import 'ui/screens/add_sight_screen/add_sight_model.dart';
 
 import 'ui/my_app/my_app_model.dart';
 
 void main() {
   runApp(
-    // Версия SDK до 2.12.0
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -39,6 +39,9 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (context) => SightDetailsModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AddSightModel(),
         ),
       ],
       child: MyApp(),

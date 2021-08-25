@@ -7,4 +7,9 @@ class UiStrings {
   static const String addToFavorites = 'В избранное';
   static const String nothingIsFounded = 'Ничего не найдено';
   static const String tryToChangeParametersOfSearch = 'Попробуйте изменить параметры поиска';
+  static const String camera = 'Камера';
+  static const String photo = 'Фотография';
+  static const String file = 'Файл';
+  static const String cancel = 'Отмена';
+
 }

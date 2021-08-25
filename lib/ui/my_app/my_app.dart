@@ -20,13 +20,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hey, Flutter!',
       theme: context.watch<MyThemeModel>().isDarkTheme ? darkTheme : lightTheme,
-      //
       initialRoute: ROUTE_SPLASH,
       debugShowCheckedModeBanner: false,
       routes: {
         ROUTE_HOME: (BuildContext context) => AllMainScreens(),
-        ROUTE_DETAILS: (BuildContext context) =>
-            SightDetailsScreen(), //mocks[0]
         ROUTE_FILTER: (BuildContext context) => FiltersScreen(),
         ROUTE_ADD: (BuildContext context) => AddSightScreen(),
         ROUTE_SELECT_CATEGORY: (BuildContext context) => SelectCategory(),

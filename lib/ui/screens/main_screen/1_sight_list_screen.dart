@@ -8,9 +8,11 @@ import 'package:places/ui/my_app/routes.dart';
 import 'package:places/ui/my_enums.dart';
 
 import 'package:places/ui/widgets/headers.dart';
-import 'package:places/ui/res/UiStrings.dart';
+import 'package:places/ui/res/ui_strings.dart';
 
 import 'package:places/ui/my_scroll_physics.dart';
+
+import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
 
 class SightListScreen extends StatelessWidget {
   final FocusNode focusNode1 = FocusNode();
@@ -90,9 +92,15 @@ class SightListScreen extends StatelessWidget {
                         placeCardType: SightCardType.general,
                         onDeleteFromList: () {},
                         onTap: () {
-                          Navigator.of(context).pushNamed(
-                            ROUTE_DETAILS,
-                            arguments: listOfPlaces[i].id,
+                          showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: context,
+                            builder: (_) => SightDetailsScreen(
+                              sightID: context
+                                  .watch<MyPlacesModel>()
+                                  .interestingPlaces[i]
+                                  .id,
+                            ),
                           );
                         },
                       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/ui/res/UiImagePaths.dart';
+import 'package:places/ui/res/ui_image_paths.dart';
 
 class OnboardingPage1 extends StatelessWidget {
   const OnboardingPage1({

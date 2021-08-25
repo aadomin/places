@@ -31,6 +31,9 @@ final lightTheme = ThemeData(
       fontSize: 14,
     ),
   ),
+  bottomSheetTheme: BottomSheetThemeData(
+    backgroundColor: Colors.transparent, // для закругления
+  ),
 );
 
 final darkTheme = ThemeData(
@@ -55,5 +58,8 @@ final darkTheme = ThemeData(
   ),
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(primary: Colors.white),
+  ),
+  bottomSheetTheme: BottomSheetThemeData(
+    backgroundColor: Colors.transparent, // для закругления
   ),
 );

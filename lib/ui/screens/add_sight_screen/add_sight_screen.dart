@@ -1,14 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
-import 'package:places/ui/screens/select_category_screen/select_category_model.dart';
-import '../main_screen/my_places_model.dart';
-import '../../my_app/routes.dart';
-import '../../my_scroll_physics.dart';
-import '../../widgets/MyImageWidget.dart';
 
-// TODO architecture refactoring
+import 'package:places/ui/screens/select_category_screen/select_category_model.dart';
+import 'package:places/ui/screens/main_screen/my_places_model.dart';
+import 'package:places/ui/my_app/routes.dart';
+import 'package:places/ui/my_scroll_physics.dart';
+import 'package:places/ui/widgets/MyImageWidget.dart';
+import 'widget_category_header.dart';
+import 'dialog_add_photo.dart';
+import 'add_sight_model.dart';
 
 class AddSightScreen extends StatefulWidget {
   @override
@@ -26,10 +28,15 @@ class _AddSightScreenState extends State<AddSightScreen> {
   final textControllerLon = TextEditingController();
   final textControllerDescription = TextEditingController();
 
-  List<int> _listOfPhotos = [0, 1, 2, 3, 4, 5];
+  //+
+  List<String> _listOfPhotos = [];
 
   @override
   Widget build(BuildContext context) {
+    //+
+    _listOfPhotos = context.watch<AddSightModel>().listOfPhotos;
+
+    //+
     var _currentlySelectedCategory =
         context.watch<MyCategoriesModel>().currentlySelected;
 
@@ -39,24 +46,34 @@ class _AddSightScreenState extends State<AddSightScreen> {
         backgroundColor: Theme.of(context).canvasColor,
         title: Row(
           children: [
+            //
+            // Кнопка Назад
+            //
             Expanded(
               flex: 1,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Отмена',
-                    style: TextStyle(fontSize: 16),
+              child: Row(
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Отмена',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    style: TextButton.styleFrom(
+                      primary: Theme.of(context).primaryColorLight,
+                    ),
                   ),
-                ),
-                style: TextButton.styleFrom(
-                  primary: Theme.of(context).primaryColorLight,
-                ),
+                ],
               ),
             ),
+            //
+            // Заголовок
+            //
             Text(
               'Новое место',
               style: TextStyle(
@@ -67,7 +84,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
             ),
             Expanded(
               flex: 1,
-              child: Text(''),
+              child: SizedBox.shrink(),
             ),
           ],
         ),
@@ -82,29 +99,43 @@ class _AddSightScreenState extends State<AddSightScreen> {
                 height: 75,
                 child: Row(
                   children: [
+                    //
+                    // Кнопка +
+                    //
                     Container(
-                      margin: EdgeInsets.only(right: 16),
-                      padding: EdgeInsets.all(1),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(14),
-                        color: Theme.of(context).accentColor,
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(13),
-                          color: Theme.of(context).canvasColor,
-                        ),
-                        child: SizedBox(
-                          width: 50,
-                          height: 50,
-                          child: Center(
-                            child: Icon(Icons.add,
-                                size: 30, color: Theme.of(context).accentColor),
+                      margin: const EdgeInsets.only(right: 16),
+                      child: InkWell(
+                        onTap: () {
+                          onTapOnPlus();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(1),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            color: Theme.of(context).accentColor,
+                          ),
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(13),
+                              color: Theme.of(context).canvasColor,
+                            ),
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: Center(
+                                child: Icon(Icons.add,
+                                    size: 30,
+                                    color: Theme.of(context).accentColor),
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
+                    //
+                    // Добавленные фотки
+                    //
                     Expanded(
                       child: ListView(
                         scrollDirection: Axis.horizontal,
@@ -112,8 +143,8 @@ class _AddSightScreenState extends State<AddSightScreen> {
                         children: _listOfPhotos.asMap().entries.map((item) {
                           return Dismissible(
                             background: Container(
-                              padding: EdgeInsets.all(16),
-                              margin: EdgeInsets.only(right: 16),
+                              padding: const EdgeInsets.all(16),
+                              margin: const EdgeInsets.only(right: 16),
                               child: Center(
                                 child: Icon(
                                   Icons.restore_from_trash,
@@ -124,43 +155,40 @@ class _AddSightScreenState extends State<AddSightScreen> {
                             ),
                             key: ObjectKey(item),
                             direction: DismissDirection.vertical,
-                            onDismissed: (direction) {},
-                            child: GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  _listOfPhotos.removeAt(item.key);
-                                });
-                                print(_listOfPhotos.toString());
-                              },
-                              child: Stack(
-                                alignment: Alignment.topRight,
-                                children: [
-                                  Container(
-                                    margin: EdgeInsets.only(right: 16),
-                                    child: SizedBox(
-                                      width: 72,
-                                      height: 72,
-                                      child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(13),
-                                          child: MyImageWidget(
-                                            url:
-                                                'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-                                            fit: BoxFit.fill,
-                                          )),
-                                    ),
+                            onDismissed: (_) =>
+                                onDismissPhoto(_listOfPhotos, item.key),
+                            child: Stack(
+                              alignment: Alignment.topRight,
+                              children: [
+                                Container(
+                                  margin: const EdgeInsets.only(right: 16),
+                                  child: SizedBox(
+                                    width: 72,
+                                    height: 72,
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(13),
+                                        child: MyImageWidget(
+                                          url: item.value,
+                                          fit: BoxFit.fill,
+                                        )),
                                   ),
-                                  Container(
-                                    margin: EdgeInsets.only(top: 12, right: 24),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16),
-                                      color: Theme.of(context).canvasColor,
-                                    ),
+                                ),
+                                Container(
+                                  margin:
+                                      const EdgeInsets.only(top: 12, right: 24),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    color: Theme.of(context).canvasColor,
+                                  ),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      onTapOnDelete(_listOfPhotos, item.key);
+                                    },
                                     child: Icon(Icons.close,
                                         size: 16, color: Colors.black),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           );
                         }).toList(),
@@ -169,11 +197,9 @@ class _AddSightScreenState extends State<AddSightScreen> {
                   ],
                 ),
               ),
-              CategoryNameWidget('КАТЕГОРИЯ'),
+              CategoryHeaderWidget('КАТЕГОРИЯ'),
               InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, ROUTE_SELECT_CATEGORY);
-                },
+                onTap: () => onTapOnCategorySelection(context),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -190,17 +216,17 @@ class _AddSightScreenState extends State<AddSightScreen> {
                   ],
                 ),
               ),
-              CategoryNameWidget('НАЗВАНИЕ'),
+              CategoryHeaderWidget('НАЗВАНИЕ'),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                 child: TextField(
+                  controller: textControllerName,
                   focusNode: focusNodeName,
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.sentences,
                   maxLines: 1,
                   maxLengthEnforcement: MaxLengthEnforcement.none,
-                  controller: textControllerName,
                   onSubmitted: (String value) {
                     focusNodeLat.requestFocus();
                   },
@@ -221,7 +247,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CategoryNameWidget('ШИРОТА'),
+                        CategoryHeaderWidget('ШИРОТА'),
                         TextField(
                           controller: textControllerLat,
                           focusNode: focusNodeLat,
@@ -251,7 +277,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CategoryNameWidget('ДОЛГОТА'),
+                        CategoryHeaderWidget('ДОЛГОТА'),
                         TextField(
                           controller: textControllerLon,
                           focusNode: focusNodeLon,
@@ -278,7 +304,13 @@ class _AddSightScreenState extends State<AddSightScreen> {
                 ],
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Показываем карту'),
+                    ),
+                  );
+                },
                 child: Text(
                   'Указать на карте',
                   style: TextStyle(
@@ -287,7 +319,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
                   ),
                 ),
               ),
-              CategoryNameWidget('ОПИСАНИЕ'),
+              CategoryHeaderWidget('ОПИСАНИЕ'),
               TextField(
                 controller: textControllerDescription,
                 focusNode: focusNodeDescription,
@@ -316,21 +348,15 @@ class _AddSightScreenState extends State<AddSightScreen> {
         ),
       ),
       bottomSheet: Container(
+        //
+        // Кнопка СОЗДАТЬ
+        //
         width: double.infinity,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
           child: ElevatedButton(
             onPressed: () {
-              context.read<MyPlacesModel>().save(
-                    name: textControllerName.text,
-                    lat: double.parse(textControllerLat.text),
-                    lon: double.parse(textControllerLon.text),
-                    url: 'исправить',
-                    details: textControllerDescription.text,
-                    type: context.read<MyCategoriesModel>().currentlySelected,
-                    wished: false,
-                  );
-              Navigator.pop(context);
+              onTapOnSave(context);
             },
             child: Padding(
               padding: const EdgeInsets.all(12.0),
@@ -341,25 +367,41 @@ class _AddSightScreenState extends State<AddSightScreen> {
       ),
     );
   }
-}
 
-class CategoryNameWidget extends StatelessWidget {
-  final String categoryName;
-  CategoryNameWidget(
-    this.categoryName, {
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 20, 0, 12),
-      child: Text(
-        categoryName,
-        style: TextStyle(
-          color: Theme.of(context).primaryColorLight,
-        ),
-      ),
+  void onTapOnPlus() {
+    showModalBottomSheet(
+      context: context,
+      enableDrag: false,
+      builder: (_) => DialogAddPhoto(),
     );
+  }
+
+  void onTapOnDelete(List<String> _listOfPhotos, int index) {
+    return setState(() {
+      _listOfPhotos.removeAt(index);
+    });
+  }
+
+  void onDismissPhoto(List<String> _listOfPhotos, int index) {
+    return setState(() {
+      _listOfPhotos.removeAt(index);
+    });
+  }
+
+  void onTapOnCategorySelection(BuildContext context) {
+    Navigator.pushNamed(context, ROUTE_SELECT_CATEGORY);
+  }
+
+  void onTapOnSave(BuildContext context) {
+    context.read<MyPlacesModel>().save(
+          name: textControllerName.text,
+          lat: double.parse(textControllerLat.text),
+          lon: double.parse(textControllerLon.text),
+          url: 'исправить',
+          details: textControllerDescription.text,
+          type: context.read<MyCategoriesModel>().currentlySelected,
+          wished: false,
+        );
+    Navigator.pop(context);
   }
 }

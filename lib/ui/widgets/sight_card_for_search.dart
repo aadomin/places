@@ -3,6 +3,8 @@ import '../../domain/sight.dart';
 import '../my_app/routes.dart';
 import 'MyImageWidget.dart';
 
+import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
+
 class SightCartForSearch extends StatelessWidget {
   final Sight sight;
 
@@ -14,7 +16,13 @@ class SightCartForSearch extends StatelessWidget {
       children: [
         ListTile(
           onTap: () {
-            Navigator.of(context).pushNamed(ROUTE_DETAILS, arguments: sight.id);
+            showModalBottomSheet(
+              isScrollControlled: true,
+              context: context,
+              builder: (_) => SightDetailsScreen(
+                sightID: sight.id,
+              ),
+            );
           },
           leading: WidgetImageWithRoundedCorners(sight: sight),
           title: WidgetSearchDescriptionOfPlace(sight: sight),

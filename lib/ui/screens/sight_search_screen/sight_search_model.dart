@@ -65,8 +65,8 @@ class MySearchModel with ChangeNotifier {
       return;
     }
 
-    // если прошло больше 1 секунды => это уже новый запрос
-    if (diffOfTime > 1) {
+    // если прошло больше 2 секунды => это уже новый запрос
+    if (diffOfTime > 2) {
       _lastSearches.insert(0, searchText);
       if (_lastSearches.length > 5) {
         _lastSearches.removeAt(_lastSearches.length - 1);

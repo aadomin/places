@@ -4,7 +4,7 @@ import 'OnboardingPage1.dart';
 import 'OnboardingPage2.dart';
 import 'OnboardingPage3.dart';
 
-import 'package:places/ui/res/UiImagePaths.dart';
+import 'package:places/ui/res/ui_image_paths.dart';
 
 import 'package:places/ui/my_app/routes.dart';
 

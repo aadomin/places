@@ -3,11 +3,15 @@ import 'package:provider/provider.dart';
 import 'package:places/ui/screens/sight_details_screen/sight_details_model.dart';
 import 'package:places/domain/sight.dart';
 import 'package:places/ui/widgets/MyImageWidget.dart';
-import 'package:places/ui/res/UiStrings.dart';
+import 'package:places/ui/res/ui_strings.dart';
 import 'package:places/ui/my_scroll_physics.dart';
 import 'sight_details_model.dart';
+import 'widget_back_button.dart';
 
 class SightDetailsScreen extends StatefulWidget {
+  SightDetailsScreen({Key? key, required this.sightID}) : super(key: key);
+  final int sightID;
+
   @override
   _SightDetailsScreenState createState() => _SightDetailsScreenState();
 }
@@ -23,17 +27,22 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final routeData = ModalRoute.of(context)?.settings.arguments as int;
-    sight = context.watch<SightDetailsModel>().sights[routeData];
-    return Scaffold(
-      body: SafeArea(
+    sight = context.watch<SightDetailsModel>().sights[widget.sightID];
+
+    return Padding(
+      padding: EdgeInsets.only(top: 100),
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(12.0),
+          topRight: Radius.circular(12.0),
+        ),
         child: Container(
-          height: double.infinity,
-          width: double.infinity,
+          color: Theme.of(context).canvasColor,
           child: CustomScrollView(
             physics: MyScrollPhysics.physics,
             slivers: [
               SliverAppBar(
+                automaticallyImplyLeading: false,
                 expandedHeight: 250,
                 flexibleSpace: Container(
                   height: 250,
@@ -59,7 +68,10 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                             ),
                         ],
                       ),
-                      BackButtonWidget(),
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: WidgetBackButton(),
+                      ),
                       Align(
                         alignment: Alignment.bottomLeft,
                         child: Padding(
@@ -233,44 +245,6 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                 ),
               ),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class BackButtonWidget extends StatelessWidget {
-  const BackButtonWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: SizedBox(
-        width: 40,
-        height: 40,
-        child: FittedBox(
-          fit: BoxFit.fitHeight,
-          child: TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            style: TextButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              backgroundColor: Theme.of(context).canvasColor,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child: Text(
-                '<',
-                style: TextStyle(fontSize: 40),
-              ),
-            ),
           ),
         ),
       ),

@@ -1,16 +1,15 @@
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
-import '../../my_enums.dart';
 
-import '../../widgets/sight_card.dart';
-import 'my_places_model.dart';
-import '../../../domain/sight.dart';
+import 'package:places/domain/sight.dart';
+
+import 'package:places/ui/my_enums.dart';
+import 'package:places/ui/my_scroll_physics.dart';
+import 'package:places/ui/widgets/sight_card.dart';
 
 import '3_3_empty_list.dart';
-
-import '../../my_scroll_physics.dart';
-
-import 'package:places/ui/my_app/routes.dart';
+import 'my_places_model.dart';
+import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
 
 class TabWished extends StatefulWidget {
   @override
@@ -58,16 +57,22 @@ class _TabWishedState extends State<TabWished> {
                           child: SightCard(
                             sight: i.value,
                             onTap: () {
-                              Navigator.of(context).pushNamed(
-                                ROUTE_DETAILS,
-                                arguments: i.value.id,
+                              showModalBottomSheet(
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (_) => SightDetailsScreen(
+                                  sightID: context
+                                      .watch<MyPlacesModel>()
+                                      .interestingPlaces[i.value.id]
+                                      .id,
+                                ),
                               );
                             },
                             // key: GlobalKey(),
                             placeCardType: SightCardType.wished,
                             onDeleteFromList: () {
                               setState(() {
-                                // реализовать потом удаление в модели
+                                // TODO реализовать потом удаление в модели
                                 // context.watch<MyPlacesModel>().delFromWished(i.key);
                                 _listOfItems.removeAt(i.key);
                               });
