@@ -8,22 +8,24 @@ import 'sight_card_icons.dart';
 
 class SightCard extends StatelessWidget {
   final Sight sight;
-  final Function onDeleteFromList;
-  final SightCardType placeCardType;
   final Key key;
+  final SightCardType placeCardType;
+  final Function onTap;
+  final Function onDeleteFromList;
 
-  SightCard(
-    this.sight, {
+  SightCard({
+    @required this.sight,
     this.key,
-    this.placeCardType = SightCardType.general,
-    this.onDeleteFromList,
+    @required this.placeCardType = SightCardType.general,
+    @required this.onTap,
+    @required this.onDeleteFromList,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, ROUTE_DETAILS);
+        onTap();
       },
       child: Dismissible(
         key: ObjectKey(sight),

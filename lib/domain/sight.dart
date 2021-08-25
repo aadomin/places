@@ -8,6 +8,7 @@ class Sight {
   final String timeOfWork;
   bool wished;
   bool seen;
+  final int id;
 
   Sight({
     this.name = 'Example object',
@@ -19,6 +20,7 @@ class Sight {
     this.timeOfWork = 'Закрыто до 09:00',
     this.wished = false,
     this.seen = false,
+    this.id,
   });
 
   @override

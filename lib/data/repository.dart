@@ -1,7 +1,7 @@
-import 'categories_filter.dart';
+import '_categories_filter.dart';
+import '_sights_storage.dart';
 
 class Repository {
-  
   // Singleton
   static Repository _instance;
   Repository._internal() {
@@ -9,7 +9,7 @@ class Repository {
   }
   factory Repository() => _instance ?? Repository._internal();
 
-  // general
+  // modules
   CategoriesFilter categoriesFilter = CategoriesFilter();
-  // TODO добавить остальные части бизнес-логики
+  SightsStorage sightsStorage = SightsStorage();
 }

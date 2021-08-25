@@ -10,6 +10,8 @@ import 'ui/screens/select_category_screen/select_category_model.dart';
 import 'ui/screens/sight_search_screen/sight_search_model.dart';
 import 'ui/screens/main_screen/my_places_model.dart';
 import 'ui/screens/splash_screen/splash_model.dart';
+import 'ui/screens/sight_details_screen/sight_details_model.dart';
+
 import 'ui/my_app/my_app_model.dart';
 
 void main() {
@@ -20,7 +22,7 @@ void main() {
           create: (context) => MyThemeModel(),
         ),
         ChangeNotifierProvider(
-          create: (context) => MyFilterModel(1),
+          create: (context) => MyFilterModel(),
         ),
         ChangeNotifierProvider(
           create: (context) => MyCategoriesModel(),
@@ -34,7 +36,9 @@ void main() {
         ChangeNotifierProvider(
           create: (context) => MySplashModel(),
         ),
-        
+        ChangeNotifierProvider(
+          create: (context) => SightDetailsModel(),
+        ),
       ],
       child: MyApp(),
     ),

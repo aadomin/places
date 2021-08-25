@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import '../../../domain/sight.dart';
-import '../../widgets/MyImageWidget.dart';
+import 'package:provider/provider.dart';
+import 'package:places/data/mocks.dart';
+import 'package:places/ui/screens/filter_screen/filters_model.dart';
+import 'package:places/ui/screens/sight_details_screen/sight_details_model.dart';
+import 'package:places/domain/sight.dart';
+import 'package:places/ui/widgets/MyImageWidget.dart';
 import 'package:places/ui/res/UiStrings.dart';
 import 'package:places/ui/my_scroll_physics.dart';
+import 'sight_details_model.dart';
 
 class SightDetailsScreen extends StatefulWidget {
-  final Sight sight;
-
-  SightDetailsScreen(this.sight);
-
   @override
   _SightDetailsScreenState createState() => _SightDetailsScreenState();
 }
@@ -20,8 +21,12 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
 
   int _countOfPages = 4;
 
+  Sight sight;
+
   @override
   Widget build(BuildContext context) {
+    final routeData = ModalRoute.of(context).settings.arguments as int;
+    sight = context.watch<SightDetailsModel>().sights[routeData];
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -50,7 +55,7 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                               height: 300,
                               width: 300,
                               child: MyImageWidget(
-                                url: widget.sight.url,
+                                url: sight.url,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -100,7 +105,7 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                           bottom: 2,
                         ),
                         child: Text(
-                          widget.sight.name,
+                          sight.name,
                           style: TextStyle(
                             fontSize: 26,
                             fontWeight: FontWeight.bold,
@@ -113,7 +118,7 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                         child: Row(
                           children: [
                             Text(
-                              widget.sight.type,
+                              sight.type,
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.grey.shade700,
@@ -134,7 +139,7 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                         alignment: Alignment.topLeft,
                         margin: EdgeInsets.fromLTRB(0, 24, 0, 0),
                         child: Text(
-                          widget.sight.details,
+                          sight.details,
                           style: TextStyle(
                             color: Theme.of(context).primaryColorLight,
                           ),

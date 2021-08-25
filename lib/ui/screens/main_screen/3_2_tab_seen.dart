@@ -1,15 +1,14 @@
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
-import '../../my_enums.dart';
 
-import '../../widgets/sight_card.dart';
+import 'package:places/ui/my_enums.dart';
+import 'package:places/ui/widgets/sight_card.dart';
+import 'package:places/ui/my_scroll_physics.dart';
+import 'package:places/ui/my_app/routes.dart';
+import 'package:places/domain/sight.dart';
+
 import 'my_places_model.dart';
-
-import '../../../domain/sight.dart';
-
 import '3_3_empty_list.dart';
-
-import '../../my_scroll_physics.dart';
 
 class TabSeen extends StatefulWidget {
   @override
@@ -56,9 +55,15 @@ class _TabSeenState extends State<TabSeen> {
                                 color: Theme.of(context).accentColor),
                           ),
                           child: SightCard(
-                            i.value,
+                            sight: i.value,
                             // key: GlobalKey(),
                             placeCardType: SightCardType.seen,
+                            onTap: () {
+                              Navigator.of(context).pushNamed(
+                                ROUTE_DETAILS,
+                                arguments: i.value.id,
+                              );
+                            },
                             onDeleteFromList: () {
                               setState(() {
                                 // реализовать потом удаление в модели

@@ -3,7 +3,7 @@ import 'package:places/data/repository.dart';
 import 'package:places/domain/FilterItem.dart';
 
 class MyFilterModel with ChangeNotifier {
-  MyFilterModel(i) {
+  MyFilterModel() {
     repository = Repository();
     
     // при появлении объекта из стрима обновляем интерфейс

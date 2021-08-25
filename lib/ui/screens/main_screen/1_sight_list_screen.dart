@@ -17,6 +17,7 @@ class SightListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var listOfPlaces = context.watch<MyPlacesModel>().interestingPlaces;
     return Scaffold(
       body: Stack(
         children: [
@@ -84,9 +85,16 @@ class SightListScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: SightCard(
-                        context.watch<MyPlacesModel>().interestingPlaces[i],
+                        sight:
+                            context.watch<MyPlacesModel>().interestingPlaces[i],
                         placeCardType: SightCardType.general,
                         onDeleteFromList: () {},
+                        onTap: () {
+                          Navigator.of(context).pushNamed(
+                            ROUTE_DETAILS,
+                            arguments: listOfPlaces[i].id,
+                          );
+                        },
                       ),
                     ),
                 ]),
