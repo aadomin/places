@@ -7,10 +7,12 @@ class WidgetSightCardIcons extends StatelessWidget {
     Key? key,
     required this.placeCardType,
     required this.onDeleteFromList,
+    required this.onAddToCalendar,
   }) : super(key: key);
 
-  final SightCardType placeCardType;
   final void Function() onDeleteFromList;
+  final SightCardType placeCardType;
+  final VoidCallback onAddToCalendar;
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +40,7 @@ class WidgetSightCardIcons extends StatelessWidget {
               padding: EdgeInsets.only(left: 16),
               child: InkWell(
                 child: Icon(Icons.calendar_today, color: Colors.white),
-                onTap: () {
-                  print('Wish, calendar');
-                },
+                onTap: onAddToCalendar,
               ),
             ),
             Container(

@@ -91,6 +91,7 @@ class SightListScreen extends StatelessWidget {
                             context.watch<MyPlacesModel>().interestingPlaces[i],
                         placeCardType: SightCardType.general,
                         onDeleteFromList: () {},
+                        onAddToCalendar: () {},
                         onTap: () {
                           showModalBottomSheet(
                             isScrollControlled: true,

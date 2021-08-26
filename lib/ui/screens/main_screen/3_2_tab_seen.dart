@@ -58,6 +58,7 @@ class _TabSeenState extends State<TabSeen> {
                             sight: i.value,
                             // key: GlobalKey(),
                             placeCardType: SightCardType.seen,
+                            onAddToCalendar: () {},
                             onTap: () {
                               showModalBottomSheet(
                                 isScrollControlled: true,

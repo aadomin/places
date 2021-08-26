@@ -12,12 +12,15 @@ class SightCard extends StatelessWidget {
   final Function onTap;
   final VoidCallback onDeleteFromList;
 
+  final onAddToCalendar;
+
   SightCard({
     required this.sight,
     this.key,
     required this.placeCardType,
     required this.onTap,
     required this.onDeleteFromList,
+    required this.onAddToCalendar,
   });
 
   @override
@@ -134,8 +137,10 @@ class SightCard extends StatelessWidget {
                 alignment: Alignment.topRight,
                 padding: EdgeInsets.all(16),
                 child: WidgetSightCardIcons(
-                    placeCardType: placeCardType,
-                    onDeleteFromList: onDeleteFromList),
+                  placeCardType: placeCardType,
+                  onDeleteFromList: onDeleteFromList,
+                  onAddToCalendar: onAddToCalendar,
+                ),
               ),
             ],
           ),
