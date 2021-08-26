@@ -10,14 +10,11 @@ class AddSightModel with ChangeNotifier {
   List<String> get listOfPhotos {
     if (_listOfPhotos == null) {
       // копируем изначальный список фоток, впоследствии он будет удален
-      _listOfPhotos = [];
-      for (var i = 0;
-          i < repository.sightsStorage.listOfInitialPhotosForAdding.length;
-          i++)
-        _listOfPhotos
-            ?.add(repository.sightsStorage.listOfInitialPhotosForAdding[i]);
+      _listOfPhotos = [
+        ...repository.sightsStorage.listOfInitialPhotosForAdding,
+      ];
     }
-    return _listOfPhotos ?? [];
+    return _listOfPhotos ?? []; // useless thing just for null safety
   }
 
   set listOfPhotos(List<String> value) {

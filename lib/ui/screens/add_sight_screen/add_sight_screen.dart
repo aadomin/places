@@ -218,7 +218,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
               ),
               CategoryHeaderWidget('НАЗВАНИЕ'),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                padding: const EdgeInsets.all(0),
                 child: TextField(
                   controller: textControllerName,
                   focusNode: focusNodeName,
