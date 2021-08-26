@@ -20,7 +20,7 @@ class Sight {
     this.timeOfWork = 'Закрыто до 09:00',
     this.wished = false,
     this.seen = false,
-    this.id,
+    required this.id,
   });
 
   @override

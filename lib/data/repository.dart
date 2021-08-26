@@ -3,7 +3,7 @@ import '_sights_storage.dart';
 
 class Repository {
   // Singleton
-  static Repository _instance;
+  static Repository? _instance;
   Repository._internal() {
     _instance = this;
   }

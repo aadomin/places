@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import '../../../data/mocks.dart';
 import '../../../domain/sight.dart';
+import 'dart:math';
 
 class MyPlacesModel with ChangeNotifier {
   void save({
-    String name,
-    double lat,
-    double lon,
-    String url,
-    String details,
-    String type,
-    bool wished,
+    required String name,
+    required double lat,
+    required double lon,
+    required String url,
+    required String details,
+    required String type,
+    required bool wished,
   }) {
+    var random = Random();
     mocks.add(
       Sight(
         name: name,
@@ -20,6 +22,7 @@ class MyPlacesModel with ChangeNotifier {
         url: url,
         details: details,
         type: type,
+        id: random.nextInt(29381257143242),
       ),
     );
     notifyListeners();

@@ -1,14 +1,15 @@
 import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
 
-import 'package:places/ui/my_enums.dart';
-import 'package:places/ui/widgets/sight_card.dart';
-import 'package:places/ui/my_scroll_physics.dart';
-import 'package:places/ui/my_app/routes.dart';
 import 'package:places/domain/sight.dart';
 
-import 'my_places_model.dart';
+import 'package:places/ui/my_enums.dart';
+import 'package:places/ui/my_scroll_physics.dart';
+import 'package:places/ui/widgets/sight_card.dart';
+
 import '3_3_empty_list.dart';
+import 'my_places_model.dart';
+import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
 
 class TabSeen extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class TabSeen extends StatefulWidget {
 }
 
 class _TabSeenState extends State<TabSeen> {
-  List<Sight> _listOfItems;
+  late List<Sight> _listOfItems;
 
   GlobalKey globalKey = GlobalKey();
   bool isDrag = false;
@@ -24,8 +25,7 @@ class _TabSeenState extends State<TabSeen> {
 
   @override
   Widget build(BuildContext context) {
-    if (_listOfItems == null)
-      _listOfItems = context.watch<MyPlacesModel>().seenPlaces;
+    _listOfItems = context.watch<MyPlacesModel>().seenPlaces;
 
     if (_listOfItems.isEmpty) {
       return WidgetEmptyList(
@@ -59,14 +59,20 @@ class _TabSeenState extends State<TabSeen> {
                             // key: GlobalKey(),
                             placeCardType: SightCardType.seen,
                             onTap: () {
-                              Navigator.of(context).pushNamed(
-                                ROUTE_DETAILS,
-                                arguments: i.value.id,
+                              showModalBottomSheet(
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (_) => SightDetailsScreen(
+                                  sightID: context
+                                      .watch<MyPlacesModel>()
+                                      .interestingPlaces[i.value.id]
+                                      .id,
+                                ),
                               );
                             },
                             onDeleteFromList: () {
                               setState(() {
-                                // реализовать потом удаление в модели
+                                // TODO реализовать потом удаление в модели
                                 // context.watch<MyPlacesModel>().delFromSeen(i.key);
                                 _listOfItems.removeAt(i.key);
                               });
@@ -114,7 +120,7 @@ class _TabSeenState extends State<TabSeen> {
                                 ),
                               );
                             },
-                            onWillAccept: (int data) {
+                            onWillAccept: (int? data) {
                               isDragOn = i.key;
                               return true;
                             },

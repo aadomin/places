@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui/res/UiImagePaths.dart';
+import 'package:places/ui/res/ui_image_paths.dart';
 
 import 'package:places/ui/screens/splash_screen/splash_model.dart';
 

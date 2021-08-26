@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../my_enums.dart';
-import '../../../domain/sight.dart';
-import 'package:places/data/mocks.dart';
+import 'package:places/ui/my_enums.dart';
+import 'package:places/domain/sight.dart';
+import 'package:places/data/repository.dart';
 
 class MySearchModel with ChangeNotifier {
+  MySearchModel() {
+    repository = Repository();
+  }
+
+  late final Repository repository;
+
   var searchStatus = SearchStatus.empty;
   List<Sight> _searchResult = [];
   String _searchText = '';
@@ -34,9 +40,11 @@ class MySearchModel with ChangeNotifier {
       searchStatus = SearchStatus.empty;
     } else {
       // TODO запрос к БД
-      for (var i = 0; i < mocks.length; i++) {
-        if (mocks[i].name.toLowerCase().contains(_searchText.toLowerCase())) {
-          result.add(mocks[i]);
+      for (var i = 0; i < repository.sightsStorage.items.length; i++) {
+        if (repository.sightsStorage.items[i].name
+            .toLowerCase()
+            .contains(_searchText.toLowerCase())) {
+          result.add(repository.sightsStorage.items[i]);
         }
       }
 
@@ -57,8 +65,8 @@ class MySearchModel with ChangeNotifier {
       return;
     }
 
-    // если прошло больше 1 секунды => это уже новый запрос
-    if (diffOfTime > 1) {
+    // если прошло больше 2 секунды => это уже новый запрос
+    if (diffOfTime > 2) {
       _lastSearches.insert(0, searchText);
       if (_lastSearches.length > 5) {
         _lastSearches.removeAt(_lastSearches.length - 1);

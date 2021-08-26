@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/ui/res/UiImagePaths.dart';
+import 'package:places/ui/res/ui_image_paths.dart';
 
 class OnboardingPage3 extends StatelessWidget {
   const OnboardingPage3({
-    @required PageController pageController,
-    Key key,
+    required PageController pageController,
+    Key? key,
   }) : super(key: key);
 
   @override

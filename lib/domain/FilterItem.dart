@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
 class FilterItem {
   FilterItem({
-    @required this.name,
-    @required this.assetPath,
-    @required this.isSelected,
+    required this.name,
+    required this.assetPath,
+    required this.isSelected,
   });
 
   String name = "";

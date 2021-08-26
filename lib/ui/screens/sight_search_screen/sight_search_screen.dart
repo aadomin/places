@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui/screens/sight_search_screen/sight_search_model.dart';
 import 'package:provider/provider.dart';
 
-import '../../../domain/sight.dart';
-import '../../widgets/sight_card_for_search.dart';
+import 'package:places/domain/sight.dart';
 
-import '../../my_enums.dart';
+import 'package:places/ui/my_enums.dart';
+import 'package:places/ui/res/ui_strings.dart';
+import 'package:places/ui/widgets/sight_card_for_search.dart';
 import 'package:places/ui/widgets/headers.dart';
-import 'package:places/ui/res/UiStrings.dart';
+import 'package:places/ui/screens/sight_search_screen/sight_search_model.dart';
 
 class SightSearchScreen extends StatelessWidget {
   final FocusNode focusNode1 = FocusNode();
@@ -89,7 +89,7 @@ class SightSearchScreen extends StatelessWidget {
 
 class WidgetSearchResult extends StatelessWidget {
   const WidgetSearchResult({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -109,7 +109,7 @@ class WidgetSearchResult extends StatelessWidget {
 
 class WidgetSearchEmpty extends StatelessWidget {
   const WidgetSearchEmpty({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -144,7 +144,7 @@ class WidgetSearchEmpty extends StatelessWidget {
 // Ничего не найдено
 class WidgetSearchNotFound extends StatelessWidget {
   const WidgetSearchNotFound({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

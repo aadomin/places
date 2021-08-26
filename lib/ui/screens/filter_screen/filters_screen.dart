@@ -71,7 +71,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
               ),
             ),
             SizedBox(
-              height: 240,
+              height: 260,
               child: Padding(
                 padding: EdgeInsets.zero,
                 child: GridView.count(
@@ -122,7 +122,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                                       ? CheckmarkWidget(
                                           radiusOfRoundElement:
                                               _radiusOfRoundElement)
-                                      : Text(''),
+                                      : SizedBox.shrink(),
                                 ],
                               ),
                               Padding(
@@ -179,8 +179,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
 // Галочка
 class CheckmarkWidget extends StatelessWidget {
   const CheckmarkWidget({
-    Key key,
-    @required double radiusOfRoundElement,
+    Key? key,
+    required double radiusOfRoundElement,
   })  : _radiusOfRoundElement = radiusOfRoundElement,
         super(key: key);
 

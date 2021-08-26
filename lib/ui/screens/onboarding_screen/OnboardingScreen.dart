@@ -4,7 +4,7 @@ import 'OnboardingPage1.dart';
 import 'OnboardingPage2.dart';
 import 'OnboardingPage3.dart';
 
-import 'package:places/ui/res/UiImagePaths.dart';
+import 'package:places/ui/res/ui_image_paths.dart';
 
 import 'package:places/ui/my_app/routes.dart';
 
@@ -16,7 +16,7 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
 
-  double currentPage = 1;
+  double? currentPage = 1;
 
   @override
   void initState() {
