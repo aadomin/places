@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:places/ui/screens/main_screen/my_places_model.dart';
+import 'package:places/ui/screens/main_screen/main_screen_model.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 
 import 'package:places/ui/my_app/routes.dart';
@@ -21,7 +21,6 @@ class SightListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var listOfPlaces = context.watch<MyPlacesModel>().interestingPlaces;
     return Scaffold(
       body: Stack(
         children: [
@@ -82,7 +81,7 @@ class SightListScreen extends StatelessWidget {
                   for (var i = 0;
                       i <
                           context
-                              .watch<MyPlacesModel>()
+                              .watch<MainScreenModel>()
                               .interestingPlaces
                               .length;
                       i++)
@@ -90,7 +89,7 @@ class SightListScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(16.0),
                       child: SightCard(
                         sight:
-                            context.watch<MyPlacesModel>().interestingPlaces[i],
+                            context.watch<MainScreenModel>().interestingPlaces[i],
                         placeCardType: SightCardType.general,
                         onDeleteFromList: () {},
                         onAddToCalendar: () {},
@@ -100,7 +99,7 @@ class SightListScreen extends StatelessWidget {
                             context: context,
                             builder: (_) => SightDetailsScreen(
                               sightID: context
-                                  .watch<MyPlacesModel>()
+                                  .watch<MainScreenModel>()
                                   .interestingPlaces[i]
                                   .id,
                             ),

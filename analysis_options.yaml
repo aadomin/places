@@ -2,10 +2,10 @@ include: package:surf_lint_rules/analysis_options.yaml
 
 linter:
   rules:
-    # предпочитайте опускать типы в стрелочных функциях
+    # опускайте типы в стрелочных функциях
     avoid_types_on_closure_parameters: false
 
-    # with ChangeNotifier
+    # конфликтует с with ChangeNotifier
     prefer_mixin: false
 
     # Container ее бесит

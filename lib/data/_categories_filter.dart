@@ -17,7 +17,7 @@ class CategoriesFilter {
   }
 
   void clearSelection() {
-    for (var element in _filterItems) {
+    for (final element in _filterItems) {
       element.isSelected = false;
     }
     _streamItems.add(_filterItems);

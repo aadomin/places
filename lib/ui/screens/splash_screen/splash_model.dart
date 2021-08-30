@@ -7,12 +7,13 @@ import 'package:places/ui/my_app/routes.dart';
 // ignore_for_file: avoid_print
 
 class MySplashModel with ChangeNotifier {
+  // ignore: avoid_void_async
   static void initAppAndThenChangeScreen(BuildContext context) async {
     print('starting of application');
-    var _delayProcess = _doDelayForBeautifulChangeScreen();
+    final _delayProcess = _doDelayForBeautifulChangeScreen();
     await _doInitializeApp();
     await _delayProcess;
-    Navigator.of(context).pushReplacementNamed(ROUTE_ONBOARDING);
+    await Navigator.of(context).pushReplacementNamed(ROUTE_ONBOARDING);
   }
 
   /// процедура загрузки: Future

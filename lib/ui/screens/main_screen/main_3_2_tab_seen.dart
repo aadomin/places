@@ -8,7 +8,7 @@ import 'package:places/ui/my_scroll_physics.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 
 import 'package:places/ui/screens/main_screen/main_3_3_empty_list.dart';
-import 'package:places/ui/screens/main_screen/my_places_model.dart';
+import 'package:places/ui/screens/main_screen/main_screen_model.dart';
 import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
 
 class TabSeen extends StatefulWidget {
@@ -27,7 +27,7 @@ class _TabSeenState extends State<TabSeen> {
 
   @override
   Widget build(BuildContext context) {
-    _listOfItems = context.watch<MyPlacesModel>().seenPlaces;
+    _listOfItems = context.watch<MainScreenModel>().seenPlaces;
 
     if (_listOfItems.isEmpty) {
       return const WidgetEmptyList(
@@ -82,7 +82,7 @@ class _TabSeenState extends State<TabSeen> {
                                 context: context,
                                 builder: (_) => SightDetailsScreen(
                                   sightID: context
-                                      .watch<MyPlacesModel>()
+                                      .watch<MainScreenModel>()
                                       .interestingPlaces[i.value.id]
                                       .id,
                                 ),
@@ -91,7 +91,7 @@ class _TabSeenState extends State<TabSeen> {
                             onDeleteFromList: () {
                               setState(() {
                                 // TODO реализовать потом удаление в модели
-                                // context.watch<MyPlacesModel>().delFromSeen(i.key);
+                                // context.watch<MainScreenModel>().delFromSeen(i.key);
                                 _listOfItems.removeAt(i.key);
                               });
                             },

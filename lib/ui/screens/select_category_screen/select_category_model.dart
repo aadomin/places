@@ -18,7 +18,7 @@ class MyCategoriesModel with ChangeNotifier {
       _myCategories[index].isSelected = false;
       _myCategories[0].isSelected = true;
     } else {
-      for (var i in _myCategories) {
+      for (final i in _myCategories) {
         i.isSelected = false;
       }
       _myCategories[index].isSelected = true;

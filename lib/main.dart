@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:places/ui/my_app/my_app.dart';
 
 import 'package:places/ui/my_app/my_app_model.dart';
-import 'package:places/ui/screens/main_screen/my_places_model.dart';
+import 'package:places/ui/screens/main_screen/main_screen_model.dart';
 import 'package:places/ui/screens/sight_search_screen/sight_search_model.dart';
 import 'package:places/ui/screens/filter_screen/filters_model.dart';
 import 'package:places/ui/screens/select_category_screen/select_category_model.dart';
@@ -26,7 +26,7 @@ void main() {
           create: (context) => MyCategoriesModel(),
         ),
         ChangeNotifierProvider(
-          create: (context) => MyPlacesModel(),
+          create: (context) => MainScreenModel(),
         ),
         ChangeNotifierProvider(
           create: (context) => MySearchModel(),

@@ -7,7 +7,7 @@ class SelectCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _categories = context.watch<MyCategoriesModel>().myCategories;
+    final _categories = context.watch<MyCategoriesModel>().myCategories;
 
     return Scaffold(
       appBar: AppBar(
@@ -49,15 +49,14 @@ class SelectCategory extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: _categories.asMap().entries.map((item) {
-              var _i = item.key;
-              var _name = item.value.name;
-              var _isSelected = item.value.isSelected;
               return ListTile(
                 onTap: () {
-                  context.read<MyCategoriesModel>().switchCategoryCheck(_i);
+                  context
+                      .read<MyCategoriesModel>()
+                      .switchCategoryCheck(item.key);
                 },
-                title: Text(_name),
-                trailing: _isSelected
+                title: Text(item.value.name),
+                trailing: item.value.isSelected
                     ? Icon(Icons.done, color: Theme.of(context).accentColor)
                     : const Text(''),
               );

@@ -20,11 +20,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   void initState() {
+    // ignore: avoid_single_cascade_in_expression_statements
     _pageController
       ..addListener(() {
-        setState(() {
-          currentPage = _pageController.page;
-        });
+        currentPage = _pageController.page;
+        setState(() {});
       });
     super.initState();
   }
@@ -72,10 +72,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               setState(() {});
             },
             controller: _pageController,
-            children: [
-              OnboardingPage1(pageController: _pageController),
-              OnboardingPage2(pageController: _pageController),
-              OnboardingPage3(pageController: _pageController),
+            children: const [
+              OnboardingPage1(),
+              OnboardingPage2(),
+              OnboardingPage3(),
             ],
           ),
           Align(

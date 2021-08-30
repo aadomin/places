@@ -4,7 +4,6 @@ import 'package:places/ui/res/ui_image_paths.dart';
 
 class OnboardingPage2 extends StatelessWidget {
   const OnboardingPage2({
-    required PageController pageController,
     Key? key,
   }) : super(key: key);
 

@@ -34,7 +34,6 @@ class SightSearchScreen extends StatelessWidget {
               child: TextField(
                 focusNode: focusNode1,
                 controller: textController,
-                
                 onChanged: (String value) {
                   context.read<MySearchModel>().newSearch(value);
                 },
@@ -97,7 +96,8 @@ class WidgetSearchResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Sight> searchResults = context.watch<MySearchModel>().searchResult;
+    final List<Sight> searchResults =
+        context.watch<MySearchModel>().searchResult;
 
     return Column(
       children: [

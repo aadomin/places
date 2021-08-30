@@ -8,7 +8,7 @@ import 'package:places/ui/my_scroll_physics.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 
 import 'package:places/ui/screens/main_screen/main_3_3_empty_list.dart';
-import 'package:places/ui/screens/main_screen/my_places_model.dart';
+import 'package:places/ui/screens/main_screen/main_screen_model.dart';
 import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
 
 class TabWished extends StatefulWidget {
@@ -24,8 +24,8 @@ class _TabWishedState extends State<TabWished> {
 
   @override
   Widget build(BuildContext context) {
-    _listOfItems = context.watch<MyPlacesModel>().wishedPlaces;
-    _allInterestingPlaces = context.watch<MyPlacesModel>().interestingPlaces;
+    _listOfItems = context.watch<MainScreenModel>().wishedPlaces;
+    _allInterestingPlaces = context.watch<MainScreenModel>().interestingPlaces;
 
     if (_listOfItems.isEmpty) {
       return const WidgetEmptyList(
@@ -79,7 +79,7 @@ class _TabWishedState extends State<TabWished> {
   }
 
   Future<void> onAddToCalendar() async {
-    var res = await showDatePicker(
+    final res = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now().subtract(const Duration(days: 1)),

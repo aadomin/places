@@ -30,7 +30,7 @@ class _AllMainScreensState extends State<AllMainScreens> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         onTap: (index) {
-          this._c.animateToPage(index,
+        _c.animateToPage(index,
               duration: const Duration(milliseconds: 500),
               curve: Curves.easeInOut);
         },
@@ -58,7 +58,7 @@ class _AllMainScreensState extends State<AllMainScreens> {
         controller: _c,
         onPageChanged: (newPage) {
           setState(() {
-            this._page = newPage;
+            _page = newPage;
           });
         },
         children: [

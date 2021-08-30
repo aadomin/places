@@ -16,7 +16,7 @@ class SightCard extends StatelessWidget {
 
   final Sight sight;
   final SightCardType placeCardType;
-  final Function onTap;
+  final VoidCallback onTap;
   final VoidCallback onDeleteFromList;
 
   final VoidCallback onAddToCalendar;
@@ -24,9 +24,8 @@ class SightCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        onTap();
-      },
+      // MARKA
+      onTap: onTap,
       child: Dismissible(
         key: ObjectKey(sight),
         onDismissed: (direction) {

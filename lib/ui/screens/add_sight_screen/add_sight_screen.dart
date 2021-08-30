@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 
 import 'package:places/ui/screens/select_category_screen/select_category_model.dart';
-import 'package:places/ui/screens/main_screen/my_places_model.dart';
 import 'package:places/ui/my_app/routes.dart';
 import 'package:places/ui/my_scroll_physics.dart';
 import 'package:places/ui/widgets/my_image_widget.dart';
@@ -38,7 +37,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
     _listOfPhotos = context.watch<AddSightModel>().listOfPhotos;
 
     //+
-    var _currentlySelectedCategory =
+    final _currentlySelectedCategory =
         context.watch<MyCategoriesModel>().currentlySelected;
 
     return Scaffold(
@@ -104,9 +103,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
                     Container(
                       margin: const EdgeInsets.only(right: 16),
                       child: InkWell(
-                        onTap: () {
-                          onTapOnPlus();
-                        },
+                        onTap: onTapOnPlus,
                         child: Container(
                           padding: const EdgeInsets.all(1),
                           decoration: BoxDecoration(
@@ -226,7 +223,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.next,
                   textCapitalization: TextCapitalization.sentences,
-                  maxLines: 1,
+                  maxLines: 1, // ignore: avoid_redundant_argument_values
                   maxLengthEnforcement: MaxLengthEnforcement.none,
                   onSubmitted: (String value) {
                     focusNodeLat.requestFocus();
@@ -255,6 +252,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
                           textCapitalization: TextCapitalization.sentences,
+                          // ignore: avoid_redundant_argument_values
                           maxLines: 1,
                           maxLengthEnforcement: MaxLengthEnforcement.none,
                           onSubmitted: (String value) {
@@ -285,6 +283,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
                           keyboardType: TextInputType.number,
                           textInputAction: TextInputAction.next,
                           textCapitalization: TextCapitalization.sentences,
+                          // ignore: avoid_redundant_argument_values
                           maxLines: 1,
                           maxLengthEnforcement: MaxLengthEnforcement.none,
                           onSubmitted: (String value) {
@@ -357,7 +356,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
           child: ElevatedButton(
             onPressed: () {
-              onTapOnSave(context);
+              onTapOnSave();
             },
             child: const Padding(
               padding: EdgeInsets.all(12.0),
@@ -393,15 +392,14 @@ class _AddSightScreenState extends State<AddSightScreen> {
     Navigator.pushNamed(context, ROUTE_SELECT_CATEGORY);
   }
 
-  void onTapOnSave(BuildContext context) {
-    context.read<MyPlacesModel>().save(
+  void onTapOnSave() {
+    context.read<AddSightModel>().saveNew(
           name: textControllerName.text,
           lat: double.parse(textControllerLat.text),
           lon: double.parse(textControllerLon.text),
           url: 'исправить',
           details: textControllerDescription.text,
           type: context.read<MyCategoriesModel>().currentlySelected,
-          wished: false,
         );
     Navigator.pop(context);
   }
