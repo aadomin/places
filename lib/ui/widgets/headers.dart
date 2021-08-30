@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 
 class WidgetMyHeader extends StatelessWidget {
   const WidgetMyHeader({
-    Key? key,
     required String header,
-  }) : _header = header, super(key: key);
+    Key? key,
+  })  : _header = header,
+        super(key: key);
 
   final String _header;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Text(
         _header,
         style: TextStyle(

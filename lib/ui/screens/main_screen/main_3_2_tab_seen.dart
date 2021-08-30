@@ -1,4 +1,4 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/domain/sight.dart';
@@ -7,11 +7,13 @@ import 'package:places/ui/my_enums.dart';
 import 'package:places/ui/my_scroll_physics.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 
-import '3_3_empty_list.dart';
-import 'my_places_model.dart';
+import 'package:places/ui/screens/main_screen/main_3_3_empty_list.dart';
+import 'package:places/ui/screens/main_screen/my_places_model.dart';
 import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
 
 class TabSeen extends StatefulWidget {
+  const TabSeen({Key? key}) : super(key: key);
+
   @override
   _TabSeenState createState() => _TabSeenState();
 }
@@ -28,11 +30,15 @@ class _TabSeenState extends State<TabSeen> {
     _listOfItems = context.watch<MyPlacesModel>().seenPlaces;
 
     if (_listOfItems.isEmpty) {
-      return WidgetEmptyList(
-          'Отмечайте посещенные места \nи они появятся здесь');
+      return const WidgetEmptyList(
+        commentLine: 'Отмечайте посещенные места \nи они появятся здесь',
+      );
     } else {
       return Container(
         alignment: Alignment.topCenter,
+        decoration: BoxDecoration(
+          color: Theme.of(context).canvasColor,
+        ),
         child: Padding(
           padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
           child: ListView(
@@ -54,13 +60,24 @@ class _TabSeenState extends State<TabSeen> {
                             child: Icon(Icons.move_to_inbox_rounded,
                                 color: Theme.of(context).accentColor),
                           ),
+                          onDragStarted: () {
+                            setState(() {
+                              isDrag = true;
+                            });
+                          },
+                          onDragEnd: (details) {
+                            setState(() {
+                              isDrag = false;
+                              isDragOn = -1;
+                            });
+                          },
                           child: SightCard(
                             sight: i.value,
                             // key: GlobalKey(),
                             placeCardType: SightCardType.seen,
                             onAddToCalendar: () {},
                             onTap: () {
-                              showModalBottomSheet(
+                              showModalBottomSheet<bool>(
                                 isScrollControlled: true,
                                 context: context,
                                 builder: (_) => SightDetailsScreen(
@@ -79,17 +96,6 @@ class _TabSeenState extends State<TabSeen> {
                               });
                             },
                           ),
-                          onDragStarted: () {
-                            setState(() {
-                              isDrag = true;
-                            });
-                          },
-                          onDragEnd: (details) {
-                            setState(() {
-                              isDrag = false;
-                              isDragOn = -1;
-                            });
-                          },
                         ),
                         if (i.key + 1 != _listOfItems.length)
                           DragTarget<int>(
@@ -130,7 +136,7 @@ class _TabSeenState extends State<TabSeen> {
                             },
                             onAccept: (int data) {
                               setState(() {
-                                print('1');
+                                // print('1');
                                 _listOfItems.insert(
                                   isDragOn + 1,
                                   _listOfItems.removeAt(i.key),
@@ -148,9 +154,6 @@ class _TabSeenState extends State<TabSeen> {
                     ))
                 .toList(),
           ),
-        ),
-        decoration: BoxDecoration(
-          color: Theme.of(context).canvasColor,
         ),
       );
     }

@@ -1,4 +1,4 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/domain/sight.dart';
@@ -7,11 +7,13 @@ import 'package:places/ui/my_enums.dart';
 import 'package:places/ui/my_scroll_physics.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 
-import '3_3_empty_list.dart';
-import 'my_places_model.dart';
+import 'package:places/ui/screens/main_screen/main_3_3_empty_list.dart';
+import 'package:places/ui/screens/main_screen/my_places_model.dart';
 import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
 
 class TabWished extends StatefulWidget {
+  const TabWished({Key? key}) : super(key: key);
+
   @override
   _TabWishedState createState() => _TabWishedState();
 }
@@ -26,8 +28,9 @@ class _TabWishedState extends State<TabWished> {
     _allInterestingPlaces = context.watch<MyPlacesModel>().interestingPlaces;
 
     if (_listOfItems.isEmpty) {
-      return WidgetEmptyList(
-          'Отмечайте понравившиеся места \nи они появятся здесь');
+      return const WidgetEmptyList(
+        commentLine: 'Отмечайте понравившиеся места \nи они появятся здесь',
+      );
     } else {
       return Container(
         alignment: Alignment.topCenter,
@@ -65,8 +68,8 @@ class _TabWishedState extends State<TabWished> {
     }
   }
 
-  onTap(int id) {
-    showModalBottomSheet(
+  void onTap(int id) {
+    showModalBottomSheet<bool>(
       isScrollControlled: true,
       context: context,
       builder: (_) => SightDetailsScreen(
@@ -75,12 +78,12 @@ class _TabWishedState extends State<TabWished> {
     );
   }
 
-  onAddToCalendar() async {
+  Future<void> onAddToCalendar() async {
     var res = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
-      firstDate: DateTime.now().subtract(Duration(days: 1)),
-      lastDate: DateTime.now().add(Duration(days: 365)),
+      firstDate: DateTime.now().subtract(const Duration(days: 1)),
+      lastDate: DateTime.now().add(const Duration(days: 365)),
     );
 
     if (res != null) {
@@ -92,7 +95,7 @@ class _TabWishedState extends State<TabWished> {
     }
   }
 
-  onDeleteFromList(int index) {
+  void onDeleteFromList(int index) {
     setState(() {
       _listOfItems.removeAt(index);
     });

@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
-import '../../domain/sight.dart';
-import '../my_enums.dart';
-import 'MyImageWidget.dart';
-
-import 'sight_card_icons.dart';
+import 'package:places/domain/sight.dart';
+import 'package:places/ui/my_enums.dart';
+import 'package:places/ui/widgets/my_image_widget.dart';
+import 'package:places/ui/widgets/sight_card_icons.dart';
 
 class SightCard extends StatelessWidget {
-  final Sight sight;
-  final Key? key;
-  final SightCardType placeCardType;
-  final Function onTap;
-  final VoidCallback onDeleteFromList;
-
-  final onAddToCalendar;
-
-  SightCard({
+  const SightCard({
     required this.sight,
-    this.key,
     required this.placeCardType,
     required this.onTap,
     required this.onDeleteFromList,
     required this.onAddToCalendar,
-  });
+    Key? key,
+  }) : super(key: key);
+
+  final Sight sight;
+  final SightCardType placeCardType;
+  final Function onTap;
+  final VoidCallback onDeleteFromList;
+
+  final VoidCallback onAddToCalendar;
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +73,8 @@ class SightCard extends StatelessWidget {
           ),
         ),
         child: Container(
-          padding: EdgeInsets.only(bottom: 16),
-          margin: EdgeInsets.only(bottom: 16),
+          padding: const EdgeInsets.only(bottom: 16),
+          margin: const EdgeInsets.only(bottom: 16),
           child: Stack(
             children: [
               Column(
@@ -85,7 +83,7 @@ class SightCard extends StatelessWidget {
                     width: double.infinity,
                     height: 100,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(12),
                         topRight: Radius.circular(12),
                       ),
@@ -96,7 +94,8 @@ class SightCard extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 16, right: 16, left: 16),
+                    padding:
+                        const EdgeInsets.only(top: 16, right: 16, left: 16),
                     alignment: Alignment.topLeft,
                     child: Text(
                       sight.name,
@@ -108,7 +107,7 @@ class SightCard extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 4, right: 16, left: 16),
+                    padding: const EdgeInsets.only(top: 4, right: 16, left: 16),
                     alignment: Alignment.topLeft,
                     child: Text(
                       sight.details,
@@ -122,20 +121,20 @@ class SightCard extends StatelessWidget {
               //
               // Type of place on the top of card
               Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
+                width: double.infinity,
                 child: Text(
                   sight.type,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                   ),
                 ),
-                width: double.infinity,
               ),
               //
               // Icons on the top of card
               Container(
                 alignment: Alignment.topRight,
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: WidgetSightCardIcons(
                   placeCardType: placeCardType,
                   onDeleteFromList: onDeleteFromList,

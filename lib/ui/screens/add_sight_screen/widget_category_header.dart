@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CategoryHeaderWidget extends StatelessWidget {
-  final String categoryName;
-  CategoryHeaderWidget(
+  const CategoryHeaderWidget(
     this.categoryName, {
     Key? key,
   }) : super(key: key);
+
+  final String categoryName;
 
   @override
   Widget build(BuildContext context) {

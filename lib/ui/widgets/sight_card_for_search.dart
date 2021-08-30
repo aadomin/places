@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import '../../domain/sight.dart';
-import '../my_app/routes.dart';
-import 'MyImageWidget.dart';
-
 import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
+import 'package:places/domain/sight.dart';
+import 'package:places/ui/widgets/my_image_widget.dart';
 
 class SightCartForSearch extends StatelessWidget {
-  final Sight sight;
+  const SightCartForSearch({
+    required this.sight,
+    Key? key,
+  }) : super(key: key);
 
-  SightCartForSearch(this.sight);
+  final Sight sight;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class SightCartForSearch extends StatelessWidget {
       children: [
         ListTile(
           onTap: () {
-            showModalBottomSheet(
+            showModalBottomSheet<bool>(
               isScrollControlled: true,
               context: context,
               builder: (_) => SightDetailsScreen(
@@ -27,7 +28,7 @@ class SightCartForSearch extends StatelessWidget {
           leading: WidgetImageWithRoundedCorners(sight: sight),
           title: WidgetSearchDescriptionOfPlace(sight: sight),
         ),
-        Divider(),
+        const Divider(),
       ],
     );
   }
@@ -35,8 +36,8 @@ class SightCartForSearch extends StatelessWidget {
 
 class WidgetSearchDescriptionOfPlace extends StatelessWidget {
   const WidgetSearchDescriptionOfPlace({
-    Key? key,
     required this.sight,
+    Key? key,
   }) : super(key: key);
 
   final Sight sight;
@@ -68,8 +69,8 @@ class WidgetSearchDescriptionOfPlace extends StatelessWidget {
 
 class WidgetImageWithRoundedCorners extends StatelessWidget {
   const WidgetImageWithRoundedCorners({
-    Key? key,
     required this.sight,
+    Key? key,
   }) : super(key: key);
 
   final Sight sight;
@@ -80,7 +81,7 @@ class WidgetImageWithRoundedCorners extends StatelessWidget {
       width: 50,
       height: 50,
       child: ClipRRect(
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(12),
         ),
         child: MyImageWidget(

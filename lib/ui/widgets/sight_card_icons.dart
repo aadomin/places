@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../my_enums.dart';
+import 'package:places/ui/my_enums.dart';
 
 class WidgetSightCardIcons extends StatelessWidget {
   const WidgetSightCardIcons({
-    Key? key,
     required this.placeCardType,
     required this.onDeleteFromList,
     required this.onAddToCalendar,
+    Key? key,
   }) : super(key: key);
 
   final void Function() onDeleteFromList;
@@ -22,12 +22,12 @@ class WidgetSightCardIcons extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding: EdgeInsets.only(left: 16),
+              padding: const EdgeInsets.only(left: 16),
               child: InkWell(
-                child: Icon(Icons.favorite_outline, color: Colors.white),
                 onTap: () {
-                  print('Wish, calendar');
+                  // print('Wish, calendar');
                 },
+                child: const Icon(Icons.favorite_outline, color: Colors.white),
               ),
             ),
           ],
@@ -37,17 +37,17 @@ class WidgetSightCardIcons extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding: EdgeInsets.only(left: 16),
+              padding: const EdgeInsets.only(left: 16),
               child: InkWell(
-                child: Icon(Icons.calendar_today, color: Colors.white),
                 onTap: onAddToCalendar,
+                child: const Icon(Icons.calendar_today, color: Colors.white),
               ),
             ),
             Container(
-              padding: EdgeInsets.only(left: 16),
+              padding: const EdgeInsets.only(left: 16),
               child: InkWell(
-                child: Icon(Icons.close, color: Colors.white),
                 onTap: onDeleteFromList,
+                child: const Icon(Icons.close, color: Colors.white),
               ),
             ),
           ],
@@ -57,19 +57,19 @@ class WidgetSightCardIcons extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding: EdgeInsets.only(left: 16),
+              padding: const EdgeInsets.only(left: 16),
               child: InkWell(
-                child: Icon(Icons.share, color: Colors.white),
                 onTap: () {
-                  print('Seen, share');
+                  // print('Seen, share');
                 },
+                child: const Icon(Icons.share, color: Colors.white),
               ),
             ),
             Container(
-              padding: EdgeInsets.only(left: 16),
+              padding: const EdgeInsets.only(left: 16),
               child: InkWell(
-                child: Icon(Icons.close, color: Colors.white),
                 onTap: onDeleteFromList,
+                child: const Icon(Icons.close, color: Colors.white),
               ),
             ),
           ],

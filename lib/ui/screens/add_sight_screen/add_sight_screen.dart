@@ -7,12 +7,13 @@ import 'package:places/ui/screens/select_category_screen/select_category_model.d
 import 'package:places/ui/screens/main_screen/my_places_model.dart';
 import 'package:places/ui/my_app/routes.dart';
 import 'package:places/ui/my_scroll_physics.dart';
-import 'package:places/ui/widgets/MyImageWidget.dart';
-import 'widget_category_header.dart';
-import 'dialog_add_photo.dart';
-import 'add_sight_model.dart';
+import 'package:places/ui/widgets/my_image_widget.dart';
+import 'package:places/ui/screens/add_sight_screen/widget_category_header.dart';
+import 'package:places/ui/screens/add_sight_screen/dialog_add_photo.dart';
+import 'package:places/ui/screens/add_sight_screen/add_sight_model.dart';
 
 class AddSightScreen extends StatefulWidget {
+  const AddSightScreen({Key? key}) : super(key: key);
   @override
   _AddSightScreenState createState() => _AddSightScreenState();
 }
@@ -50,22 +51,21 @@ class _AddSightScreenState extends State<AddSightScreen> {
             // Кнопка Назад
             //
             Expanded(
-              flex: 1,
               child: Row(
                 children: [
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Align(
+                    style: TextButton.styleFrom(
+                      primary: Theme.of(context).primaryColorLight,
+                    ),
+                    child: const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Отмена',
                         style: TextStyle(fontSize: 16),
                       ),
-                    ),
-                    style: TextButton.styleFrom(
-                      primary: Theme.of(context).primaryColorLight,
                     ),
                   ),
                 ],
@@ -82,8 +82,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
                 fontSize: 18,
               ),
             ),
-            Expanded(
-              flex: 1,
+            const Expanded(
               child: SizedBox.shrink(),
             ),
           ],
@@ -145,7 +144,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
                             background: Container(
                               padding: const EdgeInsets.all(16),
                               margin: const EdgeInsets.only(right: 16),
-                              child: Center(
+                              child: const Center(
                                 child: Icon(
                                   Icons.restore_from_trash,
                                   size: 20,
@@ -184,8 +183,11 @@ class _AddSightScreenState extends State<AddSightScreen> {
                                     onTap: () {
                                       onTapOnDelete(_listOfPhotos, item.key);
                                     },
-                                    child: Icon(Icons.close,
-                                        size: 16, color: Colors.black),
+                                    child: const Icon(
+                                      Icons.close,
+                                      size: 16,
+                                      color: Colors.black,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -197,11 +199,10 @@ class _AddSightScreenState extends State<AddSightScreen> {
                   ],
                 ),
               ),
-              CategoryHeaderWidget('КАТЕГОРИЯ'),
+              const CategoryHeaderWidget('КАТЕГОРИЯ'),
               InkWell(
                 onTap: () => onTapOnCategorySelection(context),
                 child: Row(
-                  mainAxisSize: MainAxisSize.max,
                   children: [
                     Expanded(
                       child: Padding(
@@ -209,14 +210,14 @@ class _AddSightScreenState extends State<AddSightScreen> {
                         child: Text(_currentlySelectedCategory),
                       ),
                     ),
-                    Align(
+                    const Align(
                       alignment: Alignment.centerRight,
                       child: Text('>'),
                     ),
                   ],
                 ),
               ),
-              CategoryHeaderWidget('НАЗВАНИЕ'),
+              const CategoryHeaderWidget('НАЗВАНИЕ'),
               Padding(
                 padding: const EdgeInsets.all(0),
                 child: TextField(
@@ -230,8 +231,8 @@ class _AddSightScreenState extends State<AddSightScreen> {
                   onSubmitted: (String value) {
                     focusNodeLat.requestFocus();
                   },
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(
                       vertical: 10,
                       horizontal: 10,
                     ),
@@ -247,7 +248,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CategoryHeaderWidget('ШИРОТА'),
+                        const CategoryHeaderWidget('ШИРОТА'),
                         TextField(
                           controller: textControllerLat,
                           focusNode: focusNodeLat,
@@ -259,10 +260,10 @@ class _AddSightScreenState extends State<AddSightScreen> {
                           onSubmitted: (String value) {
                             focusNodeLon.requestFocus();
                           },
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: 'Введите широту',
                             border: OutlineInputBorder(),
-                            contentPadding: const EdgeInsets.symmetric(
+                            contentPadding: EdgeInsets.symmetric(
                               vertical: 10.0,
                               horizontal: 10.0,
                             ),
@@ -271,13 +272,13 @@ class _AddSightScreenState extends State<AddSightScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(width: 10, height: 10),
+                  const SizedBox(width: 10, height: 10),
                   Expanded(
                     flex: 10,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CategoryHeaderWidget('ДОЛГОТА'),
+                        const CategoryHeaderWidget('ДОЛГОТА'),
                         TextField(
                           controller: textControllerLon,
                           focusNode: focusNodeLon,
@@ -289,10 +290,10 @@ class _AddSightScreenState extends State<AddSightScreen> {
                           onSubmitted: (String value) {
                             focusNodeDescription.requestFocus();
                           },
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: 'Введите долготу',
                             border: OutlineInputBorder(),
-                            contentPadding: const EdgeInsets.symmetric(
+                            contentPadding: EdgeInsets.symmetric(
                               vertical: 10,
                               horizontal: 10,
                             ),
@@ -306,7 +307,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
               TextButton(
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
+                    const SnackBar(
                       content: Text('Показываем карту'),
                     ),
                   );
@@ -319,7 +320,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
                   ),
                 ),
               ),
-              CategoryHeaderWidget('ОПИСАНИЕ'),
+              const CategoryHeaderWidget('ОПИСАНИЕ'),
               TextField(
                 controller: textControllerDescription,
                 focusNode: focusNodeDescription,
@@ -331,16 +332,16 @@ class _AddSightScreenState extends State<AddSightScreen> {
                 onSubmitted: (String value) {
                   focusNodeDescription.unfocus();
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Введите текст',
                   border: OutlineInputBorder(),
-                  contentPadding: const EdgeInsets.symmetric(
+                  contentPadding: EdgeInsets.symmetric(
                     vertical: 10.0,
                     horizontal: 10,
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 100,
               ),
             ],
@@ -358,8 +359,8 @@ class _AddSightScreenState extends State<AddSightScreen> {
             onPressed: () {
               onTapOnSave(context);
             },
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
+            child: const Padding(
+              padding: EdgeInsets.all(12.0),
               child: Text('СОЗДАТЬ'),
             ),
           ),
@@ -369,10 +370,10 @@ class _AddSightScreenState extends State<AddSightScreen> {
   }
 
   void onTapOnPlus() {
-    showModalBottomSheet(
+    showModalBottomSheet<bool>(
       context: context,
       enableDrag: false,
-      builder: (_) => DialogAddPhoto(),
+      builder: (_) => const DialogAddPhoto(),
     );
   }
 

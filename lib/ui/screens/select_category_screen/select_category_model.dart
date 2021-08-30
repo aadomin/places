@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class MyCategoriesModel with ChangeNotifier {
-  List<CategoryItem> _myCategories = [
-    CategoryItem('не выбрана', true),
-    CategoryItem('Отель', false),
-    CategoryItem('Ресторан', false),
-    CategoryItem('Особое место', false),
-    CategoryItem('Театр', false),
-    CategoryItem('Музей', false),
-    CategoryItem('Кафе', false),
+  final List<CategoryItem> _myCategories = [
+    CategoryItem(name: 'не выбрана', isSelected: true),
+    CategoryItem(name: 'Отель', isSelected: false),
+    CategoryItem(name: 'Ресторан', isSelected: false),
+    CategoryItem(name: 'Особое место', isSelected: false),
+    CategoryItem(name: 'Театр', isSelected: false),
+    CategoryItem(name: 'Музей', isSelected: false),
+    CategoryItem(name: 'Кафе', isSelected: false),
   ];
 
   List<CategoryItem> get myCategories => _myCategories;
@@ -39,7 +39,11 @@ class MyCategoriesModel with ChangeNotifier {
 }
 
 class CategoryItem {
+  CategoryItem({
+    required this.name,
+    required this.isSelected,
+  });
+
   String name;
   bool isSelected;
-  CategoryItem(this.name, this.isSelected);
 }

@@ -15,6 +15,8 @@ import 'package:places/ui/my_scroll_physics.dart';
 import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
 
 class SightListScreen extends StatelessWidget {
+  SightListScreen({Key? key}) : super(key: key);
+
   final FocusNode focusNode1 = FocusNode();
 
   @override
@@ -46,7 +48,7 @@ class SightListScreen extends StatelessWidget {
                           Navigator.pushNamed(context, ROUTE_SEARCH);
                         },
                         decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.search, size: 15),
+                          prefixIcon: const Icon(Icons.search, size: 15),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12.0),
                           ),
@@ -93,7 +95,7 @@ class SightListScreen extends StatelessWidget {
                         onDeleteFromList: () {},
                         onAddToCalendar: () {},
                         onTap: () {
-                          showModalBottomSheet(
+                          showModalBottomSheet<bool>(
                             isScrollControlled: true,
                             context: context,
                             builder: (_) => SightDetailsScreen(
@@ -124,15 +126,14 @@ class SightListScreen extends StatelessWidget {
                     Navigator.pushNamed(context, ROUTE_ADD);
                   },
                   child: Row(
-                    mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
+                    children: const [
                       Icon(
                         Icons.add,
                         size: 20,
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                        padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
                         child: Text(UiStrings.newPlace),
                       ),
                     ],
@@ -164,7 +165,7 @@ class _MySliverAppBar extends SliverPersistentHeaderDelegate {
           opacity: 1 - shrinkOffset / expandedHeight,
           child: Container(
             color: Theme.of(context).canvasColor,
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               top: 40,
               bottom: 10,
               left: 50,
@@ -189,7 +190,7 @@ class _MySliverAppBar extends SliverPersistentHeaderDelegate {
           opacity: shrinkOffset / expandedHeight,
           child: Container(
             color: Theme.of(context).canvasColor,
-            child: Center(
+            child: const Center(
               child: WidgetMyHeader(header: UiStrings.listOfInterestingPlaces),
             ),
           ),

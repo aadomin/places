@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import '../../res/text_styles.dart';
+import 'package:places/ui/res/text_styles.dart';
 
 class WidgetEmptyList extends StatelessWidget {
-  final String commentLine;
+  const WidgetEmptyList({
+    required this.commentLine,
+    Key? key,
+  }) : super(key: key);
 
-  WidgetEmptyList(this.commentLine);
+  final String commentLine;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(

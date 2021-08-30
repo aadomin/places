@@ -19,10 +19,13 @@ class DialogAddPhoto extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 16),
                 child: SizedBox(
-                  child: Image.asset(UiImagePaths.icon_take_photo,
-                      width: 22, height: 20),
                   width: 24,
                   height: 24,
+                  child: Image.asset(
+                    UiImagePaths.icon_take_photo,
+                    width: 22,
+                    height: 20,
+                  ),
                 ),
               ),
               Text(
@@ -41,10 +44,13 @@ class DialogAddPhoto extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 16),
                 child: SizedBox(
-                  child: Image.asset(UiImagePaths.icon_select_image,
-                      width: 24, height: 24),
                   width: 24,
                   height: 24,
+                  child: Image.asset(
+                    UiImagePaths.icon_select_image,
+                    width: 24,
+                    height: 24,
+                  ),
                 ),
               ),
               Text(
@@ -63,10 +69,13 @@ class DialogAddPhoto extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 16),
                 child: SizedBox(
-                  child: Image.asset(UiImagePaths.icon_select_file,
-                      width: 18, height: 20),
                   width: 24,
                   height: 24,
+                  child: Image.asset(
+                    UiImagePaths.icon_select_file,
+                    width: 18,
+                    height: 20,
+                  ),
                 ),
               ),
               Text(

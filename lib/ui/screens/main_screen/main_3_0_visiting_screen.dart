@@ -1,11 +1,12 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 
-import '../../widgets/headers.dart';
-
-import '3_1_tab_wished.dart';
-import '3_2_tab_seen.dart';
+import 'package:places/ui/widgets/headers.dart';
+import 'package:places/ui/screens/main_screen/main_3_1_tab_wished.dart';
+import 'package:places/ui/screens/main_screen/main_3_2_tab_seen.dart';
 
 class VisitingScreen extends StatefulWidget {
+  const VisitingScreen({Key? key}) : super(key: key);
+
   @override
   _VisitingScreenState createState() => _VisitingScreenState();
 }
@@ -34,7 +35,7 @@ class _VisitingScreenState extends State<VisitingScreen>
     const double _uiDefaultPadding = 16;
     const double _uiDefaultButtonHeight = 55;
 
-    final String _header = 'Избранное';
+    const String _header = 'Избранное';
 
     return Scaffold(
       appBar: AppBar(
@@ -46,7 +47,7 @@ class _VisitingScreenState extends State<VisitingScreen>
           width: double.infinity,
           child: Column(
             children: [
-              WidgetMyHeader(header: _header),
+              const WidgetMyHeader(header: _header),
               Stack(
                 children: [
                   Container(
@@ -54,7 +55,7 @@ class _VisitingScreenState extends State<VisitingScreen>
                     width: double.infinity,
                     height: _uiDefaultButtonHeight,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
+                      borderRadius: const BorderRadius.all(
                         Radius.circular(
                           _uiDefaultButtonHeight / 2,
                         ),
@@ -74,11 +75,10 @@ class _VisitingScreenState extends State<VisitingScreen>
                         ),
                         // Tab Indicator 3 of 3 - colorful indicator
                         SizedBox(
-                          width:
-                              ((_widthOfWindows - 2 * _uiDefaultPadding) / 2),
+                          width: (_widthOfWindows - 2 * _uiDefaultPadding) / 2,
                           child: Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
+                              borderRadius: const BorderRadius.all(
                                 Radius.circular(
                                   _uiDefaultButtonHeight / 2,
                                 ),
@@ -103,7 +103,7 @@ class _VisitingScreenState extends State<VisitingScreen>
                           child: Container(
                             height: _uiDefaultButtonHeight,
                             alignment: Alignment.center,
-                            padding: EdgeInsets.all(_uiDefaultPadding),
+                            padding: const EdgeInsets.all(_uiDefaultPadding),
                             child: Text(
                               'Хочу посетить',
                               style: TextStyle(
@@ -128,7 +128,7 @@ class _VisitingScreenState extends State<VisitingScreen>
                           child: Container(
                             height: _uiDefaultButtonHeight,
                             alignment: Alignment.center,
-                            padding: EdgeInsets.all(16),
+                            padding: const EdgeInsets.all(16),
                             child: Text(
                               'Посетил',
                               style: TextStyle(
@@ -150,20 +150,18 @@ class _VisitingScreenState extends State<VisitingScreen>
           ),
         ),
       ),
-      body: Container(
-        child: DefaultTabController(
-          length: 2,
-          child: TabBarView(
-            controller: _tabController,
-            children: [
-              Tab(
-                child: TabWished(),
-              ),
-              Tab(
-                child: TabSeen(),
-              ),
-            ],
-          ),
+      body: DefaultTabController(
+        length: 2,
+        child: TabBarView(
+          controller: _tabController,
+          children: const [
+            Tab(
+              child: TabWished(),
+            ),
+            Tab(
+              child: TabSeen(),
+            ),
+          ],
         ),
       ),
     );

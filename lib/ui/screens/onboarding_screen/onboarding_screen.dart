@@ -1,14 +1,14 @@
-import "package:flutter/material.dart";
-
-import 'OnboardingPage1.dart';
-import 'OnboardingPage2.dart';
-import 'OnboardingPage3.dart';
+import 'package:flutter/material.dart';
 
 import 'package:places/ui/res/ui_image_paths.dart';
-
 import 'package:places/ui/my_app/routes.dart';
 
+import 'package:places/ui/screens/onboarding_screen/onboarding_page_1.dart';
+import 'package:places/ui/screens/onboarding_screen/onboarding_page_2.dart';
+import 'package:places/ui/screens/onboarding_screen/onboarding_page_3.dart';
+
 class OnboardingScreen extends StatefulWidget {
+  const OnboardingScreen({Key? key}) : super(key: key);
   @override
   _OnboardingScreenState createState() => _OnboardingScreenState();
 }
@@ -24,7 +24,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ..addListener(() {
         setState(() {
           currentPage = _pageController.page;
-          print(currentPage);
         });
       });
     super.initState();
@@ -38,31 +37,27 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         backgroundColor: Theme.of(context).canvasColor,
         title: Row(
           children: [
-            Expanded(
-              flex: 1,
+            const Expanded(
+              child: SizedBox.shrink(),
+            ),
+            const Expanded(
               child: SizedBox.shrink(),
             ),
             Expanded(
-              flex: 1,
-              child: SizedBox.shrink(),
-            ),
-            Expanded(
-              flex: 1,
               child: currentPage == 2
-                  ? SizedBox.shrink()
+                  ? const SizedBox.shrink()
                   : TextButton(
                       onPressed: () {
                         Navigator.pushReplacementNamed(context, ROUTE_HOME);
                       },
-                      child: Align(
-                        alignment: Alignment.center,
+                      style: TextButton.styleFrom(
+                        primary: Theme.of(context).primaryColorLight,
+                      ),
+                      child: const Align(
                         child: Text(
                           'Пропустить',
                           style: TextStyle(fontSize: 16),
                         ),
-                      ),
-                      style: TextButton.styleFrom(
-                        primary: Theme.of(context).primaryColorLight,
                       ),
                     ),
             ),
@@ -71,21 +66,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       ),
       body: Stack(
         children: [
-          Container(
-            child: PageView(
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-              reverse: false,
-              onPageChanged: (value) {
-                setState(() {});
-              },
-              controller: _pageController,
-              children: [
-                OnboardingPage1(pageController: _pageController),
-                OnboardingPage2(pageController: _pageController),
-                OnboardingPage3(pageController: _pageController),
-              ],
-            ),
+          PageView(
+            physics: const BouncingScrollPhysics(),
+            onPageChanged: (value) {
+              setState(() {});
+            },
+            controller: _pageController,
+            children: [
+              OnboardingPage1(pageController: _pageController),
+              OnboardingPage2(pageController: _pageController),
+              OnboardingPage3(pageController: _pageController),
+            ],
           ),
           Align(
             alignment: Alignment.bottomCenter,

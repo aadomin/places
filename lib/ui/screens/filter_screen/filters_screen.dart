@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui/screens/filter_screen/filters_model.dart';
-
-import '../../my_scroll_physics.dart';
+import 'package:places/ui/my_scroll_physics.dart';
 
 class FiltersScreen extends StatefulWidget {
+  const FiltersScreen({Key? key}) : super(key: key);
   @override
   _FiltersScreenState createState() => _FiltersScreenState();
 }
@@ -45,18 +45,17 @@ class _FiltersScreenState extends State<FiltersScreen> {
               onPressed: () {
                 context.read<MyFilterModel>().clearSelection();
               },
-              child: Text(
-                'Очистить',
-                style: TextStyle(fontSize: 16),
-              ),
               style: TextButton.styleFrom(
                 primary: Theme.of(context).accentColor,
+              ),
+              child: const Text(
+                'Очистить',
+                style: TextStyle(fontSize: 16),
               ),
             ),
           ),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Align(
               alignment: Alignment.topLeft,
@@ -97,7 +96,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                                       Radius.circular(_radiusOfRoundElement),
                                     ),
                                     child: Container(
-                                      color: Color(0x4fbAbAbF),
+                                      color: const Color(0x4fbAbAbF),
                                       width: _radiusOfRoundElement * 2,
                                       height: _radiusOfRoundElement * 2,
                                       child: Padding(
@@ -122,7 +121,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                                       ? CheckmarkWidget(
                                           radiusOfRoundElement:
                                               _radiusOfRoundElement)
-                                      : SizedBox.shrink(),
+                                      : const SizedBox.shrink(),
                                 ],
                               ),
                               Padding(
@@ -132,7 +131,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                                       .watch<MyFilterModel>()
                                       .filterItems[i]
                                       .name,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 13,
                                   ),
                                 ),
@@ -179,8 +178,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
 // Галочка
 class CheckmarkWidget extends StatelessWidget {
   const CheckmarkWidget({
-    Key? key,
     required double radiusOfRoundElement,
+    Key? key,
   })  : _radiusOfRoundElement = radiusOfRoundElement,
         super(key: key);
 
@@ -194,7 +193,7 @@ class CheckmarkWidget extends StatelessWidget {
       child: Align(
         alignment: Alignment.bottomRight,
         child: ClipRRect(
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(12.0),
           ),
           child: Container(

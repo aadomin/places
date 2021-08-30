@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:places/ui/screens/sight_details_screen/sight_details_model.dart';
+
 import 'package:places/domain/sight.dart';
-import 'package:places/ui/widgets/MyImageWidget.dart';
+import 'package:places/ui/widgets/my_image_widget.dart';
 import 'package:places/ui/res/ui_strings.dart';
 import 'package:places/ui/my_scroll_physics.dart';
-import 'sight_details_model.dart';
-import 'widget_back_button.dart';
+import 'package:places/ui/screens/sight_details_screen/sight_details_model.dart';
+import 'package:places/ui/screens/sight_details_screen/widget_back_button.dart';
 
 class SightDetailsScreen extends StatefulWidget {
-  SightDetailsScreen({Key? key, required this.sightID}) : super(key: key);
+  const SightDetailsScreen({
+    required this.sightID,
+    Key? key,
+  }) : super(key: key);
   final int sightID;
 
   @override
@@ -21,7 +24,7 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
 
   double _selectedPage = 0;
 
-  int _countOfPages = 4;
+  final int _countOfPages = 4;
 
   late Sight sight;
 
@@ -30,9 +33,9 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
     sight = context.watch<SightDetailsModel>().sights[widget.sightID];
 
     return Padding(
-      padding: EdgeInsets.only(top: 100),
+      padding: const EdgeInsets.only(top: 100),
       child: ClipRRect(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(12.0),
           topRight: Radius.circular(12.0),
         ),
@@ -49,7 +52,6 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                   child: Stack(
                     children: [
                       PageView(
-                        scrollDirection: Axis.horizontal,
                         controller: _pageController,
                         onPageChanged: (page) {
                           setState(() {
@@ -68,7 +70,7 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                             ),
                         ],
                       ),
-                      Align(
+                      const Align(
                         alignment: Alignment.topRight,
                         child: WidgetBackButton(),
                       ),
@@ -84,11 +86,11 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                                 _countOfPages,
                             height: 6,
                             child: ClipRRect(
-                              borderRadius: BorderRadius.all(
+                              borderRadius: const BorderRadius.all(
                                 Radius.circular(3),
                               ),
                               child: Container(
-                                color: Color(0xFF252849),
+                                color: const Color(0xFF252849),
                               ),
                             ),
                           ),
@@ -101,7 +103,7 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
               SliverToBoxAdapter(
                 child: Container(
                   alignment: Alignment.topLeft,
-                  padding: EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                     top: 32,
                     left: 16,
                     right: 16,
@@ -111,7 +113,7 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                     children: [
                       Container(
                         alignment: Alignment.topLeft,
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                           bottom: 2,
                         ),
                         child: Text(
@@ -147,7 +149,7 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                       ),
                       Container(
                         alignment: Alignment.topLeft,
-                        margin: EdgeInsets.fromLTRB(0, 24, 0, 0),
+                        margin: const EdgeInsets.fromLTRB(0, 24, 0, 0),
                         child: Text(
                           sight.details,
                           style: TextStyle(
@@ -156,17 +158,17 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.fromLTRB(0, 16, 0, 16),
+                        padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            print('построить');
+                            // print('построить');
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
+                              children: const [
                                 Icon(
                                   Icons.play_arrow,
                                   size: 12,
@@ -187,17 +189,17 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 0, 32),
                         child: Row(
-                          mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             TextButton(
                               onPressed: () {
-                                print('запланировать');
+                                // print('запланировать');
                               },
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(16, 6, 16, 6),
+                                padding:
+                                    const EdgeInsets.fromLTRB(16, 6, 16, 6),
                                 child: Row(
-                                  children: [
+                                  children: const [
                                     Icon(
                                       Icons.play_arrow,
                                       size: 12,
@@ -214,12 +216,13 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                             ),
                             TextButton(
                               onPressed: () {
-                                print('в избранное');
+                                // print('в избранное');
                               },
                               child: Padding(
-                                padding: EdgeInsets.fromLTRB(16, 6, 16, 6),
+                                padding:
+                                    const EdgeInsets.fromLTRB(16, 6, 16, 6),
                                 child: Row(
-                                  children: [
+                                  children: const [
                                     Icon(
                                       Icons.favorite,
                                       size: 12,
@@ -237,7 +240,7 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 400,
                       )
                     ],

@@ -48,7 +48,7 @@ class MySearchModel with ChangeNotifier {
         }
       }
 
-      if (result.length > 0) {
+      if (result.isNotEmpty) {
         searchStatus = SearchStatus.haveResult;
       } else {
         searchStatus = SearchStatus.notFound;
@@ -72,7 +72,7 @@ class MySearchModel with ChangeNotifier {
         _lastSearches.removeAt(_lastSearches.length - 1);
       }
     } else {
-      if (_lastSearches.length == 0) {
+      if (_lastSearches.isEmpty) {
         if (searchText != '') {
           _lastSearches.add(searchText);
         }

@@ -1,7 +1,9 @@
 import 'package:places/data/mocks.dart';
+import 'package:places/domain/sight.dart';
 
 class SightsStorage {
-  get items => mocks;
+  List<Sight> get items => mocks;
 
-  List<String> get listOfInitialPhotosForAdding => mockOfListOfInitialImagesForAdding;
+  List<String> get listOfInitialPhotosForAdding =>
+      mockOfListOfInitialImagesForAdding;
 }
