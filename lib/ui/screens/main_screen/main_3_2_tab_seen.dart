@@ -1,4 +1,4 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/domain/sight.dart';
@@ -7,16 +7,18 @@ import 'package:places/ui/my_enums.dart';
 import 'package:places/ui/my_scroll_physics.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 
-import '3_3_empty_list.dart';
-import 'my_places_model.dart';
+import 'package:places/ui/screens/main_screen/main_3_3_empty_list.dart';
+import 'package:places/ui/screens/main_screen/main_screen_model.dart';
 import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
 
-class TabWished extends StatefulWidget {
+class TabSeen extends StatefulWidget {
+  const TabSeen({Key? key}) : super(key: key);
+
   @override
-  _TabWishedState createState() => _TabWishedState();
+  _TabSeenState createState() => _TabSeenState();
 }
 
-class _TabWishedState extends State<TabWished> {
+class _TabSeenState extends State<TabSeen> {
   late List<Sight> _listOfItems;
 
   GlobalKey globalKey = GlobalKey();
@@ -25,14 +27,18 @@ class _TabWishedState extends State<TabWished> {
 
   @override
   Widget build(BuildContext context) {
-    _listOfItems = context.watch<MyPlacesModel>().wishedPlaces;
+    _listOfItems = context.watch<MainScreenModel>().seenPlaces;
 
     if (_listOfItems.isEmpty) {
-      return WidgetEmptyList(
-          'Отмечайте понравившиеся места \nи они появятся здесь');
+      return const WidgetEmptyList(
+        commentLine: 'Отмечайте посещенные места \nи они появятся здесь',
+      );
     } else {
       return Container(
         alignment: Alignment.topCenter,
+        decoration: BoxDecoration(
+          color: Theme.of(context).canvasColor,
+        ),
         child: Padding(
           padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
           child: ListView(
@@ -54,30 +60,6 @@ class _TabWishedState extends State<TabWished> {
                             child: Icon(Icons.move_to_inbox_rounded,
                                 color: Theme.of(context).accentColor),
                           ),
-                          child: SightCard(
-                            sight: i.value,
-                            onTap: () {
-                              showModalBottomSheet(
-                                isScrollControlled: true,
-                                context: context,
-                                builder: (_) => SightDetailsScreen(
-                                  sightID: context
-                                      .watch<MyPlacesModel>()
-                                      .interestingPlaces[i.value.id]
-                                      .id,
-                                ),
-                              );
-                            },
-                            // key: GlobalKey(),
-                            placeCardType: SightCardType.wished,
-                            onDeleteFromList: () {
-                              setState(() {
-                                // TODO реализовать потом удаление в модели
-                                // context.watch<MyPlacesModel>().delFromWished(i.key);
-                                _listOfItems.removeAt(i.key);
-                              });
-                            },
-                          ),
                           onDragStarted: () {
                             setState(() {
                               isDrag = true;
@@ -89,6 +71,31 @@ class _TabWishedState extends State<TabWished> {
                               isDragOn = -1;
                             });
                           },
+                          child: SightCard(
+                            sight: i.value,
+                            // key: GlobalKey(),
+                            placeCardType: SightCardType.seen,
+                            onAddToCalendar: () {},
+                            onTap: () {
+                              showModalBottomSheet<bool>(
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (_) => SightDetailsScreen(
+                                  sightID: context
+                                      .watch<MainScreenModel>()
+                                      .interestingPlaces[i.value.id]
+                                      .id,
+                                ),
+                              );
+                            },
+                            onDeleteFromList: () {
+                              setState(() {
+                                // TODO реализовать потом удаление в модели
+                                // context.watch<MainScreenModel>().delFromSeen(i.key);
+                                _listOfItems.removeAt(i.key);
+                              });
+                            },
+                          ),
                         ),
                         if (i.key + 1 != _listOfItems.length)
                           DragTarget<int>(
@@ -129,7 +136,7 @@ class _TabWishedState extends State<TabWished> {
                             },
                             onAccept: (int data) {
                               setState(() {
-                                print('1');
+                                // print('1');
                                 _listOfItems.insert(
                                   isDragOn + 1,
                                   _listOfItems.removeAt(i.key),
@@ -147,9 +154,6 @@ class _TabWishedState extends State<TabWished> {
                     ))
                 .toList(),
           ),
-        ),
-        decoration: BoxDecoration(
-          color: Theme.of(context).canvasColor,
         ),
       );
     }

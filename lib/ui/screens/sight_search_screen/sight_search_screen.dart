@@ -10,6 +10,8 @@ import 'package:places/ui/widgets/headers.dart';
 import 'package:places/ui/screens/sight_search_screen/sight_search_model.dart';
 
 class SightSearchScreen extends StatelessWidget {
+  SightSearchScreen({Key? key}) : super(key: key);
+
   final FocusNode focusNode1 = FocusNode();
 
   final textController = TextEditingController();
@@ -19,12 +21,13 @@ class SightSearchScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: WidgetMyHeader(header: UiStrings.searching),
+        title: const WidgetMyHeader(header: UiStrings.searching),
         backgroundColor: Theme.of(context).canvasColor,
         elevation: 0,
       ),
       body: SingleChildScrollView(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -35,7 +38,7 @@ class SightSearchScreen extends StatelessWidget {
                   context.read<MySearchModel>().newSearch(value);
                 },
                 decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.search, size: 15),
+                  prefixIcon: const Icon(Icons.search, size: 15),
                   suffixIcon: InkWell(
                     onTap: () {
                       textController.clear();
@@ -43,7 +46,7 @@ class SightSearchScreen extends StatelessWidget {
                     },
                     child: UnconstrainedBox(
                       child: ClipRRect(
-                        borderRadius: BorderRadius.all(
+                        borderRadius: const BorderRadius.all(
                           Radius.circular(10),
                         ),
                         child: SizedBox(
@@ -72,15 +75,14 @@ class SightSearchScreen extends StatelessWidget {
             ),
             if (context.watch<MySearchModel>().searchStatus ==
                 SearchStatus.haveResult)
-              WidgetSearchResult(),
+              const WidgetSearchResult(),
             if (context.watch<MySearchModel>().searchStatus ==
                 SearchStatus.empty)
-              WidgetSearchEmpty(),
+              const WidgetSearchEmpty(),
             if (context.watch<MySearchModel>().searchStatus ==
                 SearchStatus.notFound)
-              WidgetSearchNotFound(),
+              const WidgetSearchNotFound(),
           ],
-          mainAxisSize: MainAxisSize.min,
         ),
       ),
     );
@@ -94,13 +96,14 @@ class WidgetSearchResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Sight> searchResults = context.watch<MySearchModel>().searchResult;
+    final List<Sight> searchResults =
+        context.watch<MySearchModel>().searchResult;
 
     return Column(
       children: [
         for (var i = 0; i < searchResults.length; i++)
           SightCartForSearch(
-            context.watch<MySearchModel>().searchResult[i],
+            sight: context.watch<MySearchModel>().searchResult[i],
           ),
       ],
     );
@@ -127,13 +130,13 @@ class WidgetSearchEmpty extends StatelessWidget {
                   style: TextStyle(color: Theme.of(context).primaryColorLight),
                 ),
                 trailing: IconButton(
-                  icon: Icon(Icons.close),
+                  icon: const Icon(Icons.close),
                   onPressed: () {
                     context.read<MySearchModel>().removeItemFromHistory(i);
                   },
                 ),
               ),
-              Divider(),
+              const Divider(),
             ],
           ),
       ],
@@ -151,7 +154,6 @@ class WidgetSearchNotFound extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.max,
       children: [
         Center(
           child: Column(
@@ -161,13 +163,13 @@ class WidgetSearchNotFound extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  '${UiStrings.nothingIsFounded}',
+                  '$UiStrings.nothingIsFounded',
                   style: TextStyle(
                       fontSize: 20, color: Theme.of(context).primaryColorLight),
                 ),
               ),
               Text(
-                '${UiStrings.tryToChangeParametersOfSearch}',
+                '$UiStrings.tryToChangeParametersOfSearch',
                 style: TextStyle(color: Theme.of(context).primaryColorLight),
               )
             ],

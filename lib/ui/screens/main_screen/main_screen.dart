@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '1_sight_list_screen.dart';
-import '2_map_screen.dart';
-import '3_0_visiting_screen.dart';
-import '4_settings_screen.dart';
+import 'package:places/ui/screens/main_screen/main_1_sight_list_screen.dart';
+import 'package:places/ui/screens/main_screen/main_2_map_screen.dart';
+import 'package:places/ui/screens/main_screen/main_3_0_visiting_screen.dart';
+import 'package:places/ui/screens/main_screen/main_4_settings_screen.dart';
 
 class AllMainScreens extends StatefulWidget {
+  const AllMainScreens({Key? key}) : super(key: key);
   @override
-  _AllMainScreensState createState() => new _AllMainScreensState();
+  _AllMainScreensState createState() => _AllMainScreensState();
 }
 
 class _AllMainScreensState extends State<AllMainScreens> {
@@ -15,7 +16,7 @@ class _AllMainScreensState extends State<AllMainScreens> {
   late PageController _c;
   @override
   void initState() {
-    _c = new PageController(
+    _c = PageController(
       initialPage: _page,
     );
     super.initState();
@@ -29,12 +30,12 @@ class _AllMainScreensState extends State<AllMainScreens> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         onTap: (index) {
-          this._c.animateToPage(index,
+        _c.animateToPage(index,
               duration: const Duration(milliseconds: 500),
               curve: Curves.easeInOut);
         },
         type: BottomNavigationBarType.fixed,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: 'Список мест',
@@ -57,14 +58,14 @@ class _AllMainScreensState extends State<AllMainScreens> {
         controller: _c,
         onPageChanged: (newPage) {
           setState(() {
-            this._page = newPage;
+            _page = newPage;
           });
         },
         children: [
           Center(child: SightListScreen()),
-          Center(child: MapsScreen()),
-          Center(child: VisitingScreen()),
-          Center(child: SettingsScreen()),
+          const Center(child: MapsScreen()),
+          const Center(child: VisitingScreen()),
+          const Center(child: SettingsScreen()),
         ],
       ),
     );

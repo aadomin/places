@@ -1,13 +1,13 @@
-import '_categories_filter.dart';
-import '_sights_storage.dart';
+import 'package:places/data/_categories_filter.dart';
+import 'package:places/data/_sights_storage.dart';
 
 class Repository {
   // Singleton
-  static Repository? _instance;
+  factory Repository() => _instance ?? Repository._internal();
   Repository._internal() {
     _instance = this;
   }
-  factory Repository() => _instance ?? Repository._internal();
+  static Repository? _instance;
 
   // modules
   CategoriesFilter categoriesFilter = CategoriesFilter();

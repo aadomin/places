@@ -3,9 +3,11 @@ import 'package:places/ui/screens/select_category_screen/select_category_model.d
 import 'package:provider/provider.dart';
 
 class SelectCategory extends StatelessWidget {
+  const SelectCategory({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    var _categories = context.watch<MyCategoriesModel>().myCategories;
+    final _categories = context.watch<MyCategoriesModel>().myCategories;
 
     return Scaffold(
       appBar: AppBar(
@@ -14,17 +16,16 @@ class SelectCategory extends StatelessWidget {
         title: Row(
           children: [
             Expanded(
-              flex: 1,
               child: TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Icon(Icons.keyboard_arrow_left),
-                ),
                 style: TextButton.styleFrom(
                   primary: Theme.of(context).primaryColorLight,
+                ),
+                child: const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Icon(Icons.keyboard_arrow_left),
                 ),
               ),
             ),
@@ -36,8 +37,7 @@ class SelectCategory extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
-            Expanded(
-              flex: 1,
+            const Expanded(
               child: Text(''),
             ),
           ],
@@ -49,18 +49,16 @@ class SelectCategory extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: _categories.asMap().entries.map((item) {
-              var _i = item.key;
-              var _name = item.value.name;
-              var _isSelected = item.value.isSelected;
               return ListTile(
                 onTap: () {
-                  context.read<MyCategoriesModel>().switchCategoryCheck(_i);
+                  context
+                      .read<MyCategoriesModel>()
+                      .switchCategoryCheck(item.key);
                 },
-                title: Text(_name),
-                trailing: _isSelected
-                    ? Icon(Icons.done,
-                        color: Theme.of(context).accentColor)
-                    : Text(''),
+                title: Text(item.value.name),
+                trailing: item.value.isSelected
+                    ? Icon(Icons.done, color: Theme.of(context).accentColor)
+                    : const Text(''),
               );
             }).toList(),
           ),
@@ -74,8 +72,8 @@ class SelectCategory extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
+            child: const Padding(
+              padding: EdgeInsets.all(12.0),
               child: Text('СОХРАНИТЬ'),
             ),
           ),

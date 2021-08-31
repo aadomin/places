@@ -1,0 +1,15 @@
+include: package:surf_lint_rules/analysis_options.yaml
+
+linter:
+  rules:
+    # опускайте типы в стрелочных функциях
+    avoid_types_on_closure_parameters: false
+
+    # конфликтует с with ChangeNotifier
+    prefer_mixin: false
+
+    # Container ее бесит
+    sized_box_for_whitespace: false
+
+    # имена констант в camel case
+    constant_identifier_names: false

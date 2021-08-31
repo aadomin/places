@@ -1,6 +1,7 @@
-import '../domain/FilterItem.dart';
 import 'dart:async';
 import 'package:rxdart/rxdart.dart';
+
+import 'package:places/domain/filter_item.dart';
 
 class CategoriesFilter {
   CategoriesFilter() {
@@ -16,13 +17,13 @@ class CategoriesFilter {
   }
 
   void clearSelection() {
-    for (var element in _filterItems) {
+    for (final element in _filterItems) {
       element.isSelected = false;
     }
     _streamItems.add(_filterItems);
   }
 
-  List<FilterItem> _filterItems = [
+  final List<FilterItem> _filterItems = [
     FilterItem(
       name: 'Отель',
       assetPath: 'res/images/hotel.png',

@@ -15,7 +15,7 @@ class MySearchModel with ChangeNotifier {
   List<Sight> _searchResult = [];
   String _searchText = '';
 
-  List<String> _lastSearches = [];
+  final List<String> _lastSearches = [];
   DateTime _lastSearchDateTime = DateTime.now();
 
   List<String> get lastSearches {
@@ -34,7 +34,7 @@ class MySearchModel with ChangeNotifier {
 
   void doSearchItSelf(String searchText) {
     _searchText = searchText;
-    List<Sight> result = [];
+    final List<Sight> result = [];
 
     if (_searchText == '') {
       searchStatus = SearchStatus.empty;
@@ -48,7 +48,7 @@ class MySearchModel with ChangeNotifier {
         }
       }
 
-      if (result.length > 0) {
+      if (result.isNotEmpty) {
         searchStatus = SearchStatus.haveResult;
       } else {
         searchStatus = SearchStatus.notFound;
@@ -58,8 +58,8 @@ class MySearchModel with ChangeNotifier {
   }
 
   void updateListOfLastSearches(String searchText) {
-    var now = DateTime.now();
-    int diffOfTime = now.difference(_lastSearchDateTime).inSeconds;
+    final now = DateTime.now();
+    final int diffOfTime = now.difference(_lastSearchDateTime).inSeconds;
 
     if (searchText == '') {
       return;
@@ -72,7 +72,7 @@ class MySearchModel with ChangeNotifier {
         _lastSearches.removeAt(_lastSearches.length - 1);
       }
     } else {
-      if (_lastSearches.length == 0) {
+      if (_lastSearches.isEmpty) {
         if (searchText != '') {
           _lastSearches.add(searchText);
         }

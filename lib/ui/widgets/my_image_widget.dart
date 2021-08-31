@@ -6,9 +6,9 @@ bool isMocking = true;
 /// url картинки моковой картинкой
 class MyImageWidget extends StatelessWidget {
   const MyImageWidget({
-    Key? key,
     required this.url,
     required this.fit,
+    Key? key,
   }) : super(key: key);
 
   final String url;
@@ -26,7 +26,7 @@ class MyImageWidget extends StatelessWidget {
             fit: fit,
             loadingBuilder: (context, child, loadingProgress) {
               if (loadingProgress == null) return child;
-              return Center(
+              return const Center(
                 child: SizedBox(
                   width: 20,
                   height: 20,

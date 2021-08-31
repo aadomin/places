@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WidgetBackButton extends StatelessWidget {
-  const WidgetBackButton({
-    Key? key,
-  }) : super(key: key);
+  const WidgetBackButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,7 @@ class WidgetBackButton extends StatelessWidget {
             backgroundColor: Theme.of(context).canvasColor,
           ),
           child: const Padding(
-            padding: const EdgeInsets.all(0),
+            padding: EdgeInsets.all(0),
             child: Icon(Icons.close, size: 20),
           ),
         ),

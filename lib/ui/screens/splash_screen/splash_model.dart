@@ -1,28 +1,33 @@
-import 'package:flutter/material.dart';
-import 'package:places/ui/my_app/routes.dart';
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+import 'package:places/ui/my_app/routes.dart';
+
+// TODO - avoid_print
+// ignore_for_file: avoid_print
+
 class MySplashModel with ChangeNotifier {
+  // ignore: avoid_void_async
   static void initAppAndThenChangeScreen(BuildContext context) async {
     print('starting of application');
-    var _delayProcess = _doDelayForBeautifulChangeScreen();
+    final _delayProcess = _doDelayForBeautifulChangeScreen();
     await _doInitializeApp();
     await _delayProcess;
-    Navigator.of(context).pushReplacementNamed(ROUTE_ONBOARDING);
+    await Navigator.of(context).pushReplacementNamed(ROUTE_ONBOARDING);
   }
 
   /// процедура загрузки: Future
   static Future<void> _doInitializeApp() async {
-    print("loading started at: ${DateTime.now()}");
+    print('loading started at: ${DateTime.now()}');
     _hardWork();
-    print("loading done at: ${DateTime.now()}");
+    print('loading done at: ${DateTime.now()}');
   }
 
   /// задержка для красоты (если загрузка выполнилась меньше чем за 2 секунды)
   static Future<bool> _doDelayForBeautifulChangeScreen() async {
-    print("delaying started at: ${DateTime.now()}");
-    await Future.delayed(Duration(seconds: 2));
-    print("delaying done at: ${DateTime.now()}");
+    print('delaying started at: ${DateTime.now()}');
+    await Future<dynamic>.delayed(const Duration(seconds: 2));
+    print('delaying done at: ${DateTime.now()}');
     return true;
   }
 
@@ -31,8 +36,9 @@ class MySplashModel with ChangeNotifier {
     print('Hard work started');
 
     List<String> list = [];
-    var random = Random();
+    final random = Random();
 
+    // ignore: avoid_types_on_closure_parameters
     list = List.generate(200000, (int index) => random.nextDouble().toString());
     print(list.toString().substring(0, 100));
 
