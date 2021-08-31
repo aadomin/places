@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/ui/res/ui_strings.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui/screens/filter_screen/filters_model.dart';
@@ -38,6 +39,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
           color: Theme.of(context).primaryColor,
         ),
         elevation: 0,
+
+        //
+        // Кнопка Очистить
+        //
         title: Align(
           alignment: Alignment.centerRight,
           child: TextButton(
@@ -48,7 +53,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
               primary: Theme.of(context).accentColor,
             ),
             child: const Text(
-              'Очистить',
+              UiStrings.clear,
               style: TextStyle(fontSize: 16),
             ),
           ),
@@ -56,36 +61,43 @@ class _FiltersScreenState extends State<FiltersScreen> {
       ),
       body: Column(
         children: [
+          //
+          // Название раздела "КАТЕГОРИИ"
+          //
           Align(
             alignment: Alignment.topLeft,
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 24, 0, 24),
               child: Text(
-                'КАТЕГОРИИ',
+                UiStrings.categories,
                 style: TextStyle(
                   color: Theme.of(context).primaryColorLight,
                 ),
               ),
             ),
           ),
-          SizedBox(
-            height: 260,
-            child: Padding(
-              padding: EdgeInsets.zero,
-              child: GridView.count(
-                crossAxisCount: 3,
-                physics: MyScrollPhysics.physics,
-                children: [
-                  for (var i = 0;
-                      i < context.watch<MyFilterModel>().filterItems.length;
-                      i++)
-                    SizedBox(
-                      width: 110,
-                      height: 95,
-                      child: TextButton(
-                        onPressed: () {
-                          context.read<MyFilterModel>().switchSelection(i);
-                        },
+
+          //
+          // Сам список категорий
+          //
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Wrap(
+              runSpacing: 20,
+              spacing: 20,
+              children: [
+                for (var i = 0;
+                    i < context.watch<MyFilterModel>().filterItems.length;
+                    i++)
+                  SizedBox(
+                    width: 110,
+                    height: 95,
+                    child: TextButton(
+                      onPressed: () {
+                        context.read<MyFilterModel>().switchSelection(i);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 10.0),
                         child: Column(
                           children: [
                             Stack(
@@ -139,10 +151,14 @@ class _FiltersScreenState extends State<FiltersScreen> {
                         ),
                       ),
                     ),
-                ],
-              ),
+                  ),
+              ],
             ),
           ),
+
+          //
+          // Слово "Расстояние"
+          //
           ListTile(
             title: Text(
               'Расстояние',
@@ -158,6 +174,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
             ),
             onTap: () {},
           ),
+
+          //
+          // Слайдер
+          //
           Slider(
             divisions: 10,
             value: _sliderValue,

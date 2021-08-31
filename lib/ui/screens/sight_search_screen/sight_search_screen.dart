@@ -31,6 +31,8 @@ class SightSearchScreen extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
+
+              // Поле ввода
               child: TextField(
                 focusNode: focusNode1,
                 controller: textController,
@@ -89,16 +91,15 @@ class SightSearchScreen extends StatelessWidget {
   }
 }
 
+///
+/// Результаты поиска
+///
 class WidgetSearchResult extends StatelessWidget {
-  const WidgetSearchResult({
-    Key? key,
-  }) : super(key: key);
-
+  const WidgetSearchResult({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final List<Sight> searchResults =
         context.watch<MySearchModel>().searchResult;
-
     return Column(
       children: [
         for (var i = 0; i < searchResults.length; i++)
@@ -110,11 +111,11 @@ class WidgetSearchResult extends StatelessWidget {
   }
 }
 
+///
+/// Отображается, пока поле поиска еще пустое
+///
 class WidgetSearchEmpty extends StatelessWidget {
-  const WidgetSearchEmpty({
-    Key? key,
-  }) : super(key: key);
-
+  const WidgetSearchEmpty({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -144,12 +145,11 @@ class WidgetSearchEmpty extends StatelessWidget {
   }
 }
 
-// Ничего не найдено
+///
+/// Отображается, если при поиске ничего не найдено
+///
 class WidgetSearchNotFound extends StatelessWidget {
-  const WidgetSearchNotFound({
-    Key? key,
-  }) : super(key: key);
-
+  const WidgetSearchNotFound({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(

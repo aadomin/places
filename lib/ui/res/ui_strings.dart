@@ -11,5 +11,6 @@ class UiStrings {
   static const String photo = 'Фотография';
   static const String file = 'Файл';
   static const String cancel = 'Отмена';
-
+  static const String clear = 'Очистить';
+  static const String categories = 'КАТЕГОРИИ';
 }

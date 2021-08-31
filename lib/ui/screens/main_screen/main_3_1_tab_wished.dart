@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:places/ui/my_app/platform.dart';
+import 'package:places/ui/screens/main_screen/widget_add_to_calendar_cuper_modal.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/domain/sight.dart';
@@ -79,17 +82,28 @@ class _TabWishedState extends State<TabWished> {
   }
 
   Future<void> onAddToCalendar() async {
-    final res = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime.now().subtract(const Duration(days: 1)),
-      lastDate: DateTime.now().add(const Duration(days: 365)),
-    );
+    late final DateTime? _result;
+    if (PlatformDetector.isAndroid || PlatformDetector.isWeb) {
+      _result = await showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now().subtract(const Duration(days: 1)),
+        lastDate: DateTime.now().add(const Duration(days: 365)),
+      );
+    }
+    if (PlatformDetector.isIOS) {
+      _result = await showCupertinoModalPopup(
+        context: context,
+        builder: (context) {
+          return const AddToCalendarCuperModal();
+        },
+      );
+    }
 
-    if (res != null) {
+    if (_result != null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('added to calendar at $res'),
+          content: Text('added to calendar at $_result'),
         ),
       );
     }
