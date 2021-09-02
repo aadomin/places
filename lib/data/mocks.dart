@@ -8,7 +8,7 @@ final List<Sight> mocks = [
     url:
         'http://i.mycdn.me/i?r=AzEPZsRbOZEKgBhR0XGMT1RkYyO-1zLFV43SyU6kn1i2PaaKTM5SRkZCeTgDn6uOyic',
     details:
-        'Описание достопримечательности невозможно описать, можно лишь наслаждаться ее прекрасными видами и думать о вечном, размышляя о странном.',
+        'Описывая достопримечательность, можно лишь наслаждаться ее видами и думать о вечном, размышляя о странном.',
     type: 'музей',
     wished: true,
     seen: false,

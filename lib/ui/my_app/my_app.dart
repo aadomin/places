@@ -10,6 +10,7 @@ import 'package:places/ui/screens/main_screen/main_screen.dart';
 import 'package:places/ui/screens/splash_screen/splash_screen.dart';
 import 'package:places/ui/my_app/themes.dart';
 import 'package:places/ui/my_app/routes.dart';
+import 'package:places/ui/my_app/platform.dart';
 import 'package:places/ui/my_app/my_app_model.dart';
 
 class MyApp extends StatelessWidget {
@@ -33,3 +34,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+var platformDetector = PlatformDetector();

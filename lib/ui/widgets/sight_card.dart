@@ -24,7 +24,6 @@ class SightCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      // MARKA
       onTap: onTap,
       child: Dismissible(
         key: ObjectKey(sight),
@@ -73,7 +72,7 @@ class SightCard extends StatelessWidget {
         ),
         child: Container(
           padding: const EdgeInsets.only(bottom: 16),
-          margin: const EdgeInsets.only(bottom: 16),
+          //margin: const EdgeInsets.only(bottom: 16),
           child: Stack(
             children: [
               Column(
@@ -119,6 +118,7 @@ class SightCard extends StatelessWidget {
               ),
               //
               // Type of place on the top of card
+              //
               Container(
                 padding: const EdgeInsets.all(16),
                 width: double.infinity,
@@ -131,6 +131,7 @@ class SightCard extends StatelessWidget {
               ),
               //
               // Icons on the top of card
+              //
               Container(
                 alignment: Alignment.topRight,
                 padding: const EdgeInsets.all(16),
