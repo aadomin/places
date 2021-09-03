@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:places/data/models/sight.dart';
-
-import 'package:places/ui/my_enums.dart';
-import 'package:places/ui/res/ui_strings.dart';
+import 'package:places/enums.dart';
+import 'package:places/ui/my_app/ui_strings.dart';
+import 'package:places/ui/screens/sight_search_screen/sight_search_model.dart';
 import 'package:places/ui/widgets/sight_card_for_search.dart';
 import 'package:places/ui/widgets/headers.dart';
-import 'package:places/ui/screens/sight_search_screen/sight_search_model.dart';
+
+import 'package:places/data/models/sight.dart';
 
 class SightSearchScreen extends StatelessWidget {
   SightSearchScreen({Key? key}) : super(key: key);

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:places/data/models/sight.dart';
-
-import 'package:places/ui/my_enums.dart';
-import 'package:places/ui/my_scroll_physics.dart';
-import 'package:places/ui/widgets/sight_card.dart';
-
+import 'package:places/enums.dart';
+import 'package:places/ui/my_app/my_scroll_physics.dart';
 import 'package:places/ui/screens/main_screen/main_3_3_empty_list.dart';
 import 'package:places/ui/screens/main_screen/main_screen_model.dart';
 import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
+import 'package:places/ui/widgets/sight_card.dart';
+
+import 'package:places/data/models/sight.dart';
 
 class TabSeen extends StatefulWidget {
   const TabSeen({Key? key}) : super(key: key);

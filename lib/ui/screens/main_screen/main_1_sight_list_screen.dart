@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:places/enums.dart';
+import 'package:places/ui/my_app/routes.dart';
+import 'package:places/ui/my_app/ui_strings.dart';
+import 'package:places/ui/my_app/my_scroll_physics.dart';
 import 'package:places/ui/screens/main_screen/main_screen_model.dart';
 import 'package:places/ui/screens/main_screen/main_1_widget_app_bar.dart';
 import 'package:places/ui/widgets/sight_card.dart';
-
-import 'package:places/ui/my_app/routes.dart';
-import 'package:places/ui/my_enums.dart';
-
-import 'package:places/ui/res/ui_strings.dart';
-
-import 'package:places/ui/my_scroll_physics.dart';
 
 class SightListScreen extends StatelessWidget {
   SightListScreen({Key? key}) : super(key: key);

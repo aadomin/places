@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui/res/ui_strings.dart';
 import 'package:provider/provider.dart';
 
+import 'package:places/ui/my_app/ui_strings.dart';
+import 'package:places/ui/my_app/my_scroll_physics.dart';
 import 'package:places/ui/screens/filter_screen/filters_model.dart';
-import 'package:places/ui/my_scroll_physics.dart';
+
 
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({Key? key}) : super(key: key);

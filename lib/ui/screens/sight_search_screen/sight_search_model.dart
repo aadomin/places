@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/ui/my_enums.dart';
+import 'package:places/enums.dart';
+
 import 'package:places/data/models/sight.dart';
 import 'package:places/data/interactors/repository.dart';
 

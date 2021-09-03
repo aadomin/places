@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
+
 import 'package:places/data/repositories/mocks.dart';
 import 'package:places/data/models/sight.dart';
-import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
+
 
 class MainScreenModel with ChangeNotifier {
   List<Sight> get interestingPlaces => mocks;

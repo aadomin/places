@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 
-import 'package:places/ui/screens/select_category_screen/select_category_model.dart';
 import 'package:places/ui/my_app/routes.dart';
-import 'package:places/ui/my_scroll_physics.dart';
-import 'package:places/ui/widgets/my_image_widget.dart';
+import 'package:places/ui/my_app/my_scroll_physics.dart';
 import 'package:places/ui/screens/add_sight_screen/widget_category_header.dart';
 import 'package:places/ui/screens/add_sight_screen/dialog_add_photo.dart';
 import 'package:places/ui/screens/add_sight_screen/add_sight_model.dart';
+import 'package:places/ui/screens/select_category_screen/select_category_model.dart';
+import 'package:places/ui/widgets/my_image_widget.dart';
 
 class AddSightScreen extends StatefulWidget {
   const AddSightScreen({Key? key}) : super(key: key);
