@@ -1,9 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:places/data/mocks.dart';
+import 'package:places/data/repositories/mocks.dart';
 
-import 'package:places/data/repository.dart';
-import 'package:places/domain/sight.dart';
+import 'package:places/data/interactors/repository.dart';
+import 'package:places/data/models/sight.dart';
 
 class AddSightModel with ChangeNotifier {
   var repository = Repository();

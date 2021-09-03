@@ -4,7 +4,7 @@ import 'package:places/ui/my_app/platform.dart';
 import 'package:places/ui/screens/main_screen/widget_add_to_calendar_cuper_modal.dart';
 import 'package:provider/provider.dart';
 
-import 'package:places/domain/sight.dart';
+import 'package:places/data/models/sight.dart';
 
 import 'package:places/ui/my_enums.dart';
 import 'package:places/ui/my_scroll_physics.dart';
