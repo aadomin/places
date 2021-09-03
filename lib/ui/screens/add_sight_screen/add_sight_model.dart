@@ -2,18 +2,18 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'package:places/data/repositories/mocks.dart';
-import 'package:places/data/interactors/repository.dart';
+import 'package:places/data/interactors/core.dart';
 import 'package:places/data/models/sight.dart';
 
 class AddSightModel with ChangeNotifier {
-  var repository = Repository();
+  var core = CoreSingleton();
 
   List<String>? _listOfPhotos;
 
   List<String> get listOfPhotos {
     // копируем изначальный список фоток, впоследствии он будет удален
     _listOfPhotos ??= [
-      ...repository.sightsStorage.listOfInitialPhotosForAdding,
+      ...core.sightsStorage.listOfInitialPhotosForAdding,
     ];
 
     return _listOfPhotos ?? []; // useless thing just for null safety

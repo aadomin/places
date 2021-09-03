@@ -11,12 +11,12 @@ class CategoriesFilter {
   late BehaviorSubject<List<FilterItem>> _streamItems;
   Stream<List<FilterItem>> get items => _streamItems.stream;
 
-  void switchSelection(int index) {
+  void switchActiveCategories(int index) {
     _filterItems[index].isSelected = !_filterItems[index].isSelected;
     _streamItems.add(_filterItems);
   }
 
-  void clearSelection() {
+  void clearActiveCategories() {
     for (final element in _filterItems) {
       element.isSelected = false;
     }

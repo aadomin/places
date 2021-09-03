@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:places/enums.dart';
 
 import 'package:places/data/models/sight.dart';
-import 'package:places/data/interactors/repository.dart';
+import 'package:places/data/interactors/core.dart';
 
 class MySearchModel with ChangeNotifier {
   MySearchModel() {
-    repository = Repository();
+    core = CoreSingleton();
   }
 
-  late final Repository repository;
+  late final CoreSingleton core;
 
   var searchStatus = SearchStatus.empty;
   List<Sight> _searchResult = [];
@@ -41,11 +41,11 @@ class MySearchModel with ChangeNotifier {
       searchStatus = SearchStatus.empty;
     } else {
       // TODO запрос к БД
-      for (var i = 0; i < repository.sightsStorage.items.length; i++) {
-        if (repository.sightsStorage.items[i].name
+      for (var i = 0; i < core.sightsStorage.items.length; i++) {
+        if (core.sightsStorage.items[i].name
             .toLowerCase()
             .contains(_searchText.toLowerCase())) {
-          result.add(repository.sightsStorage.items[i]);
+          result.add(core.sightsStorage.items[i]);
         }
       }
 
