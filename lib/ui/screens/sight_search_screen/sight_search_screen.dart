@@ -7,7 +7,7 @@ import 'package:places/ui/screens/sight_search_screen/sight_search_model.dart';
 import 'package:places/ui/widgets/sight_card_for_search.dart';
 import 'package:places/ui/widgets/headers.dart';
 
-import 'package:places/data/models/sight.dart';
+import 'package:places/data/models/place.dart';
 
 class SightSearchScreen extends StatelessWidget {
   SightSearchScreen({Key? key}) : super(key: key);

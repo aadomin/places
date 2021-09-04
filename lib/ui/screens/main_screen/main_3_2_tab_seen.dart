@@ -8,7 +8,7 @@ import 'package:places/ui/screens/main_screen/main_screen_model.dart';
 import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 
-import 'package:places/data/models/sight.dart';
+import 'package:places/data/models/place.dart';
 
 class TabSeen extends StatefulWidget {
   const TabSeen({Key? key}) : super(key: key);

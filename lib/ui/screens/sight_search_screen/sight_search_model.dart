@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:places/enums.dart';
 
-import 'package:places/data/models/sight.dart';
-import 'package:places/data/interactors/core.dart';
+import 'package:places/data/models/place.dart';
+import 'package:places/data/interactors/_core.dart';
 
 class MySearchModel with ChangeNotifier {
   MySearchModel() {

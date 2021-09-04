@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
 import 'package:places/ui/widgets/my_image_widget.dart';
 
-import 'package:places/data/models/sight.dart';
+import 'package:places/data/models/place.dart';
 
 class SightCartForSearch extends StatelessWidget {
   const SightCartForSearch({

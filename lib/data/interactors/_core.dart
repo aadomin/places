@@ -1,5 +1,6 @@
+import 'package:places/data/interactors/place_interactor.dart';
 import 'package:places/data/interactors/search_interactor.dart';
-import 'package:places/data/interactors/places_interactor.dart';
+import 'package:places/data/interactors/settings_interactor.dart';
 
 class CoreSingleton {
   // Singleton
@@ -10,6 +11,7 @@ class CoreSingleton {
   static CoreSingleton? _instance;
 
   // modules
-  CategoriesFilter categoriesFilter = CategoriesFilter();
+  SearchInteractor categoriesFilter = SearchInteractor();
   PlaceInteractor sightsStorage = PlaceInteractor();
+  SettingsInteractor settingsInteractor = SettingsInteractor();
 }

@@ -1,9 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
-import 'package:places/data/repositories/mocks.dart';
-import 'package:places/data/interactors/core.dart';
-import 'package:places/data/models/sight.dart';
+import 'package:places/data/repositories/place_repository.dart';
+import 'package:places/data/interactors/_core.dart';
+import 'package:places/data/models/place.dart';
 
 class AddSightModel with ChangeNotifier {
   var core = CoreSingleton();

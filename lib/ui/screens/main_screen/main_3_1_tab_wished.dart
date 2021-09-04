@@ -11,7 +11,7 @@ import 'package:places/ui/screens/main_screen/main_screen_model.dart';
 import 'package:places/ui/screens/main_screen/widget_add_to_calendar_cuper_modal.dart';
 import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
 
-import 'package:places/data/models/sight.dart';
+import 'package:places/data/models/place.dart';
 
 class TabWished extends StatefulWidget {
   const TabWished({Key? key}) : super(key: key);

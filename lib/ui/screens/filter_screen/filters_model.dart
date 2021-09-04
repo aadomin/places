@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/data/interactors/core.dart';
+import 'package:places/data/interactors/_core.dart';
 import 'package:places/data/models/filter_item.dart';
 
 class MyFilterModel with ChangeNotifier {

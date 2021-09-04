@@ -7,7 +7,7 @@ import 'package:places/ui/screens/sight_details_screen/sight_details_model.dart'
 import 'package:places/ui/screens/sight_details_screen/widget_back_button.dart';
 import 'package:places/ui/widgets/my_image_widget.dart';
 
-import 'package:places/data/models/sight.dart';
+import 'package:places/data/models/place.dart';
 
 class SightDetailsScreen extends StatefulWidget {
   const SightDetailsScreen({

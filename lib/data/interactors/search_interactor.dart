@@ -3,8 +3,12 @@ import 'package:rxdart/rxdart.dart';
 
 import 'package:places/data/models/filter_item.dart';
 
-class CategoriesFilter {
-  CategoriesFilter() {
+//
+// Реализуйте функцию поиска по имени, сохранение и удаление истории поиска
+//
+
+class SearchInteractor {
+  SearchInteractor() {
     _streamItems = BehaviorSubject<List<FilterItem>>.seeded(_filterItems);
   }
 
@@ -55,3 +59,10 @@ class CategoriesFilter {
     ),
   ];
 }
+
+
+// Напишите функцию searchPlaces(name:String), которая выполняет запрос из репозитория filteredPlaces с параметром названия места
+// После успешного выполнения запроса, сохраните поисковый запрос в список в интеракторе. Позднее перенесете данные из массива в базу.
+// В интеракторе реализуйте настройку фильтров и радиуса поиска
+// Напишите функцию очистки истории поиска
+// Подключите интерактор к экрану поиска и к экрану фильтров

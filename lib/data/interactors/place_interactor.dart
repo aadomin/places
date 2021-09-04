@@ -1,5 +1,5 @@
-import 'package:places/data/repositories/mocks.dart';
-import 'package:places/data/models/sight.dart';
+import 'package:places/data/repositories/place_repository.dart';
+import 'package:places/data/models/place.dart';
 
 class PlaceInteractor {
   List<Sight> get items => mocks;

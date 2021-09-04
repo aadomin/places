@@ -1,16 +1,87 @@
-import 'package:dio/dio.dart';
+// import 'package:dio/dio.dart';
 
-class PlaceRepository {
-  PlaceRepository() {
-    BaseOptions baseOptions = BaseOptions(
-      baseUrl: 'http://jsonplaceholder.typicode.com',
-      connectTimeout: 10000,
-      receiveTimeout: 10000,
-      sendTimeout: 10000,
-      responseType: ResponseType.json,
-      // headers: {"device-Info:": "Nokia 3310 OS 14"},
-    );
+import 'package:places/data/models/place.dart';
 
-    final dio = Dio(baseOptions);
-  }
-}
+final List<Sight> mocks = [
+  Sight(
+    name: 'Воронежский областной краеведческий музей',
+    lat: 3424324.423,
+    lon: 8385733.384,
+    url:
+        'http://i.mycdn.me/i?r=AzEPZsRbOZEKgBhR0XGMT1RkYyO-1zLFV43SyU6kn1i2PaaKTM5SRkZCeTgDn6uOyic',
+    details:
+        'Описывая достопримечательность, можно лишь наслаждаться ее видами и думать о вечном, размышляя о странном.',
+    type: 'музей',
+    wished: true,
+    seen: false,
+    id: 0,
+  ),
+  Sight(
+    name: 'Ресторан "Игнатов"',
+    lat: 10251534.423,
+    lon: 23535344.344,
+    url:
+        'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+    details:
+        'Созерцание вечности развлекает разум не меньше, чем прекрасные женские юбки. Хотя, снег тает, и самооценка на фоне этого тоже тает.',
+    type: 'ресторан',
+    wished: true,
+    seen: true,
+    id: 1,
+  ),
+  Sight(
+    name: 'Вилладж',
+    lat: 34515324.823,
+    lon: 23452343.234,
+    url:
+        'https://wallpaperscave.ru/images/original/18/08-22/man-made-building-78015.jpg',
+    details:
+        'Глубина мысли показывает обширность жизненного опыта. Наслаждение мыслью показывает его качество.',
+    type: 'вилла',
+    wished: true,
+    seen: true,
+    id: 2,
+  ),
+];
+
+List<String> mockOfListOfInitialImagesForAdding = [
+  'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+  'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+  'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+  'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+  'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+  'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+];
+
+//
+///
+/// https://test-backend-flutter.surfstudio.ru
+///
+/// интерсепторы
+///
+///
+///
+///
+///
+///
+///
+///
+///
+///
+///
+
+class PlaceRepository {}
+
+// class PlaceRepository {
+//   PlaceRepository() {
+//     BaseOptions baseOptions = BaseOptions(
+//       baseUrl: 'http://jsonplaceholder.typicode.com',
+//       connectTimeout: 5000,
+//       receiveTimeout: 5000,
+//       sendTimeout: 5000,
+//       responseType: ResponseType.json,
+//     );
+
+//     final dio = Dio(baseOptions);
+//   }
+// }
