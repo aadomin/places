@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/data/interactors/_core.dart';
+import 'package:places/data/interactors/search_interactor.dart';
 import 'package:places/data/models/filter_item.dart';
 
 class MyFilterModel with ChangeNotifier {
   MyFilterModel() {
-    core = CoreSingleton();
+    //core = CoreSingleton();
 
     // при появлении объекта из стрима обновляем интерфейс
-    core.categoriesFilter.items.listen((items) {
+    categoriesFilter.items.listen((items) {
       _filterItems = items;
       notifyListeners();
     });
   }
-  late CoreSingleton core;
+  //late CoreSingleton core;
+
+  SearchInteractor categoriesFilter = SearchInteractor();
 
   late List<FilterItem> _filterItems;
   List<FilterItem> get filterItems => _filterItems;
 
   void switchSelection(int index) {
-    core.categoriesFilter.switchActiveCategories(index);
+    categoriesFilter.switchActiveCategories(index);
   }
 
   void clearSelection() {
-    core.categoriesFilter.clearActiveCategories();
+    categoriesFilter.clearActiveCategories();
   }
 }

@@ -1,6 +1,9 @@
 // import 'package:dio/dio.dart';
-
 import 'package:places/data/models/place.dart';
+
+class PlaceRepository {
+  //
+}
 
 final List<Sight> mocks = [
   Sight(
@@ -70,7 +73,7 @@ List<String> mockOfListOfInitialImagesForAdding = [
 ///
 ///
 
-class PlaceRepository {}
+
 
 // class PlaceRepository {
 //   PlaceRepository() {

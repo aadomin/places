@@ -6,12 +6,12 @@ import 'package:places/enums.dart';
 import 'package:places/ui/my_app/my_scroll_physics.dart';
 import 'package:places/ui/my_app/platform_detector.dart';
 import 'package:places/ui/widgets/sight_card.dart';
-import 'package:places/ui/screens/main_screen/main_3_3_empty_list.dart';
-import 'package:places/ui/screens/main_screen/main_screen_model.dart';
-import 'package:places/ui/screens/main_screen/widget_add_to_calendar_cuper_modal.dart';
+import 'package:places/ui/screens/main_3_wished_ans_seen/main_3_3_empty_list.dart';
+import 'package:places/ui/widgets/widget_add_to_calendar_cuper_modal.dart';
 import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
 
 import 'package:places/data/models/place.dart';
+import 'package:places/data/interactors/place_interactor.dart';
 
 class TabWished extends StatefulWidget {
   const TabWished({Key? key}) : super(key: key);
@@ -26,8 +26,8 @@ class _TabWishedState extends State<TabWished> {
 
   @override
   Widget build(BuildContext context) {
-    _listOfItems = context.watch<MainScreenModel>().wishedPlaces;
-    _allInterestingPlaces = context.watch<MainScreenModel>().interestingPlaces;
+    _listOfItems = context.watch<PlaceInteractor>().wishedPlaces;
+    _allInterestingPlaces = context.watch<PlaceInteractor>().interestingPlaces;
 
     if (_listOfItems.isEmpty) {
       return const WidgetEmptyList(
@@ -53,7 +53,7 @@ class _TabWishedState extends State<TabWished> {
                         sight: i.value,
                         placeCardType: SightCardType.wished,
                         onTap: () {
-                          onTap(i.value.id);
+                          onTapOnCard(i.value.id);
                         },
                         onDeleteFromList: () {
                           onDeleteFromList(i.key);
@@ -70,7 +70,7 @@ class _TabWishedState extends State<TabWished> {
     }
   }
 
-  void onTap(int id) {
+  void onTapOnCard(int id) {
     showModalBottomSheet<bool>(
       isScrollControlled: true,
       context: context,

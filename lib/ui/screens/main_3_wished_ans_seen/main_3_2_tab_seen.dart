@@ -3,12 +3,12 @@ import 'package:provider/provider.dart';
 
 import 'package:places/enums.dart';
 import 'package:places/ui/my_app/my_scroll_physics.dart';
-import 'package:places/ui/screens/main_screen/main_3_3_empty_list.dart';
-import 'package:places/ui/screens/main_screen/main_screen_model.dart';
+import 'package:places/ui/screens/main_3_wished_ans_seen/main_3_3_empty_list.dart';
 import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
 import 'package:places/ui/widgets/sight_card.dart';
 
 import 'package:places/data/models/place.dart';
+import 'package:places/data/interactors/place_interactor.dart';
 
 class TabSeen extends StatefulWidget {
   const TabSeen({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class _TabSeenState extends State<TabSeen> {
 
   @override
   Widget build(BuildContext context) {
-    _listOfItems = context.watch<MainScreenModel>().seenPlaces;
+    _listOfItems = context.watch<PlaceInteractor>().seenPlaces;
 
     if (_listOfItems.isEmpty) {
       return const WidgetEmptyList(
@@ -81,7 +81,7 @@ class _TabSeenState extends State<TabSeen> {
                                 context: context,
                                 builder: (_) => SightDetailsScreen(
                                   sightID: context
-                                      .watch<MainScreenModel>()
+                                      .watch<PlaceInteractor>()
                                       .interestingPlaces[i.value.id]
                                       .id,
                                 ),

@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:places/data/interactors/place_interactor.dart';
 
 import 'package:places/enums.dart';
 
 import 'package:places/data/models/place.dart';
-import 'package:places/data/interactors/_core.dart';
 
 class MySearchModel with ChangeNotifier {
-  MySearchModel() {
-    core = CoreSingleton();
-  }
-
-  late final CoreSingleton core;
+  //TEMP
+  final placeInteractor = PlaceInteractor();
 
   var searchStatus = SearchStatus.empty;
   List<Sight> _searchResult = [];
@@ -40,12 +37,11 @@ class MySearchModel with ChangeNotifier {
     if (_searchText == '') {
       searchStatus = SearchStatus.empty;
     } else {
-      // TODO запрос к БД
-      for (var i = 0; i < core.sightsStorage.items.length; i++) {
-        if (core.sightsStorage.items[i].name
+      for (var i = 0; i < placeInteractor.items.length; i++) {
+        if (placeInteractor.items[i].name
             .toLowerCase()
             .contains(_searchText.toLowerCase())) {
-          result.add(core.sightsStorage.items[i]);
+          result.add(placeInteractor.items[i]);
         }
       }
 

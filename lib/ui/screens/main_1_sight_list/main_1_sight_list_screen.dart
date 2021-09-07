@@ -5,9 +5,10 @@ import 'package:places/enums.dart';
 import 'package:places/ui/my_app/routes.dart';
 import 'package:places/ui/my_app/ui_strings.dart';
 import 'package:places/ui/my_app/my_scroll_physics.dart';
-import 'package:places/ui/screens/main_screen/main_screen_model.dart';
-import 'package:places/ui/screens/main_screen/main_1_widget_app_bar.dart';
+import 'package:places/ui/screens/main_1_sight_list/main_1_widget_app_bar.dart';
 import 'package:places/ui/widgets/sight_card.dart';
+
+import 'package:places/data/interactors/place_interactor.dart';
 
 class SightListScreen extends StatelessWidget {
   SightListScreen({Key? key}) : super(key: key);
@@ -82,7 +83,7 @@ class SightListScreen extends StatelessWidget {
                     for (var i = 0;
                         i <
                             context
-                                .watch<MainScreenModel>()
+                                .watch<PlaceInteractor>()
                                 .interestingPlaces
                                 .length;
                         i++)
@@ -90,7 +91,7 @@ class SightListScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(16.0),
                         child: SightCard(
                           sight: context
-                              .watch<MainScreenModel>()
+                              .watch<PlaceInteractor>()
                               .interestingPlaces[i],
                           placeCardType: SightCardType.general,
                           onDeleteFromList: () {},
@@ -118,7 +119,7 @@ class SightListScreen extends StatelessWidget {
                     for (var i = 0;
                         i <
                             context
-                                .watch<MainScreenModel>()
+                                .watch<PlaceInteractor>()
                                 .interestingPlaces
                                 .length;
                         i++)
@@ -126,7 +127,7 @@ class SightListScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(16.0),
                         child: SightCard(
                           sight: context
-                              .watch<MainScreenModel>()
+                              .watch<PlaceInteractor>()
                               .interestingPlaces[i],
                           placeCardType: SightCardType.wished,
                           onDeleteFromList: () {},
@@ -178,6 +179,6 @@ class SightListScreen extends StatelessWidget {
   }
 
   void onTap(BuildContext context, int i) {
-    context.read<MainScreenModel>().showModalDetailsScreen(context, i);
+    context.read<PlaceInteractor>().showModalDetailsScreen(context, i);
   }
 }

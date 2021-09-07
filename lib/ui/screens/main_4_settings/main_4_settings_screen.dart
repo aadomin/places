@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:places/ui/my_app/my_app_model.dart';
 import 'package:places/ui/my_app/routes.dart';
 import 'package:places/ui/my_app/ui_image_paths.dart';
 
+import 'package:places/data/interactors/settings_interactor.dart';
+
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
+
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
@@ -37,9 +39,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: Center(
         child: Column(children: [
           ListTile(
-            onTap: () {
-              context.read<MyThemeModel>().changeTheme();
-            },
+            onTap: onTapOnThemeSwitchTile,
             title: Text(
               'Темная тема',
               style: TextStyle(
@@ -47,10 +47,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             trailing: Switch(
-              value: context.watch<MyThemeModel>().isDarkTheme,
-              onChanged: (currentValue) {
-                context.read<MyThemeModel>().changeTheme();
-              },
+              value: context.watch<SettingsInteractor>().isDarkThemeOn,
+              onChanged: onTapOnThemeSwitch,
             ),
           ),
           ListTile(
@@ -68,12 +66,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 height: 20,
               ),
             ),
-            onTap: () {
-              Navigator.of(context).pushNamed(ROUTE_ONBOARDING);
-            },
+            onTap: onTapOnTutorialLink,
           )
         ]),
       ),
     );
+  }
+
+  void onTapOnTutorialLink() {
+    Navigator.of(context).pushNamed(ROUTE_ONBOARDING);
+  }
+
+  // ignore: avoid_annotating_with_dynamic
+  void onTapOnThemeSwitch(dynamic currentValue) {
+    context.read<SettingsInteractor>().changeTheme();
+  }
+
+  void onTapOnThemeSwitchTile() {
+    context.read<SettingsInteractor>().changeTheme();
   }
 }

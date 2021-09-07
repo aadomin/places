@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/data/interactors/place_interactor.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui/my_app/ui_strings.dart';
@@ -31,7 +32,11 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    sight = context.watch<SightDetailsModel>().sights[widget.sightID];
+    //List<Sight> get sights => placeInteractor.items;
+
+    sight = context.watch<PlaceInteractor>().items[widget.sightID];
+
+    // sight = context.watch<SightDetailsModel>().sights;
 
     return Padding(
       padding: const EdgeInsets.only(top: 100),

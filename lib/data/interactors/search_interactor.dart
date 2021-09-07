@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'package:places/data/models/filter_item.dart';
@@ -7,11 +8,16 @@ import 'package:places/data/models/filter_item.dart';
 // Реализуйте функцию поиска по имени, сохранение и удаление истории поиска
 //
 
-class SearchInteractor {
-  SearchInteractor() {
+class SearchInteractor with ChangeNotifier {
+  // Singleton
+  factory SearchInteractor() => _instance ?? SearchInteractor._internal();
+  SearchInteractor._internal() {
+    _instance = this;
     _streamItems = BehaviorSubject<List<FilterItem>>.seeded(_filterItems);
   }
+  static SearchInteractor? _instance;
 
+  //
   late BehaviorSubject<List<FilterItem>> _streamItems;
   Stream<List<FilterItem>> get items => _streamItems.stream;
 

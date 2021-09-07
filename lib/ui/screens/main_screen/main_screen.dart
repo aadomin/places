@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/ui/screens/main_screen/main_1_sight_list_screen.dart';
-import 'package:places/ui/screens/main_screen/main_2_map_screen.dart';
-import 'package:places/ui/screens/main_screen/main_3_0_visiting_screen.dart';
-import 'package:places/ui/screens/main_screen/main_4_settings_screen.dart';
+import 'package:places/ui/screens/main_1_sight_list/main_1_sight_list_screen.dart';
+import 'package:places/ui/screens/main_2_map/main_2_map_screen.dart';
+import 'package:places/ui/screens/main_3_wished_ans_seen/main_3_0_visiting_screen.dart';
+import 'package:places/ui/screens/main_4_settings/main_4_settings_screen.dart';
 
 class AllMainScreens extends StatefulWidget {
   const AllMainScreens({Key? key}) : super(key: key);

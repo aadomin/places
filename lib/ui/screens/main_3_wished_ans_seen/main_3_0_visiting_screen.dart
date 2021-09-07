@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/ui/screens/main_screen/main_3_1_tab_wished.dart';
-import 'package:places/ui/screens/main_screen/main_3_2_tab_seen.dart';
+import 'package:places/ui/screens/main_3_wished_ans_seen/main_3_1_tab_wished.dart';
+import 'package:places/ui/screens/main_3_wished_ans_seen/main_3_2_tab_seen.dart';
 import 'package:places/ui/widgets/headers.dart';
 
 class VisitingScreen extends StatefulWidget {
