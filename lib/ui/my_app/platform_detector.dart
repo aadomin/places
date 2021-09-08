@@ -1,5 +1,5 @@
-import 'dart:io';
-import 'package:flutter/foundation.dart' show kIsWeb;
+// import 'dart:io';
+// import 'package:flutter/foundation.dart' show kIsWeb;
 
 ///
 /// Этот класс нужен потому что dart:io не поддерживается Flutter for Web

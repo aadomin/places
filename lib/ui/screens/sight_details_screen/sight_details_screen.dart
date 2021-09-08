@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 
 import 'package:places/ui/my_app/ui_strings.dart';
 import 'package:places/ui/my_app/my_scroll_physics.dart';
-import 'package:places/ui/screens/sight_details_screen/sight_details_model.dart';
 import 'package:places/ui/screens/sight_details_screen/widget_back_button.dart';
 import 'package:places/ui/widgets/my_image_widget.dart';
 

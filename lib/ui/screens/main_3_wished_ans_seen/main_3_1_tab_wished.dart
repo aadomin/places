@@ -26,8 +26,8 @@ class _TabWishedState extends State<TabWished> {
 
   @override
   Widget build(BuildContext context) {
-    _listOfItems = context.watch<PlaceInteractor>().wishedPlaces;
-    _allInterestingPlaces = context.watch<PlaceInteractor>().interestingPlaces;
+    _listOfItems = context.watch<PlaceInteractor>().getFavoritesPlaces;
+    _allInterestingPlaces = context.watch<PlaceInteractor>().getPlaces;
 
     if (_listOfItems.isEmpty) {
       return const WidgetEmptyList(

@@ -6,7 +6,6 @@ import 'package:places/enums.dart';
 import 'package:places/data/models/place.dart';
 
 class MySearchModel with ChangeNotifier {
-  //TEMP
   final placeInteractor = PlaceInteractor();
 
   var searchStatus = SearchStatus.empty;

@@ -355,9 +355,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
           child: ElevatedButton(
-            onPressed: () {
-              onTapOnSave();
-            },
+            onPressed: onTapOnSave,
             child: const Padding(
               padding: EdgeInsets.all(12.0),
               child: Text('СОЗДАТЬ'),

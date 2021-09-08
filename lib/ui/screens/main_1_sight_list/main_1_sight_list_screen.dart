@@ -84,7 +84,7 @@ class SightListScreen extends StatelessWidget {
                         i <
                             context
                                 .watch<PlaceInteractor>()
-                                .interestingPlaces
+                                .getPlaces
                                 .length;
                         i++)
                       Padding(
@@ -92,7 +92,7 @@ class SightListScreen extends StatelessWidget {
                         child: SightCard(
                           sight: context
                               .watch<PlaceInteractor>()
-                              .interestingPlaces[i],
+                              .getPlaces[i],
                           placeCardType: SightCardType.general,
                           onDeleteFromList: () {},
                           onAddToCalendar: () {},
@@ -120,7 +120,7 @@ class SightListScreen extends StatelessWidget {
                         i <
                             context
                                 .watch<PlaceInteractor>()
-                                .interestingPlaces
+                                .getPlaces
                                 .length;
                         i++)
                       Padding(
@@ -128,7 +128,7 @@ class SightListScreen extends StatelessWidget {
                         child: SightCard(
                           sight: context
                               .watch<PlaceInteractor>()
-                              .interestingPlaces[i],
+                              .getPlaces[i],
                           placeCardType: SightCardType.wished,
                           onDeleteFromList: () {},
                           onAddToCalendar: () {},

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
+import 'package:places/data/repositories/search_repository.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'package:places/data/models/filter_item.dart';
@@ -13,11 +14,17 @@ class SearchInteractor with ChangeNotifier {
   factory SearchInteractor() => _instance ?? SearchInteractor._internal();
   SearchInteractor._internal() {
     _instance = this;
+    //
+    final _filterItems = searchRepository.filterItems;
     _streamItems = BehaviorSubject<List<FilterItem>>.seeded(_filterItems);
   }
   static SearchInteractor? _instance;
-
   //
+  
+  final SearchRepository searchRepository = SearchRepository();
+
+  late List<FilterItem> _filterItems;
+
   late BehaviorSubject<List<FilterItem>> _streamItems;
   Stream<List<FilterItem>> get items => _streamItems.stream;
 
@@ -32,38 +39,6 @@ class SearchInteractor with ChangeNotifier {
     }
     _streamItems.add(_filterItems);
   }
-
-  final List<FilterItem> _filterItems = [
-    FilterItem(
-      name: 'Отель',
-      assetPath: 'res/images/hotel.png',
-      isSelected: false,
-    ),
-    FilterItem(
-      name: 'Ресторан',
-      assetPath: 'res/images/rest.png',
-      isSelected: false,
-    ),
-    FilterItem(
-        name: 'Особое место',
-        assetPath: 'res/images/special.png',
-        isSelected: false),
-    FilterItem(
-      name: 'Парк',
-      assetPath: 'res/images/park.png',
-      isSelected: false,
-    ),
-    FilterItem(
-      name: 'Музей',
-      assetPath: 'res/images/museum.png',
-      isSelected: false,
-    ),
-    FilterItem(
-      name: 'Кафе',
-      assetPath: 'res/images/cafe.png',
-      isSelected: false,
-    ),
-  ];
 }
 
 

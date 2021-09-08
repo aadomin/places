@@ -1,8 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:places/data/interactors/place_interactor.dart';
 
-import 'package:places/data/repositories/place_repository.dart';
+import 'package:places/data/interactors/place_interactor.dart';
 import 'package:places/data/models/place.dart';
 
 class AddSightModel with ChangeNotifier {
@@ -33,7 +32,7 @@ class AddSightModel with ChangeNotifier {
     required String type,
   }) {
     final random = Random();
-    mocks.add(
+    placeInteractor.mocks.add(
       Sight(
         name: name,
         lat: lat,

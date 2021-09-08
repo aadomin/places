@@ -26,7 +26,7 @@ class _TabSeenState extends State<TabSeen> {
 
   @override
   Widget build(BuildContext context) {
-    _listOfItems = context.watch<PlaceInteractor>().seenPlaces;
+    _listOfItems = context.watch<PlaceInteractor>().getVisitedPlaces;
 
     if (_listOfItems.isEmpty) {
       return const WidgetEmptyList(
@@ -82,7 +82,7 @@ class _TabSeenState extends State<TabSeen> {
                                 builder: (_) => SightDetailsScreen(
                                   sightID: context
                                       .watch<PlaceInteractor>()
-                                      .interestingPlaces[i.value.id]
+                                      .getPlaces[i.value.id]
                                       .id,
                                 ),
                               );

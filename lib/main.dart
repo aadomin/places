@@ -6,7 +6,6 @@ import 'package:places/ui/screens/sight_search_screen/sight_search_model.dart';
 import 'package:places/ui/screens/filter_screen/filters_model.dart';
 import 'package:places/ui/screens/select_category_screen/select_category_model.dart';
 import 'package:places/ui/screens/splash_screen/splash_model.dart';
-import 'package:places/ui/screens/sight_details_screen/sight_details_model.dart';
 import 'package:places/ui/screens/add_sight_screen/add_sight_model.dart';
 
 import 'package:places/data/interactors/place_interactor.dart';
@@ -31,9 +30,6 @@ void main() {
         ),
         ChangeNotifierProvider(
           create: (context) => MySplashModel(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => SightDetailsModel(),
         ),
         ChangeNotifierProvider(
           create: (context) => AddSightModel(),
