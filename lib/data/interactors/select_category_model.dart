@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:places/data/models/category_item.dart';
+
 class MyCategoriesModel with ChangeNotifier {
   final List<CategoryItem> _myCategories = [
     CategoryItem(name: 'не выбрана', isSelected: true),
@@ -36,14 +38,4 @@ class MyCategoriesModel with ChangeNotifier {
     }
     return result;
   }
-}
-
-class CategoryItem {
-  CategoryItem({
-    required this.name,
-    required this.isSelected,
-  });
-
-  String name;
-  bool isSelected;
 }

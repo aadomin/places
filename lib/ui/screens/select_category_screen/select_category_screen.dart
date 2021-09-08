@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:places/ui/screens/select_category_screen/select_category_model.dart';
+import 'package:places/data/interactors/select_category_model.dart';
 
 class SelectCategory extends StatelessWidget {
   const SelectCategory({Key? key}) : super(key: key);

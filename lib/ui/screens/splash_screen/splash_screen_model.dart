@@ -6,7 +6,7 @@ import 'package:places/ui/my_app/routes.dart';
 // TODO - avoid_print
 // ignore_for_file: avoid_print
 
-class MySplashModel with ChangeNotifier {
+class SplashScreenModel with ChangeNotifier {
   // ignore: avoid_void_async
   static void initAppAndThenChangeScreen(BuildContext context) async {
     print('starting of application');

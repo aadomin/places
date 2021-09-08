@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:places/ui/my_app/ui_image_paths.dart';
-import 'package:places/ui/screens/splash_screen/splash_model.dart';
+import 'package:places/ui/screens/splash_screen/splash_screen_model.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    MySplashModel.initAppAndThenChangeScreen(context);
+    SplashScreenModel.initAppAndThenChangeScreen(context);
     super.initState();
   }
 

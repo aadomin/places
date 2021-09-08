@@ -59,4 +59,49 @@ class PlaceInteractor with ChangeNotifier {
 
   List<String> get listOfInitialPhotosForAdding =>
       mockOfListOfInitialImagesForAdding;
+
+  //
+  // из другой модели
+  //
+
+  List<String>? _listOfPhotos;
+
+  List<String> get listOfPhotos {
+    // копируем изначальный список фоток, впоследствии он будет удален
+
+    _listOfPhotos ??= [
+      ...listOfInitialPhotosForAdding,
+    ];
+
+    return _listOfPhotos ?? []; // useless thing just for null safety
+  }
+
+  set listOfPhotos(List<String> value) {
+    _listOfPhotos = value;
+  }
+
+  void saveNew({
+    required String name,
+    required double lat,
+    required double lon,
+    required String url,
+    required String details,
+    required String type,
+  }) {
+    final random = Random();
+    mocks.add(
+      Sight(
+        name: name,
+        lat: lat,
+        lon: lon,
+        url: url,
+        details: details,
+        type: type,
+        id: random.nextInt(293812572),
+        wished: false,
+        seen: false,
+      ),
+    );
+    notifyListeners();
+  }
 }

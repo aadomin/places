@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:places/enums.dart';
 import 'package:places/ui/my_app/ui_strings.dart';
-import 'package:places/ui/screens/sight_search_screen/sight_search_model.dart';
+import 'package:places/data/interactors/search_interactor.dart';
 import 'package:places/ui/widgets/sight_card_for_search.dart';
 import 'package:places/ui/widgets/headers.dart';
 
@@ -37,14 +37,14 @@ class SightSearchScreen extends StatelessWidget {
                 focusNode: focusNode1,
                 controller: textController,
                 onChanged: (String value) {
-                  context.read<MySearchModel>().newSearch(value);
+                  context.read<SearchInteractor>().newSearch(value);
                 },
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.search, size: 15),
                   suffixIcon: InkWell(
                     onTap: () {
                       textController.clear();
-                      context.read<MySearchModel>().newSearch('');
+                      context.read<SearchInteractor>().newSearch('');
                     },
                     child: UnconstrainedBox(
                       child: ClipRRect(
@@ -75,13 +75,13 @@ class SightSearchScreen extends StatelessWidget {
                 ),
               ),
             ),
-            if (context.watch<MySearchModel>().searchStatus ==
+            if (context.watch<SearchInteractor>().searchStatus ==
                 SearchStatus.haveResult)
               const WidgetSearchResult(),
-            if (context.watch<MySearchModel>().searchStatus ==
+            if (context.watch<SearchInteractor>().searchStatus ==
                 SearchStatus.empty)
               const WidgetSearchEmpty(),
-            if (context.watch<MySearchModel>().searchStatus ==
+            if (context.watch<SearchInteractor>().searchStatus ==
                 SearchStatus.notFound)
               const WidgetSearchNotFound(),
           ],
@@ -99,12 +99,12 @@ class WidgetSearchResult extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Sight> searchResults =
-        context.watch<MySearchModel>().searchResult;
+        context.watch<SearchInteractor>().searchResult;
     return Column(
       children: [
         for (var i = 0; i < searchResults.length; i++)
           SightCartForSearch(
-            sight: context.watch<MySearchModel>().searchResult[i],
+            sight: context.watch<SearchInteractor>().searchResult[i],
           ),
       ],
     );
@@ -121,19 +121,19 @@ class WidgetSearchEmpty extends StatelessWidget {
     return Column(
       children: [
         for (var i = 0;
-            i < context.watch<MySearchModel>().lastSearches.length;
+            i < context.watch<SearchInteractor>().lastSearches.length;
             i++)
           Column(
             children: [
               ListTile(
                 title: Text(
-                  context.watch<MySearchModel>().lastSearches[i],
+                  context.watch<SearchInteractor>().lastSearches[i],
                   style: TextStyle(color: Theme.of(context).primaryColorLight),
                 ),
                 trailing: IconButton(
                   icon: const Icon(Icons.close),
                   onPressed: () {
-                    context.read<MySearchModel>().removeItemFromHistory(i);
+                    context.read<SearchInteractor>().removeItemFromHistory(i);
                   },
                 ),
               ),
