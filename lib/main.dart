@@ -6,7 +6,7 @@ import 'package:places/ui/my_app/my_app.dart';
 import 'package:places/data/interactors/place_interactor.dart';
 import 'package:places/data/interactors/settings_interactor.dart';
 import 'package:places/data/interactors/filter_interactor.dart';
-import 'package:places/data/interactors/select_category_model.dart';
+import 'package:places/ui/screens/select_category_screen/select_category_screen_model.dart';
 import 'package:places/data/interactors/search_interactor.dart';
 
 void main() {
@@ -26,7 +26,7 @@ void main() {
           create: (context) => SearchInteractor(),
         ),
         ChangeNotifierProvider(
-          create: (context) => MyCategoriesModel(),
+          create: (context) => SelectCategoryScreenModel(),
         ),
       ],
       child: const MyApp(),

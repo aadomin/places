@@ -7,7 +7,7 @@ import 'package:places/ui/my_app/routes.dart';
 import 'package:places/ui/my_app/my_scroll_physics.dart';
 import 'package:places/ui/screens/add_sight_screen/widget_category_header.dart';
 import 'package:places/ui/screens/add_sight_screen/dialog_add_photo.dart';
-import 'package:places/data/interactors/select_category_model.dart';
+import 'package:places/ui/screens/select_category_screen/select_category_screen_model.dart';
 import 'package:places/ui/widgets/my_image_widget.dart';
 
 import 'package:places/data/interactors/place_interactor.dart';
@@ -39,7 +39,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
 
     //+
     final _currentlySelectedCategory =
-        context.watch<MyCategoriesModel>().currentlySelected;
+        context.watch<SelectCategoryScreenModel>().currentlySelected;
 
     return Scaffold(
       appBar: AppBar(
@@ -398,7 +398,8 @@ class _AddSightScreenState extends State<AddSightScreen> {
           lon: double.parse(textControllerLon.text),
           url: 'исправить',
           details: textControllerDescription.text,
-          type: context.read<MyCategoriesModel>().currentlySelected,
+          //TODO WTF
+          type: context.read<SelectCategoryScreenModel>().currentlySelected,
         );
     Navigator.pop(context);
   }
