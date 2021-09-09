@@ -7,23 +7,20 @@ import 'package:places/data/interactors/place_interactor.dart';
 import 'package:places/data/repositories/search_repository.dart';
 
 //
-// Реализуйте функцию поиска по имени, сохранение и удаление истории поиска
-//
-
-// Напишите функцию searchPlaces(name:String), которая выполняет запрос из репозитория filteredPlaces с параметром названия места
-// После успешного выполнения запроса, сохраните поисковый запрос в список в интеракторе. Позднее перенесете данные из массива в базу.
-// В интеракторе реализуйте настройку фильтров и радиуса поиска
-// Напишите функцию очистки истории поиска
+// фильтр должен быть в filteredPlaces  и радиус поиска
 // Подключите интерактор к экрану поиска и к экрану фильтров
+//
 
 class SearchInteractor with ChangeNotifier {
   // Singleton
   factory SearchInteractor() => _instance ?? SearchInteractor._internal();
   SearchInteractor._internal() {
     _instance = this;
+    //
+    _lastSearches = searchRepository.lastSearches;
   }
   static SearchInteractor? _instance;
-  //
+  // Singleton
 
   final placeInteractor = PlaceInteractor();
   final searchRepository = SearchRepository();
@@ -32,7 +29,7 @@ class SearchInteractor with ChangeNotifier {
   List<Sight> _searchResult = [];
   String _searchText = '';
 
-  final List<String> _lastSearches = [];
+  late final List<String> _lastSearches;
   DateTime _lastSearchDateTime = DateTime.now();
 
   List<String> get lastSearches {
@@ -43,7 +40,7 @@ class SearchInteractor with ChangeNotifier {
     return _searchResult;
   }
 
-  void newSearch(String searchText) {
+  void searchPlaces(String searchText) {
     doSearchItSelf(searchText);
     updateListOfLastSearches(searchText);
     notifyListeners();
@@ -56,11 +53,11 @@ class SearchInteractor with ChangeNotifier {
     if (_searchText == '') {
       searchStatus = SearchStatus.empty;
     } else {
-      for (var i = 0; i < placeInteractor.items.length; i++) {
-        if (placeInteractor.items[i].name
+      for (var i = 0; i < placeInteractor.filteredPlaces.length; i++) {
+        if (placeInteractor.filteredPlaces[i].name
             .toLowerCase()
             .contains(_searchText.toLowerCase())) {
-          result.add(placeInteractor.items[i]);
+          result.add(placeInteractor.filteredPlaces[i]);
         }
       }
 

@@ -31,7 +31,7 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    sight = context.watch<PlaceInteractor>().items[widget.sightID];
+    sight = context.watch<PlaceInteractor>().allPlaces[widget.sightID];
 
     return Padding(
       padding: const EdgeInsets.only(top: 100),

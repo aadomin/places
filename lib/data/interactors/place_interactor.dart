@@ -55,7 +55,9 @@ class PlaceInteractor with ChangeNotifier {
     );
   }
 
-  List<Sight> get items => mocks;
+  List<Sight> get allPlaces => mocks;
+
+  List<Sight> get filteredPlaces => mocks;
 
   List<String> get listOfInitialPhotosForAdding =>
       mockOfListOfInitialImagesForAdding;
@@ -68,11 +70,9 @@ class PlaceInteractor with ChangeNotifier {
 
   List<String> get listOfPhotos {
     // копируем изначальный список фоток, впоследствии он будет удален
-
     _listOfPhotos ??= [
       ...listOfInitialPhotosForAdding,
     ];
-
     return _listOfPhotos ?? []; // useless thing just for null safety
   }
 

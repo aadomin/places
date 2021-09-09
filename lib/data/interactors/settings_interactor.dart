@@ -13,7 +13,7 @@ class SettingsInteractor with ChangeNotifier {
   static SettingsInteractor? _instance;
   //
 
-  final SettingsRepository settingsRepository = SettingsRepository();
+  final settingsRepository = SettingsRepository();
 
   void changeTheme() {
     settingsRepository.isDarkThemeOn = !settingsRepository.isDarkThemeOn;

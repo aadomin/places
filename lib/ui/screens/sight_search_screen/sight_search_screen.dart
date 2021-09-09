@@ -37,14 +37,14 @@ class SightSearchScreen extends StatelessWidget {
                 focusNode: focusNode1,
                 controller: textController,
                 onChanged: (String value) {
-                  context.read<SearchInteractor>().newSearch(value);
+                  context.read<SearchInteractor>().searchPlaces(value);
                 },
                 decoration: InputDecoration(
                   prefixIcon: const Icon(Icons.search, size: 15),
                   suffixIcon: InkWell(
                     onTap: () {
                       textController.clear();
-                      context.read<SearchInteractor>().newSearch('');
+                      context.read<SearchInteractor>().searchPlaces('');
                     },
                     child: UnconstrainedBox(
                       child: ClipRRect(
