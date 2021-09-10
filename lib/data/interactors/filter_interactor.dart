@@ -5,7 +5,7 @@ import 'package:places/data/models/filter_item.dart';
 import 'package:places/data/repositories/filter_repository.dart';
 
 class FilterInteractor with ChangeNotifier {
-  // { Singleton
+  // <Singleton>
   factory FilterInteractor() => _instance ?? FilterInteractor._internal();
   FilterInteractor._internal() {
     _instance = this;
@@ -21,7 +21,7 @@ class FilterInteractor with ChangeNotifier {
     });
   }
   static FilterInteractor? _instance;
-  // Singleton }
+  // </Singleton> }
 
   final FilterRepository filterRepository = FilterRepository();
 

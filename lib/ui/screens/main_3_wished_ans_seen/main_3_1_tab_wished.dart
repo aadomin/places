@@ -27,7 +27,7 @@ class _TabWishedState extends State<TabWished> {
   @override
   Widget build(BuildContext context) {
     _listOfItems = context.watch<PlaceInteractor>().getFavoritesPlaces;
-    _allInterestingPlaces = context.watch<PlaceInteractor>().getPlaces;
+    //_allInterestingPlaces = context.watch<PlaceInteractor>().getPlaces;
 
     if (_listOfItems.isEmpty) {
       return const WidgetEmptyList(
@@ -75,7 +75,7 @@ class _TabWishedState extends State<TabWished> {
       isScrollControlled: true,
       context: context,
       builder: (_) => SightDetailsScreen(
-        sightID: _allInterestingPlaces[id].id,
+        sightID: id,
       ),
     );
   }

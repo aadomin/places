@@ -12,7 +12,7 @@ class WidgetSightCardIcons extends StatelessWidget {
 
   final void Function() onDeleteFromList;
   final SightCardType placeCardType;
-  final VoidCallback onAddToCalendar;
+  final VoidCallback? onAddToCalendar;
 
   @override
   Widget build(BuildContext context) {

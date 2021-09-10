@@ -12,7 +12,7 @@ class SightCard extends StatelessWidget {
     required this.placeCardType,
     required this.onTap,
     required this.onDeleteFromList,
-    required this.onAddToCalendar,
+     this.onAddToCalendar,
     Key? key,
   }) : super(key: key);
 
@@ -21,7 +21,7 @@ class SightCard extends StatelessWidget {
   final VoidCallback onTap;
   final VoidCallback onDeleteFromList;
 
-  final VoidCallback onAddToCalendar;
+  final VoidCallback? onAddToCalendar;
 
   @override
   Widget build(BuildContext context) {

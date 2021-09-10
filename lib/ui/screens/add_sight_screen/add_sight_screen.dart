@@ -392,7 +392,7 @@ class _AddSightScreenState extends State<AddSightScreen> {
   }
 
   void onTapOnSave() {
-    context.read<PlaceInteractor>().saveNew(
+    context.read<PlaceInteractor>().addNewPlace(
           name: textControllerName.text,
           lat: double.parse(textControllerLat.text),
           lon: double.parse(textControllerLon.text),

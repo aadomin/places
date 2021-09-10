@@ -13,7 +13,7 @@ class PlaceInteractor with ChangeNotifier {
   PlaceInteractor._internal() {
     _instance = this;
     //
-    mocks = placeRepository.mocks;
+    loadedPlaces = placeRepository.loadedPlaces;
   }
   static PlaceInteractor? _instance;
   //
@@ -29,20 +29,38 @@ class PlaceInteractor with ChangeNotifier {
     );
   }
 
-  late final List<Sight> mocks;
+  late final List<Sight> loadedPlaces;
 
-  List<Sight> get getPlaces => mocks;
+  List<Sight> get allPlaces => loadedPlaces;
 
-  List<Sight> get getFavoritesPlaces => mocks.where((s) => s.wished).toList();
+  List<Sight> get getPlaces => loadedPlaces;
 
-  List<Sight> get getVisitedPlaces => mocks.where((s) => s.seen).toList();
-
-  void delFromWished(int index) {
-    mocks[index].wished = false;
+  Sight getPlaceDetails(int index) {
+    return getPlaces[index];
   }
 
-  void delFromSeen(int index) {
-    mocks[index].wished = false;
+  List<Sight> get getFavoritesPlaces =>
+      loadedPlaces.where((s) => s.wished).toList();
+
+  List<Sight> get getVisitedPlaces =>
+      loadedPlaces.where((s) => s.seen).toList();
+
+  void removeFromFavorites(int index) {
+    loadedPlaces[index].wished = false;
+  }
+
+  void removeFromVisited(int index) {
+    loadedPlaces[index].wished = false;
+  }
+
+  void addToFavorites(int index) {
+    loadedPlaces[index].wished = true;
+    notifyListeners();
+  }
+
+  void addToVisitedPlaces(int index) {
+    loadedPlaces[index].wished = true;
+    notifyListeners();
   }
 
   void showModalDetailsScreen(BuildContext context, int i) {
@@ -50,20 +68,18 @@ class PlaceInteractor with ChangeNotifier {
       isScrollControlled: true,
       context: context,
       builder: (_) => SightDetailsScreen(
-        sightID: mocks[i].id,
+        sightID: loadedPlaces[i].id,
       ),
     );
   }
 
-  List<Sight> get allPlaces => mocks;
-
-  List<Sight> get filteredPlaces => mocks;
+  List<Sight> get filteredPlaces => loadedPlaces;
 
   List<String> get listOfInitialPhotosForAdding =>
       mockOfListOfInitialImagesForAdding;
 
   //
-  // из другой модели
+  // Добавление
   //
 
   List<String>? _listOfPhotos;
@@ -80,7 +96,7 @@ class PlaceInteractor with ChangeNotifier {
     _listOfPhotos = value;
   }
 
-  void saveNew({
+  void addNewPlace({
     required String name,
     required double lat,
     required double lon,
@@ -89,7 +105,7 @@ class PlaceInteractor with ChangeNotifier {
     required String type,
   }) {
     final random = Random();
-    mocks.add(
+    loadedPlaces.add(
       Sight(
         name: name,
         lat: lat,
@@ -105,3 +121,8 @@ class PlaceInteractor with ChangeNotifier {
     notifyListeners();
   }
 }
+
+// TODO переделать на ID getPlaceDetails
+/// getPlaces(radius:int, category: String): List. фильтр по удаленности
+/// экран: addToFavorites - на Главном экране и экране детализации
+/// экран: removeFromFavorites - если место уже в избранном, по повторному нажатию
