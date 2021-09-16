@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:places/enums.dart';
+import 'package:places/ui/my_app/ui_strings.dart';
 import 'package:places/ui/widgets/my_image_widget.dart';
 import 'package:places/ui/widgets/sight_card_icons.dart';
 
@@ -11,27 +12,52 @@ class SightCard extends StatelessWidget {
     required this.sight,
     required this.placeCardType,
     required this.onTap,
-    required this.onDeleteFromList,
-     this.onAddToCalendar,
+    this.onAddToWished,
+    this.onAddToCalendar,
+    this.onDeleteFromWished,
+    this.onShare,
+    this.onDeleteFromSeen,
+    this.onDeleteAtAll,
     Key? key,
   }) : super(key: key);
 
   final Sight sight;
   final SightCardType placeCardType;
-  final VoidCallback onTap;
-  final VoidCallback onDeleteFromList;
 
+  final VoidCallback onTap;
+
+  final VoidCallback? onAddToWished;
   final VoidCallback? onAddToCalendar;
+  final VoidCallback? onDeleteFromWished;
+  final VoidCallback? onShare;
+  final VoidCallback? onDeleteFromSeen;
+  final VoidCallback? onDeleteAtAll;
 
   @override
   Widget build(BuildContext context) {
+    void Function(DismissDirection _) onDismissedAction;
+
+    late String textWhenDeletion;
+    switch (placeCardType) {
+      case SightCardType.general:
+        textWhenDeletion = UiStrings.delAtAll;
+        onDismissedAction = (DismissDirection _) => onDeleteAtAll?.call();
+        break;
+      case SightCardType.seen:
+        textWhenDeletion = UiStrings.delFromSeen;
+        onDismissedAction = (DismissDirection _) => onDeleteFromSeen?.call();
+        break;
+      case SightCardType.wished:
+        textWhenDeletion = UiStrings.delFromWished;
+        onDismissedAction = (DismissDirection _) => onDeleteFromWished?.call();
+        break;
+    }
+
     return InkWell(
       onTap: onTap,
       child: Dismissible(
-        key: ObjectKey(sight),
-        onDismissed: (direction) {
-          onDeleteFromList();
-        },
+        key: ValueKey(sight.id),
+        onDismissed: onDismissedAction,
         background: Container(
           alignment: Alignment.centerLeft,
           color: Colors.red,
@@ -43,7 +69,7 @@ class SightCard extends StatelessWidget {
                 Icon(Icons.restore_from_trash,
                     color: Theme.of(context).canvasColor),
                 Text(
-                  'Удалить',
+                  textWhenDeletion,
                   style: TextStyle(
                     color: Theme.of(context).canvasColor,
                   ),
@@ -63,7 +89,7 @@ class SightCard extends StatelessWidget {
                 Icon(Icons.restore_from_trash,
                     color: Theme.of(context).canvasColor),
                 Text(
-                  'Удалить',
+                  textWhenDeletion,
                   style: TextStyle(
                     color: Theme.of(context).canvasColor,
                   ),
@@ -74,7 +100,6 @@ class SightCard extends StatelessWidget {
         ),
         child: Container(
           padding: const EdgeInsets.only(bottom: 16),
-          //margin: const EdgeInsets.only(bottom: 16),
           child: Stack(
             children: [
               Column(
@@ -139,7 +164,8 @@ class SightCard extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 child: WidgetSightCardIcons(
                   placeCardType: placeCardType,
-                  onDeleteFromList: onDeleteFromList,
+                  onDeleteFromSeen: onDeleteFromSeen,
+                  onDeleteFromWished: onDeleteFromWished,
                   onAddToCalendar: onAddToCalendar,
                 ),
               ),

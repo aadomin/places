@@ -40,8 +40,8 @@ List<String> mockOfListOfInitialImagesForAdding = [
 final List<Sight> _mocks = [
   Sight(
     name: 'Воронежский областной краеведческий музей',
-    lat: 3424324.423,
-    lon: 8385733.384,
+    lat: 42.8423437,
+    lon: 41.8348345,
     url:
         'http://i.mycdn.me/i?r=AzEPZsRbOZEKgBhR0XGMT1RkYyO-1zLFV43SyU6kn1i2PaaKTM5SRkZCeTgDn6uOyic',
     details:
@@ -53,8 +53,8 @@ final List<Sight> _mocks = [
   ),
   Sight(
     name: 'Ресторан "Игнатов"',
-    lat: 10251534.423,
-    lon: 23535344.344,
+    lat: 52.4483423,
+    lon: 59.3423434,
     url:
         'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
     details:
@@ -66,13 +66,13 @@ final List<Sight> _mocks = [
   ),
   Sight(
     name: 'Вилладж',
-    lat: 34515324.823,
-    lon: 23452343.234,
+    lat: 59.8242123,
+    lon: 40.1341443,
     url:
         'https://wallpaperscave.ru/images/original/18/08-22/man-made-building-78015.jpg',
     details:
         'Глубина мысли показывает обширность жизненного опыта. Наслаждение мыслью показывает его качество.',
-    type: 'вилла',
+    type: 'парк',
     wished: true,
     seen: true,
     id: 2,

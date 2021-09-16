@@ -194,7 +194,9 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                           children: [
                             TextButton(
                               onPressed: () {
-                                // print('запланировать');
+                                context
+                                    .read<PlaceInteractor>()
+                                    .schedulePlace(context, sight.id);
                               },
                               child: Padding(
                                 padding:
@@ -217,7 +219,9 @@ class _SightDetailsScreenState extends State<SightDetailsScreen> {
                             ),
                             TextButton(
                               onPressed: () {
-                                // print('в избранное');
+                                context
+                                    .read<PlaceInteractor>()
+                                    .addToFavorites(sight.id);
                               },
                               child: Padding(
                                 padding:

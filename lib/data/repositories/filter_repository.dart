@@ -5,31 +5,32 @@ class FilterRepository {
     FilterItem(
       name: 'Отель',
       assetPath: 'res/images/hotel.png',
-      isSelected: false,
+      isSelected: true,
     ),
     FilterItem(
       name: 'Ресторан',
       assetPath: 'res/images/rest.png',
-      isSelected: false,
+      isSelected: true,
     ),
     FilterItem(
-        name: 'Особое место',
-        assetPath: 'res/images/special.png',
-        isSelected: false),
+      name: 'Особое место',
+      assetPath: 'res/images/special.png',
+      isSelected: true,
+    ),
     FilterItem(
       name: 'Парк',
       assetPath: 'res/images/park.png',
-      isSelected: false,
+      isSelected: true,
     ),
     FilterItem(
       name: 'Музей',
       assetPath: 'res/images/museum.png',
-      isSelected: false,
+      isSelected: true,
     ),
     FilterItem(
       name: 'Кафе',
       assetPath: 'res/images/cafe.png',
-      isSelected: false,
+      isSelected: true,
     ),
   ];
 }

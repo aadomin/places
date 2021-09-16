@@ -5,14 +5,23 @@ import 'package:places/enums.dart';
 class WidgetSightCardIcons extends StatelessWidget {
   const WidgetSightCardIcons({
     required this.placeCardType,
-    required this.onDeleteFromList,
-    required this.onAddToCalendar,
+    this.onAddToWished,
+    this.onAddToCalendar,
+    this.onDeleteFromWished,
+    this.onShare,
+    this.onDeleteFromSeen,
     Key? key,
   }) : super(key: key);
 
-  final void Function() onDeleteFromList;
   final SightCardType placeCardType;
+
+  final VoidCallback? onAddToWished;
+
   final VoidCallback? onAddToCalendar;
+  final VoidCallback? onDeleteFromWished;
+
+  final VoidCallback? onShare;
+  final VoidCallback? onDeleteFromSeen;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +33,7 @@ class WidgetSightCardIcons extends StatelessWidget {
             Container(
               padding: const EdgeInsets.only(left: 16),
               child: InkWell(
-                onTap: () {
-                  // print('Wish, calendar');
-                },
+                onTap: onAddToWished,
                 child: const Icon(Icons.favorite_outline, color: Colors.white),
               ),
             ),
@@ -46,7 +53,7 @@ class WidgetSightCardIcons extends StatelessWidget {
             Container(
               padding: const EdgeInsets.only(left: 16),
               child: InkWell(
-                onTap: onDeleteFromList,
+                onTap: onDeleteFromWished,
                 child: const Icon(Icons.close, color: Colors.white),
               ),
             ),
@@ -59,16 +66,14 @@ class WidgetSightCardIcons extends StatelessWidget {
             Container(
               padding: const EdgeInsets.only(left: 16),
               child: InkWell(
-                onTap: () {
-                  // print('Seen, share');
-                },
+                onTap: onShare,
                 child: const Icon(Icons.share, color: Colors.white),
               ),
             ),
             Container(
               padding: const EdgeInsets.only(left: 16),
               child: InkWell(
-                onTap: onDeleteFromList,
+                onTap: onDeleteFromSeen,
                 child: const Icon(Icons.close, color: Colors.white),
               ),
             ),

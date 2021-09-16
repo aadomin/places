@@ -19,9 +19,10 @@ class Sight {
   final String details;
   final String type;
   final String timeOfWork;
+  final int id;
   bool wished;
   bool seen;
-  final int id;
+  double currentDistanceToUser = 0;
 
   @override
   String toString() {

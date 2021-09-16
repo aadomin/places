@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/data/models/place.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/enums.dart';
@@ -19,6 +20,11 @@ class SightListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Sight> filteredPlaces =
+        context.watch<PlaceInteractor>().filteredPlaces;
+
+    final placeInteractor = Provider.of<PlaceInteractor>(context);
+
     return Scaffold(
       body: Stack(
         children: [
@@ -79,29 +85,31 @@ class SightListScreen extends StatelessWidget {
               //
               if (MediaQuery.of(context).size.width <= criticalWidth)
                 SliverList(
-                  delegate: SliverChildListDelegate([
-                    for (var i = 0;
-                        i <
-                            context
-                                .watch<PlaceInteractor>()
-                                .getPlaces
-                                .length;
-                        i++)
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: SightCard(
-                          sight: context
-                              .watch<PlaceInteractor>()
-                              .getPlaces[i],
-                          placeCardType: SightCardType.general,
-                          onDeleteFromList: () {},
-                          onAddToCalendar: () {},
-                          onTap: () {
-                            onTap(context, i);
-                          },
-                        ),
+                  delegate: SliverChildBuilderDelegate(
+                    (context, i) => Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: SightCard(
+                        sight: filteredPlaces[i],
+                        placeCardType: SightCardType.general,
+                        onTap: () {
+                          onTap(context, filteredPlaces[i].id);
+                        },
+                        onAddToWished: () {
+                          if (filteredPlaces[i].wished) {
+                            placeInteractor
+                                .removeFromFavorites(filteredPlaces[i].id);
+                          } else {
+                            placeInteractor
+                                .addToFavorites(filteredPlaces[i].id);
+                          }
+                        },
+                        onDeleteAtAll: () {
+                          placeInteractor.removeAtAll(filteredPlaces[i].id);
+                        },
                       ),
-                  ]),
+                    ),
+                    childCount: filteredPlaces.length,
+                  ),
                 ),
               //
               // для больших экранов
@@ -116,24 +124,26 @@ class SightListScreen extends StatelessWidget {
                         1.55,
                   ),
                   delegate: SliverChildListDelegate([
-                    for (var i = 0;
-                        i <
-                            context
-                                .watch<PlaceInteractor>()
-                                .getPlaces
-                                .length;
-                        i++)
+                    for (var i = 0; i < filteredPlaces.length; i++)
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: SightCard(
-                          sight: context
-                              .watch<PlaceInteractor>()
-                              .getPlaces[i],
+                          sight: filteredPlaces[i],
                           placeCardType: SightCardType.wished,
-                          onDeleteFromList: () {},
-                          onAddToCalendar: () {},
                           onTap: () {
-                            onTap(context, i);
+                            onTap(context, filteredPlaces[i].id);
+                          },
+                          onAddToWished: () {
+                            if (filteredPlaces[i].wished) {
+                              placeInteractor
+                                  .removeFromFavorites(filteredPlaces[i].id);
+                            } else {
+                              placeInteractor
+                                  .addToFavorites(filteredPlaces[i].id);
+                            }
+                          },
+                          onDeleteAtAll: () {
+                            placeInteractor.removeAtAll(filteredPlaces[i].id);
                           },
                         ),
                       ),
@@ -178,7 +188,7 @@ class SightListScreen extends StatelessWidget {
     );
   }
 
-  void onTap(BuildContext context, int i) {
-    context.read<PlaceInteractor>().showModalDetailsScreen(context, i);
+  void onTap(BuildContext context, int id) {
+    context.read<PlaceInteractor>().showModalDetailsScreen(context, id);
   }
 }

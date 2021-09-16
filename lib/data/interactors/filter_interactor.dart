@@ -42,4 +42,6 @@ class FilterInteractor with ChangeNotifier {
     }
     _streamItems.add(_filterItems);
   }
+
+  int radius = 1000;
 }

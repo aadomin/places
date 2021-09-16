@@ -21,13 +21,10 @@ class TabWished extends StatefulWidget {
 }
 
 class _TabWishedState extends State<TabWished> {
-  late List<Sight> _listOfItems;
-  late List<Sight> _allInterestingPlaces;
-
   @override
   Widget build(BuildContext context) {
-    _listOfItems = context.watch<PlaceInteractor>().getFavoritesPlaces;
-    //_allInterestingPlaces = context.watch<PlaceInteractor>().getPlaces;
+    final List<Sight> _listOfItems =
+        context.watch<PlaceInteractor>().getFavoritesPlaces;
 
     if (_listOfItems.isEmpty) {
       return const WidgetEmptyList(
@@ -55,10 +52,17 @@ class _TabWishedState extends State<TabWished> {
                         onTap: () {
                           onTapOnCard(i.value.id);
                         },
-                        onDeleteFromList: () {
-                          onDeleteFromList(i.key);
+                        onAddToCalendar: () {
+                          context.read<PlaceInteractor>().schedulePlace(
+                                context,
+                                i.value.id,
+                              );
                         },
-                        onAddToCalendar: onAddToCalendar,
+                        onDeleteFromWished: () {
+                          context
+                              .read<PlaceInteractor>()
+                              .removeFromFavorites(_listOfItems[i.key].id);
+                        },
                       ),
                     ],
                   ),
@@ -78,39 +82,5 @@ class _TabWishedState extends State<TabWished> {
         sightID: id,
       ),
     );
-  }
-
-  Future<void> onAddToCalendar() async {
-    late final DateTime? _result;
-    if (PlatformDetector.isAndroid || PlatformDetector.isWeb) {
-      _result = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime.now().subtract(const Duration(days: 1)),
-        lastDate: DateTime.now().add(const Duration(days: 365)),
-      );
-    }
-    if (PlatformDetector.isIOS) {
-      _result = await showCupertinoModalPopup(
-        context: context,
-        builder: (context) {
-          return const AddToCalendarCuperModal();
-        },
-      );
-    }
-
-    if (_result != null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('added to calendar at $_result'),
-        ),
-      );
-    }
-  }
-
-  void onDeleteFromList(int index) {
-    setState(() {
-      _listOfItems.removeAt(index);
-    });
   }
 }
