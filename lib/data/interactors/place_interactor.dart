@@ -7,7 +7,7 @@ import 'package:places/data/models/filter_item.dart';
 import 'package:places/data/models/object_location.dart';
 import 'package:places/ui/my_app/platform_detector.dart';
 
-import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
+import 'package:places/ui/screens/place_details_screen/place_details_screen.dart';
 
 import 'package:places/data/repositories/place_repository.dart';
 import 'package:places/data/models/place.dart';
@@ -24,13 +24,13 @@ class PlaceInteractor with ChangeNotifier {
   static PlaceInteractor? _instance;
   // </singleton>
 
-  List<Sight> allPlaces = [];
+  List<Place> allPlaces = [];
 
   final placeRepository = PlaceRepository();
   final geoInteractor = GeoInteractor();
   final filterInteractor = FilterInteractor();
 
-  List<Sight> getPlaces({
+  List<Place> getPlaces({
     required int radius,
     required List<FilterItem> categories,
   }) {
@@ -41,7 +41,7 @@ class PlaceInteractor with ChangeNotifier {
 
     // filtering and sorting
     updateDistancesToUser();
-    final List<Sight> _filteredAndSortedPlacesList = allPlaces
+    final List<Place> _filteredAndSortedPlacesList = allPlaces
         .where((element) => _selectedCategories
             .any((e) => element.type.toLowerCase() == e.toLowerCase()))
         .toList()
@@ -65,20 +65,20 @@ class PlaceInteractor with ChangeNotifier {
   }
 
   /// отображается на экране "Список интересных мест" и фильтруется в результатах Поиска
-  List<Sight> get filteredPlaces {
+  List<Place> get filteredPlaces {
     return getPlaces(
         radius: filterInteractor.radius,
         categories: filterInteractor.filterItems);
   }
 
-  Sight getPlaceDetails(int id) {
+  Place getPlaceDetails(int id) {
     return allPlaces[indexOfPlaceInAllById(id)];
   }
 
-  List<Sight> get getFavoritesPlaces =>
+  List<Place> get getFavoritesPlaces =>
       allPlaces.where((s) => s.wished).toList();
 
-  List<Sight> get getVisitedPlaces => allPlaces.where((s) => s.seen).toList();
+  List<Place> get getVisitedPlaces => allPlaces.where((s) => s.seen).toList();
 
   void removeFromFavorites(int id) {
     allPlaces[indexOfPlaceInAllById(id)].wished = false;
@@ -118,8 +118,8 @@ class PlaceInteractor with ChangeNotifier {
     showModalBottomSheet<bool>(
       isScrollControlled: true,
       context: context,
-      builder: (_) => SightDetailsScreen(
-        sightID: id,
+      builder: (_) => PlaceDetailsScreen(
+        placeId: id,
       ),
     );
   }
@@ -183,7 +183,7 @@ class PlaceInteractor with ChangeNotifier {
   }) {
     final random = Random();
     allPlaces.add(
-      Sight(
+      Place(
         name: name,
         lat: lat,
         lon: lon,

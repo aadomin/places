@@ -5,20 +5,20 @@ import 'package:flutter/services.dart';
 
 import 'package:places/ui/my_app/routes.dart';
 import 'package:places/ui/my_app/my_scroll_physics.dart';
-import 'package:places/ui/screens/add_sight_screen/widget_category_header.dart';
-import 'package:places/ui/screens/add_sight_screen/dialog_add_photo.dart';
+import 'package:places/ui/screens/add_place_screen/widget_category_header.dart';
+import 'package:places/ui/screens/add_place_screen/dialog_add_photo.dart';
 import 'package:places/ui/screens/select_category_screen/select_category_screen_model.dart';
 import 'package:places/ui/widgets/my_image_widget.dart';
 
 import 'package:places/data/interactors/place_interactor.dart';
 
-class AddSightScreen extends StatefulWidget {
-  const AddSightScreen({Key? key}) : super(key: key);
+class AddPlaceScreen extends StatefulWidget {
+  const AddPlaceScreen({Key? key}) : super(key: key);
   @override
-  _AddSightScreenState createState() => _AddSightScreenState();
+  _AddPlaceScreenState createState() => _AddPlaceScreenState();
 }
 
-class _AddSightScreenState extends State<AddSightScreen> {
+class _AddPlaceScreenState extends State<AddPlaceScreen> {
   FocusNode focusNodeName = FocusNode();
   FocusNode focusNodeLat = FocusNode();
   FocusNode focusNodeLon = FocusNode();

@@ -4,13 +4,13 @@ import 'package:provider/provider.dart';
 import 'package:places/enums.dart';
 import 'package:places/ui/my_app/ui_strings.dart';
 import 'package:places/data/interactors/search_interactor.dart';
-import 'package:places/ui/widgets/sight_card_for_search.dart';
+import 'package:places/ui/widgets/place_card_for_search.dart';
 import 'package:places/ui/widgets/headers.dart';
 
 import 'package:places/data/models/place.dart';
 
-class SightSearchScreen extends StatelessWidget {
-  SightSearchScreen({Key? key}) : super(key: key);
+class PlaceSearchScreen extends StatelessWidget {
+  PlaceSearchScreen({Key? key}) : super(key: key);
 
   final FocusNode focusNode1 = FocusNode();
 
@@ -98,13 +98,13 @@ class WidgetSearchResult extends StatelessWidget {
   const WidgetSearchResult({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final List<Sight> searchResults =
+    final List<Place> searchResults =
         context.watch<SearchInteractor>().searchResult;
     return Column(
       children: [
         for (var i = 0; i < searchResults.length; i++)
-          SightCartForSearch(
-            sight: context.watch<SearchInteractor>().searchResult[i],
+          PlaceCartForSearch(
+            place: context.watch<SearchInteractor>().searchResult[i],
           ),
       ],
     );

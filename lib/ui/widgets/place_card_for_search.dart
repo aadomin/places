@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
+import 'package:places/ui/screens/place_details_screen/place_details_screen.dart';
 import 'package:places/ui/widgets/my_image_widget.dart';
 
 import 'package:places/data/models/place.dart';
 
-class SightCartForSearch extends StatelessWidget {
-  const SightCartForSearch({
-    required this.sight,
+class PlaceCartForSearch extends StatelessWidget {
+  const PlaceCartForSearch({
+    required this.place,
     Key? key,
   }) : super(key: key);
 
-  final Sight sight;
+  final Place place;
 
   @override
   Widget build(BuildContext context) {
@@ -22,13 +22,13 @@ class SightCartForSearch extends StatelessWidget {
             showModalBottomSheet<bool>(
               isScrollControlled: true,
               context: context,
-              builder: (_) => SightDetailsScreen(
-                sightID: sight.id,
+              builder: (_) => PlaceDetailsScreen(
+                placeId: place.id,
               ),
             );
           },
-          leading: WidgetImageWithRoundedCorners(sight: sight),
-          title: WidgetSearchDescriptionOfPlace(sight: sight),
+          leading: WidgetImageWithRoundedCorners(place: place),
+          title: WidgetSearchDescriptionOfPlace(place: place),
         ),
         const Divider(),
       ],
@@ -38,11 +38,11 @@ class SightCartForSearch extends StatelessWidget {
 
 class WidgetSearchDescriptionOfPlace extends StatelessWidget {
   const WidgetSearchDescriptionOfPlace({
-    required this.sight,
+    required this.place,
     Key? key,
   }) : super(key: key);
 
-  final Sight sight;
+  final Place place;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +52,7 @@ class WidgetSearchDescriptionOfPlace extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
           child: Text(
-            sight.name,
+            place.name,
             maxLines: 2,
             style: TextStyle(
                 color: Theme.of(context).primaryColor,
@@ -60,7 +60,7 @@ class WidgetSearchDescriptionOfPlace extends StatelessWidget {
           ),
         ),
         Text(
-          sight.type,
+          place.type,
           maxLines: 1,
           style: TextStyle(color: Theme.of(context).primaryColorLight),
         ),
@@ -71,11 +71,11 @@ class WidgetSearchDescriptionOfPlace extends StatelessWidget {
 
 class WidgetImageWithRoundedCorners extends StatelessWidget {
   const WidgetImageWithRoundedCorners({
-    required this.sight,
+    required this.place,
     Key? key,
   }) : super(key: key);
 
-  final Sight sight;
+  final Place place;
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +87,7 @@ class WidgetImageWithRoundedCorners extends StatelessWidget {
           Radius.circular(12),
         ),
         child: MyImageWidget(
-          url: sight.url,
+          url: place.url,
           fit: BoxFit.cover,
         ),
       ),

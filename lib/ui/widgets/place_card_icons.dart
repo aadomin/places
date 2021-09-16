@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:places/enums.dart';
 
-class WidgetSightCardIcons extends StatelessWidget {
-  const WidgetSightCardIcons({
+class WidgetPlaceCardIcons extends StatelessWidget {
+  const WidgetPlaceCardIcons({
     required this.placeCardType,
     this.onAddToWished,
     this.onAddToCalendar,
@@ -13,7 +13,7 @@ class WidgetSightCardIcons extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final SightCardType placeCardType;
+  final PlaceCardType placeCardType;
 
   final VoidCallback? onAddToWished;
 
@@ -26,7 +26,7 @@ class WidgetSightCardIcons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (placeCardType) {
-      case SightCardType.general:
+      case PlaceCardType.general:
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -39,7 +39,7 @@ class WidgetSightCardIcons extends StatelessWidget {
             ),
           ],
         );
-      case SightCardType.wished:
+      case PlaceCardType.wished:
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -59,7 +59,7 @@ class WidgetSightCardIcons extends StatelessWidget {
             ),
           ],
         );
-      case SightCardType.seen:
+      case PlaceCardType.seen:
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [

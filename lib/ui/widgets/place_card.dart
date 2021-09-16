@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:places/enums.dart';
 import 'package:places/ui/my_app/ui_strings.dart';
 import 'package:places/ui/widgets/my_image_widget.dart';
-import 'package:places/ui/widgets/sight_card_icons.dart';
+import 'package:places/ui/widgets/place_card_icons.dart';
 
 import 'package:places/data/models/place.dart';
 
-class SightCard extends StatelessWidget {
-  const SightCard({
-    required this.sight,
+class PlaceCard extends StatelessWidget {
+  const PlaceCard({
+    required this.place,
     required this.placeCardType,
     required this.onTap,
     this.onAddToWished,
@@ -21,8 +21,8 @@ class SightCard extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final Sight sight;
-  final SightCardType placeCardType;
+  final Place place;
+  final PlaceCardType placeCardType;
 
   final VoidCallback onTap;
 
@@ -39,15 +39,15 @@ class SightCard extends StatelessWidget {
 
     late String textWhenDeletion;
     switch (placeCardType) {
-      case SightCardType.general:
+      case PlaceCardType.general:
         textWhenDeletion = UiStrings.delAtAll;
         onDismissedAction = (DismissDirection _) => onDeleteAtAll?.call();
         break;
-      case SightCardType.seen:
+      case PlaceCardType.seen:
         textWhenDeletion = UiStrings.delFromSeen;
         onDismissedAction = (DismissDirection _) => onDeleteFromSeen?.call();
         break;
-      case SightCardType.wished:
+      case PlaceCardType.wished:
         textWhenDeletion = UiStrings.delFromWished;
         onDismissedAction = (DismissDirection _) => onDeleteFromWished?.call();
         break;
@@ -56,7 +56,7 @@ class SightCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Dismissible(
-        key: ValueKey(sight.id),
+        key: ValueKey(place.id),
         onDismissed: onDismissedAction,
         background: Container(
           alignment: Alignment.centerLeft,
@@ -113,7 +113,7 @@ class SightCard extends StatelessWidget {
                         topRight: Radius.circular(12),
                       ),
                       child: MyImageWidget(
-                        url: sight.url,
+                        url: place.url,
                         fit: BoxFit.fitWidth,
                       ),
                     ),
@@ -123,7 +123,7 @@ class SightCard extends StatelessWidget {
                         const EdgeInsets.only(top: 16, right: 16, left: 16),
                     alignment: Alignment.topLeft,
                     child: Text(
-                      sight.name,
+                      place.name,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -135,7 +135,7 @@ class SightCard extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 4, right: 16, left: 16),
                     alignment: Alignment.topLeft,
                     child: Text(
-                      sight.details,
+                      place.details,
                       style: TextStyle(
                         color: Theme.of(context).primaryColorLight,
                       ),
@@ -150,7 +150,7 @@ class SightCard extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 width: double.infinity,
                 child: Text(
-                  sight.type,
+                  place.type,
                   style: const TextStyle(
                     color: Colors.white,
                   ),
@@ -162,7 +162,7 @@ class SightCard extends StatelessWidget {
               Container(
                 alignment: Alignment.topRight,
                 padding: const EdgeInsets.all(16),
-                child: WidgetSightCardIcons(
+                child: WidgetPlaceCardIcons(
                   placeCardType: placeCardType,
                   onDeleteFromSeen: onDeleteFromSeen,
                   onDeleteFromWished: onDeleteFromWished,

@@ -6,9 +6,9 @@ import 'package:places/ui/my_app/routes.dart';
 import 'package:places/ui/my_app/platform_detector.dart';
 import 'package:places/ui/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:places/ui/screens/filter_screen/filters_screen.dart';
-import 'package:places/ui/screens/add_sight_screen/add_sight_screen.dart';
+import 'package:places/ui/screens/add_place_screen/add_place_screen.dart';
 import 'package:places/ui/screens/select_category_screen/select_category_screen.dart';
-import 'package:places/ui/screens/sight_search_screen/sight_search_screen.dart';
+import 'package:places/ui/screens/place_search_screen/place_search_screen.dart';
 import 'package:places/ui/screens/main_screen/main_screen.dart';
 import 'package:places/ui/screens/splash_screen/splash_screen.dart';
 
@@ -28,9 +28,9 @@ class MyApp extends StatelessWidget {
       routes: {
         ROUTE_HOME: (context) => const AllMainScreens(),
         ROUTE_FILTER: (context) => const FiltersScreen(),
-        ROUTE_ADD: (context) => const AddSightScreen(),
+        ROUTE_ADD: (context) => const AddPlaceScreen(),
         ROUTE_SELECT_CATEGORY: (context) => const SelectCategory(),
-        ROUTE_SEARCH: (context) => SightSearchScreen(),
+        ROUTE_SEARCH: (context) => PlaceSearchScreen(),
         ROUTE_ONBOARDING: (context) => const OnboardingScreen(),
         ROUTE_SPLASH: (context) => const SplashScreen(),
       },

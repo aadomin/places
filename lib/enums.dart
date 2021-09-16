@@ -1,3 +1,3 @@
 enum SearchStatus { empty, haveResult, notFound }
 
-enum SightCardType { general, wished, seen }
+enum PlaceCardType { general, wished, seen }

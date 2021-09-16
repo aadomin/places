@@ -26,7 +26,7 @@ class SearchInteractor with ChangeNotifier {
   final searchRepository = SearchRepository();
 
   var searchStatus = SearchStatus.empty;
-  List<Sight> _searchResult = [];
+  List<Place> _searchResult = [];
   String _searchText = '';
 
   late final List<String> _lastSearches;
@@ -36,7 +36,7 @@ class SearchInteractor with ChangeNotifier {
     return _lastSearches;
   }
 
-  List<Sight> get searchResult {
+  List<Place> get searchResult {
     return _searchResult;
   }
 
@@ -48,7 +48,7 @@ class SearchInteractor with ChangeNotifier {
 
   void doSearchItSelf(String searchText) {
     _searchText = searchText;
-    final List<Sight> result = [];
+    final List<Place> result = [];
 
     if (_searchText == '') {
       searchStatus = SearchStatus.empty;

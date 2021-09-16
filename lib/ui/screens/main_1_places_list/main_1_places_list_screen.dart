@@ -6,13 +6,13 @@ import 'package:places/enums.dart';
 import 'package:places/ui/my_app/routes.dart';
 import 'package:places/ui/my_app/ui_strings.dart';
 import 'package:places/ui/my_app/my_scroll_physics.dart';
-import 'package:places/ui/screens/main_1_sight_list/main_1_widget_app_bar.dart';
-import 'package:places/ui/widgets/sight_card.dart';
+import 'package:places/ui/screens/main_1_places_list/main_1_widget_app_bar.dart';
+import 'package:places/ui/widgets/place_card.dart';
 
 import 'package:places/data/interactors/place_interactor.dart';
 
-class SightListScreen extends StatelessWidget {
-  SightListScreen({Key? key}) : super(key: key);
+class PlacesListScreen extends StatelessWidget {
+  PlacesListScreen({Key? key}) : super(key: key);
 
   final FocusNode focusNode1 = FocusNode();
 
@@ -20,7 +20,7 @@ class SightListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Sight> filteredPlaces =
+    final List<Place> filteredPlaces =
         context.watch<PlaceInteractor>().filteredPlaces;
 
     final placeInteractor = Provider.of<PlaceInteractor>(context);
@@ -88,9 +88,9 @@ class SightListScreen extends StatelessWidget {
                   delegate: SliverChildBuilderDelegate(
                     (context, i) => Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: SightCard(
-                        sight: filteredPlaces[i],
-                        placeCardType: SightCardType.general,
+                      child: PlaceCard(
+                        place: filteredPlaces[i],
+                        placeCardType: PlaceCardType.general,
                         onTap: () {
                           onTap(context, filteredPlaces[i].id);
                         },
@@ -127,9 +127,9 @@ class SightListScreen extends StatelessWidget {
                     for (var i = 0; i < filteredPlaces.length; i++)
                       Padding(
                         padding: const EdgeInsets.all(16.0),
-                        child: SightCard(
-                          sight: filteredPlaces[i],
-                          placeCardType: SightCardType.wished,
+                        child: PlaceCard(
+                          place: filteredPlaces[i],
+                          placeCardType: PlaceCardType.wished,
                           onTap: () {
                             onTap(context, filteredPlaces[i].id);
                           },

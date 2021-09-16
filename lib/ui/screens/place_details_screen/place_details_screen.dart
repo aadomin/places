@@ -4,34 +4,34 @@ import 'package:provider/provider.dart';
 
 import 'package:places/ui/my_app/ui_strings.dart';
 import 'package:places/ui/my_app/my_scroll_physics.dart';
-import 'package:places/ui/screens/sight_details_screen/widget_back_button.dart';
+import 'package:places/ui/screens/place_details_screen/widget_back_button.dart';
 import 'package:places/ui/widgets/my_image_widget.dart';
 
 import 'package:places/data/models/place.dart';
 
-class SightDetailsScreen extends StatefulWidget {
-  const SightDetailsScreen({
-    required this.sightID,
+class PlaceDetailsScreen extends StatefulWidget {
+  const PlaceDetailsScreen({
+    required this.placeId,
     Key? key,
   }) : super(key: key);
-  final int sightID;
+  final int placeId;
 
   @override
-  _SightDetailsScreenState createState() => _SightDetailsScreenState();
+  _PlaceDetailsScreenState createState() => _PlaceDetailsScreenState();
 }
 
-class _SightDetailsScreenState extends State<SightDetailsScreen> {
+class _PlaceDetailsScreenState extends State<PlaceDetailsScreen> {
   final PageController _pageController = PageController();
 
   double _selectedPage = 0;
 
   final int _countOfPages = 4;
 
-  late Sight sight;
+  late Place sight;
 
   @override
   Widget build(BuildContext context) {
-    sight = context.watch<PlaceInteractor>().getPlaceDetails(widget.sightID);
+    sight = context.watch<PlaceInteractor>().getPlaceDetails(widget.placeId);
 
     return Padding(
       padding: const EdgeInsets.only(top: 100),

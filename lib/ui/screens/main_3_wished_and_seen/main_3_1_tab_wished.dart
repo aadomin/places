@@ -4,24 +4,27 @@ import 'package:provider/provider.dart';
 
 import 'package:places/enums.dart';
 import 'package:places/ui/my_app/my_scroll_physics.dart';
-import 'package:places/ui/widgets/sight_card.dart';
-import 'package:places/ui/screens/main_3_wished_ans_seen/main_3_3_empty_list.dart';
-import 'package:places/ui/screens/sight_details_screen/sight_details_screen.dart';
+import 'package:places/ui/my_app/platform_detector.dart';
+import 'package:places/ui/widgets/place_card.dart';
+import 'package:places/ui/screens/main_3_wished_and_seen/main_3_3_empty_list.dart';
+import 'package:places/ui/widgets/widget_add_to_calendar_cuper_modal.dart';
+import 'package:places/ui/screens/place_details_screen/place_details_screen.dart';
 
 import 'package:places/data/models/place.dart';
 import 'package:places/data/interactors/place_interactor.dart';
 
-class TabSeen extends StatefulWidget {
-  const TabSeen({Key? key}) : super(key: key);
+class TabWished extends StatefulWidget {
+  const TabWished({Key? key}) : super(key: key);
+
   @override
-  _TabSeenState createState() => _TabSeenState();
+  _TabWishedState createState() => _TabWishedState();
 }
 
-class _TabSeenState extends State<TabSeen> {
+class _TabWishedState extends State<TabWished> {
   @override
   Widget build(BuildContext context) {
-    final List<Sight> _listOfItems =
-        context.watch<PlaceInteractor>().getVisitedPlaces;
+    final List<Place> _listOfItems =
+        context.watch<PlaceInteractor>().getFavoritesPlaces;
 
     if (_listOfItems.isEmpty) {
       return const WidgetEmptyList(
@@ -43,19 +46,22 @@ class _TabSeenState extends State<TabSeen> {
                 .map(
                   (i) => Column(
                     children: [
-                      SightCard(
-                        sight: i.value,
-                        placeCardType: SightCardType.seen,
+                      PlaceCard(
+                        place: i.value,
+                        placeCardType: PlaceCardType.wished,
                         onTap: () {
                           onTapOnCard(i.value.id);
                         },
-                        onShare: () {
-                          //TODO implement sharing
+                        onAddToCalendar: () {
+                          context.read<PlaceInteractor>().schedulePlace(
+                                context,
+                                i.value.id,
+                              );
                         },
-                        onDeleteFromSeen: () {
+                        onDeleteFromWished: () {
                           context
                               .read<PlaceInteractor>()
-                              .removeFromVisited(_listOfItems[i.key].id);
+                              .removeFromFavorites(_listOfItems[i.key].id);
                         },
                       ),
                     ],
@@ -72,8 +78,8 @@ class _TabSeenState extends State<TabSeen> {
     showModalBottomSheet<bool>(
       isScrollControlled: true,
       context: context,
-      builder: (_) => SightDetailsScreen(
-        sightID: id,
+      builder: (_) => PlaceDetailsScreen(
+        placeId: id,
       ),
     );
   }
