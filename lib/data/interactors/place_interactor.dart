@@ -1,12 +1,11 @@
 import 'dart:math';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/data/interactors/geo_interactor.dart';
 import 'package:places/data/interactors/filter_interactor.dart';
 import 'package:places/data/models/filter_item.dart';
-import 'package:places/data/models/object_location.dart';
 import 'package:places/ui/my_app/platform_detector.dart';
-
 import 'package:places/ui/screens/place_details_screen/place_details_screen.dart';
 
 import 'package:places/data/repositories/place_repository.dart';
@@ -19,16 +18,22 @@ class PlaceInteractor with ChangeNotifier {
   PlaceInteractor._internal() {
     _instance = this;
     //
-    allPlaces = placeRepository.loadedPlaces;
+
+    placeRepository = PlaceRepository();
+    initPlaces(); //асинхронно будет
   }
   static PlaceInteractor? _instance;
   // </singleton>
 
-  List<Place> allPlaces = [];
-
-  final placeRepository = PlaceRepository();
+  late final PlaceRepository placeRepository;
   final geoInteractor = GeoInteractor();
   final filterInteractor = FilterInteractor();
+
+  List<Place> allPlaces = [];
+  Future<void> initPlaces() async {
+    allPlaces = await placeRepository.loadPlaces();
+    notifyListeners();
+  }
 
   List<Place> getPlaces({
     required int radius,
@@ -122,6 +127,10 @@ class PlaceInteractor with ChangeNotifier {
         placeId: id,
       ),
     );
+  }
+
+  void refresh() {
+    notifyListeners();
   }
 
   List<String> get listOfInitialPhotosForAdding =>

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-bool isMocking = true;
+import 'package:places/ui/my_app/my_app.dart';
 
 /// Для отладки - для того, чтобы работал flutter for web подменяет
 /// url картинки моковой картинкой
@@ -16,7 +15,7 @@ class MyImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isMocking
+    return isDebugMode
         ? Image.asset(
             'res/images/mock.jpg',
             fit: fit,

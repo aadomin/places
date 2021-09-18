@@ -28,129 +28,133 @@ class PlacesListScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          CustomScrollView(
-            physics: MyScrollPhysics.physics,
-            slivers: [
-              // Свой AppBar
-              SliverPersistentHeader(
-                delegate: MySliverAppBar(expandedHeight: 150.0),
-                pinned: true,
-              ),
+          filteredPlaces.isEmpty
+              ? Center(child: const CircularProgressIndicator())
+              : CustomScrollView(
+                  physics: MyScrollPhysics.physics,
+                  slivers: [
+                    // Свой AppBar
+                    SliverPersistentHeader(
+                      delegate: MySliverAppBar(expandedHeight: 150.0),
+                      pinned: true,
+                    ),
 
-              // Поиск
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Stack(
-                    children: [
-                      TextField(
-                        focusNode: focusNode1,
-                        readOnly: true,
-                        onTap: () {
-                          focusNode1.unfocus();
-                          Navigator.pushNamed(context, ROUTE_SEARCH);
-                        },
-                        decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.search, size: 15),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          hintText: UiStrings.searching,
-                          contentPadding: const EdgeInsets.symmetric(
-                              vertical: 10.0, horizontal: 10),
+                    // Поиск
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Stack(
+                          children: [
+                            TextField(
+                              focusNode: focusNode1,
+                              readOnly: true,
+                              onTap: () {
+                                focusNode1.unfocus();
+                                Navigator.pushNamed(context, ROUTE_SEARCH);
+                              },
+                              decoration: InputDecoration(
+                                prefixIcon: const Icon(Icons.search, size: 15),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                hintText: UiStrings.searching,
+                                contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 10.0, horizontal: 10),
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: IconButton(
+                                onPressed: () {
+                                  focusNode1.unfocus();
+                                  Navigator.pushNamed(context, ROUTE_FILTER);
+                                },
+                                icon: Icon(
+                                  Icons.settings,
+                                  size: 15,
+                                  color: Theme.of(context).accentColor,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: IconButton(
-                          onPressed: () {
-                            focusNode1.unfocus();
-                            Navigator.pushNamed(context, ROUTE_FILTER);
-                          },
-                          icon: Icon(
-                            Icons.settings,
-                            size: 15,
-                            color: Theme.of(context).accentColor,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              //
-              // ОСНОВНОЙ СПИСОК
-              // для маленьких экранов
-              //
-              if (MediaQuery.of(context).size.width <= criticalWidth)
-                SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, i) => Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: PlaceCard(
-                        place: filteredPlaces[i],
-                        placeCardType: PlaceCardType.general,
-                        onTap: () {
-                          onTap(context, filteredPlaces[i].id);
-                        },
-                        onAddToWished: () {
-                          if (filteredPlaces[i].wished) {
-                            placeInteractor
-                                .removeFromFavorites(filteredPlaces[i].id);
-                          } else {
-                            placeInteractor
-                                .addToFavorites(filteredPlaces[i].id);
-                          }
-                        },
-                        onDeleteAtAll: () {
-                          placeInteractor.removeAtAll(filteredPlaces[i].id);
-                        },
                       ),
                     ),
-                    childCount: filteredPlaces.length,
-                  ),
-                ),
-              //
-              // для больших экранов
-              //
-              if (MediaQuery.of(context).size.width > criticalWidth)
-                SliverGrid(
-                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: criticalWidth,
-                    // удачная формула соотношения
-                    childAspectRatio: MediaQuery.of(context).size.width /
-                        criticalWidth *
-                        1.55,
-                  ),
-                  delegate: SliverChildListDelegate([
-                    for (var i = 0; i < filteredPlaces.length; i++)
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: PlaceCard(
-                          place: filteredPlaces[i],
-                          placeCardType: PlaceCardType.wished,
-                          onTap: () {
-                            onTap(context, filteredPlaces[i].id);
-                          },
-                          onAddToWished: () {
-                            if (filteredPlaces[i].wished) {
-                              placeInteractor
-                                  .removeFromFavorites(filteredPlaces[i].id);
-                            } else {
-                              placeInteractor
-                                  .addToFavorites(filteredPlaces[i].id);
-                            }
-                          },
-                          onDeleteAtAll: () {
-                            placeInteractor.removeAtAll(filteredPlaces[i].id);
-                          },
+
+                    //
+                    // ОСНОВНОЙ СПИСОК
+                    // для маленьких экранов
+                    //
+                    if (MediaQuery.of(context).size.width <= criticalWidth)
+                      SliverList(
+                        delegate: SliverChildBuilderDelegate(
+                          (context, i) => Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: PlaceCard(
+                              place: filteredPlaces[i],
+                              placeCardType: PlaceCardType.general,
+                              onTap: () {
+                                onTap(context, filteredPlaces[i].id);
+                              },
+                              onAddToWished: () {
+                                if (filteredPlaces[i].wished) {
+                                  placeInteractor.removeFromFavorites(
+                                      filteredPlaces[i].id);
+                                } else {
+                                  placeInteractor
+                                      .addToFavorites(filteredPlaces[i].id);
+                                }
+                              },
+                              onDeleteAtAll: () {
+                                placeInteractor
+                                    .removeAtAll(filteredPlaces[i].id);
+                              },
+                            ),
+                          ),
+                          childCount: filteredPlaces.length,
                         ),
                       ),
-                  ]),
+                    //
+                    // для больших экранов
+                    //
+                    if (MediaQuery.of(context).size.width > criticalWidth)
+                      SliverGrid(
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: criticalWidth,
+                          // удачная формула соотношения
+                          childAspectRatio: MediaQuery.of(context).size.width /
+                              criticalWidth *
+                              1.55,
+                        ),
+                        delegate: SliverChildListDelegate([
+                          for (var i = 0; i < filteredPlaces.length; i++)
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: PlaceCard(
+                                place: filteredPlaces[i],
+                                placeCardType: PlaceCardType.wished,
+                                onTap: () {
+                                  onTap(context, filteredPlaces[i].id);
+                                },
+                                onAddToWished: () {
+                                  if (filteredPlaces[i].wished) {
+                                    placeInteractor.removeFromFavorites(
+                                        filteredPlaces[i].id);
+                                  } else {
+                                    placeInteractor
+                                        .addToFavorites(filteredPlaces[i].id);
+                                  }
+                                },
+                                onDeleteAtAll: () {
+                                  placeInteractor
+                                      .removeAtAll(filteredPlaces[i].id);
+                                },
+                              ),
+                            ),
+                        ]),
+                      ),
+                  ],
                 ),
-            ],
-          ),
 
           //
           // Кнопка НОВОЕ МЕСТО
@@ -184,6 +188,12 @@ class PlacesListScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+      // отладка
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          (context as Element).markNeedsBuild();
+        },
       ),
     );
   }
