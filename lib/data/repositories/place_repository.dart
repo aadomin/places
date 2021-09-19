@@ -5,15 +5,13 @@ import 'package:places/data/models/place.dart';
 import 'package:places/ui/my_app/my_app.dart';
 
 class PlaceRepository {
-  PlaceRepository();
-
   Future<List<Place>> loadPlaces() async {
     if (isDebugMode) {
       await Future<dynamic>.delayed(const Duration(seconds: 5));
       return _mocks;
     }
 
-    BaseOptions baseOptions = BaseOptions(
+    final baseOptions = BaseOptions(
       baseUrl: 'https://test-backend-flutter.surfstudio.ru',
       connectTimeout: 5000,
       receiveTimeout: 5000,
@@ -21,24 +19,19 @@ class PlaceRepository {
       responseType: ResponseType.json,
     );
     final dio = Dio(baseOptions);
+    final Response response = await dio.get<String>(
+      '/place',
+      //queryParameters: {'id': 1},
+    );
+    if (response.statusCode != 200) {
+      throw Exception('http error. Error code ${response.statusCode}');
+    }
 
-    return _mocks;
-
-    // final response = await dio.get<String>('/posts');
-    // if (response.statusCode != 200) {
-    //   throw Exception('http error. Error code ${response.statusCode}');
-    // }
-
-    //   String path = '/posts';
-    //   final dynamic postResponse = dio<String>.get(
-    //     path,
-    //     queryParameters: {'id': 1},
-    //   );
-    //   if (postResponse.statusCode != 200) {
-    //     throw Exception('http error. Error code ${postResponse.statusCode}');
-    //   }
-
-    //   return func(postResponse.data);
+    //return func(response.data);
+    return [
+      Place(id: 43, wished: true, seen: false, name: '3', type: 'музей'),
+      ..._mocks,
+    ];
   }
 }
 
