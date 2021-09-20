@@ -29,7 +29,9 @@ class PlacesListScreen extends StatelessWidget {
       body: Stack(
         children: [
           filteredPlaces.isEmpty
-              ? Center(child: const CircularProgressIndicator())
+              ? const Center(
+                  child: CircularProgressIndicator(),
+                )
               : CustomScrollView(
                   physics: MyScrollPhysics.physics,
                   slivers: [

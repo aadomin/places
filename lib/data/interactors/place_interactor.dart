@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/data/interactors/geo_interactor.dart';
@@ -18,9 +17,8 @@ class PlaceInteractor with ChangeNotifier {
   PlaceInteractor._internal() {
     _instance = this;
     //
-
     placeRepository = PlaceRepository();
-    initPlaces(); //асинхронно будет
+    initPlaces(); //асинхронно
   }
   static PlaceInteractor? _instance;
   // </singleton>
@@ -30,8 +28,10 @@ class PlaceInteractor with ChangeNotifier {
   final filterInteractor = FilterInteractor();
 
   List<Place> allPlaces = [];
+
   Future<void> initPlaces() async {
     allPlaces = await placeRepository.loadPlaces();
+    updateDistancesToUser();
     notifyListeners();
   }
 
@@ -52,9 +52,6 @@ class PlaceInteractor with ChangeNotifier {
         .toList()
           ..sort((a, b) =>
               a.currentDistanceToUser.compareTo(b.currentDistanceToUser));
-
-    //ignore: avoid_print
-    print('${_filteredAndSortedPlacesList.map((e) => e.name).toList()}');
 
     return _filteredAndSortedPlacesList;
   }
@@ -171,11 +168,11 @@ class PlaceInteractor with ChangeNotifier {
   List<String>? _listOfPhotos;
 
   List<String> get listOfPhotos {
-    // копируем изначальный список фоток, сделано пока для красоты
+    // копируем изначальный список фоток, пока для красоты
     _listOfPhotos ??= [
       ...listOfInitialPhotosForAdding,
     ];
-    return _listOfPhotos ?? []; // только для null safety
+    return _listOfPhotos ?? []; // just for null safety
   }
 
   set listOfPhotos(List<String> value) {

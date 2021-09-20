@@ -1,42 +1,46 @@
+import 'dart:convert';
 import 'package:dio/dio.dart';
 
-import 'package:places/data/interactors/place_interactor.dart';
 import 'package:places/data/models/place.dart';
 import 'package:places/ui/my_app/my_app.dart';
 
 class PlaceRepository {
   Future<List<Place>> loadPlaces() async {
-    if (isDebugMode) {
+    if (isDebugMockingMode) {
       await Future<dynamic>.delayed(const Duration(seconds: 5));
       return _mocks;
+    } else {
+      final baseOptions = BaseOptions(
+        baseUrl: 'https://test-backend-flutter.surfstudio.ru',
+        connectTimeout: 5000,
+        receiveTimeout: 5000,
+        sendTimeout: 5000,
+        // ignore: avoid_redundant_argument_values
+        responseType: ResponseType.json,
+      );
+      final dio = Dio(baseOptions);
+      final Response response = await dio.get<String>(
+        '/place',
+      );
+      if (response.statusCode != 200) {
+        throw Exception('http error. Error code ${response.statusCode}');
+      }
+      return parsePlaces(response.data.toString());
     }
+  }
 
-    final baseOptions = BaseOptions(
-      baseUrl: 'https://test-backend-flutter.surfstudio.ru',
-      connectTimeout: 5000,
-      receiveTimeout: 5000,
-      sendTimeout: 5000,
-      responseType: ResponseType.json,
-    );
-    final dio = Dio(baseOptions);
-    final Response response = await dio.get<String>(
-      '/place',
-      //queryParameters: {'id': 1},
-    );
-    if (response.statusCode != 200) {
-      throw Exception('http error. Error code ${response.statusCode}');
-    }
-
-    //return func(response.data);
-    return [
-      Place(id: 43, wished: true, seen: false, name: '3', type: 'музей'),
-      ..._mocks,
-    ];
+  List<Place> parsePlaces(String rawJson) {
+    final List postListJson = jsonDecode(rawJson) as List;
+    return postListJson
+        //ignore: avoid_annotating_with_dynamic
+        .map((dynamic placeJson) =>
+            Place.fromJson(placeJson as Map<String, dynamic>))
+        .toList();
   }
 }
 
 ///
-/// Для isDebugMode = true
+/// Для isDebugMockingMode = true
 ///
 List<String> mockOfListOfInitialImagesForAdding = [
   'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
@@ -48,7 +52,7 @@ List<String> mockOfListOfInitialImagesForAdding = [
 ];
 
 ///
-/// Для isDebugMode = true
+/// Для isDebugMockingMode = true
 ///
 final List<Place> _mocks = [
   Place(

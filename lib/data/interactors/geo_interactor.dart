@@ -23,7 +23,7 @@ class GeoInteractor {
     required double lat2,
     required double lon2,
   }) {
-    final double earthRadiusKm = 6371;
+    const double earthRadiusKm = 6371;
 
     final double dLat = degreesToRadians(lat2 - lat1);
     final double dLon = degreesToRadians(lon2 - lon1);
