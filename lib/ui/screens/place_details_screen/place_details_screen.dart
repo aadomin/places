@@ -218,23 +218,31 @@ class _PlaceDetailsScreenState extends State<PlaceDetailsScreen> {
                               ),
                             ),
                             TextButton(
-                              onPressed: () {
-                                context
-                                    .read<PlaceInteractor>()
-                                    .addToFavorites(sight.id);
-                              },
+                              onPressed: sight.wished
+                                  ? () {
+                                      context
+                                          .read<PlaceInteractor>()
+                                          .removeFromFavorites(sight.id);
+                                    }
+                                  : () {
+                                      context
+                                          .read<PlaceInteractor>()
+                                          .addToFavorites(sight.id);
+                                    },
                               child: Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(16, 6, 16, 6),
                                 child: Row(
-                                  children: const [
-                                    Icon(
+                                  children: [
+                                    const Icon(
                                       Icons.favorite,
                                       size: 12,
                                     ),
                                     Text(
-                                      '  ${UiStrings.addToFavorites}',
-                                      style: TextStyle(
+                                      sight.wished
+                                          ? '  ${UiStrings.removeFromFavorites}'
+                                          : '  ${UiStrings.addToFavorites}',
+                                      style: const TextStyle(
                                         fontSize: 14,
                                       ),
                                     ),

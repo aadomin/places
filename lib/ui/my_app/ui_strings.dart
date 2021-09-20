@@ -5,6 +5,7 @@ class UiStrings {
   static const String drawTrack = 'ПОСТРОИТЬ МАРШРУТ';
   static const String plan = 'Запланировать';
   static const String addToFavorites = 'В избранное';
+  static const String removeFromFavorites = 'Убрать из избранного';
   static const String nothingIsFounded = 'Ничего не найдено';
   static const String tryToChangeParametersOfSearch =
       'Попробуйте изменить параметры поиска';
