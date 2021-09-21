@@ -25,13 +25,11 @@ class _PlaceDetailsScreenState extends State<PlaceDetailsScreen> {
 
   double _selectedPage = 0;
 
-  final int _countOfPages = 4;
-
-  late Place sight;
-
   @override
   Widget build(BuildContext context) {
-    sight = context.watch<PlaceInteractor>().getPlaceDetails(widget.placeId);
+    final Place sight =
+        context.watch<PlaceInteractor>().getPlaceDetails(widget.placeId);
+    final int _countOfPages = sight.url.length;
 
     return Padding(
       padding: const EdgeInsets.only(top: 100),
@@ -60,12 +58,12 @@ class _PlaceDetailsScreenState extends State<PlaceDetailsScreen> {
                           });
                         },
                         children: [
-                          for (var i = 1; i <= _countOfPages; i++)
+                          for (var i = 0; i < _countOfPages; i++)
                             Container(
                               height: 300,
                               width: 300,
                               child: MyImageWidget(
-                                url: sight.url,
+                                url: sight.url[i],
                                 fit: BoxFit.cover,
                               ),
                             ),

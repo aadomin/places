@@ -40,6 +40,6 @@ class MyApp extends StatelessWidget {
 
 var platformDetector = PlatformDetector();
 const bool isDebugMode = true;
-const bool isDebugMockingMode = false;
+const bool isDebugMockingMode = true;
 const bool isDebugUserStay = true;
 const bool isDebugUserMove = false;

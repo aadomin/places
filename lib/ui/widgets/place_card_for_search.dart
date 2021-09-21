@@ -87,7 +87,7 @@ class WidgetImageWithRoundedCorners extends StatelessWidget {
           Radius.circular(12),
         ),
         child: MyImageWidget(
-          url: place.url,
+          url: place.url[0],
           fit: BoxFit.cover,
         ),
       ),

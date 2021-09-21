@@ -8,7 +8,7 @@ class Place {
     this.name = 'Example object',
     this.lat = 0,
     this.lon = 0,
-    this.url = 'http:',
+    this.url = const ['http'],
     this.details = 'Description',
     this.type = 'Type',
     this.timeOfWork = 'Закрыто до 09:00',
@@ -21,7 +21,7 @@ class Place {
         name = json['name'].toString(),
         lat = double.parse(json['lat'].toString()),
         lon = double.parse(json['lng'].toString()),
-        url = '4', //TODO
+        url = ['4'], //TODO
         details = json['description'].toString(),
         type = 'музей', //TODO
         timeOfWork = 'работает с 8:00 до 17:00',
@@ -33,7 +33,7 @@ class Place {
   final String name;
   final double lat;
   final double lon;
-  final String url;
+  final List<String> url;
   final String details;
   final String type;
   final String timeOfWork;

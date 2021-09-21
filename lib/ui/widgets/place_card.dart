@@ -113,7 +113,7 @@ class PlaceCard extends StatelessWidget {
                         topRight: Radius.circular(12),
                       ),
                       child: MyImageWidget(
-                        url: place.url,
+                        url: place.url[0],
                         fit: BoxFit.fitWidth,
                       ),
                     ),
