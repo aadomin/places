@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui/res/ui_strings.dart';
 import 'package:provider/provider.dart';
 
-import 'package:places/ui/screens/filter_screen/filters_model.dart';
-import 'package:places/ui/my_scroll_physics.dart';
+import 'package:places/ui/my_app/ui_strings.dart';
+import 'package:places/data/interactors/filter_interactor.dart';
 
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({Key? key}) : super(key: key);
@@ -47,7 +46,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
           alignment: Alignment.centerRight,
           child: TextButton(
             onPressed: () {
-              context.read<MyFilterModel>().clearSelection();
+              context.read<FilterInteractor>().clearActiveCategories();
             },
             style: TextButton.styleFrom(
               primary: Theme.of(context).accentColor,
@@ -87,14 +86,14 @@ class _FiltersScreenState extends State<FiltersScreen> {
               spacing: 20,
               children: [
                 for (var i = 0;
-                    i < context.watch<MyFilterModel>().filterItems.length;
+                    i < context.watch<FilterInteractor>().filterItems.length;
                     i++)
                   SizedBox(
                     width: 110,
                     height: 95,
                     child: TextButton(
                       onPressed: () {
-                        context.read<MyFilterModel>().switchSelection(i);
+                        context.read<FilterInteractor>().switchActiveCategories(i);
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(top: 10.0),
@@ -115,7 +114,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                                       child: Center(
                                         child: Image.asset(
                                           context
-                                              .watch<MyFilterModel>()
+                                              .watch<FilterInteractor>()
                                               .filterItems[i]
                                               .assetPath,
                                           width: 32,
@@ -126,7 +125,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                                   ),
                                 ),
                                 context
-                                        .watch<MyFilterModel>()
+                                        .watch<FilterInteractor>()
                                         .filterItems[i]
                                         .isSelected
                                     ? CheckmarkWidget(
@@ -139,7 +138,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                               padding: const EdgeInsets.fromLTRB(4, 12, 4, 0),
                               child: Text(
                                 context
-                                    .watch<MyFilterModel>()
+                                    .watch<FilterInteractor>()
                                     .filterItems[i]
                                     .name,
                                 style: const TextStyle(

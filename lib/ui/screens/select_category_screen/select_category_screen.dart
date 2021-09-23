@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui/screens/select_category_screen/select_category_model.dart';
 import 'package:provider/provider.dart';
+
+import 'package:places/ui/screens/select_category_screen/select_category_screen_model.dart';
 
 class SelectCategory extends StatelessWidget {
   const SelectCategory({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _categories = context.watch<MyCategoriesModel>().myCategories;
+    final _categories = context.watch<SelectCategoryScreenModel>().myCategories;
 
     return Scaffold(
       appBar: AppBar(
@@ -52,7 +53,7 @@ class SelectCategory extends StatelessWidget {
               return ListTile(
                 onTap: () {
                   context
-                      .read<MyCategoriesModel>()
+                      .read<SelectCategoryScreenModel>()
                       .switchCategoryCheck(item.key);
                 },
                 title: Text(item.value.name),
