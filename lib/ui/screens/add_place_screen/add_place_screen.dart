@@ -398,7 +398,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
           lon: double.parse(textControllerLon.text),
           url: 'исправить',
           details: textControllerDescription.text,
-          //TODO WTF
           type: context.read<SelectCategoryScreenModel>().currentlySelected,
         );
     Navigator.pop(context);

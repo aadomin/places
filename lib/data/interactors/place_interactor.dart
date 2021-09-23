@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:places/data/interactors/geo_interactor.dart';
 import 'package:places/data/interactors/filter_interactor.dart';
 import 'package:places/data/models/filter_item.dart';
+import 'package:places/data/repositories/mocks.dart';
 import 'package:places/ui/my_app/platform_detector.dart';
 import 'package:places/ui/screens/place_details_screen/place_details_screen.dart';
 
@@ -23,6 +24,7 @@ class PlaceInteractor with ChangeNotifier {
   static PlaceInteractor? _instance;
   // </singleton>
 
+  // MODULES
   late final PlaceRepository placeRepository;
   final geoInteractor = GeoInteractor();
   final filterInteractor = FilterInteractor();
@@ -188,19 +190,19 @@ class PlaceInteractor with ChangeNotifier {
     required String type,
   }) {
     final random = Random();
-    allPlaces.add(
-      Place(
-        name: name,
-        lat: lat,
-        lon: lon,
-        url: [url],
-        details: details,
-        type: type,
-        id: random.nextInt(293812572),
-        wished: false,
-        seen: false,
-      ),
+
+    final newPlace = Place(
+      name: name,
+      lat: lat,
+      lon: lon,
+      url: [url],
+      details: details,
+      type: type,
+      id: random.nextInt(50000),
     );
+    placeRepository.addPlace(newPlace);
+    allPlaces.add(newPlace);
+    
     notifyListeners();
   }
 }

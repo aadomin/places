@@ -8,8 +8,8 @@ class GeoRepository {
     final random = Random();
     if (isDebugUserStay) {
       return ObjectLocation(
-        latitude: 50,
-        longitude: 50,
+        latitude: 54,
+        longitude: 54,
       );
     } else if (isDebugUserMove) {
       return ObjectLocation(

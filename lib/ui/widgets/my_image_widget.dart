@@ -15,24 +15,27 @@ class MyImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isDebugMode
-        ? Image.asset(
-            'res/images/mock.jpg',
-            fit: fit,
-          )
-        : Image.network(
-            url,
-            fit: fit,
-            loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress == null) return child;
-              return const Center(
-                child: SizedBox(
-                  width: 20,
-                  height: 20,
-                  child: CircularProgressIndicator(),
-                ),
-              );
-            },
-          );
+    // отладочный режим
+    if (isDebugMockImagesInPlaceOfHttp) {
+      return Image.asset(
+        'res/images/mock.jpg',
+        fit: fit,
+      );
+    }
+
+    return Image.network(
+      url,
+      fit: fit,
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) return child;
+        return const Center(
+          child: SizedBox(
+            width: 20,
+            height: 20,
+            child: CircularProgressIndicator(),
+          ),
+        );
+      },
+    );
   }
 }

@@ -1,14 +1,25 @@
-// import 'dart:io';
-// import 'package:flutter/foundation.dart' show kIsWeb;
+import 'dart:io';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 ///
 /// Этот класс нужен потому что dart:io не поддерживается Flutter for Web
 ///
 class PlatformDetector {
-  //
-  // TODO сделать детектор платформы, чтобы веб тоже определял
-  // все что ниже - временно
+  PlatformDetector() {
+    // сначала проверяем именно веб, иначе ошибка импорт io!
+    if (kIsWeb) {
+      PlatformDetector.isWeb = true;
+    } else {
+      if (Platform.isAndroid) {
+        PlatformDetector.isAndroid = true;
+      }
+      if (Platform.isIOS) {
+        PlatformDetector.isIOS = true;
+      }
+    }
+  }
+
   static bool isAndroid = false;
-  static bool isIOS = true;
+  static bool isIOS = false;
   static bool isWeb = false;
 }

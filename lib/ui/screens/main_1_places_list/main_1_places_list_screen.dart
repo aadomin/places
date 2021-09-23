@@ -191,12 +191,6 @@ class PlacesListScreen extends StatelessWidget {
           ),
         ],
       ),
-      // отладка
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          (context as Element).markNeedsBuild();
-        },
-      ),
     );
   }
 
