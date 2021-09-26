@@ -18,6 +18,7 @@ class PlaceCard extends StatelessWidget {
     this.onShare,
     this.onDeleteFromSeen,
     this.onDeleteAtAll,
+    this.isLiked,
     Key? key,
   }) : super(key: key);
 
@@ -32,6 +33,8 @@ class PlaceCard extends StatelessWidget {
   final VoidCallback? onShare;
   final VoidCallback? onDeleteFromSeen;
   final VoidCallback? onDeleteAtAll;
+
+  final bool? isLiked;
 
   @override
   Widget build(BuildContext context) {
@@ -167,6 +170,9 @@ class PlaceCard extends StatelessWidget {
                   onDeleteFromSeen: onDeleteFromSeen,
                   onDeleteFromWished: onDeleteFromWished,
                   onAddToCalendar: onAddToCalendar,
+                  onAddToWished: onAddToWished,
+                  onShare: onShare,
+                  isLiked: isLiked,
                 ),
               ),
             ],
