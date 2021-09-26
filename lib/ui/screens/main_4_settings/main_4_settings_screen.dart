@@ -48,7 +48,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             trailing: Switch(
               value: context.watch<SettingsInteractor>().isDarkThemeOn,
-              onChanged: onTapOnThemeSwitch,
+              onChanged: (currentValue) {
+                onTapOnThemeSwitch();
+              },
             ),
           ),
           ListTile(
@@ -77,8 +79,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     Navigator.of(context).pushNamed(ROUTE_ONBOARDING);
   }
 
-  // ignore: avoid_annotating_with_dynamic
-  void onTapOnThemeSwitch(dynamic currentValue) {
+  void onTapOnThemeSwitch() {
     context.read<SettingsInteractor>().changeTheme();
   }
 
