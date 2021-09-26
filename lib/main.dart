@@ -3,42 +3,30 @@ import 'package:provider/provider.dart';
 
 import 'package:places/ui/my_app/my_app.dart';
 
-import 'package:places/ui/my_app/my_app_model.dart';
-import 'package:places/ui/screens/main_screen/main_screen_model.dart';
-import 'package:places/ui/screens/sight_search_screen/sight_search_model.dart';
-import 'package:places/ui/screens/filter_screen/filters_model.dart';
-import 'package:places/ui/screens/select_category_screen/select_category_model.dart';
-import 'package:places/ui/screens/splash_screen/splash_model.dart';
-import 'package:places/ui/screens/sight_details_screen/sight_details_model.dart';
-import 'package:places/ui/screens/add_sight_screen/add_sight_model.dart';
+import 'package:places/data/interactors/place_interactor.dart';
+import 'package:places/data/interactors/settings_interactor.dart';
+import 'package:places/data/interactors/filter_interactor.dart';
+import 'package:places/ui/screens/select_category_screen/select_category_screen_model.dart';
+import 'package:places/data/interactors/search_interactor.dart';
 
 void main() {
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => MyThemeModel(),
+          create: (context) => SettingsInteractor(),
         ),
         ChangeNotifierProvider(
-          create: (context) => MyFilterModel(),
+          create: (context) => FilterInteractor(),
         ),
         ChangeNotifierProvider(
-          create: (context) => MyCategoriesModel(),
+          create: (context) => PlaceInteractor(),
         ),
         ChangeNotifierProvider(
-          create: (context) => MainScreenModel(),
+          create: (context) => SearchInteractor(),
         ),
         ChangeNotifierProvider(
-          create: (context) => MySearchModel(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => MySplashModel(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => SightDetailsModel(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => AddSightModel(),
+          create: (context) => SelectCategoryScreenModel(),
         ),
       ],
       child: const MyApp(),

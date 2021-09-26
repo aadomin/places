@@ -13,3 +13,10 @@ linter:
 
     # имена констант в camel case
     constant_identifier_names: false
+
+    # опускать dynamic
+    avoid_annotating_with_dynamic: false
+
+    # не писать принт
+    avoid_print: false
+    
