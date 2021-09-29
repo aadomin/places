@@ -10,6 +10,7 @@ class WidgetPlaceCardIcons extends StatelessWidget {
     this.onDeleteFromWished,
     this.onShare,
     this.onDeleteFromSeen,
+    this.isLiked,
     Key? key,
   }) : super(key: key);
 
@@ -22,11 +23,13 @@ class WidgetPlaceCardIcons extends StatelessWidget {
 
   final VoidCallback? onShare;
   final VoidCallback? onDeleteFromSeen;
+  final bool? isLiked;
 
   @override
   Widget build(BuildContext context) {
     switch (placeCardType) {
       case PlaceCardType.general:
+        final bool isHeartPainted = isLiked!;
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -34,7 +37,10 @@ class WidgetPlaceCardIcons extends StatelessWidget {
               padding: const EdgeInsets.only(left: 16),
               child: InkWell(
                 onTap: onAddToWished,
-                child: const Icon(Icons.favorite_outline, color: Colors.white),
+                child: Icon(
+                  isHeartPainted ? Icons.favorite : Icons.favorite_outline,
+                  color: Colors.white,
+                ),
               ),
             ),
           ],
