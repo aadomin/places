@@ -30,9 +30,18 @@ class PlaceInteractor with ChangeNotifier {
   final filterInteractor = FilterInteractor();
 
   List<Place> allPlaces = [];
+  bool isRequestDoneWithError = false;
 
   Future<void> initPlaces() async {
-    allPlaces = await placeRepository.loadPlaces();
+    await placeRepository.loadPlaces();
+
+    if (placeRepository.isRequestDoneWithError) {
+      isRequestDoneWithError = true;
+      notifyListeners();
+      return;
+    }
+
+    allPlaces = placeRepository.loadedPlaces;
     updateDistancesToUser();
     notifyListeners();
   }
@@ -200,9 +209,16 @@ class PlaceInteractor with ChangeNotifier {
       type: type,
       id: random.nextInt(50000),
     );
+
     placeRepository.addPlace(newPlace);
-    allPlaces.add(newPlace);
+
+    // if (placeRepository.isRequestDoneWithError) {
+    //   isRequestDoneWithError = true;
+    //   notifyListeners();
+    //   return;
+    // }
     
+    allPlaces.add(newPlace);
     notifyListeners();
   }
 }
