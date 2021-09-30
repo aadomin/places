@@ -5,45 +5,79 @@ import 'package:places/data/models/place.dart';
 import 'package:places/data/repositories/mocks.dart';
 import 'package:places/ui/my_app/my_app.dart';
 
+import 'package:places/exceptions.dart';
+
 class PlaceRepository {
-  Future<List<Place>> loadPlaces() async {
+  PlaceRepository() {
+    final baseOptions = BaseOptions(
+      baseUrl: 'https://test-backend-flutter.surfstudio.ru',
+      connectTimeout: 5000,
+      receiveTimeout: 5000,
+      sendTimeout: 5000,
+      // ignore: avoid_redundant_argument_values
+      responseType: ResponseType.json,
+    );
+    dio = Dio(baseOptions);
+
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) {
+          print(
+              'Запрос: ${options.method} ${options.path} ${options.queryParameters}');
+          return handler.next(options);
+        },
+        onResponse: (response, handler) {
+          print('Ответ получен ${response.data.toString().substring(0, 100)} ');
+          return handler.next(response);
+        },
+        onError: (DioError e, handler) {
+          NetworkException(
+            queryPath: '',
+            errorName: 'dio error',
+          );
+          return handler.next(e);
+        },
+      ),
+    );
+  }
+
+  late final Dio dio;
+
+  List<Place> loadedPlaces = [];
+  bool isRequestDoneWithError = false;
+
+  Future<void> loadPlaces() async {
     if (isDebugMockDataInPlaceOfHttp) {
       await Future<dynamic>.delayed(const Duration(seconds: 3));
-      return mocks;
+      loadedPlaces = mocks;
+      isRequestDoneWithError = false;
+      return;
     } else {
-      final baseOptions = BaseOptions(
-        baseUrl: 'https://test-backend-flutter.surfstudio.ru',
-        connectTimeout: 5000,
-        receiveTimeout: 5000,
-        sendTimeout: 5000,
-        // ignore: avoid_redundant_argument_values
-        responseType: ResponseType.json,
-      );
-      final dio = Dio(baseOptions);
+      const String _path = '/place';
 
-      dio.interceptors.add(
-        InterceptorsWrapper(
-          onRequest: (options, handler) {
-            print('Запрос: ${options.method} ${options.path} ${options.queryParameters}');
-            return handler.next(options);
-          },
-          onResponse: (response, handler) {
-            print('Ответ получен ${response.data} ');
-            return handler.next(response);
-          },
-          onError: (DioError e, handler) {
-            return handler.next(e);
-          },
-        ),
-      );
-
-      final Response response = await dio.get<String>(
-        '/place',
-      );
-      if (response.statusCode != 200) {
-        throw Exception('http error. Error code ${response.statusCode}');
+      try {
+        final Response response = await dio.get<String>(
+          _path,
+        );
+        print(response.statusCode);
+        if (response.statusCode != 200) {
+          throw NetworkException(
+            queryPath: _path,
+            errorName: '${response.statusCode} ${response.statusMessage}',
+          );
+        }
+        loadedPlaces = parsePlaces(response.data.toString());
+      } on NetworkException catch (e) {
+        isRequestDoneWithError = true;
+        print(e);
+        return;
+      } catch (e) {
+        isRequestDoneWithError = true;
+        print(e);
+        return;
       }
-      return parsePlaces(response.data.toString());
+      isRequestDoneWithError = false;
+      return;
     }
   }
 
@@ -59,40 +93,25 @@ class PlaceRepository {
   Future<void> addPlace(Place newPlace) async {
     if (isDebugMockDataInPlaceOfHttp) {
       await Future<dynamic>.delayed(const Duration(seconds: 3));
+      isRequestDoneWithError = false;
       return;
     } else {
-      final baseOptions = BaseOptions(
-        baseUrl: 'https://test-backend-flutter.surfstudio.ru',
-        connectTimeout: 5000,
-        receiveTimeout: 5000,
-        sendTimeout: 5000,
-        // ignore: avoid_redundant_argument_values
-        responseType: ResponseType.json,
-      );
-      final dio = Dio(baseOptions);
-
-      dio.interceptors.add(
-        InterceptorsWrapper(
-          onRequest: (options, handler) {
-            print('Запрос: ${options.data}');
-            return handler.next(options);
-          },
-          onResponse: (response, handler) {
-            print('Ответ получен ${response.data} ');
-            return handler.next(response);
-          },
-          onError: (DioError e, handler) {
-            return handler.next(e);
-          },
-        ),
-      );
-
-      final Response response =
-          await dio.post<String>('/place', data: newPlace.toJson());
-
-      if (response.statusCode != 200) {
-        throw Exception('http error. Error code ${response.statusCode}');
+      const String _path = '/place';
+      try {
+        final Response response =
+            await dio.post<String>(_path, data: newPlace.toJson());
+        if (response.statusCode != 200) {
+          throw NetworkException(
+            queryPath: _path,
+            errorName: '${response.statusCode} ${response.statusMessage}',
+          );
+        }
+      } on NetworkException catch (e) {
+        isRequestDoneWithError = true;
+        print(e);
+        return;
       }
+      isRequestDoneWithError = false;
       return;
     }
   }

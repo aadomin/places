@@ -18,4 +18,7 @@ class UiStrings {
   static const String delFromWished = 'Удалить из пройденных';
   static const String delFromSeen = 'Удалить из избранного';
   static const String delAtAll = 'Удалить совсем';
+  static const String error = 'Ошибка';
+  static const String somethingWentWrong = 'Что-то пошло не так.';
+  static const String trySometimesLater = 'Попробуйте позже';
 }
