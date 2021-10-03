@@ -61,8 +61,9 @@ class PlaceInteractor with ChangeNotifier {
         .where((element) => _selectedCategories
             .any((e) => element.type.toLowerCase() == e.toLowerCase()))
         .toList()
-          ..sort((a, b) =>
-              a.currentDistanceToUser.compareTo(b.currentDistanceToUser));
+      ..sort(
+        (a, b) => a.currentDistanceToUser.compareTo(b.currentDistanceToUser),
+      );
 
     return _filteredAndSortedPlacesList;
   }
@@ -80,8 +81,9 @@ class PlaceInteractor with ChangeNotifier {
   /// отображается на экране "Список интересных мест" и фильтруется в результатах Поиска
   List<Place> get filteredPlaces {
     return getPlaces(
-        radius: filterInteractor.radius,
-        categories: filterInteractor.filterItems);
+      radius: filterInteractor.radius,
+      categories: filterInteractor.filterItems,
+    );
   }
 
   Place getPlaceDetails(int id) {
@@ -217,7 +219,7 @@ class PlaceInteractor with ChangeNotifier {
     //   notifyListeners();
     //   return;
     // }
-    
+
     allPlaces.add(newPlace);
     notifyListeners();
   }

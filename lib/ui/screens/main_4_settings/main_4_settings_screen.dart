@@ -37,40 +37,42 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
       ),
       body: Center(
-        child: Column(children: [
-          ListTile(
-            onTap: onTapOnThemeSwitchTile,
-            title: Text(
-              'Темная тема',
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
+        child: Column(
+          children: [
+            ListTile(
+              onTap: onTapOnThemeSwitchTile,
+              title: Text(
+                'Темная тема',
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+              trailing: Switch(
+                value: context.watch<SettingsInteractor>().isDarkThemeOn,
+                onChanged: (currentValue) {
+                  onTapOnThemeSwitch();
+                },
               ),
             ),
-            trailing: Switch(
-              value: context.watch<SettingsInteractor>().isDarkThemeOn,
-              onChanged: (currentValue) {
-                onTapOnThemeSwitch();
-              },
-            ),
-          ),
-          ListTile(
-            title: Text(
-              'Смотреть туториал',
-              style: TextStyle(
-                color: Theme.of(context).primaryColor,
+            ListTile(
+              title: Text(
+                'Смотреть туториал',
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
               ),
-            ),
-            trailing: Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-              child: Image.asset(
-                UiImagePaths.info,
-                width: 20,
-                height: 20,
+              trailing: Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
+                child: Image.asset(
+                  UiImagePaths.info,
+                  width: 20,
+                  height: 20,
+                ),
               ),
+              onTap: onTapOnTutorialLink,
             ),
-            onTap: onTapOnTutorialLink,
-          )
-        ]),
+          ],
+        ),
       ),
     );
   }

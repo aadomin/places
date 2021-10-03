@@ -109,7 +109,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                           padding: const EdgeInsets.all(1),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(14),
-                            color: Theme.of(context).accentColor,
+                            color: Theme.of(context).colorScheme.secondary,
                           ),
                           child: Container(
                             padding: const EdgeInsets.all(10),
@@ -121,9 +121,12 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                               width: 50,
                               height: 50,
                               child: Center(
-                                child: Icon(Icons.add,
-                                    size: 30,
-                                    color: Theme.of(context).accentColor),
+                                child: Icon(
+                                  Icons.add,
+                                  size: 30,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                ),
                               ),
                             ),
                           ),
@@ -163,11 +166,12 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                                     width: 72,
                                     height: 72,
                                     child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(13),
-                                        child: MyImageWidget(
-                                          url: item.value,
-                                          fit: BoxFit.fill,
-                                        )),
+                                      borderRadius: BorderRadius.circular(13),
+                                      child: MyImageWidget(
+                                        url: item.value,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
                                   ),
                                 ),
                                 Container(
@@ -315,7 +319,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                 child: Text(
                   'Указать на карте',
                   style: TextStyle(
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     fontSize: 16,
                   ),
                 ),

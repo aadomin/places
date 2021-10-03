@@ -89,8 +89,10 @@ class PlaceCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.restore_from_trash,
-                    color: Theme.of(context).canvasColor),
+                Icon(
+                  Icons.restore_from_trash,
+                  color: Theme.of(context).canvasColor,
+                ),
                 Text(
                   textWhenDeletion,
                   style: TextStyle(

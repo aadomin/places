@@ -21,9 +21,11 @@ class WidgetEmptyList extends StatelessWidget {
             color: Colors.grey.shade300,
             size: 40,
           ),
-          Text('Пусто',
-              style: tsVisitingScreenNoItemsHeader,
-              textAlign: TextAlign.center),
+          Text(
+            'Пусто',
+            style: tsVisitingScreenNoItemsHeader,
+            textAlign: TextAlign.center,
+          ),
           Text(
             commentLine,
             style: tsVisitingScreenNoItemsText,

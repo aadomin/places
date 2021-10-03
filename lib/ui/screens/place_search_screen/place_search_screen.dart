@@ -71,7 +71,9 @@ class PlaceSearchScreen extends StatelessWidget {
                   ),
                   hintText: 'Поиск',
                   contentPadding: const EdgeInsets.symmetric(
-                      vertical: 10.0, horizontal: 10),
+                    vertical: 10.0,
+                    horizontal: 10,
+                  ),
                 ),
               ),
             ),
@@ -158,20 +160,25 @@ class WidgetSearchNotFound extends StatelessWidget {
         Center(
           child: Column(
             children: [
-              Icon(Icons.search,
-                  size: 30, color: Theme.of(context).primaryColorLight),
+              Icon(
+                Icons.search,
+                size: 30,
+                color: Theme.of(context).primaryColorLight,
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   '$UiStrings.nothingIsFounded',
                   style: TextStyle(
-                      fontSize: 20, color: Theme.of(context).primaryColorLight),
+                    fontSize: 20,
+                    color: Theme.of(context).primaryColorLight,
+                  ),
                 ),
               ),
               Text(
                 '$UiStrings.tryToChangeParametersOfSearch',
                 style: TextStyle(color: Theme.of(context).primaryColorLight),
-              )
+              ),
             ],
           ),
         ),

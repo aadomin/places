@@ -85,8 +85,10 @@ class _PlacesListScreenState extends State<PlacesListScreen> {
                                         isLiked:
                                             filteredPlacesSnapshot[i].wished,
                                         onTap: () {
-                                          onTap(context,
-                                              filteredPlacesSnapshot[i].id);
+                                          onTap(
+                                            context,
+                                            filteredPlacesSnapshot[i].id,
+                                          );
                                         },
                                         onAddToWished: () {
                                           if (filteredPlacesSnapshot[i]
@@ -201,7 +203,7 @@ class _PlacesListScreenState extends State<PlacesListScreen> {
                 icon: Icon(
                   Icons.settings,
                   size: 15,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
             ),
@@ -253,5 +255,3 @@ class _PlacesListScreenState extends State<PlacesListScreen> {
     _placesListController.close();
   }
 }
-
-

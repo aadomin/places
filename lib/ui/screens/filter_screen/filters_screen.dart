@@ -93,7 +93,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
                     height: 95,
                     child: TextButton(
                       onPressed: () {
-                        context.read<FilterInteractor>().switchActiveCategories(i);
+                        context
+                            .read<FilterInteractor>()
+                            .switchActiveCategories(i);
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(top: 10.0),
@@ -130,7 +132,8 @@ class _FiltersScreenState extends State<FiltersScreen> {
                                         .isSelected
                                     ? CheckmarkWidget(
                                         radiusOfRoundElement:
-                                            _radiusOfRoundElement)
+                                            _radiusOfRoundElement,
+                                      )
                                     : const SizedBox.shrink(),
                               ],
                             ),
