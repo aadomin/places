@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:places/data/store/mobx_store.dart';
 import 'package:places/ui/widgets/network_error_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -27,12 +29,12 @@ class _PlacesListScreenState extends State<PlacesListScreen> {
 
   final _placesListController = StreamController<List<Place>>();
 
+  late final MobxStore _store;
+
   @override
-  void didChangeDependencies() {
-    final List<Place> filteredPlaces =
-        context.watch<PlaceInteractor>().filteredPlaces;
-    _placesListController.sink.add(filteredPlaces);
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
+    _store = MobxStore();
   }
 
   @override
@@ -40,20 +42,17 @@ class _PlacesListScreenState extends State<PlacesListScreen> {
     final List<Place> filteredPlaces =
         context.watch<PlaceInteractor>().filteredPlaces;
 
-    _placesListController.sink.add(filteredPlaces);
-
     final placeInteractor = Provider.of<PlaceInteractor>(context);
 
     return Scaffold(
-      body: StreamBuilder<List<Place>>(
-        stream: _placesListController.stream,
-        builder: (context, snapshot) {
-          final List<Place> filteredPlacesSnapshot = snapshot.data!;
-          return placeInteractor.isRequestDoneWithError
-              ? const NetworkErrorWidget()
-              : Stack(
+      body: placeInteractor.isRequestDoneWithError
+          ? const NetworkErrorWidget()
+          : Observer(
+              builder: (_) {
+                return Stack(
                   children: [
-                    filteredPlacesSnapshot.isEmpty
+                    // ignore: prefer_if_elements_to_conditional_expressions
+                    _store.filteredPlaces.isEmpty
                         ? const Center(
                             child: CircularProgressIndicator(),
                           )
@@ -80,33 +79,35 @@ class _PlacesListScreenState extends State<PlacesListScreen> {
                                     (context, i) => Padding(
                                       padding: const EdgeInsets.all(16.0),
                                       child: PlaceCard(
-                                        place: filteredPlacesSnapshot[i],
+                                        place: _store.filteredPlaces[i],
                                         placeCardType: PlaceCardType.general,
                                         isLiked:
-                                            filteredPlacesSnapshot[i].wished,
+                                            _store.filteredPlaces[i].wished,
                                         onTap: () {
                                           onTap(
                                             context,
-                                            filteredPlacesSnapshot[i].id,
+                                            _store.filteredPlaces[i].id,
                                           );
                                         },
                                         onAddToWished: () {
-                                          if (filteredPlacesSnapshot[i]
-                                              .wished) {
+                                          if (_store.filteredPlaces[i].wished) {
                                             placeInteractor.removeFromFavorites(
-                                                filteredPlacesSnapshot[i].id);
+                                              _store.filteredPlaces[i].id,
+                                            );
                                           } else {
                                             placeInteractor.addToFavorites(
-                                                filteredPlacesSnapshot[i].id);
+                                              _store.filteredPlaces[i].id,
+                                            );
                                           }
                                         },
                                         onDeleteAtAll: () {
                                           placeInteractor.removeAtAll(
-                                              filteredPlacesSnapshot[i].id);
+                                            _store.filteredPlaces[i].id,
+                                          );
                                         },
                                       ),
                                     ),
-                                    childCount: filteredPlacesSnapshot.length,
+                                    childCount: _store.filteredPlaces.length,
                                   ),
                                 ),
                               //
@@ -126,32 +127,35 @@ class _PlacesListScreenState extends State<PlacesListScreen> {
                                   ),
                                   delegate: SliverChildListDelegate([
                                     for (var i = 0;
-                                        i < filteredPlacesSnapshot.length;
+                                        i < _store.filteredPlaces.length;
                                         i++)
                                       Padding(
                                         padding: const EdgeInsets.all(16.0),
                                         child: PlaceCard(
-                                          place: filteredPlacesSnapshot[i],
+                                          place: _store.filteredPlaces[i],
                                           placeCardType: PlaceCardType.general,
                                           onTap: () {
-                                            onTap(context,
-                                                filteredPlacesSnapshot[i].id);
+                                            onTap(
+                                              context,
+                                              _store.filteredPlaces[i].id,
+                                            );
                                           },
                                           onAddToWished: () {
-                                            if (filteredPlacesSnapshot[i]
-                                                .wished) {
+                                            if (_store
+                                                .filteredPlaces[i].wished) {
                                               placeInteractor
-                                                  .removeFromFavorites(
-                                                      filteredPlacesSnapshot[i]
-                                                          .id);
+                                                  .removeFromFavorites(_store
+                                                      .filteredPlaces[i].id);
                                             } else {
                                               placeInteractor.addToFavorites(
-                                                  filteredPlacesSnapshot[i].id);
+                                                _store.filteredPlaces[i].id,
+                                              );
                                             }
                                           },
                                           onDeleteAtAll: () {
                                             placeInteractor.removeAtAll(
-                                                filteredPlacesSnapshot[i].id);
+                                              _store.filteredPlaces[i].id,
+                                            );
                                           },
                                         ),
                                       ),
@@ -164,8 +168,8 @@ class _PlacesListScreenState extends State<PlacesListScreen> {
                     _newPlaceButton(context),
                   ],
                 );
-        },
-      ),
+              },
+            ),
     );
   }
 

@@ -129,6 +129,12 @@ class PlaceInteractor with ChangeNotifier {
     throw Exception('Нет такого id');
   }
 
+  //
+  //
+  //
+  //
+  //
+
   void showModalDetailsScreen(BuildContext context, int id) {
     showModalBottomSheet<bool>(
       isScrollControlled: true,
@@ -137,10 +143,6 @@ class PlaceInteractor with ChangeNotifier {
         placeId: id,
       ),
     );
-  }
-
-  void refresh() {
-    notifyListeners();
   }
 
   List<String> get listOfInitialPhotosForAdding =>
