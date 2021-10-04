@@ -39,6 +39,7 @@ class Place {
     if (json['urls'] != null) {
       final dynamic temp = json['urls'];
       final arr0 = <String>[];
+      //ignore: avoid_dynamic_calls
       temp.forEach((dynamic e) {
         arr0.add(e.toString());
       });

@@ -23,7 +23,8 @@ class PlaceRepository {
       InterceptorsWrapper(
         onRequest: (options, handler) {
           print(
-              'Запрос: ${options.method} ${options.path} ${options.queryParameters}');
+            'Запрос: ${options.method} ${options.path} ${options.queryParameters}',
+          );
           return handler.next(options);
         },
         onResponse: (response, handler) {

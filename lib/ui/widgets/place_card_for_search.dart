@@ -55,8 +55,9 @@ class WidgetSearchDescriptionOfPlace extends StatelessWidget {
             place.name,
             maxLines: 2,
             style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontWeight: FontWeight.bold),
+              color: Theme.of(context).primaryColor,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         Text(

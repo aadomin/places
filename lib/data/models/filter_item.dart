@@ -5,7 +5,7 @@ class FilterItem {
     required this.isSelected,
   });
 
-  String name = '';
+  String name = ''; 
   String assetPath = '';
   bool isSelected = true;
 }

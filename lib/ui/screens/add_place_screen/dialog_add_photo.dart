@@ -94,8 +94,9 @@ class DialogAddPhoto extends StatelessWidget {
         child: Text(
           'ОТМЕНА',
           style: Theme.of(context).textTheme.bodyText1?.copyWith(
-              color: Theme.of(context).accentColor,
-              fontWeight: FontWeight.bold),
+                color: Theme.of(context).colorScheme.secondary,
+                fontWeight: FontWeight.bold,
+              ),
         ),
       ),
     );

@@ -19,4 +19,17 @@ linter:
 
     # не писать принт
     avoid_print: false
+
+    use_build_context_synchronously: false    
+
+    omit_local_variable_types: false
+
+    directives_ordering: false
+
+    prefer-trailing-comma: false
     
+dart_code_metrics:
+  rules:
+  - member-ordering-extended:
+      severity: none
+

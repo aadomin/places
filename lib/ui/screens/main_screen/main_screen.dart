@@ -30,7 +30,7 @@ class _AllMainScreensState extends State<AllMainScreens> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         onTap: (index) {
-        _c.animateToPage(index,
+          _c.animateToPage(index,
               duration: const Duration(milliseconds: 500),
               curve: Curves.easeInOut);
         },
@@ -61,11 +61,11 @@ class _AllMainScreensState extends State<AllMainScreens> {
             _page = newPage;
           });
         },
-        children: [
+        children: const [
           Center(child: PlacesListScreen()),
-          const Center(child: MapsScreen()),
-          const Center(child: VisitingScreen()),
-          const Center(child: SettingsScreen()),
+          Center(child: MapsScreen()),
+          Center(child: VisitingScreen()),
+          Center(child: SettingsScreen()),
         ],
       ),
     );
