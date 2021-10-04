@@ -9,7 +9,7 @@ import 'package:places/data/interactors/filter_interactor.dart';
 import 'package:places/ui/screens/select_category_screen/select_category_screen_model.dart';
 import 'package:places/data/interactors/search_interactor.dart';
 
-late PlaceInteractor globalPlaceInteractor;
+
 
 class DI extends StatelessWidget {
   const DI({Key? key}) : super(key: key);
@@ -25,10 +25,7 @@ class DI extends StatelessWidget {
           create: (context) => FilterInteractor(),
         ),
         ChangeNotifierProvider(
-          create: (context) {
-            globalPlaceInteractor = PlaceInteractor();
-            return globalPlaceInteractor;
-          },
+          create: (context) => PlaceInteractor(),
         ),
         ChangeNotifierProvider(
           create: (context) => SearchInteractor(),

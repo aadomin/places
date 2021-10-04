@@ -91,7 +91,7 @@ class _PlacesListScreenState extends State<PlacesListScreen> {
                                         },
                                         onAddToWished: () {
                                           if (_store.filteredPlaces[i].wished) {
-                                            placeInteractor.removeFromFavorites(
+                                            _store.removeFromFavorites(
                                               _store.filteredPlaces[i].id,
                                             );
                                           } else {
@@ -143,9 +143,8 @@ class _PlacesListScreenState extends State<PlacesListScreen> {
                                           onAddToWished: () {
                                             if (_store
                                                 .filteredPlaces[i].wished) {
-                                              placeInteractor
-                                                  .removeFromFavorites(_store
-                                                      .filteredPlaces[i].id);
+                                              _store.removeFromFavorites(
+                                                  _store.filteredPlaces[i].id);
                                             } else {
                                               placeInteractor.addToFavorites(
                                                 _store.filteredPlaces[i].id,
