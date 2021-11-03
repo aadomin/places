@@ -3,11 +3,11 @@ import 'package:provider/provider.dart';
 
 import 'package:places/enums.dart';
 import 'package:places/ui/my_app/ui_strings.dart';
-import 'package:places/data/interactors/search_interactor.dart';
+import 'package:places/ui/interactors/search_interactor.dart';
 import 'package:places/ui/widgets/place_card_for_search.dart';
 import 'package:places/ui/widgets/headers.dart';
 
-import 'package:places/data/models/place.dart';
+import 'package:places/domain/models/place.dart';
 
 class PlaceSearchScreen extends StatelessWidget {
   PlaceSearchScreen({Key? key}) : super(key: key);

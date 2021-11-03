@@ -1,4 +1,4 @@
-import 'package:places/data/models/filter_item.dart';
+import 'package:places/domain/models/filter_item.dart';
 
 class FilterRepository {
   final List<FilterItem> filterItems = [

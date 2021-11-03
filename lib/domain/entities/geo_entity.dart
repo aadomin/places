@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:places/data/repositories/geo_repository.dart';
 
-class GeoInteractor {
+class GeoEntity {
   final geoRepository = GeoRepository();
 
   double distanceFromPointToUser({
@@ -9,7 +9,7 @@ class GeoInteractor {
     required double lon,
   }) {
     final currentUserLocation = geoRepository.currentUserLocation;
-    return distanceInKmBetweenEarthCoordinates(
+    return _distanceInKmBetweenEarthCoordinates(
       lat1: lat,
       lon1: lon,
       lat2: currentUserLocation.latitude,
@@ -17,7 +17,7 @@ class GeoInteractor {
     );
   }
 
-  double distanceInKmBetweenEarthCoordinates({
+  double _distanceInKmBetweenEarthCoordinates({
     required double lat1,
     required double lon1,
     required double lat2,
@@ -25,11 +25,11 @@ class GeoInteractor {
   }) {
     const double earthRadiusKm = 6371;
 
-    final double dLat = degreesToRadians(lat2 - lat1);
-    final double dLon = degreesToRadians(lon2 - lon1);
+    final double dLat = _degreesToRadians(lat2 - lat1);
+    final double dLon = _degreesToRadians(lon2 - lon1);
 
-    final radLat1 = degreesToRadians(lat1);
-    final radLat2 = degreesToRadians(lat2);
+    final radLat1 = _degreesToRadians(lat1);
+    final radLat2 = _degreesToRadians(lat2);
 
     final double a = sin(dLat / 2) * sin(dLat / 2) +
         sin(dLon / 2) * sin(dLon / 2) * cos(radLat1) * cos(radLat2);
@@ -38,7 +38,7 @@ class GeoInteractor {
     return earthRadiusKm * c;
   }
 
-  double degreesToRadians(double degrees) {
+  double _degreesToRadians(double degrees) {
     return degrees * pi / 180;
   }
 }

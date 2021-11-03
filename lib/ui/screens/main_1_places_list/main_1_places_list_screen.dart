@@ -10,8 +10,8 @@ import 'package:places/ui/my_app/my_scroll_physics.dart';
 import 'package:places/ui/screens/main_1_places_list/main_1_widget_app_bar.dart';
 import 'package:places/ui/widgets/place_card.dart';
 
-import 'package:places/data/models/place.dart';
-import 'package:places/data/interactors/place_interactor.dart';
+import 'package:places/domain/models/place.dart';
+import 'package:places/ui/interactors/place_interactor.dart';
 
 class PlacesListScreen extends StatefulWidget {
   const PlacesListScreen({Key? key}) : super(key: key);

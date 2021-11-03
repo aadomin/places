@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:places/enums.dart';
 
-import 'package:places/data/models/place.dart';
-import 'package:places/data/interactors/place_interactor.dart';
+import 'package:places/domain/models/place.dart';
+import 'package:places/ui/interactors/place_interactor.dart';
 import 'package:places/data/repositories/search_repository.dart';
 
 //

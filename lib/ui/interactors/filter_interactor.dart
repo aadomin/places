@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'package:places/data/models/filter_item.dart';
+import 'package:places/domain/models/filter_item.dart';
 import 'package:places/data/repositories/filter_repository.dart';
 
 class FilterInteractor with ChangeNotifier {

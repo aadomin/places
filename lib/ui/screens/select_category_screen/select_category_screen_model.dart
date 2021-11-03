@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/data/models/category_item.dart';
+import 'package:places/domain/models/category_item.dart';
 
 class SelectCategoryScreenModel with ChangeNotifier {
   final List<CategoryItem> _myCategories = [

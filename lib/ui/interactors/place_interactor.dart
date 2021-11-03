@@ -1,15 +1,15 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:places/data/interactors/geo_interactor.dart';
-import 'package:places/data/interactors/filter_interactor.dart';
-import 'package:places/data/models/filter_item.dart';
+import 'package:places/domain/entities/geo_entity.dart';
+import 'package:places/ui/interactors/filter_interactor.dart';
+import 'package:places/domain/models/filter_item.dart';
 import 'package:places/data/repositories/mocks.dart';
 import 'package:places/ui/my_app/platform_detector.dart';
 import 'package:places/ui/screens/place_details_screen/place_details_screen.dart';
 
 import 'package:places/data/repositories/place_repository.dart';
-import 'package:places/data/models/place.dart';
+import 'package:places/domain/models/place.dart';
 import 'package:places/ui/widgets/widget_add_to_calendar_cuper_modal.dart';
 
 class PlaceInteractor with ChangeNotifier {
@@ -26,7 +26,7 @@ class PlaceInteractor with ChangeNotifier {
 
   // MODULES
   late final PlaceRepository placeRepository;
-  final geoInteractor = GeoInteractor();
+  final geoEntity = GeoEntity();
   final filterInteractor = FilterInteractor();
 
   List<Place> allPlaces = [];
@@ -70,7 +70,7 @@ class PlaceInteractor with ChangeNotifier {
 
   void updateDistancesToUser() {
     allPlaces = allPlaces.map((place) {
-      place.currentDistanceToUser = geoInteractor.distanceFromPointToUser(
+      place.currentDistanceToUser = geoEntity.distanceFromPointToUser(
         lat: place.lat,
         lon: place.lon,
       );

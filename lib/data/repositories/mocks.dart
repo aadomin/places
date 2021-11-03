@@ -1,4 +1,4 @@
-import 'package:places/data/models/place.dart';
+import 'package:places/domain/models/place.dart';
 // ignore_for_file: avoid_redundant_argument_values
 
 ///

@@ -12,7 +12,7 @@ import 'package:places/ui/screens/place_search_screen/place_search_screen.dart';
 import 'package:places/ui/screens/main_screen/main_screen.dart';
 import 'package:places/ui/screens/splash_screen/splash_screen.dart';
 
-import 'package:places/data/interactors/settings_interactor.dart';
+import 'package:places/ui/interactors/settings_interactor.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

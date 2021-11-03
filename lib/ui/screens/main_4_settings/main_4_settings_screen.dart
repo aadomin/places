@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:places/ui/my_app/routes.dart';
 import 'package:places/ui/my_app/ui_image_paths.dart';
 
-import 'package:places/data/interactors/settings_interactor.dart';
+import 'package:places/ui/interactors/settings_interactor.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);

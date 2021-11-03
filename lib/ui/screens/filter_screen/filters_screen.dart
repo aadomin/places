@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui/my_app/ui_strings.dart';
-import 'package:places/data/interactors/filter_interactor.dart';
+import 'package:places/ui/interactors/filter_interactor.dart';
 
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({Key? key}) : super(key: key);

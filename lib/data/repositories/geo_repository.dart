@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:places/data/models/object_location.dart';
+import 'package:places/domain/models/object_location.dart';
 import 'package:places/ui/my_app/my_app.dart';
 
 class GeoRepository {

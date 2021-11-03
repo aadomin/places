@@ -10,7 +10,7 @@ import 'package:places/ui/screens/add_place_screen/dialog_add_photo.dart';
 import 'package:places/ui/screens/select_category_screen/select_category_screen_model.dart';
 import 'package:places/ui/widgets/my_image_widget.dart';
 
-import 'package:places/data/interactors/place_interactor.dart';
+import 'package:places/ui/interactors/place_interactor.dart';
 
 class AddPlaceScreen extends StatefulWidget {
   const AddPlaceScreen({Key? key}) : super(key: key);

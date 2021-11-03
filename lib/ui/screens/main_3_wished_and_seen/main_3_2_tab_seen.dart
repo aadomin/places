@@ -8,8 +8,8 @@ import 'package:places/ui/widgets/place_card.dart';
 import 'package:places/ui/screens/main_3_wished_and_seen/main_3_3_empty_list.dart';
 import 'package:places/ui/screens/place_details_screen/place_details_screen.dart';
 
-import 'package:places/data/models/place.dart';
-import 'package:places/data/interactors/place_interactor.dart';
+import 'package:places/domain/models/place.dart';
+import 'package:places/ui/interactors/place_interactor.dart';
 
 class TabSeen extends StatefulWidget {
   const TabSeen({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 
-import 'package:places/data/models/place.dart';
+import 'package:places/domain/models/place.dart';
 import 'package:places/data/repositories/mocks.dart';
 import 'package:places/ui/my_app/my_app.dart';
 
