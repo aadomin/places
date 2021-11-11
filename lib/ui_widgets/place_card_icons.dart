@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/enums.dart';
+import 'package:places/ui_my_app/enums.dart';
 
 class WidgetPlaceCardIcons extends StatelessWidget {
   const WidgetPlaceCardIcons({

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui/interactors/place_interactor.dart';
+import 'package:places/ui_interactors/place_interactor.dart';
 import 'package:provider/provider.dart';
 
-import 'package:places/ui/my_app/ui_strings.dart';
-import 'package:places/ui/my_app/my_scroll_physics.dart';
+import 'package:places/ui_my_app/ui_strings.dart';
+import 'package:places/ui_my_app/my_scroll_physics.dart';
 import 'package:places/ui/screens/place_details_screen/widget_back_button.dart';
-import 'package:places/ui/widgets/my_image_widget.dart';
+import 'package:places/ui_widgets/my_image_widget.dart';
 
-import 'package:places/domain/models/place.dart';
+import 'package:places/domain_models/place.dart';
 
 class PlaceDetailsScreen extends StatefulWidget {
   const PlaceDetailsScreen({

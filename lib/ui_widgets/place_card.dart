@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/enums.dart';
-import 'package:places/ui/my_app/ui_strings.dart';
-import 'package:places/ui/widgets/my_image_widget.dart';
-import 'package:places/ui/widgets/place_card_icons.dart';
+import 'package:places/ui_my_app/enums.dart';
+import 'package:places/ui_my_app/ui_strings.dart';
+import 'package:places/ui_widgets/my_image_widget.dart';
+import 'package:places/ui_widgets/place_card_icons.dart';
 
-import 'package:places/domain/models/place.dart';
+import 'package:places/domain_models/place.dart';
 
 class PlaceCard extends StatelessWidget {
   const PlaceCard({

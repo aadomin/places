@@ -1,17 +1,17 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:places/ui/widgets/network_error_widget.dart';
+import 'package:places/ui_widgets/network_error_widget.dart';
 import 'package:provider/provider.dart';
 
-import 'package:places/enums.dart';
-import 'package:places/ui/my_app/routes.dart';
-import 'package:places/ui/my_app/ui_strings.dart';
-import 'package:places/ui/my_app/my_scroll_physics.dart';
+import 'package:places/ui_my_app/enums.dart';
+import 'package:places/ui_my_app/routes.dart';
+import 'package:places/ui_my_app/ui_strings.dart';
+import 'package:places/ui_my_app/my_scroll_physics.dart';
 import 'package:places/ui/screens/main_1_places_list/main_1_widget_app_bar.dart';
-import 'package:places/ui/widgets/place_card.dart';
+import 'package:places/ui_widgets/place_card.dart';
 
-import 'package:places/domain/models/place.dart';
-import 'package:places/ui/interactors/place_interactor.dart';
+import 'package:places/domain_models/place.dart';
+import 'package:places/ui_interactors/place_interactor.dart';
 
 class PlacesListScreen extends StatefulWidget {
   const PlacesListScreen({Key? key}) : super(key: key);

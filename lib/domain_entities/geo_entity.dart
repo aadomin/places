@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:places/data/repositories/geo_repository.dart';
+import 'package:places/data_repositories/geo_repository.dart';
 
 class GeoEntity {
   final geoRepository = GeoRepository();

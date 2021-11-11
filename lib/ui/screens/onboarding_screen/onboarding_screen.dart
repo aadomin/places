@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/ui/my_app/ui_image_paths.dart';
-import 'package:places/ui/my_app/routes.dart';
+import 'package:places/ui_my_app/ui_image_paths.dart';
+import 'package:places/ui_my_app/routes.dart';
 import 'package:places/ui/screens/onboarding_screen/onboarding_page_1.dart';
 import 'package:places/ui/screens/onboarding_screen/onboarding_page_2.dart';
 import 'package:places/ui/screens/onboarding_screen/onboarding_page_3.dart';

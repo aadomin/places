@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 
-import 'package:places/ui/my_app/routes.dart';
-import 'package:places/ui/my_app/my_scroll_physics.dart';
+import 'package:places/ui_my_app/routes.dart';
+import 'package:places/ui_my_app/my_scroll_physics.dart';
 import 'package:places/ui/screens/add_place_screen/widget_category_header.dart';
 import 'package:places/ui/screens/add_place_screen/dialog_add_photo.dart';
-import 'package:places/ui/screens/select_category_screen/select_category_screen_model.dart';
-import 'package:places/ui/widgets/my_image_widget.dart';
+import 'package:places/ui_interactors/select_category_interactor.dart';
+import 'package:places/ui_widgets/my_image_widget.dart';
 
-import 'package:places/ui/interactors/place_interactor.dart';
+import 'package:places/ui_interactors/place_interactor.dart';
 
 class AddPlaceScreen extends StatefulWidget {
   const AddPlaceScreen({Key? key}) : super(key: key);
@@ -39,7 +39,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
 
     //+
     final _currentlySelectedCategory =
-        context.watch<SelectCategoryScreenModel>().currentlySelected;
+        context.watch<SelectCategoryInteractor>().currentlySelected;
 
     return Scaffold(
       appBar: AppBar(
@@ -402,7 +402,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
           lon: double.parse(textControllerLon.text),
           url: 'исправить',
           details: textControllerDescription.text,
-          type: context.read<SelectCategoryScreenModel>().currentlySelected,
+          type: context.read<SelectCategoryInteractor>().currentlySelected,
         );
     Navigator.pop(context);
   }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'package:places/domain/models/filter_item.dart';
-import 'package:places/data/repositories/filter_repository.dart';
+import 'package:places/domain_models/filter_item.dart';
+import 'package:places/domain_entities/filter_entity.dart';
 
 class FilterInteractor with ChangeNotifier {
   // <Singleton>
@@ -23,7 +23,7 @@ class FilterInteractor with ChangeNotifier {
   static FilterInteractor? _instance;
   // </Singleton> }
 
-  final FilterRepository filterRepository = FilterRepository();
+  final FilterEntity filterRepository = FilterEntity();
 
   late List<FilterItem> _filterItems;
   List<FilterItem> get filterItems => _filterItems;

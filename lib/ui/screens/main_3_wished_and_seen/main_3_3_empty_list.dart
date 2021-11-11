@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/ui/my_app/text_styles.dart';
+import 'package:places/ui_my_app/text_styles.dart';
 
 class WidgetEmptyList extends StatelessWidget {
   const WidgetEmptyList({

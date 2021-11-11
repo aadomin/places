@@ -1,6 +1,6 @@
-import 'package:places/domain/models/filter_item.dart';
+import 'package:places/domain_models/filter_item.dart';
 
-class FilterRepository {
+class FilterEntity {
   final List<FilterItem> filterItems = [
     FilterItem(
       name: 'Отель',

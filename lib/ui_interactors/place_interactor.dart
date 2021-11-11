@@ -1,16 +1,16 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:places/domain/entities/geo_entity.dart';
-import 'package:places/ui/interactors/filter_interactor.dart';
-import 'package:places/domain/models/filter_item.dart';
-import 'package:places/data/repositories/mocks.dart';
-import 'package:places/ui/my_app/platform_detector.dart';
+import 'package:places/domain_entities/geo_entity.dart';
+import 'package:places/ui_interactors/filter_interactor.dart';
+import 'package:places/domain_models/filter_item.dart';
+import 'package:places/data_repositories/mocks.dart';
+import 'package:places/ui_my_app/platform_detector.dart';
 import 'package:places/ui/screens/place_details_screen/place_details_screen.dart';
 
-import 'package:places/data/repositories/place_repository.dart';
-import 'package:places/domain/models/place.dart';
-import 'package:places/ui/widgets/widget_add_to_calendar_cuper_modal.dart';
+import 'package:places/domain_entities/place_entity.dart';
+import 'package:places/domain_models/place.dart';
+import 'package:places/ui_widgets/widget_add_to_calendar_cuper_modal.dart';
 
 class PlaceInteractor with ChangeNotifier {
   // <singleton>
@@ -18,14 +18,14 @@ class PlaceInteractor with ChangeNotifier {
   PlaceInteractor._internal() {
     _instance = this;
     //
-    placeRepository = PlaceRepository();
+    placeEntity = PlaceEntity();
     initPlaces(); //асинхронно
   }
   static PlaceInteractor? _instance;
   // </singleton>
 
   // MODULES
-  late final PlaceRepository placeRepository;
+  late final PlaceEntity placeEntity;
   final geoEntity = GeoEntity();
   final filterInteractor = FilterInteractor();
 
@@ -33,15 +33,15 @@ class PlaceInteractor with ChangeNotifier {
   bool isRequestDoneWithError = false;
 
   Future<void> initPlaces() async {
-    await placeRepository.loadPlaces();
+    await placeEntity.loadPlaces();
 
-    if (placeRepository.isRequestDoneWithError) {
+    if (placeEntity.isRequestDoneWithError) {
       isRequestDoneWithError = true;
       notifyListeners();
       return;
     }
 
-    allPlaces = placeRepository.loadedPlaces;
+    allPlaces = placeEntity.loadedPlaces;
     updateDistancesToUser();
     notifyListeners();
   }
@@ -212,7 +212,7 @@ class PlaceInteractor with ChangeNotifier {
       id: random.nextInt(50000),
     );
 
-    placeRepository.addPlace(newPlace);
+    placeEntity.addPlace(newPlace);
 
     // if (placeRepository.isRequestDoneWithError) {
     //   isRequestDoneWithError = true;

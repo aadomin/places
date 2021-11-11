@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:places/ui/my_app/my_app.dart';
+import 'package:places/ui_my_app/my_app.dart';
 
 void main() {
   // ignore: avoid_types_on_closure_parameters

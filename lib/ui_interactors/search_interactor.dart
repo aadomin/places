@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/enums.dart';
+import 'package:places/ui_my_app/enums.dart';
 
-import 'package:places/domain/models/place.dart';
-import 'package:places/ui/interactors/place_interactor.dart';
-import 'package:places/data/repositories/search_repository.dart';
-
-//
-// фильтр должен быть в filteredPlaces  и радиус поиска
-// Подключите интерактор к экрану поиска и к экрану фильтров
-//
+import 'package:places/domain_models/place.dart';
+import 'package:places/ui_interactors/place_interactor.dart';
+import 'package:places/domain_entities/search_entity.dart';
 
 class SearchInteractor with ChangeNotifier {
   // Singleton
@@ -23,7 +18,7 @@ class SearchInteractor with ChangeNotifier {
   // Singleton
 
   final placeInteractor = PlaceInteractor();
-  final searchRepository = SearchRepository();
+  final searchRepository = SearchEntity();
 
   var searchStatus = SearchStatus.empty;
   List<Place> _searchResult = [];

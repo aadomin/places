@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui/my_app/my_app.dart';
+import 'package:places/ui_my_app/my_app.dart';
 
 /// Для отладки - для того, чтобы работал flutter for web подменяет
 /// url картинки моковой картинкой

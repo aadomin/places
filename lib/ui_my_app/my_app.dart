@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:places/ui/my_app/themes.dart';
-import 'package:places/ui/my_app/routes.dart';
-import 'package:places/ui/my_app/platform_detector.dart';
+import 'package:places/ui_my_app/themes.dart';
+import 'package:places/ui_my_app/routes.dart';
+import 'package:places/ui_my_app/platform_detector.dart';
 import 'package:places/ui/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:places/ui/screens/filter_screen/filters_screen.dart';
 import 'package:places/ui/screens/add_place_screen/add_place_screen.dart';
@@ -12,7 +12,7 @@ import 'package:places/ui/screens/place_search_screen/place_search_screen.dart';
 import 'package:places/ui/screens/main_screen/main_screen.dart';
 import 'package:places/ui/screens/splash_screen/splash_screen.dart';
 
-import 'package:places/ui/interactors/settings_interactor.dart';
+import 'package:places/ui_interactors/settings_interactor.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:places/ui/screens/place_details_screen/place_details_screen.dart';
-import 'package:places/ui/widgets/my_image_widget.dart';
+import 'package:places/ui_widgets/my_image_widget.dart';
 
-import 'package:places/domain/models/place.dart';
+import 'package:places/domain_models/place.dart';
 
 class PlaceCartForSearch extends StatelessWidget {
   const PlaceCartForSearch({

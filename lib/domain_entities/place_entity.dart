@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 
-import 'package:places/domain/models/place.dart';
-import 'package:places/data/repositories/mocks.dart';
-import 'package:places/ui/my_app/my_app.dart';
+import 'package:places/domain_models/place.dart';
+import 'package:places/data_repositories/mocks.dart';
+import 'package:places/ui_my_app/my_app.dart';
 
-import 'package:places/exceptions.dart';
+import 'package:places/data_other/exceptions.dart';
 
-class PlaceRepository {
-  PlaceRepository() {
+class PlaceEntity {
+  PlaceEntity() {
     final baseOptions = BaseOptions(
       baseUrl: 'https://test-backend-flutter.surfstudio.ru',
       connectTimeout: 5000,

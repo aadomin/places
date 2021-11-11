@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/domain/models/category_item.dart';
+import 'package:places/domain_models/category_item.dart';
 
-class SelectCategoryScreenModel with ChangeNotifier {
+class SelectCategoryInteractor with ChangeNotifier {
   final List<CategoryItem> _myCategories = [
     CategoryItem(name: 'не выбрана', isSelected: true),
     CategoryItem(name: 'Отель', isSelected: false),
