@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:places/main.dart';
 
 import 'package:places/ui_my_app/enums.dart';
 
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
-import 'package:places/domain_entities/search_entity.dart';
 
 class SearchInteractor with ChangeNotifier {
   // Singleton
   factory SearchInteractor() => _instance ?? SearchInteractor._internal();
+  static SearchInteractor? _instance;
   SearchInteractor._internal() {
     _instance = this;
     //
-    _lastSearches = searchRepository.lastSearches;
+    _lastSearches = searchEntity.lastSearches;
   }
-  static SearchInteractor? _instance;
   // Singleton
 
   final placeInteractor = PlaceInteractor();
-  final searchRepository = SearchEntity();
 
   var searchStatus = SearchStatus.empty;
   List<Place> _searchResult = [];

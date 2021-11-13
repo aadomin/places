@@ -4,10 +4,10 @@ import 'package:places/main.dart';
 class SettingsInteractor with ChangeNotifier {
   // Singleton
   factory SettingsInteractor() => _instance ?? SettingsInteractor._internal();
+  static SettingsInteractor? _instance;
   SettingsInteractor._internal() {
     _instance = this;
   }
-  static SettingsInteractor? _instance;
 
   void changeTheme() {
     settingsEntity.changeTheme();

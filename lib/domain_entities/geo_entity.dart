@@ -2,7 +2,11 @@ import 'dart:math';
 import 'package:places/data_repositories/geo_repository.dart';
 
 class GeoEntity {
-  final geoRepository = GeoRepository();
+  GeoEntity({
+    required this.geoRepository,
+  });
+
+  final GeoRepository geoRepository;
 
   double distanceFromPointToUser({
     required double lat,

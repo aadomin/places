@@ -1,7 +1,9 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:places/domain_entities/geo_entity.dart';
+import 'package:places/data_repositories/place_repository.dart';
+import 'package:places/main.dart';
+
 import 'package:places/ui_interactors/filter_interactor.dart';
 import 'package:places/domain_models/filter_item.dart';
 import 'package:places/data_repositories/mocks.dart';
@@ -18,7 +20,7 @@ class PlaceInteractor with ChangeNotifier {
   PlaceInteractor._internal() {
     _instance = this;
     //
-    placeEntity = PlaceEntity();
+    placeEntity = PlaceEntity(placeRepository: PlaceRepository());
     initPlaces(); //асинхронно
   }
   static PlaceInteractor? _instance;
@@ -26,8 +28,6 @@ class PlaceInteractor with ChangeNotifier {
 
   // MODULES
   late final PlaceEntity placeEntity;
-  final geoEntity = GeoEntity();
-  final filterInteractor = FilterInteractor();
 
   List<Place> allPlaces = [];
   bool isRequestDoneWithError = false;

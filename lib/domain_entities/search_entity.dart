@@ -2,7 +2,11 @@ import 'package:places/data_repositories/search_repository.dart';
 
 /// История поиска
 class SearchEntity {
-  final searchRepository = SearchRepository();
+  SearchEntity({
+    required this.searchRepository,
+  });
+
+  final SearchRepository searchRepository;
 
   List<String> get lastSearches {
     return searchRepository.lastSearches;

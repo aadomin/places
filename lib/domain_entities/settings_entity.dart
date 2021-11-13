@@ -1,8 +1,9 @@
-import 'package:places/data_repositories/repository.dart';
 import 'package:places/data_repositories/settings_repository.dart';
 
 class SettingsEntity {
-  SettingsEntity({required this.settingsRepository});
+  SettingsEntity({
+    required this.settingsRepository,
+  });
 
   final SettingsRepository settingsRepository;
 

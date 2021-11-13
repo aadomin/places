@@ -7,6 +7,7 @@ import 'package:places/domain_entities/filter_entity.dart';
 class FilterInteractor with ChangeNotifier {
   // <Singleton>
   factory FilterInteractor() => _instance ?? FilterInteractor._internal();
+  static FilterInteractor? _instance;
   FilterInteractor._internal() {
     _instance = this;
     //
@@ -20,7 +21,7 @@ class FilterInteractor with ChangeNotifier {
       notifyListeners();
     });
   }
-  static FilterInteractor? _instance;
+
   // </Singleton> }
 
   final FilterEntity filterRepository = FilterEntity();
