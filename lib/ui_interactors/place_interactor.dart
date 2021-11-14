@@ -1,35 +1,30 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:places/data_repositories/place_repository.dart';
 import 'package:places/main.dart';
-
-import 'package:places/ui_interactors/filter_interactor.dart';
 import 'package:places/domain_models/filter_item.dart';
 import 'package:places/data_repositories/mocks.dart';
 import 'package:places/ui_my_app/platform_detector.dart';
 import 'package:places/ui/screens/place_details_screen/place_details_screen.dart';
 
-import 'package:places/domain_entities/place_entity.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_widgets/widget_add_to_calendar_cuper_modal.dart';
 
 class PlaceInteractor with ChangeNotifier {
   // <singleton>
   factory PlaceInteractor() => _instance ?? PlaceInteractor._internal();
+  static PlaceInteractor? _instance;
   PlaceInteractor._internal() {
     _instance = this;
     //
-    placeEntity = PlaceEntity(placeRepository: PlaceRepository());
-    initPlaces(); //асинхронно
+
+    initPlaces(); //асинхронная
   }
-  static PlaceInteractor? _instance;
+
   // </singleton>
 
-  // MODULES
-  late final PlaceEntity placeEntity;
-
   List<Place> allPlaces = [];
+
   bool isRequestDoneWithError = false;
 
   Future<void> initPlaces() async {

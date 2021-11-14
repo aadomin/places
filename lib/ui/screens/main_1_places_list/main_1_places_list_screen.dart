@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:places/main.dart';
 import 'package:flutter/material.dart';
 import 'package:places/ui_widgets/network_error_widget.dart';
 import 'package:provider/provider.dart';
@@ -28,11 +29,8 @@ class _PlacesListScreenState extends State<PlacesListScreen> {
   final _placesListController = StreamController<List<Place>>();
 
   @override
-  void didChangeDependencies() {
-    final List<Place> filteredPlaces =
-        context.watch<PlaceInteractor>().filteredPlaces;
-    _placesListController.sink.add(filteredPlaces);
-    super.didChangeDependencies();
+  void initState() {
+    super.initState();
   }
 
   @override
@@ -41,8 +39,6 @@ class _PlacesListScreenState extends State<PlacesListScreen> {
         context.watch<PlaceInteractor>().filteredPlaces;
 
     _placesListController.sink.add(filteredPlaces);
-
-    final placeInteractor = Provider.of<PlaceInteractor>(context);
 
     return Scaffold(
       body: StreamBuilder<List<Place>>(

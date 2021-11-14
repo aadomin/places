@@ -26,6 +26,7 @@ late final SettingsEntity settingsEntity;
 late final GeoEntity geoEntity;
 late final SearchEntity searchEntity;
 late final PlaceEntity placeEntity;
+late final PlaceInteractor placeInteractor;
 
 void main() {
   final settingsRepository = SettingsRepository();
@@ -42,6 +43,7 @@ void main() {
 
   // !!!
   filterInteractor = FilterInteractor();
+  placeInteractor = PlaceInteractor();
 
   runApp(const MyAppProvider());
 }
@@ -68,7 +70,9 @@ class MyAppProvider extends StatelessWidget {
           },
         ),
         ChangeNotifierProvider(
-          create: (context) => PlaceInteractor(),
+          create: (context) {
+            return placeInteractor;
+          },
         ),
         ChangeNotifierProvider(
           create: (context) => SearchInteractor(),
