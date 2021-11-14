@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:places/ui_my_app/ui_strings.dart';
 import 'package:places/ui_widgets/headers.dart';
 
-class MySliverAppBar extends SliverPersistentHeaderDelegate {
-  MySliverAppBar({
+class WidgetMySliverAppBar extends SliverPersistentHeaderDelegate {
+  WidgetMySliverAppBar({
     required this.expandedHeight,
   });
 

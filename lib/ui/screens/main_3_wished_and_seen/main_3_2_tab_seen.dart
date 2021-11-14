@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:places/ui_my_app/enums.dart';
 import 'package:places/ui_my_app/my_scroll_physics.dart';
 import 'package:places/ui_widgets/place_card.dart';
-import 'package:places/ui/screens/main_3_wished_and_seen/main_3_3_empty_list.dart';
+import 'package:places/ui/screens/main_3_wished_and_seen/widget_empty_list.dart';
 import 'package:places/ui/screens/place_details_screen/place_details_screen.dart';
 
 import 'package:places/domain_models/place.dart';
