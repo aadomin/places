@@ -1,3 +1,4 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:places/data_repositories/geo_repository.dart';
 import 'package:places/data_repositories/place_repository.dart';
@@ -5,6 +6,7 @@ import 'package:places/data_repositories/search_repository.dart';
 import 'package:places/domain_entities/geo_entity.dart';
 import 'package:places/domain_entities/place_entity.dart';
 import 'package:places/domain_entities/search_entity.dart';
+import 'package:places/ui_blocs/my_bloc_observer.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui_my_app/my_app.dart';
@@ -44,6 +46,8 @@ void main() {
   // !!!
   filterInteractor = FilterInteractor();
   placeInteractor = PlaceInteractor();
+
+  Bloc.observer = MyBlocObserver();
 
   runApp(const MyAppProvider());
 }
