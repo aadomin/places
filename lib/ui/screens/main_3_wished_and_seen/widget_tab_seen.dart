@@ -6,18 +6,18 @@ import 'package:places/ui_my_app/enums.dart';
 import 'package:places/ui_my_app/my_scroll_physics.dart';
 import 'package:places/ui_widgets/place_card.dart';
 import 'package:places/ui/screens/main_3_wished_and_seen/widget_empty_list.dart';
-import 'package:places/ui/screens/place_details_screen/place_details_screen.dart';
+import 'package:places/ui/screens/place_details_screen/screen_place_details.dart';
 
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
 
-class TabSeen extends StatefulWidget {
-  const TabSeen({Key? key}) : super(key: key);
+class WidgetTabSeen extends StatefulWidget {
+  const WidgetTabSeen({Key? key}) : super(key: key);
   @override
-  _TabSeenState createState() => _TabSeenState();
+  _WidgetTabSeenState createState() => _WidgetTabSeenState();
 }
 
-class _TabSeenState extends State<TabSeen> {
+class _WidgetTabSeenState extends State<WidgetTabSeen> {
   @override
   Widget build(BuildContext context) {
     final List<Place> _listOfItems =
@@ -72,7 +72,7 @@ class _TabSeenState extends State<TabSeen> {
     showModalBottomSheet<bool>(
       isScrollControlled: true,
       context: context,
-      builder: (_) => PlaceDetailsScreen(
+      builder: (_) => ScreenPlaceDetails(
         placeId: id,
       ),
     );

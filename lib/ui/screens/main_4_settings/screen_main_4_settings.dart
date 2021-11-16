@@ -6,14 +6,14 @@ import 'package:places/ui_my_app/ui_image_paths.dart';
 
 import 'package:places/ui_interactors/settings_interactor.dart';
 
-class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({Key? key}) : super(key: key);
+class ScreenMain4Settings extends StatefulWidget {
+  const ScreenMain4Settings({Key? key}) : super(key: key);
 
   @override
-  _SettingsScreenState createState() => _SettingsScreenState();
+  _ScreenMain4SettingsState createState() => _ScreenMain4SettingsState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _ScreenMain4SettingsState extends State<ScreenMain4Settings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

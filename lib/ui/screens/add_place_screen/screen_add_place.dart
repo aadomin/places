@@ -12,13 +12,13 @@ import 'package:places/ui_widgets/my_image_widget.dart';
 
 import 'package:places/ui_interactors/place_interactor.dart';
 
-class AddPlaceScreen extends StatefulWidget {
-  const AddPlaceScreen({Key? key}) : super(key: key);
+class ScreenAddPlace extends StatefulWidget {
+  const ScreenAddPlace({Key? key}) : super(key: key);
   @override
-  _AddPlaceScreenState createState() => _AddPlaceScreenState();
+  _ScreenAddPlaceState createState() => _ScreenAddPlaceState();
 }
 
-class _AddPlaceScreenState extends State<AddPlaceScreen> {
+class _ScreenAddPlaceState extends State<ScreenAddPlace> {
   FocusNode focusNodeName = FocusNode();
   FocusNode focusNodeLat = FocusNode();
   FocusNode focusNodeLon = FocusNode();

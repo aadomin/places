@@ -9,18 +9,18 @@ import 'package:places/ui_widgets/my_image_widget.dart';
 
 import 'package:places/domain_models/place.dart';
 
-class PlaceDetailsScreen extends StatefulWidget {
-  const PlaceDetailsScreen({
+class ScreenPlaceDetails extends StatefulWidget {
+  const ScreenPlaceDetails({
     required this.placeId,
     Key? key,
   }) : super(key: key);
   final int placeId;
 
   @override
-  _PlaceDetailsScreenState createState() => _PlaceDetailsScreenState();
+  _ScreenPlaceDetailsState createState() => _ScreenPlaceDetailsState();
 }
 
-class _PlaceDetailsScreenState extends State<PlaceDetailsScreen> {
+class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
   final PageController _pageController = PageController();
 
   double _selectedPage = 0;

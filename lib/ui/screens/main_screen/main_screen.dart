@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/ui/screens/main_1_places_list/main_1_places_list_screen.dart';
-import 'package:places/ui/screens/main_2_map/main_2_map_screen.dart';
-import 'package:places/ui/screens/main_3_wished_and_seen/main_3_0_visiting_screen.dart';
-import 'package:places/ui/screens/main_4_settings/main_4_settings_screen.dart';
+import 'package:places/ui/screens/main_1_places_list/screen_main_1_places_list.dart';
+import 'package:places/ui/screens/main_2_map/screen_main_2_map.dart';
+import 'package:places/ui/screens/main_3_wished_and_seen/screen_main_3_0_wished_and_seen.dart';
+import 'package:places/ui/screens/main_4_settings/screen_main_4_settings.dart';
 
 class AllMainScreens extends StatefulWidget {
   const AllMainScreens({Key? key}) : super(key: key);
@@ -62,10 +62,10 @@ class _AllMainScreensState extends State<AllMainScreens> {
           });
         },
         children: const [
-          Center(child: PlacesListScreen()),
-          Center(child: MapsScreen()),
-          Center(child: VisitingScreen()),
-          Center(child: SettingsScreen()),
+          Center(child: ScreenMain1PlacesList()),
+          Center(child: ScreenMain2Map()),
+          Center(child: ScreenMain3WishedAndSeen()),
+          Center(child: ScreenMain4Settings()),
         ],
       ),
     );

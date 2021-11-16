@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/ui/screens/main_3_wished_and_seen/main_3_1_tab_wished.dart';
-import 'package:places/ui/screens/main_3_wished_and_seen/main_3_2_tab_seen.dart';
+import 'package:places/ui/screens/main_3_wished_and_seen/widget_tab_wished.dart';
+import 'package:places/ui/screens/main_3_wished_and_seen/widget_tab_seen.dart';
 import 'package:places/ui_widgets/headers.dart';
 
-class VisitingScreen extends StatefulWidget {
-  const VisitingScreen({Key? key}) : super(key: key);
+//ignore-file: always-remove-listener
+
+class ScreenMain3WishedAndSeen extends StatefulWidget {
+  const ScreenMain3WishedAndSeen({Key? key}) : super(key: key);
 
   @override
-  _VisitingScreenState createState() => _VisitingScreenState();
+  _ScreenMain3WishedAndSeenState createState() =>
+      _ScreenMain3WishedAndSeenState();
 }
 
-class _VisitingScreenState extends State<VisitingScreen>
+class _ScreenMain3WishedAndSeenState extends State<ScreenMain3WishedAndSeen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -21,12 +24,20 @@ class _VisitingScreenState extends State<VisitingScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+  }
 
-    _tabController.addListener(() {
-      setState(() {
-        _indicatorPosition = _tabController.index.toDouble();
-      });
+  void _onChangeTab() {
+    setState(() {
+      _indicatorPosition = _tabController.index.toDouble();
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController
+      ..removeListener(_onChangeTab)
+      ..dispose();
   }
 
   @override
@@ -156,10 +167,10 @@ class _VisitingScreenState extends State<VisitingScreen>
           controller: _tabController,
           children: const [
             Tab(
-              child: TabWished(),
+              child: WidgetTabWished(),
             ),
             Tab(
-              child: TabSeen(),
+              child: WidgetTabSeen(),
             ),
           ],
         ),

@@ -6,7 +6,7 @@ import 'package:places/ui_my_app/routes.dart';
 import 'package:places/ui_my_app/platform_detector.dart';
 import 'package:places/ui/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:places/ui/screens/filter_screen/filters_screen.dart';
-import 'package:places/ui/screens/add_place_screen/add_place_screen.dart';
+import 'package:places/ui/screens/add_place_screen/screen_add_place.dart';
 import 'package:places/ui/screens/select_category_screen/select_category_screen.dart';
 import 'package:places/ui/screens/place_search_screen/place_search_screen.dart';
 import 'package:places/ui/screens/main_screen/main_screen.dart';
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       routes: {
         ROUTE_HOME: (context) => const AllMainScreens(),
         ROUTE_FILTER: (context) => const FiltersScreen(),
-        ROUTE_ADD: (context) => const AddPlaceScreen(),
+        ROUTE_ADD: (context) => const ScreenAddPlace(),
         ROUTE_SELECT_CATEGORY: (context) => const SelectCategory(),
         ROUTE_SEARCH: (context) => PlaceSearchScreen(),
         ROUTE_ONBOARDING: (context) => const OnboardingScreen(),

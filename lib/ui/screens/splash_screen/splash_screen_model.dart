@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:places/ui_my_app/routes.dart';
 
-// TODO - avoid_print
-// ignore_for_file: avoid_print
-
-class SplashScreenModel with ChangeNotifier {
+class SplashScreenModel {
   // ignore: avoid_void_async
   static void initAppAndThenChangeScreen(BuildContext context) async {
     print('starting of application');

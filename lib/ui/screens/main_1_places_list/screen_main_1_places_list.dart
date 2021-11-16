@@ -8,14 +8,14 @@ import 'package:provider/provider.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
 
-class PlacesListScreen extends StatefulWidget {
-  const PlacesListScreen({Key? key}) : super(key: key);
+class ScreenMain1PlacesList extends StatefulWidget {
+  const ScreenMain1PlacesList({Key? key}) : super(key: key);
 
   @override
-  _PlacesListScreenState createState() => _PlacesListScreenState();
+  _ScreenMain1PlacesListState createState() => _ScreenMain1PlacesListState();
 }
 
-class _PlacesListScreenState extends State<PlacesListScreen> {
+class _ScreenMain1PlacesListState extends State<ScreenMain1PlacesList> {
   // просто контроллер
   final _placesListController = StreamController<List<Place>>();
 
