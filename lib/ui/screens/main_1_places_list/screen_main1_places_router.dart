@@ -2,8 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:places/main.dart';
 import 'package:flutter/material.dart';
 import 'package:places/ui/screens/main_1_places_list/screen_main1_places.dart';
-import 'package:places/ui/screens/main_1_places_list/widget_new_place_button.dart';
-import 'package:places/ui_blocs/places_cubit.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
 import 'package:places/ui_widgets/network_error_widget.dart';
 import 'package:places/domain_models/place.dart';

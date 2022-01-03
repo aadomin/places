@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:places/ui_blocs/places_cubit.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui_my_app/enums.dart';
@@ -11,18 +12,22 @@ import 'package:places/ui/screens/place_details_screen/screen_place_details.dart
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
 
-class WidgetTabWished extends StatefulWidget {
-  const WidgetTabWished({Key? key}) : super(key: key);
+class WidgetTabFavorite extends StatefulWidget {
+  const WidgetTabFavorite({
+    required this.favoritePlaces,
+    Key? key,
+  }) : super(key: key);
+
+  final List<Place> favoritePlaces;
 
   @override
-  _WidgetTabWishedState createState() => _WidgetTabWishedState();
+  _WidgetTabFavoriteState createState() => _WidgetTabFavoriteState();
 }
 
-class _WidgetTabWishedState extends State<WidgetTabWished> {
+class _WidgetTabFavoriteState extends State<WidgetTabFavorite> {
   @override
   Widget build(BuildContext context) {
-    final List<Place> _listOfItems =
-        context.watch<PlaceInteractor>().getFavoritesPlaces;
+    final List<Place> _listOfItems = widget.favoritePlaces;
 
     if (_listOfItems.isEmpty) {
       return const WidgetEmptyList(
@@ -51,14 +56,14 @@ class _WidgetTabWishedState extends State<WidgetTabWished> {
                           onTapOnCard(i.value.id);
                         },
                         onAddToCalendar: () {
-                          context.read<PlaceInteractor>().schedulePlace(
+                          context.read<PlacesCubit>().schedulePlace(
                                 context,
                                 i.value.id,
                               );
                         },
                         onDeleteFromWished: () {
                           context
-                              .read<PlaceInteractor>()
+                              .read<PlacesCubit>()
                               .removeFromFavorites(_listOfItems[i.key].id);
                         },
                       ),

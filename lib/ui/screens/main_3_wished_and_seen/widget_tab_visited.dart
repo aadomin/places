@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:places/ui_blocs/places_cubit.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui_my_app/enums.dart';
@@ -9,10 +10,9 @@ import 'package:places/ui/screens/main_3_wished_and_seen/widget_empty_list.dart'
 import 'package:places/ui/screens/place_details_screen/screen_place_details.dart';
 
 import 'package:places/domain_models/place.dart';
-import 'package:places/ui_interactors/place_interactor.dart';
 
-class WidgetTabSeen extends StatefulWidget {
-  const WidgetTabSeen({
+class WidgetTabVisited extends StatefulWidget {
+  const WidgetTabVisited({
     required this.visitedPlaces,
     Key? key,
   }) : super(key: key);
@@ -20,15 +20,15 @@ class WidgetTabSeen extends StatefulWidget {
   final List<Place> visitedPlaces;
 
   @override
-  _WidgetTabSeenState createState() => _WidgetTabSeenState();
+  _WidgetTabVisitedState createState() => _WidgetTabVisitedState();
 }
 
-class _WidgetTabSeenState extends State<WidgetTabSeen> {
+class _WidgetTabVisitedState extends State<WidgetTabVisited> {
   @override
   Widget build(BuildContext context) {
-    final List<Place> _listOfItems = widget.visitedPlaces;
+    final List<Place> _visitedPlaces = widget.visitedPlaces;
 
-    if (_listOfItems.isEmpty) {
+    if (_visitedPlaces.isEmpty) {
       return const WidgetEmptyList(
         commentLine: 'Отмечайте понравившиеся места \nи они появятся здесь',
       );
@@ -42,7 +42,7 @@ class _WidgetTabSeenState extends State<WidgetTabSeen> {
           padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
           child: ListView(
             physics: MyScrollPhysics.physics,
-            children: _listOfItems
+            children: _visitedPlaces
                 .asMap()
                 .entries
                 .map(
@@ -59,8 +59,8 @@ class _WidgetTabSeenState extends State<WidgetTabSeen> {
                         },
                         onDeleteFromSeen: () {
                           context
-                              .read<PlaceInteractor>()
-                              .removeFromVisited(_listOfItems[i.key].id);
+                              .read<PlacesCubit>()
+                              .removeFromVisited(_visitedPlaces[i.key].id);
                         },
                       ),
                     ],

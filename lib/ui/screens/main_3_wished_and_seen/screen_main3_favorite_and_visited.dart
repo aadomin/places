@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_models/place.dart';
 
-import 'package:places/ui/screens/main_3_wished_and_seen/widget_tab_wished.dart';
-import 'package:places/ui/screens/main_3_wished_and_seen/widget_tab_seen.dart';
+import 'package:places/ui/screens/main_3_wished_and_seen/widget_tab_favorite.dart';
+import 'package:places/ui/screens/main_3_wished_and_seen/widget_tab_visited.dart';
 import 'package:places/ui_widgets/headers.dart';
 
-//ignore-file: always-remove-listener
-
-class ScreenMain3WishedSeen extends StatefulWidget {
-  const ScreenMain3WishedSeen({
-    required this.listOfItems,
+class ScreenMain3FavoriteAndVisited extends StatefulWidget {
+  const ScreenMain3FavoriteAndVisited({
+    required this.visitedPlaces,
+    required this.favoritePlaces,
     Key? key,
   }) : super(key: key);
 
-  final List<Place> listOfItems;
+  final List<Place> visitedPlaces;
+  final List<Place> favoritePlaces;
 
   @override
-  _ScreenMain3WishedSeenState createState() => _ScreenMain3WishedSeenState();
+  _ScreenMain3FavoriteAndVisitedState createState() =>
+      _ScreenMain3FavoriteAndVisitedState();
 }
 
-class _ScreenMain3WishedSeenState extends State<ScreenMain3WishedSeen>
+class _ScreenMain3FavoriteAndVisitedState
+    extends State<ScreenMain3FavoriteAndVisited>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -172,11 +174,13 @@ class _ScreenMain3WishedSeenState extends State<ScreenMain3WishedSeen>
           controller: _tabController,
           children: [
             Tab(
-              child: WidgetTabWished(),
+              child: WidgetTabFavorite(
+                favoritePlaces: widget.favoritePlaces,
+              ),
             ),
             Tab(
-              child: WidgetTabSeen(
-                visitedPlaces: widget.listOfItems,
+              child: WidgetTabVisited(
+                visitedPlaces: widget.visitedPlaces,
               ),
             ),
           ],
