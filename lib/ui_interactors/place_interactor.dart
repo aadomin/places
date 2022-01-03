@@ -3,9 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/main.dart';
 import 'package:places/domain_models/filter_item.dart';
-import 'package:places/data_repositories/mocks.dart';
 import 'package:places/ui_my_app/platform_detector.dart';
-import 'package:places/ui/screens/place_details_screen/screen_place_details.dart';
 
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_widgets/widget_add_to_calendar_cuper_modal.dart';
@@ -186,7 +184,7 @@ class PlaceInteractor with ChangeNotifier {
 
   ///
   /// Добавление нового: функция добавления
-  /// 
+  ///
   void addNewPlace({
     required String name,
     required double lat,
@@ -208,12 +206,6 @@ class PlaceInteractor with ChangeNotifier {
     );
 
     placeEntity.addPlace(newPlace);
-
-    // if (placeRepository.isRequestDoneWithError) {
-    //   isRequestDoneWithError = true;
-    //   notifyListeners();
-    //   return;
-    // }
 
     allPlaces.add(newPlace);
     notifyListeners();

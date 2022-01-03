@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:places/domain_models/place.dart';
 import 'package:places/main.dart';
 import 'package:places/ui/screens/main_1_places_list/widget_my_sliver_app_bar.dart';
