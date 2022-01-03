@@ -124,23 +124,7 @@ class PlaceInteractor with ChangeNotifier {
     throw Exception('Нет такого id');
   }
 
-  void showModalDetailsScreen(BuildContext context, int id) {
-    showModalBottomSheet<bool>(
-      isScrollControlled: true,
-      context: context,
-      builder: (_) => ScreenPlaceDetails(
-        placeId: id,
-      ),
-    );
-  }
-
-  void refresh() {
-    notifyListeners();
-  }
-
-  List<String> get listOfInitialPhotosForAdding =>
-      mockOfListOfInitialImagesForAdding;
-
+  /// запланировать посещение места - используется минимум двумя экранами
   Future<void> schedulePlace(BuildContext context, int id) async {
     late final DateTime? _result;
     if (PlatformDetector.isAndroid || PlatformDetector.isWeb) {
@@ -169,12 +153,22 @@ class PlaceInteractor with ChangeNotifier {
     }
   }
 
-  //
-  // Добавление нового
-  //
-
+  ///
+  /// Добавление нового: перечень фоток
+  ///
   List<String>? _listOfPhotos;
 
+  ///
+  /// Список изначальных фоток
+  ///
+  List<String> get listOfInitialPhotosForAdding =>
+      placeEntity.listOfInitialPhotosForAdding;
+  set listOfInitialPhotosForAdding(List<String> value) =>
+      placeEntity.listOfInitialPhotosForAdding = value;
+
+  ///
+  /// Добавление нового: перечень фоток
+  ///
   List<String> get listOfPhotos {
     // копируем изначальный список фоток, пока для красоты
     _listOfPhotos ??= [
@@ -183,10 +177,16 @@ class PlaceInteractor with ChangeNotifier {
     return _listOfPhotos ?? []; // just for null safety
   }
 
+  ///
+  /// Добавление нового: перечень фоток
+  ///
   set listOfPhotos(List<String> value) {
     _listOfPhotos = value;
   }
 
+  ///
+  /// Добавление нового: функция добавления
+  /// 
   void addNewPlace({
     required String name,
     required double lat,

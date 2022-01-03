@@ -23,4 +23,18 @@ class PlaceEntity {
     // ignore: unawaited_futures
     placeRepository.addPlace(newPlace);
   }
+
+  /// Список изначальных фоток при добавлении
+  /// Для isDebugMockDataInPlaceOfHttp = true
+  ///
+  List<String> get listOfInitialPhotosForAdding {
+    return placeRepository.listOfInitialPhotosForAdding;
+  }
+
+  /// Список изначальных фоток при добавлении
+  /// Для isDebugMockDataInPlaceOfHttp = true
+  ///
+  set listOfInitialPhotosForAdding(List<String> value) {
+    placeRepository.listOfInitialPhotosForAdding = value;
+  }
 }

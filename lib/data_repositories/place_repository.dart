@@ -55,7 +55,7 @@ class PlaceRepository {
       return;
     } else {
       const String _path = '/place';
- 
+
       try {
         final Response response = await dio.get<String>(
           _path,
@@ -116,4 +116,13 @@ class PlaceRepository {
       return;
     }
   }
+
+  List<String> listOfInitialPhotosForAdding = [
+    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+  ];
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/domain_models/place.dart';
 
 import 'package:places/ui/screens/main_3_wished_and_seen/widget_tab_wished.dart';
 import 'package:places/ui/screens/main_3_wished_and_seen/widget_tab_seen.dart';
@@ -6,15 +7,19 @@ import 'package:places/ui_widgets/headers.dart';
 
 //ignore-file: always-remove-listener
 
-class ScreenMain3WishedAndSeen extends StatefulWidget {
-  const ScreenMain3WishedAndSeen({Key? key}) : super(key: key);
+class ScreenMain3WishedSeen extends StatefulWidget {
+  const ScreenMain3WishedSeen({
+    required this.listOfItems,
+    Key? key,
+  }) : super(key: key);
+
+  final List<Place> listOfItems;
 
   @override
-  _ScreenMain3WishedAndSeenState createState() =>
-      _ScreenMain3WishedAndSeenState();
+  _ScreenMain3WishedSeenState createState() => _ScreenMain3WishedSeenState();
 }
 
-class _ScreenMain3WishedAndSeenState extends State<ScreenMain3WishedAndSeen>
+class _ScreenMain3WishedSeenState extends State<ScreenMain3WishedSeen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -165,12 +170,14 @@ class _ScreenMain3WishedAndSeenState extends State<ScreenMain3WishedAndSeen>
         length: 2,
         child: TabBarView(
           controller: _tabController,
-          children: const [
+          children: [
             Tab(
               child: WidgetTabWished(),
             ),
             Tab(
-              child: WidgetTabSeen(),
+              child: WidgetTabSeen(
+                visitedPlaces: widget.listOfItems,
+              ),
             ),
           ],
         ),

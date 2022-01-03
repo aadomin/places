@@ -12,7 +12,13 @@ import 'package:places/domain_models/place.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
 
 class WidgetTabSeen extends StatefulWidget {
-  const WidgetTabSeen({Key? key}) : super(key: key);
+  const WidgetTabSeen({
+    required this.visitedPlaces,
+    Key? key,
+  }) : super(key: key);
+
+  final List<Place> visitedPlaces;
+
   @override
   _WidgetTabSeenState createState() => _WidgetTabSeenState();
 }
@@ -20,8 +26,7 @@ class WidgetTabSeen extends StatefulWidget {
 class _WidgetTabSeenState extends State<WidgetTabSeen> {
   @override
   Widget build(BuildContext context) {
-    final List<Place> _listOfItems =
-        context.watch<PlaceInteractor>().getVisitedPlaces;
+    final List<Place> _listOfItems = widget.visitedPlaces;
 
     if (_listOfItems.isEmpty) {
       return const WidgetEmptyList(

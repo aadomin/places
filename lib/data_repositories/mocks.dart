@@ -4,18 +4,6 @@ import 'package:places/domain_models/place.dart';
 ///
 /// Для isDebugMockDataInPlaceOfHttp = true
 ///
-List<String> mockOfListOfInitialImagesForAdding = [
-  'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-  'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-  'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-  'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-  'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-  'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-];
-
-///
-/// Для isDebugMockDataInPlaceOfHttp = true
-///
 final List<Place> mocks = [
   Place(
     name: 'Воронежский областной краеведческий музей',

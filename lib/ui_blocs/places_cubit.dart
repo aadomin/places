@@ -3,7 +3,7 @@ import 'package:places/domain_models/place.dart';
 import 'package:places/main.dart';
 
 /// {@template counter_cubit}
-/// A [Cubit] which manages an [int] as its state.
+/// A [Cubit] which manages an [List<Place>] as its state.
 /// {@endtemplate}
 class PlacesCubit extends Cubit<List<Place>> {
   PlacesCubit(List<Place> initialState) : super(initialState);
