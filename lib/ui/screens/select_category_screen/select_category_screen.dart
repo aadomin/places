@@ -58,7 +58,7 @@ class SelectCategory extends StatelessWidget {
                 },
                 title: Text(item.value.name),
                 trailing: item.value.isSelected
-                    ? Icon(Icons.done, color: Theme.of(context).accentColor)
+                    ? Icon(Icons.done, color: Theme.of(context).colorScheme.secondary)
                     : const Text(''),
               );
             }).toList(),

@@ -140,7 +140,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                               '    закрыто до 09:00',
                               style: TextStyle(
                                 fontSize: 14,
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                               ),
                             ),
                           ],

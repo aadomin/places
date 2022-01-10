@@ -16,6 +16,8 @@ class WidgetMySliverAppBar extends SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
+    final double headerFontSize =
+        (MediaQuery.of(context).size.width > 330) ? 32 : 25;
     return Stack(
       children: [
         // Первоначальный заголовок
@@ -23,17 +25,12 @@ class WidgetMySliverAppBar extends SliverPersistentHeaderDelegate {
           opacity: 1 - shrinkOffset / expandedHeight,
           child: Container(
             color: Theme.of(context).canvasColor,
-            padding: const EdgeInsets.only(
-              top: 40,
-              bottom: 10,
-              left: 50,
-            ),
-            width: 350,
+            padding: const EdgeInsets.only(top: 40, bottom: 10, left: 50),
             alignment: Alignment.centerLeft,
             child: RichText(
               text: TextSpan(
                 style: TextStyle(
-                  fontSize: 34,
+                  fontSize: headerFontSize,
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).primaryColor,
                 ),

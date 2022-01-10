@@ -50,7 +50,7 @@ class WidgetSearchDescriptionOfPlace extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+          padding: EdgeInsets.zero,
           child: Text(
             place.name,
             maxLines: 2,

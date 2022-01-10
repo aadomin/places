@@ -49,7 +49,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
               context.read<FilterInteractor>().clearActiveCategories();
             },
             style: TextButton.styleFrom(
-              primary: Theme.of(context).accentColor,
+              primary: Theme.of(context).colorScheme.secondary,
             ),
             child: const Text(
               UiStrings.clear,
@@ -126,6 +126,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                                     ),
                                   ),
                                 ),
+                                //ignore: prefer_if_elements_to_conditional_expressions
                                 context
                                         .watch<FilterInteractor>()
                                         .filterItems[i]

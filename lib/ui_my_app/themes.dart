@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 final lightTheme = ThemeData(
   primaryColor: const Color(0xff3b3e5b), // 3b3e5b
   primaryColorLight: const Color(0xff7c7e92), // 7c7e92
-  primaryColorDark: const Color(0xff252849), // 252849
-  accentColor: const Color(0xFF4CAF50),
+  primaryColorDark: const Color(0xff252849),
   //
   canvasColor: Colors.white,
   unselectedWidgetColor: const Color(0x503B3E5B),
@@ -34,13 +33,15 @@ final lightTheme = ThemeData(
   bottomSheetTheme: const BottomSheetThemeData(
     backgroundColor: Colors.transparent, // для закругления
   ),
+  colorScheme: ColorScheme.fromSwatch().copyWith(
+    secondary: const Color(0xFF4CAF50),
+  ),
 );
 
 final darkTheme = ThemeData(
   primaryColor: Colors.white,
   primaryColorLight: const Color(0xff7c7e92),
   primaryColorDark: Colors.white,
-  accentColor: const Color(0xFF4CAF50),
   //
   canvasColor: const Color(0xff21222C),
   unselectedWidgetColor: const Color(0x7f7C7E92),
@@ -61,5 +62,8 @@ final darkTheme = ThemeData(
   ),
   bottomSheetTheme: const BottomSheetThemeData(
     backgroundColor: Colors.transparent, // для закругления
+  ),
+  colorScheme: ColorScheme.fromSwatch().copyWith(
+    secondary: const Color(0xFF4CAF50),
   ),
 );

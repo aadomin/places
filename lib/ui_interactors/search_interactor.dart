@@ -19,7 +19,7 @@ class SearchInteractor with ChangeNotifier {
 
   final placeInteractor = PlaceInteractor();
 
-  var searchStatus = SearchStatus.empty;
+  SearchStatus searchStatus = SearchStatus.empty;
   List<Place> _searchResult = [];
   String _searchText = '';
 

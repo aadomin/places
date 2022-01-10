@@ -10,6 +10,11 @@ import 'package:places/ui_my_app/enums.dart';
 import 'package:places/ui_my_app/my_scroll_physics.dart';
 import 'package:places/ui_widgets/place_card.dart';
 
+/// Экран 1. Список мест.
+/// Первый из четырех главных экранов, доступных по нажатию на 
+/// BottomNavigationBar.
+/// Данный класс описывает ГЛАВНОЕ состояние экрана  
+/// 
 class ScreenMain1Places extends StatelessWidget {
   ScreenMain1Places({
     required this.filteredPlacesSnapshot,

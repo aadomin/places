@@ -92,7 +92,7 @@ class DialogAddPhoto extends StatelessWidget {
           Navigator.of(context).pop();
         },
         child: Text(
-          'ОТМЕНА',
+          UiStrings.cancelCaps,
           style: Theme.of(context).textTheme.bodyText1?.copyWith(
                 color: Theme.of(context).colorScheme.secondary,
                 fontWeight: FontWeight.bold,

@@ -5,6 +5,11 @@ import 'package:places/ui/screens/main_3_wished_and_seen/widget_tab_favorite.dar
 import 'package:places/ui/screens/main_3_wished_and_seen/widget_tab_visited.dart';
 import 'package:places/ui_widgets/headers.dart';
 
+/// Экран 3. Список избранных и посещенных мест.
+/// Третий из четырех главных экранов, доступных по нажатию на 
+/// BottomNavigationBar.
+/// Данный класс описывает ГЛАВНОЕ состояние экрана
+/// 
 class ScreenMain3FavoriteAndVisited extends StatefulWidget {
   const ScreenMain3FavoriteAndVisited({
     required this.visitedPlaces,
@@ -25,7 +30,7 @@ class _ScreenMain3FavoriteAndVisitedState
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
-  double _indicatorPosition = 0;
+  //double _indicatorPosition = 0;
 
   @override
   void initState() {
@@ -33,145 +38,81 @@ class _ScreenMain3FavoriteAndVisitedState
     _tabController = TabController(length: 2, vsync: this);
   }
 
-  void _onChangeTab() {
-    setState(() {
-      _indicatorPosition = _tabController.index.toDouble();
-    });
-  }
+  // void _onChangeTab() {
+  //   setState(() {
+  //     _indicatorPosition = _tabController.index.toDouble();
+  //   });
+  // }
 
   @override
   void dispose() {
     super.dispose();
     _tabController
-      ..removeListener(_onChangeTab)
-      ..dispose();
+      // ..removeListener(_onChangeTab)
+      .dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final double _widthOfWindows = MediaQuery.of(context).size.width;
-    const double _uiDefaultPadding = 16;
-    const double _uiDefaultButtonHeight = 55;
 
     const String _header = 'Избранное';
 
-    return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 120,
-        backgroundColor: Theme.of(context).canvasColor,
-        elevation: 0,
-        title: Container(
-          alignment: Alignment.center,
-          width: double.infinity,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(140),
           child: Column(
             children: [
-              const WidgetMyHeader(header: _header),
-              Stack(
-                children: [
-                  Container(
-                    // Tab Indicator 1 of 3 - grey background
-                    width: double.infinity,
-                    height: _uiDefaultButtonHeight,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(
-                          _uiDefaultButtonHeight / 2,
+              AppBar(
+                automaticallyImplyLeading: false,
+                backgroundColor: Theme.of(context).canvasColor,
+                elevation: 0,
+                title: const WidgetMyHeader(header: _header),
+              ),
+              Container(
+                margin: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  //grey background
+                  color: Theme.of(context).disabledColor,
+                  borderRadius: BorderRadius.circular(
+                    25.0,
+                  ),
+                ),
+                child: TabBar(
+                  unselectedLabelColor: Theme.of(context).primaryColorLight,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  labelColor: Theme.of(context).canvasColor,
+                  // labelStyle: TextStyle(
+                  //   height: 15,
+                  // ),
+                  indicator: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Theme.of(context).selectedRowColor,
+                  ),
+                  tabs: const [
+                    Tab(
+                      child: Align(
+                        child: Text(
+                          'Хочу посетить',
                         ),
                       ),
-                      color: Theme.of(context).disabledColor,
                     ),
-                  ),
-                  SizedBox(
-                    height: _uiDefaultButtonHeight,
-                    child: Row(
-                      children: [
-                        // Tab Indicator 2 of 3- margin for animation
-                        SizedBox(
-                          width:
-                              ((_widthOfWindows - 2 * _uiDefaultPadding) / 2) *
-                                  _indicatorPosition,
+                    Tab(
+                      child: Align(
+                        child: Text(
+                          'Посетил',
                         ),
-                        // Tab Indicator 3 of 3 - colorful indicator
-                        SizedBox(
-                          width: (_widthOfWindows - 2 * _uiDefaultPadding) / 2,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(
-                                  _uiDefaultButtonHeight / 2,
-                                ),
-                              ),
-                              color: Theme.of(context).selectedRowColor,
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            _tabController.animateTo(0);
-                            setState(() {
-                              _indicatorPosition = 0;
-                            });
-                          },
-                          child: Container(
-                            height: _uiDefaultButtonHeight,
-                            alignment: Alignment.center,
-                            padding: const EdgeInsets.all(_uiDefaultPadding),
-                            child: Text(
-                              'Хочу посетить',
-                              style: TextStyle(
-                                color: _indicatorPosition == 0
-                                    ? Theme.of(context).canvasColor
-                                    : Theme.of(context).primaryColorLight,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            _tabController.animateTo(1);
-                            setState(() {
-                              _indicatorPosition = 1;
-                            });
-                          },
-                          child: Container(
-                            height: _uiDefaultButtonHeight,
-                            alignment: Alignment.center,
-                            padding: const EdgeInsets.all(16),
-                            child: Text(
-                              'Посетил',
-                              style: TextStyle(
-                                color: _indicatorPosition == 0
-                                    ? Theme.of(context).primaryColorLight
-                                    : Theme.of(context).canvasColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
         ),
-      ),
-      body: DefaultTabController(
-        length: 2,
-        child: TabBarView(
-          controller: _tabController,
+        body: TabBarView(
+          //controller: _tabController,
           children: [
             Tab(
               child: WidgetTabFavorite(

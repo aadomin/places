@@ -6,16 +6,21 @@ import 'package:places/ui/screens/main_3_wished_and_seen/screen_main3_favorite_a
 import 'package:places/ui_blocs/places_cubit.dart';
 import 'package:places/ui_widgets/network_error_widget.dart';
 
-class ScreenMain3FavoriteAndVisitedRouter extends StatefulWidget {
-  const ScreenMain3FavoriteAndVisitedRouter({Key? key}) : super(key: key);
+/// Экран 3. Список избранных и посещенных мест.
+/// Третий из четырех главных экранов, доступных по нажатию на 
+/// BottomNavigationBar.
+/// Данный класс описывает разные состояния экрана (в т.ч. ошибка, загрузка)
+/// 
+class ScreenMain3FavoriteAndVisitedRoute extends StatefulWidget {
+  const ScreenMain3FavoriteAndVisitedRoute({Key? key}) : super(key: key);
 
   @override
-  _ScreenMain3FavoriteAndVisitedRouterState createState() =>
-      _ScreenMain3FavoriteAndVisitedRouterState();
+  _ScreenMain3FavoriteAndVisitedRouteState createState() =>
+      _ScreenMain3FavoriteAndVisitedRouteState();
 }
 
-class _ScreenMain3FavoriteAndVisitedRouterState
-    extends State<ScreenMain3FavoriteAndVisitedRouter> {
+class _ScreenMain3FavoriteAndVisitedRouteState
+    extends State<ScreenMain3FavoriteAndVisitedRoute> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

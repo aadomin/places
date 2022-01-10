@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:places/ui_my_app/text_styles.dart';
+import 'package:places/ui_my_app/ui_strings.dart';
 
 class WidgetEmptyList extends StatelessWidget {
   const WidgetEmptyList({
@@ -22,7 +23,7 @@ class WidgetEmptyList extends StatelessWidget {
             size: 40,
           ),
           Text(
-            'Пусто',
+            UiStrings.empty,
             style: tsVisitingScreenNoItemsHeader,
             textAlign: TextAlign.center,
           ),

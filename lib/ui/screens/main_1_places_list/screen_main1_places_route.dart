@@ -6,15 +6,19 @@ import 'package:places/ui_interactors/place_interactor.dart';
 import 'package:places/ui_widgets/network_error_widget.dart';
 import 'package:places/domain_models/place.dart';
 
-class ScreenMain1PlacesRouter extends StatefulWidget {
-  const ScreenMain1PlacesRouter({Key? key}) : super(key: key);
+/// Экран 1. Список мест.
+/// Первый из четырех главных экранов, доступных по нажатию на 
+/// BottomNavigationBar.
+/// Данный класс описывает разные состояния экрана (в т.ч. ошибка, загрузка) 
+class ScreenMain1PlacesRoute extends StatefulWidget {
+  const ScreenMain1PlacesRoute({Key? key}) : super(key: key);
 
   @override
-  _ScreenMain1PlacesRouterState createState() =>
-      _ScreenMain1PlacesRouterState();
+  _ScreenMain1PlacesRouteState createState() =>
+      _ScreenMain1PlacesRouteState();
 }
 
-class _ScreenMain1PlacesRouterState extends State<ScreenMain1PlacesRouter> {
+class _ScreenMain1PlacesRouteState extends State<ScreenMain1PlacesRoute> {
   @override
   Widget build(BuildContext context) {
     final List<Place> filteredPlaces =

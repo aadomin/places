@@ -221,7 +221,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
               ),
               const CategoryHeaderWidget('НАЗВАНИЕ'),
               Padding(
-                padding: const EdgeInsets.all(0),
+                padding: EdgeInsets.zero,
                 child: TextField(
                   controller: textControllerName,
                   focusNode: focusNodeName,
@@ -400,6 +400,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
           name: textControllerName.text,
           lat: double.parse(textControllerLat.text),
           lon: double.parse(textControllerLon.text),
+          // TODO(me): добавить url к создаваемому месту
           url: 'исправить',
           details: textControllerDescription.text,
           type: context.read<SelectCategoryInteractor>().currentlySelected,

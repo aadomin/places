@@ -33,6 +33,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        elevation: 0,
         backgroundColor: Theme.of(context).canvasColor,
         title: Row(
           children: [
@@ -50,12 +51,16 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         Navigator.pushReplacementNamed(context, ROUTE_HOME);
                       },
                       style: TextButton.styleFrom(
-                        primary: Theme.of(context).primaryColorLight,
+                        primary: const Color(0xFF4CAF50),
+                        //primary: Theme.of(context).primaryColorLight,
                       ),
                       child: const Align(
                         child: Text(
                           'Пропустить',
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF4CAF50),
+                          ),
                         ),
                       ),
                     ),

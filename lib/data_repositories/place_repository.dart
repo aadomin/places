@@ -72,6 +72,7 @@ class PlaceRepository {
         isRequestDoneWithError = true;
         print(e);
         return;
+        //ignore: avoid_catches_without_on_clauses
       } catch (e) {
         isRequestDoneWithError = true;
         print(e);

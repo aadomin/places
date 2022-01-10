@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/ui_blocs/places_cubit.dart';
+import 'package:places/ui_my_app/ui_strings.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui_my_app/enums.dart';
@@ -30,7 +31,7 @@ class _WidgetTabVisitedState extends State<WidgetTabVisited> {
 
     if (_visitedPlaces.isEmpty) {
       return const WidgetEmptyList(
-        commentLine: 'Отмечайте понравившиеся места \nи они появятся здесь',
+        commentLine: UiStrings.markSeenPlacesAndItWillAppearHere,
       );
     } else {
       return Container(
@@ -55,7 +56,7 @@ class _WidgetTabVisitedState extends State<WidgetTabVisited> {
                           onTapOnCard(i.value.id);
                         },
                         onShare: () {
-                          //TODO implement sharing
+                          // TODO(me): implement sharing
                         },
                         onDeleteFromSeen: () {
                           context

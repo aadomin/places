@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/ui_blocs/places_cubit.dart';
+import 'package:places/ui_my_app/ui_strings.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui_my_app/enums.dart';
@@ -10,7 +11,6 @@ import 'package:places/ui/screens/main_3_wished_and_seen/widget_empty_list.dart'
 import 'package:places/ui/screens/place_details_screen/screen_place_details.dart';
 
 import 'package:places/domain_models/place.dart';
-import 'package:places/ui_interactors/place_interactor.dart';
 
 class WidgetTabFavorite extends StatefulWidget {
   const WidgetTabFavorite({
@@ -31,7 +31,7 @@ class _WidgetTabFavoriteState extends State<WidgetTabFavorite> {
 
     if (_listOfItems.isEmpty) {
       return const WidgetEmptyList(
-        commentLine: 'Отмечайте понравившиеся места \nи они появятся здесь',
+        commentLine: UiStrings.markFavotivePlacesAndItWillAppearHere,
       );
     } else {
       return Container(

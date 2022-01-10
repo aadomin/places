@@ -21,7 +21,7 @@ class WidgetBackButton extends StatelessWidget {
             backgroundColor: Theme.of(context).canvasColor,
           ),
           child: const Padding(
-            padding: EdgeInsets.all(0),
+            padding: EdgeInsets.zero,
             child: Icon(Icons.close, size: 20),
           ),
         ),

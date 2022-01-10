@@ -4,8 +4,8 @@ import 'package:places/ui_my_app/ui_strings.dart';
 
 class WidgetSearchingHeader extends StatelessWidget {
   const WidgetSearchingHeader({
-    Key? key,
     required this.focusNode1,
+    Key? key,
   }) : super(key: key);
 
   final FocusNode focusNode1;

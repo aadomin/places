@@ -17,7 +17,7 @@ class GeoRepository {
         longitude: random.nextDouble() * 20 + 40,
       );
     } else {
-      //TODO implement user locator
+      // TODO(me): implement user locator
       throw Exception('Unimplemented');
     }
   }

@@ -6,6 +6,10 @@ import 'package:places/ui_my_app/ui_image_paths.dart';
 
 import 'package:places/ui_interactors/settings_interactor.dart';
 
+/// Экран 4. Настройки
+/// Четвертый из четырех главных экранов, доступных по нажатию на 
+/// BottomNavigationBar.
+/// 
 class ScreenMain4Settings extends StatefulWidget {
   const ScreenMain4Settings({Key? key}) : super(key: key);
 

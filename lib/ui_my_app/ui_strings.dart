@@ -21,4 +21,8 @@ class UiStrings {
   static const String error = 'Ошибка';
   static const String somethingWentWrong = 'Что-то пошло не так.';
   static const String trySometimesLater = 'Попробуйте позже';
+  static const String empty = 'Пусто';
+  static const String markFavotivePlacesAndItWillAppearHere = 'Отмечайте понравившиеся места \nи они появятся здесь';
+  static const String markSeenPlacesAndItWillAppearHere = 'Отмечайте посещенные места \nи они появятся здесь';
+  static const String cancelCaps = 'ОТМЕНА';
 }
