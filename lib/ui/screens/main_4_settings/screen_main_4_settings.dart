@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:places/my_app_and_routes.dart';
 import 'package:provider/provider.dart';
-
-import 'package:places/ui_my_app/routes.dart';
-import 'package:places/ui_my_app/ui_image_paths.dart';
-
+import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_interactors/settings_interactor.dart';
 
 /// Экран 4. Настройки

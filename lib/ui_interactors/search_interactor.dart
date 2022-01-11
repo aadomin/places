@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/main.dart';
 
-import 'package:places/ui_my_app/enums.dart';
+import 'package:places/ui_commons/enums.dart';
 
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_interactors/place_interactor.dart';

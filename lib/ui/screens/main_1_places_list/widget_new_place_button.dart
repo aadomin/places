@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui_my_app/routes.dart';
-import 'package:places/ui_my_app/ui_strings.dart';
+import 'package:places/my_app_and_routes.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 
+/// Кнопка "Новое место"
 class WidgetNewPlaceButton extends StatelessWidget {
   const WidgetNewPlaceButton({
     Key? key,

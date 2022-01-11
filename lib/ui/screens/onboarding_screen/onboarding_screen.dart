@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-
-import 'package:places/ui_my_app/ui_image_paths.dart';
-import 'package:places/ui_my_app/routes.dart';
+import 'package:places/my_app_and_routes.dart';
+import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui/screens/onboarding_screen/onboarding_page_1.dart';
 import 'package:places/ui/screens/onboarding_screen/onboarding_page_2.dart';
 import 'package:places/ui/screens/onboarding_screen/onboarding_page_3.dart';
 
+/// Экран "Добро пожаловать" включающий в себя 3 страницы
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
   @override

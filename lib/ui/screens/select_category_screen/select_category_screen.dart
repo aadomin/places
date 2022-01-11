@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 import 'package:provider/provider.dart';
-
 import 'package:places/ui_interactors/select_category_interactor.dart';
 
+/// Экран "Выбор категории"
 class SelectCategory extends StatelessWidget {
   const SelectCategory({Key? key}) : super(key: key);
 
@@ -31,7 +32,7 @@ class SelectCategory extends StatelessWidget {
               ),
             ),
             Text(
-              'Выбор категории',
+              UiStrings.selectionCategory,
               style: TextStyle(
                 color: Theme.of(context).primaryColorDark,
                 fontWeight: FontWeight.bold,
@@ -58,7 +59,8 @@ class SelectCategory extends StatelessWidget {
                 },
                 title: Text(item.value.name),
                 trailing: item.value.isSelected
-                    ? Icon(Icons.done, color: Theme.of(context).colorScheme.secondary)
+                    ? Icon(Icons.done,
+                        color: Theme.of(context).colorScheme.secondary)
                     : const Text(''),
               );
             }).toList(),
@@ -75,7 +77,7 @@ class SelectCategory extends StatelessWidget {
             },
             child: const Padding(
               padding: EdgeInsets.all(12.0),
-              child: Text('СОХРАНИТЬ'),
+              child: Text(UiStrings.saveCaps),
             ),
           ),
         ),

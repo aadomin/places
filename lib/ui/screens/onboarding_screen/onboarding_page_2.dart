@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/ui_my_app/ui_image_paths.dart';
+import 'package:places/ui_commons/ui_image_paths.dart';
 
+/// Страница "Добро пожаловать 2"
 class OnboardingPage2 extends StatelessWidget {
   const OnboardingPage2({
     Key? key,

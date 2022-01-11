@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/main.dart';
 import 'package:places/domain_models/filter_item.dart';
-import 'package:places/ui_my_app/platform_detector.dart';
+import 'package:places/ui_commons/platform_detector.dart';
 
 import 'package:places/domain_models/place.dart';
-import 'package:places/ui_widgets/widget_add_to_calendar_cuper_modal.dart';
+import 'package:places/ui_common_widgets/widget_add_to_calendar_cuper_modal.dart';
 
 class PlaceInteractor with ChangeNotifier {
   // <singleton>

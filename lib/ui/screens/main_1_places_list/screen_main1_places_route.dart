@@ -3,13 +3,14 @@ import 'package:places/main.dart';
 import 'package:flutter/material.dart';
 import 'package:places/ui/screens/main_1_places_list/screen_main1_places.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
-import 'package:places/ui_widgets/network_error_widget.dart';
+import 'package:places/ui_common_widgets/network_error_widget.dart';
 import 'package:places/domain_models/place.dart';
 
 /// Экран 1. Список мест.
 /// Первый из четырех главных экранов, доступных по нажатию на 
 /// BottomNavigationBar.
 /// Данный класс описывает разные состояния экрана (в т.ч. ошибка, загрузка) 
+/// 
 class ScreenMain1PlacesRoute extends StatefulWidget {
   const ScreenMain1PlacesRoute({Key? key}) : super(key: key);
 

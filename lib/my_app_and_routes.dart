@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import 'package:places/ui_my_app/themes.dart';
-import 'package:places/ui_my_app/routes.dart';
-import 'package:places/ui_my_app/platform_detector.dart';
+import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:places/ui/screens/filter_screen/filters_screen.dart';
 import 'package:places/ui/screens/add_place_screen/screen_add_place.dart';
@@ -14,8 +11,18 @@ import 'package:places/ui/screens/splash_screen/splash_screen.dart';
 
 import 'package:places/ui_interactors/settings_interactor.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+const String ROUTE_HOME = '/';
+const String ROUTE_FILTER = '/filter';
+const String ROUTE_ADD = '/add';
+const String ROUTE_SELECT_CATEGORY = '/select_category';
+const String ROUTE_SEARCH = '/search';
+const String ROUTE_ONBOARDING = '/onboarding';
+const String ROUTE_SPLASH = '/splash';
+
+/// Класс содержит маршруты в приложении и виджет MaterialApp
+/// 
+class MyAppAndRoutes extends StatelessWidget {
+  const MyAppAndRoutes({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,11 +44,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-PlatformDetector platformDetector = PlatformDetector();
-
-const bool isDebugMockImagesInPlaceOfHttp = false;
-const bool isDebugMockDataInPlaceOfHttp = false;
-
-const bool isDebugUserStay = true;
-const bool isDebugUserMove = false;

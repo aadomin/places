@@ -1,17 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:places/my_app_and_routes.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
-
-import 'package:places/ui_my_app/routes.dart';
-import 'package:places/ui_my_app/my_scroll_physics.dart';
+import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui/screens/add_place_screen/widget_category_header.dart';
 import 'package:places/ui/screens/add_place_screen/dialog_add_photo.dart';
 import 'package:places/ui_interactors/select_category_interactor.dart';
-import 'package:places/ui_widgets/my_image_widget.dart';
-
+import 'package:places/ui_common_widgets/my_image_widget.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
 
+/// Экран - Добавить место
 class ScreenAddPlace extends StatefulWidget {
   const ScreenAddPlace({Key? key}) : super(key: key);
   @override

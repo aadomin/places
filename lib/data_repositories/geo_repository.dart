@@ -1,7 +1,8 @@
 import 'dart:math';
 
 import 'package:places/domain_models/object_location.dart';
-import 'package:places/ui_my_app/my_app.dart';
+import 'package:places/main.dart';
+import 'package:places/my_app_and_routes.dart';
 
 class GeoRepository {
   ObjectLocation get currentUserLocation {

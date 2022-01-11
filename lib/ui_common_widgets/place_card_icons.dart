@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/ui_my_app/enums.dart';
+import 'package:places/ui_commons/enums.dart';
 
+/// Иконки (кнопки) в карточке места
 class WidgetPlaceCardIcons extends StatelessWidget {
   const WidgetPlaceCardIcons({
     required this.placeCardType,

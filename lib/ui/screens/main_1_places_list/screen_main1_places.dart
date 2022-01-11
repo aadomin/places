@@ -6,9 +6,9 @@ import 'package:places/ui/screens/main_1_places_list/widget_my_sliver_app_bar.da
 import 'package:places/ui/screens/main_1_places_list/widget_new_place_button.dart';
 import 'package:places/ui/screens/main_1_places_list/widget_searching_header.dart';
 import 'package:places/ui/screens/place_details_screen/screen_place_details.dart';
-import 'package:places/ui_my_app/enums.dart';
-import 'package:places/ui_my_app/my_scroll_physics.dart';
-import 'package:places/ui_widgets/place_card.dart';
+import 'package:places/ui_commons/enums.dart';
+import 'package:places/ui_commons/my_scroll_physics.dart';
+import 'package:places/ui_common_widgets/place_card.dart';
 
 /// Экран 1. Список мест.
 /// Первый из четырех главных экранов, доступных по нажатию на 

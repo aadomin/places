@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui_my_app/ui_strings.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 
 class NetworkErrorWidget extends StatelessWidget {
   const NetworkErrorWidget({

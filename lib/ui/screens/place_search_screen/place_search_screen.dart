@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:places/ui_my_app/enums.dart';
-import 'package:places/ui_my_app/ui_strings.dart';
+import 'package:places/ui_commons/enums.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_interactors/search_interactor.dart';
-import 'package:places/ui_widgets/place_card_for_search.dart';
-import 'package:places/ui_widgets/headers.dart';
+import 'package:places/ui_common_widgets/place_card_for_search.dart';
+import 'package:places/ui_common_widgets/headers.dart';
 
 import 'package:places/domain_models/place.dart';
 
+/// Экран "Поиск"
 class PlaceSearchScreen extends StatelessWidget {
   PlaceSearchScreen({Key? key}) : super(key: key);
 

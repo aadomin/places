@@ -1,3 +1,5 @@
+/// Строки текста в приложении
+/// 
 class UiStrings {
   static const String listOfInterestingPlaces = 'Список интересных мест';
   static const String searching = 'Поиск';
@@ -25,4 +27,6 @@ class UiStrings {
   static const String markFavotivePlacesAndItWillAppearHere = 'Отмечайте понравившиеся места \nи они появятся здесь';
   static const String markSeenPlacesAndItWillAppearHere = 'Отмечайте посещенные места \nи они появятся здесь';
   static const String cancelCaps = 'ОТМЕНА';
+  static const String saveCaps = 'СОХРАНИТЬ';
+  static const String selectionCategory = 'СОХРАНИТЬ';
 }

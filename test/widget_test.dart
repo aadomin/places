@@ -8,13 +8,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:places/ui_my_app/my_app.dart';
+import 'package:places/my_app_and_routes.dart';
 
 void main() {
   // ignore: avoid_types_on_closure_parameters
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const MyAppAndRoutes());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

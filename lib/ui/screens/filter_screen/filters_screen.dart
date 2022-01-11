@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:places/ui_my_app/ui_strings.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_interactors/filter_interactor.dart';
 
+/// Экран Фильтр
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({Key? key}) : super(key: key);
   @override

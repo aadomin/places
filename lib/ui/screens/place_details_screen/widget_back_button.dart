@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Кнопка "Назад"
 class WidgetBackButton extends StatelessWidget {
   const WidgetBackButton({Key? key}) : super(key: key);
 

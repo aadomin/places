@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui_my_app/routes.dart';
-import 'package:places/ui_my_app/ui_strings.dart';
+import 'package:places/my_app_and_routes.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 
+/// Поле с поиском
 class WidgetSearchingHeader extends StatelessWidget {
   const WidgetSearchingHeader({
     required this.focusNode1,

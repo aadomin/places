@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:places/ui_commons/ui_image_paths.dart';
+import 'package:places/ui_interactors/init_interactor.dart';
 
-import 'package:places/ui_my_app/ui_image_paths.dart';
-import 'package:places/ui/screens/splash_screen/splash_screen_model.dart';
-
+/// Экран-заставка во время загрузки
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -13,7 +13,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    SplashScreenModel.initAppAndThenChangeScreen(context);
+    // просто вызов статического метода
+    InitInteractor.initAppAndThenChangeScreen(context);
     super.initState();
   }
 

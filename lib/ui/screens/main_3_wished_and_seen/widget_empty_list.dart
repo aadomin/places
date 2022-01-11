@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/ui_my_app/text_styles.dart';
-import 'package:places/ui_my_app/ui_strings.dart';
+import 'package:places/ui_commons/text_styles.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 
+/// Экран "Избранные и посещенные", состояние когда список пуст
 class WidgetEmptyList extends StatelessWidget {
   const WidgetEmptyList({
     required this.commentLine,

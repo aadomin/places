@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:places/ui/screens/place_details_screen/screen_place_details.dart';
-import 'package:places/ui_widgets/my_image_widget.dart';
+import 'package:places/ui_common_widgets/my_image_widget.dart';
 
 import 'package:places/domain_models/place.dart';
 
+/// Маленькая карточка места, например, для экрана поиска
 class PlaceCartForSearch extends StatelessWidget {
   const PlaceCartForSearch({
     required this.place,

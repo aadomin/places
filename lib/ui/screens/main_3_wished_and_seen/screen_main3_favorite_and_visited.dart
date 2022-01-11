@@ -3,13 +3,13 @@ import 'package:places/domain_models/place.dart';
 
 import 'package:places/ui/screens/main_3_wished_and_seen/widget_tab_favorite.dart';
 import 'package:places/ui/screens/main_3_wished_and_seen/widget_tab_visited.dart';
-import 'package:places/ui_widgets/headers.dart';
+import 'package:places/ui_common_widgets/headers.dart';
 
 /// Экран 3. Список избранных и посещенных мест.
-/// Третий из четырех главных экранов, доступных по нажатию на 
+/// Третий из четырех главных экранов, доступных по нажатию на
 /// BottomNavigationBar.
 /// Данный класс описывает ГЛАВНОЕ состояние экрана
-/// 
+///
 class ScreenMain3FavoriteAndVisited extends StatefulWidget {
   const ScreenMain3FavoriteAndVisited({
     required this.visitedPlaces,
@@ -30,31 +30,20 @@ class _ScreenMain3FavoriteAndVisitedState
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
-  //double _indicatorPosition = 0;
-
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
   }
 
-  // void _onChangeTab() {
-  //   setState(() {
-  //     _indicatorPosition = _tabController.index.toDouble();
-  //   });
-  // }
-
   @override
   void dispose() {
     super.dispose();
-    _tabController
-      // ..removeListener(_onChangeTab)
-      .dispose();
+    _tabController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-
     const String _header = 'Избранное';
 
     return DefaultTabController(
@@ -83,9 +72,6 @@ class _ScreenMain3FavoriteAndVisitedState
                   unselectedLabelColor: Theme.of(context).primaryColorLight,
                   indicatorSize: TabBarIndicatorSize.tab,
                   labelColor: Theme.of(context).canvasColor,
-                  // labelStyle: TextStyle(
-                  //   height: 15,
-                  // ),
                   indicator: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     color: Theme.of(context).selectedRowColor,
@@ -112,7 +98,6 @@ class _ScreenMain3FavoriteAndVisitedState
           ),
         ),
         body: TabBarView(
-          //controller: _tabController,
           children: [
             Tab(
               child: WidgetTabFavorite(

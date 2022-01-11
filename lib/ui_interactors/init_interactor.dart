@@ -1,9 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:places/my_app_and_routes.dart';
 
-import 'package:places/ui_my_app/routes.dart';
-
-class SplashScreenModel {
+/// Имитация загрузки приложения
+class InitInteractor {
   // ignore: avoid_void_async
   static void initAppAndThenChangeScreen(BuildContext context) async {
     print('starting of application');
