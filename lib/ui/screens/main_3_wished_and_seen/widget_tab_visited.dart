@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
-import 'package:places/ui_common_widgets/place_card.dart';
+import 'package:places/ui_common_widgets/widget_place_card.dart';
 import 'package:places/ui/screens/main_3_wished_and_seen/widget_empty_list.dart';
 import 'package:places/ui/screens/place_details_screen/screen_place_details.dart';
 
@@ -50,7 +50,7 @@ class _WidgetTabVisitedState extends State<WidgetTabVisited> {
                 .map(
                   (i) => Column(
                     children: [
-                      PlaceCard(
+                      WidgetPlaceCard(
                         place: i.value,
                         placeCardType: PlaceCardType.seen,
                         onTap: () {

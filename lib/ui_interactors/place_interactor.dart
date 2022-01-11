@@ -137,7 +137,7 @@ class PlaceInteractor with ChangeNotifier {
       _result = await showCupertinoModalPopup(
         context: context,
         builder: (context) {
-          return const AddToCalendarCuperModal();
+          return const WidgetAddToCalendarCuperModal();
         },
       );
     }

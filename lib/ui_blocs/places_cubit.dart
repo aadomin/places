@@ -51,7 +51,7 @@ class PlacesCubit extends Cubit<VisitedAndFavoriteScreenState> {
       _result = await showCupertinoModalPopup(
         context: context,
         builder: (context) {
-          return const AddToCalendarCuperModal();
+          return const WidgetAddToCalendarCuperModal();
         },
       );
     }

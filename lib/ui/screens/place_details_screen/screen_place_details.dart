@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui/screens/place_details_screen/widget_back_button.dart';
-import 'package:places/ui_common_widgets/my_image_widget.dart';
+import 'package:places/ui_common_widgets/widget_my_image.dart';
 
 import 'package:places/domain_models/place.dart';
 
@@ -63,7 +63,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                             Container(
                               height: 300,
                               width: 300,
-                              child: MyImageWidget(
+                              child: WidgetMyImage(
                                 url: sight.url[i],
                                 fit: BoxFit.cover,
                               ),

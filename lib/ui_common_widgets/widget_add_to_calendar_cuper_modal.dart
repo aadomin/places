@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AddToCalendarCuperModal extends StatefulWidget {
-  const AddToCalendarCuperModal({Key? key}) : super(key: key);
+class WidgetAddToCalendarCuperModal extends StatefulWidget {
+  const WidgetAddToCalendarCuperModal({Key? key}) : super(key: key);
 
   @override
-  _AddToCalendarCuperModalState createState() =>
-      _AddToCalendarCuperModalState();
+  _WidgetAddToCalendarCuperModalState createState() =>
+      _WidgetAddToCalendarCuperModalState();
 }
 
-class _AddToCalendarCuperModalState extends State<AddToCalendarCuperModal> {
+class _WidgetAddToCalendarCuperModalState extends State<WidgetAddToCalendarCuperModal> {
   DateTime? _date;
 
   @override

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
-class NetworkErrorWidget extends StatelessWidget {
-  const NetworkErrorWidget({
+class WidgetNetworkError extends StatelessWidget {
+  const WidgetNetworkError({
     Key? key,
   }) : super(key: key);
 

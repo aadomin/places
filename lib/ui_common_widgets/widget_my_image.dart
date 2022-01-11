@@ -4,8 +4,8 @@ import 'package:places/main.dart';
 /// Виджет-обертка для Image
 /// (нужен для того, чтобы в режиме отладки работал flutter for web: 
 /// подменяет url картинки моковой картинкой)
-class MyImageWidget extends StatelessWidget {
-  const MyImageWidget({
+class WidgetMyImage extends StatelessWidget {
+  const WidgetMyImage({
     required this.url,
     required this.fit,
     Key? key,

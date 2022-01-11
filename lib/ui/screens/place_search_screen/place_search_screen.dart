@@ -4,8 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_interactors/search_interactor.dart';
-import 'package:places/ui_common_widgets/place_card_for_search.dart';
-import 'package:places/ui_common_widgets/headers.dart';
+import 'package:places/ui_common_widgets/widget_place_card_for_search.dart';
+import 'package:places/ui_common_widgets/widget_my_header.dart';
 
 import 'package:places/domain_models/place.dart';
 
@@ -106,7 +106,7 @@ class WidgetSearchResult extends StatelessWidget {
     return Column(
       children: [
         for (var i = 0; i < searchResults.length; i++)
-          PlaceCartForSearch(
+          WidgetPlaceCartForSearch(
             place: context.watch<SearchInteractor>().searchResult[i],
           ),
       ],

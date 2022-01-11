@@ -4,7 +4,7 @@ import 'package:places/domain_models/place.dart';
 import 'package:places/main.dart';
 import 'package:places/ui/screens/main_3_wished_and_seen/screen_main3_favorite_and_visited.dart';
 import 'package:places/ui_blocs/places_cubit.dart';
-import 'package:places/ui_common_widgets/network_error_widget.dart';
+import 'package:places/ui_common_widgets/widget_network_error.dart';
 
 /// Экран 3. Список избранных и посещенных мест.
 /// Третий из четырех главных экранов, доступных по нажатию на 
@@ -34,7 +34,7 @@ class _ScreenMain3FavoriteAndVisitedRouteState
         builder: (context, state) {
           if (placeInteractor.isRequestDoneWithError) {
             return const Scaffold(
-              body: NetworkErrorWidget(),
+              body: WidgetNetworkError(),
             );
           }
           return ScreenMain3FavoriteAndVisited(

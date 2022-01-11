@@ -3,7 +3,7 @@ import 'package:places/main.dart';
 import 'package:flutter/material.dart';
 import 'package:places/ui/screens/main_1_places_list/screen_main1_places.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
-import 'package:places/ui_common_widgets/network_error_widget.dart';
+import 'package:places/ui_common_widgets/widget_network_error.dart';
 import 'package:places/domain_models/place.dart';
 
 /// Экран 1. Список мест.
@@ -34,7 +34,7 @@ class _ScreenMain1PlacesRouteState extends State<ScreenMain1PlacesRoute> {
     }
     if (placeInteractor.isRequestDoneWithError) {
       return const Scaffold(
-        body: NetworkErrorWidget(),
+        body: WidgetNetworkError(),
       );
     }
     return ScreenMain1Places(

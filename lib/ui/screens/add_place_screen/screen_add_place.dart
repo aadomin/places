@@ -7,7 +7,7 @@ import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui/screens/add_place_screen/widget_category_header.dart';
 import 'package:places/ui/screens/add_place_screen/dialog_add_photo.dart';
 import 'package:places/ui_interactors/select_category_interactor.dart';
-import 'package:places/ui_common_widgets/my_image_widget.dart';
+import 'package:places/ui_common_widgets/widget_my_image.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
 
 /// Экран - Добавить место
@@ -166,7 +166,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                                     height: 72,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(13),
-                                      child: MyImageWidget(
+                                      child: WidgetMyImage(
                                         url: item.value,
                                         fit: BoxFit.fill,
                                       ),

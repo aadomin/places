@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/ui_strings.dart';
-import 'package:places/ui_common_widgets/my_image_widget.dart';
-import 'package:places/ui_common_widgets/place_card_icons.dart';
+import 'package:places/ui_common_widgets/widget_my_image.dart';
+import 'package:places/ui_common_widgets/widget_place_card_icons.dart';
 
 import 'package:places/domain_models/place.dart';
 
 /// Карточка места
-class PlaceCard extends StatelessWidget {
-  const PlaceCard({
+class WidgetPlaceCard extends StatelessWidget {
+  const WidgetPlaceCard({
     required this.place,
     required this.placeCardType,
     required this.onTap,
@@ -118,7 +118,7 @@ class PlaceCard extends StatelessWidget {
                         topLeft: Radius.circular(12),
                         topRight: Radius.circular(12),
                       ),
-                      child: MyImageWidget(
+                      child: WidgetMyImage(
                         url: place.url[0],
                         fit: BoxFit.fitWidth,
                       ),

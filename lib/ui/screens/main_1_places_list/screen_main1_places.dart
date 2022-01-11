@@ -8,7 +8,7 @@ import 'package:places/ui/screens/main_1_places_list/widget_searching_header.dar
 import 'package:places/ui/screens/place_details_screen/screen_place_details.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
-import 'package:places/ui_common_widgets/place_card.dart';
+import 'package:places/ui_common_widgets/widget_place_card.dart';
 
 /// Экран 1. Список мест.
 /// Первый из четырех главных экранов, доступных по нажатию на 
@@ -53,7 +53,7 @@ class ScreenMain1Places extends StatelessWidget {
                   delegate: SliverChildBuilderDelegate(
                     (context, i) => Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: PlaceCard(
+                      child: WidgetPlaceCard(
                         place: filteredPlacesSnapshot[i],
                         placeCardType: PlaceCardType.general,
                         isLiked: filteredPlacesSnapshot[i].wished,
@@ -97,7 +97,7 @@ class ScreenMain1Places extends StatelessWidget {
                     for (var i = 0; i < filteredPlacesSnapshot.length; i++)
                       Padding(
                         padding: const EdgeInsets.all(16.0),
-                        child: PlaceCard(
+                        child: WidgetPlaceCard(
                           place: filteredPlacesSnapshot[i],
                           placeCardType: PlaceCardType.general,
                           onTap: () {
