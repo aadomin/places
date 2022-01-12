@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:places/main.dart';
 
 /// Виджет-обертка для Image
-/// (нужен для того, чтобы в режиме отладки работал flutter for web: 
+/// (нужен для того, чтобы в режиме отладки работал flutter for web:
 /// подменяет url картинки моковой картинкой)
 class WidgetMyImage extends StatelessWidget {
   const WidgetMyImage({
@@ -36,6 +36,9 @@ class WidgetMyImage extends StatelessWidget {
             child: CircularProgressIndicator(),
           ),
         );
+      },
+      errorBuilder: (context, object, stackTrace) {
+        return Container(color: Colors.grey.shade400);
       },
     );
   }

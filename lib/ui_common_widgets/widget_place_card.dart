@@ -130,6 +130,7 @@ class WidgetPlaceCard extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: Text(
                       place.name,
+                      maxLines: 1,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
