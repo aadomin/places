@@ -100,6 +100,7 @@ class ScreenMain1Places extends StatelessWidget {
                         child: WidgetPlaceCard(
                           place: filteredPlacesSnapshot[i],
                           placeCardType: PlaceCardType.general,
+                          isLiked: filteredPlacesSnapshot[i].wished,
                           onTap: () {
                             onTap(context, filteredPlacesSnapshot[i].id);
                           },

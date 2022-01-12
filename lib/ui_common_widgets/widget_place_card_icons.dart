@@ -28,9 +28,11 @@ class WidgetPlaceCardIcons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final int i = 3;
+    // if (i > 2) return Center();
     switch (placeCardType) {
       case PlaceCardType.general:
-        final bool isHeartPainted = isLiked!;
+        final bool isHeartFilled = isLiked!;
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -39,7 +41,7 @@ class WidgetPlaceCardIcons extends StatelessWidget {
               child: InkWell(
                 onTap: onAddToWished,
                 child: Icon(
-                  isHeartPainted ? Icons.favorite : Icons.favorite_outline,
+                  isHeartFilled ? Icons.favorite : Icons.favorite_outline,
                   color: Colors.white,
                 ),
               ),

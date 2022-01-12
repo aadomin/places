@@ -141,7 +141,9 @@ class WidgetPlaceCard extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 4, right: 16, left: 16),
                     alignment: Alignment.topLeft,
                     child: ConstrainedBox(
-                      constraints: BoxConstraints(maxHeight: double.infinity),
+                      constraints: const BoxConstraints(
+                        //maxHeight: double.infinity,
+                      ),
                       child: Text(
                         place.details,
                         overflow: TextOverflow.ellipsis,
