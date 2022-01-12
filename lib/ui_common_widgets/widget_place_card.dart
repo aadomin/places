@@ -140,10 +140,15 @@ class WidgetPlaceCard extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.only(top: 4, right: 16, left: 16),
                     alignment: Alignment.topLeft,
-                    child: Text(
-                      place.details,
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColorLight,
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(maxHeight: double.infinity),
+                      child: Text(
+                        place.details,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 4,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColorLight,
+                        ),
                       ),
                     ),
                   ),
