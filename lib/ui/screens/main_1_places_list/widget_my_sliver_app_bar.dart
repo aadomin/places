@@ -26,7 +26,7 @@ class WidgetMySliverAppBar extends SliverPersistentHeaderDelegate {
           opacity: 1 - shrinkOffset / expandedHeight,
           child: Container(
             color: Theme.of(context).canvasColor,
-            padding: const EdgeInsets.only(top: 40, bottom: 10, left: 50),
+            padding: const EdgeInsets.only(top: 40, bottom: 10, left: 50, right: 20),
             alignment: Alignment.centerLeft,
             child: RichText(
               text: TextSpan(
