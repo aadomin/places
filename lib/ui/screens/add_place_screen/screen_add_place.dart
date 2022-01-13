@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/my_app_and_routes.dart';
+import 'package:places/ui/screens/add_place_screen/widget_new_place_app_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
@@ -44,48 +45,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).canvasColor,
-        title: Row(
-          children: [
-            //
-            // Кнопка Назад
-            //
-            Expanded(
-              child: Row(
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    style: TextButton.styleFrom(
-                      primary: Theme.of(context).primaryColorLight,
-                    ),
-                    child: const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Отмена',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            //
-            // Заголовок
-            //
-            Text(
-              'Новое место',
-              style: TextStyle(
-                color: Theme.of(context).primaryColorDark,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
-            const Expanded(
-              child: SizedBox.shrink(),
-            ),
-          ],
-        ),
+        title: const WidgetNewPlaceAppBar(),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -200,7 +160,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                   ],
                 ),
               ),
-              const CategoryHeaderWidget('КАТЕГОРИЯ'),
+              const WidgetCategoryHeader('КАТЕГОРИЯ'),
               InkWell(
                 onTap: () => onTapOnCategorySelection(context),
                 child: Row(
@@ -218,7 +178,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                   ],
                 ),
               ),
-              const CategoryHeaderWidget('НАЗВАНИЕ'),
+              const WidgetCategoryHeader('НАЗВАНИЕ'),
               Padding(
                 padding: EdgeInsets.zero,
                 child: TextField(
@@ -249,7 +209,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const CategoryHeaderWidget('ШИРОТА'),
+                        const WidgetCategoryHeader('ШИРОТА'),
                         TextField(
                           controller: textControllerLat,
                           focusNode: focusNodeLat,
@@ -280,7 +240,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const CategoryHeaderWidget('ДОЛГОТА'),
+                        const WidgetCategoryHeader('ДОЛГОТА'),
                         TextField(
                           controller: textControllerLon,
                           focusNode: focusNodeLon,
@@ -323,7 +283,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                   ),
                 ),
               ),
-              const CategoryHeaderWidget('ОПИСАНИЕ'),
+              const WidgetCategoryHeader('ОПИСАНИЕ'),
               TextField(
                 controller: textControllerDescription,
                 focusNode: focusNodeDescription,
@@ -407,3 +367,4 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
     Navigator.pop(context);
   }
 }
+

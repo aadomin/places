@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/ui/screens/place_search_screen/widget_search_app_bar.dart';
 import 'package:places/ui/screens/place_search_screen/widget_search_empty.dart';
 import 'package:places/ui/screens/place_search_screen/widget_search_not_found.dart';
 import 'package:places/ui/screens/place_search_screen/widget_search_result.dart';
@@ -6,7 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_interactors/search_interactor.dart';
-import 'package:places/ui_common_widgets/widget_my_header.dart';
 
 /// Экран "Поиск"
 class PlaceSearchScreen extends StatelessWidget {
@@ -21,7 +21,7 @@ class PlaceSearchScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const WidgetMyHeader(header: UiStrings.searching),
+        title: const WidgetSearchAppBar(),
         backgroundColor: Theme.of(context).canvasColor,
         elevation: 0,
       ),

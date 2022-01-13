@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 /// Подзаголовок категории
-class CategoryHeaderWidget extends StatelessWidget {
-  const CategoryHeaderWidget(
+class WidgetCategoryHeader extends StatelessWidget {
+  const WidgetCategoryHeader(
     this.categoryName, {
     Key? key,
   }) : super(key: key);
