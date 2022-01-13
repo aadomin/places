@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:places/ui/screens/place_search_screen/widget_search_empty.dart';
+import 'package:places/ui/screens/place_search_screen/widget_search_not_found.dart';
+import 'package:places/ui/screens/place_search_screen/widget_search_result.dart';
 import 'package:provider/provider.dart';
-
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_interactors/search_interactor.dart';
-import 'package:places/ui_common_widgets/widget_place_card_for_search.dart';
 import 'package:places/ui_common_widgets/widget_my_header.dart';
-
-import 'package:places/domain_models/place.dart';
 
 /// Экран "Поиск"
 class PlaceSearchScreen extends StatelessWidget {
@@ -70,7 +69,7 @@ class PlaceSearchScreen extends StatelessWidget {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12.0),
                   ),
-                  hintText: 'Поиск',
+                  hintText: UiStrings.searching,
                   contentPadding: const EdgeInsets.symmetric(
                     vertical: 10.0,
                     horizontal: 10,
@@ -90,100 +89,6 @@ class PlaceSearchScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-///
-/// Результаты поиска
-///
-class WidgetSearchResult extends StatelessWidget {
-  const WidgetSearchResult({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    final List<Place> searchResults =
-        context.watch<SearchInteractor>().searchResult;
-    return Column(
-      children: [
-        for (var i = 0; i < searchResults.length; i++)
-          WidgetPlaceCartForSearch(
-            place: context.watch<SearchInteractor>().searchResult[i],
-          ),
-      ],
-    );
-  }
-}
-
-///
-/// Отображается, пока поле поиска еще пустое
-///
-class WidgetSearchEmpty extends StatelessWidget {
-  const WidgetSearchEmpty({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        for (var i = 0;
-            i < context.watch<SearchInteractor>().lastSearches.length;
-            i++)
-          Column(
-            children: [
-              ListTile(
-                title: Text(
-                  context.watch<SearchInteractor>().lastSearches[i],
-                  style: TextStyle(color: Theme.of(context).primaryColorLight),
-                ),
-                trailing: IconButton(
-                  icon: const Icon(Icons.close),
-                  onPressed: () {
-                    context.read<SearchInteractor>().removeItemFromHistory(i);
-                  },
-                ),
-              ),
-              const Divider(),
-            ],
-          ),
-      ],
-    );
-  }
-}
-
-///
-/// Отображается, если при поиске ничего не найдено
-///
-class WidgetSearchNotFound extends StatelessWidget {
-  const WidgetSearchNotFound({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Center(
-          child: Column(
-            children: [
-              Icon(
-                Icons.search,
-                size: 30,
-                color: Theme.of(context).primaryColorLight,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  '$UiStrings.nothingIsFounded',
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: Theme.of(context).primaryColorLight,
-                  ),
-                ),
-              ),
-              Text(
-                '$UiStrings.tryToChangeParametersOfSearch',
-                style: TextStyle(color: Theme.of(context).primaryColorLight),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
