@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 
 class WidgetNewPlaceAppBar extends StatelessWidget {
   const WidgetNewPlaceAppBar({
@@ -9,7 +10,9 @@ class WidgetNewPlaceAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        // Кнопка Назад
+        //
+        // Кнопка "Отмена"
+        //
         Expanded(
           child: Row(
             children: [
@@ -23,7 +26,7 @@ class WidgetNewPlaceAppBar extends StatelessWidget {
                 child: const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    'Отмена',
+                    UiStrings.cancel,
                     style: TextStyle(fontSize: 16),
                   ),
                 ),
@@ -32,10 +35,10 @@ class WidgetNewPlaceAppBar extends StatelessWidget {
           ),
         ),
         //
-        // Заголовок
+        // Заголовок "Новое место"
         //
         Text(
-          'Новое место',
+          UiStrings.newPlace,
           style: TextStyle(
             color: Theme.of(context).primaryColorDark,
             fontWeight: FontWeight.bold,

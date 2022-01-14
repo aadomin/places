@@ -30,7 +30,7 @@ class WidgetNewPlaceButton extends StatelessWidget {
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                  child: Text(UiStrings.newPlace),
+                  child: Text(UiStrings.newPlaceCap),
                 ),
               ],
             ),
