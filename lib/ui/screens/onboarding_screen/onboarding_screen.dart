@@ -78,24 +78,36 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ],
         ),
       ),
-      body: Stack(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          PageView(
-            physics: const BouncingScrollPhysics(),
-            onPageChanged: (value) {
-              setState(() {});
-            },
-            controller: _pageController,
-            children: const [
-              OnboardingPage1(),
-              OnboardingPage2(),
-              OnboardingPage3(),
-            ],
+          //
+          // Открытая вкладка
+          //
+          SizedBox(
+            height: 220,
+            child: PageView(
+              physics: const BouncingScrollPhysics(),
+              onPageChanged: (value) {
+                setState(() {});
+              },
+              controller: _pageController,
+              children: const [
+                OnboardingPage1(),
+                OnboardingPage2(),
+                OnboardingPage3(),
+              ],
+            ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(120),
+
+          //
+          // Индикатор выбранной (текущей) страницы
+          //
+          SizedBox(
+            height: 30,
+            child: Container(
+              alignment: Alignment.bottomCenter,
+              padding: const EdgeInsets.all(8),
               child: Image.asset(
                 UiImagePaths.points,
                 width: 40,
