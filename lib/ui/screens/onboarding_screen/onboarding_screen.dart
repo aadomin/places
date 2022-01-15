@@ -85,7 +85,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           // Открытая вкладка
           //
           SizedBox(
-            height: 220,
+            height: 295,
             child: PageView(
               physics: const BouncingScrollPhysics(),
               onPageChanged: (value) {

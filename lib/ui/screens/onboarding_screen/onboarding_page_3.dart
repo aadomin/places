@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:places/ui_commons/ui_image_paths.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 
 /// Страница "Добро пожаловать 3"
 class OnboardingPage3 extends StatelessWidget {
@@ -21,10 +22,12 @@ class OnboardingPage3 extends StatelessWidget {
               height: 100,
             ),
           ),
+
+          // текст Онбординга 31
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 24),
             child: Text(
-              'Добавляй места, которые нашел сам',
+              UiStrings.onboarding31,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -32,14 +35,19 @@ class OnboardingPage3 extends StatelessWidget {
               ),
             ),
           ),
+
+          // текст Онбординга 32
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 40),
             child: Text(
-              'Делись самыми интересными и помоги нам стать лучше!',
+              UiStrings.onboarding32,
               textAlign: TextAlign.center,
             ),
           ),
-          Expanded(
+
+          // кнопка 'На Старт!'
+          Padding(
+            padding: const EdgeInsets.only(top: 20),
             child: Align(
               alignment: Alignment.bottomCenter,
               child: SizedBox(
@@ -54,7 +62,7 @@ class OnboardingPage3 extends StatelessWidget {
                       },
                       child: const Padding(
                         padding: EdgeInsets.all(12.0),
-                        child: Text('НА СТАРТ'),
+                        child: Text(UiStrings.onboardingGogogo),
                       ),
                     ),
                   ),

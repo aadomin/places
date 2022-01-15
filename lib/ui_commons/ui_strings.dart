@@ -31,4 +31,11 @@ class UiStrings {
   static const String saveCaps = 'СОХРАНИТЬ';
   static const String selectionCategory = 'СОХРАНИТЬ';
   static const String miss = 'Пропустить';
+  static const String onboarding11 = 'Добро пожаловать в Путеводитель';
+  static const String onboarding12 = 'Ищи новые локации и сохраняй самые любимые';
+  static const String onboarding21 = 'Построй маршрут и отправляйся в путь';
+  static const String onboarding22 = 'Достигай цели максимально быстро и комфортно';
+  static const String onboarding31 = 'Добавляй места, которые нашел сам';
+  static const String onboarding32 = 'Делись самыми интересными и помоги нам стать лучше!';
+  static const String onboardingGogogo = 'НА СТАРТ';
 }

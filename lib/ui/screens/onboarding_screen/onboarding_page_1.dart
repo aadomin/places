@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:places/ui_commons/ui_image_paths.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 
 /// Страница "Добро пожаловать 1"
 class OnboardingPage1 extends StatelessWidget {
@@ -21,10 +22,12 @@ class OnboardingPage1 extends StatelessWidget {
               height: 100,
             ),
           ),
+
+          // текст Онбординга 11
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 24),
             child: Text(
-              'Добро пожаловать в Путеводитель',
+              UiStrings.onboarding11,
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -32,10 +35,12 @@ class OnboardingPage1 extends StatelessWidget {
               ),
             ),
           ),
+
+          // текст Онбординга 12
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 40),
             child: Text(
-              'Ищи новые локации и сохраняй самые любимые',
+              UiStrings.onboarding12,
               textAlign: TextAlign.center,
             ),
           ),
