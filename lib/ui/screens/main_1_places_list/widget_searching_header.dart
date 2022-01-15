@@ -35,7 +35,8 @@ class WidgetSearchingHeader extends StatelessWidget {
                     const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
               ),
             ),
-            Align(
+            Container(
+              padding: const EdgeInsets.only(top: 3),
               alignment: Alignment.centerRight,
               child: IconButton(
                 onPressed: () {
