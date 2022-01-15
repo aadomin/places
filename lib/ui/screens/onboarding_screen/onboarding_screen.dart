@@ -4,8 +4,9 @@ import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui/screens/onboarding_screen/onboarding_page_1.dart';
 import 'package:places/ui/screens/onboarding_screen/onboarding_page_2.dart';
 import 'package:places/ui/screens/onboarding_screen/onboarding_page_3.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 
-/// Экран "Добро пожаловать" включающий в себя 3 страницы
+/// Экран "Добро пожаловать" включающий в себя 3 подвкладки
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({Key? key}) : super(key: key);
   @override
@@ -20,12 +21,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   void initState() {
     // ignore: avoid_single_cascade_in_expression_statements
-    _pageController
-      ..addListener(() {
-        currentPage = _pageController.page;
-        setState(() {});
-      });
+    _pageController.addListener(() {
+      currentPage = _pageController.page;
+      setState(() {});
+    });
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
   }
 
   @override
@@ -43,6 +50,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             const Expanded(
               child: SizedBox.shrink(),
             ),
+            //
+            // Кнопка "Пропустить"
+            //
             Expanded(
               child: currentPage == 2
                   ? const SizedBox.shrink()
@@ -56,7 +66,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                       child: const Align(
                         child: Text(
-                          'Пропустить',
+                          UiStrings.miss,
                           style: TextStyle(
                             fontSize: 16,
                             color: Color(0xFF4CAF50),

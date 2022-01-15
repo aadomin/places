@@ -30,4 +30,5 @@ class UiStrings {
   static const String cancelCaps = 'ОТМЕНА';
   static const String saveCaps = 'СОХРАНИТЬ';
   static const String selectionCategory = 'СОХРАНИТЬ';
+  static const String miss = 'Пропустить';
 }
