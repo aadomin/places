@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:places/my_app_and_routes.dart';
+import 'package:places/ui/screens/onboarding_screen/widget_circle_bar.dart';
+import 'package:places/ui/screens/onboarding_screen/widgets_all_onboarding_pages.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
-import 'package:places/ui/screens/onboarding_screen/widget_inner_content.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
-/// Экран "Добро пожаловать" включающий в себя 3 подвкладки
+/// Экран "Добро пожаловать",
+/// включающий в себя 3 подвкладки
+///
 class ScreenOnboarding extends StatefulWidget {
   const ScreenOnboarding({Key? key}) : super(key: key);
   @override
@@ -14,24 +17,7 @@ class ScreenOnboarding extends StatefulWidget {
 class _ScreenOnboardingState extends State<ScreenOnboarding> {
   final PageController _pageController = PageController();
 
-  double? currentPage = 1;
-
-  @override
-  void initState() {
-    // ignore: avoid_single_cascade_in_expression_statements
-    _pageController.addListener(() {
-      currentPage = _pageController.page;
-      setState(() {});
-    });
-
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _pageController.dispose();
-  }
+  int currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +46,6 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
                       },
                       style: TextButton.styleFrom(
                         primary: const Color(0xFF4CAF50),
-                        //primary: Theme.of(context).primaryColorLight,
                       ),
                       child: const Align(
                         child: Text(
@@ -83,46 +68,37 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
           //
           PageView(
             physics: const BouncingScrollPhysics(),
-            onPageChanged: (value) {
+            onPageChanged: (int page) {
+              currentPage = page;
               setState(() {});
             },
             controller: _pageController,
-            children: const [
-              WidgetInnerContent(
-                onboardingImgPath: UiImagePaths.onboardingPage1,
-                onboardingText1: UiStrings.onboarding11,
-                onboardingText2: UiStrings.onboarding12,
-                isFinalPage: false,
-              ),
-              WidgetInnerContent(
-                onboardingImgPath: UiImagePaths.onboardingPage2,
-                onboardingText1: UiStrings.onboarding21,
-                onboardingText2: UiStrings.onboarding22,
-                isFinalPage: false,
-              ),
-              WidgetInnerContent(
-                onboardingImgPath: UiImagePaths.onboardingPage3,
-                onboardingText1: UiStrings.onboarding31,
-                onboardingText2: UiStrings.onboarding32,
-                isFinalPage: true,
-              ),
-            ],
+            children: widgetsAllOnboardingPages,
           ),
 
           //
           // Индикатор выбранной (текущей) страницы
           //
-          Align(
+          Container(
             alignment: Alignment.bottomCenter,
-            child: SizedBox(
-              height: 80,
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Image.asset(
-                  UiImagePaths.points,
-                  width: 40,
-                ),
-              ),
+            padding: const EdgeInsets.only(bottom: 72),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                for (int i = 0; i < widgetsAllOnboardingPages.length; i++)
+                  if (i == currentPage) ...[
+                    WidgetCircleBar(
+                      isActive: true,
+                      kActiveColor: Theme.of(context).colorScheme.secondary,
+                      kNonActiveColor: Theme.of(context).unselectedWidgetColor,
+                    )
+                  ] else
+                    WidgetCircleBar(
+                      isActive: false,
+                      kActiveColor: Theme.of(context).colorScheme.secondary,
+                      kNonActiveColor: Theme.of(context).unselectedWidgetColor,
+                    ),
+              ],
             ),
           ),
         ],
