@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:places/ui_commons/themes.dart';
-import 'package:places/ui/screens/onboarding_screen/onboarding_screen.dart';
+import 'package:places/ui/screens/onboarding_screen/screen_onboarding.dart';
 import 'package:places/ui/screens/filter_screen/filters_screen.dart';
 import 'package:places/ui/screens/add_place_screen/screen_add_place.dart';
 import 'package:places/ui/screens/select_category_screen/select_category_screen.dart';
@@ -19,8 +19,9 @@ const String ROUTE_SEARCH = '/search';
 const String ROUTE_ONBOARDING = '/onboarding';
 const String ROUTE_SPLASH = '/splash';
 
+///
 /// Класс содержит маршруты в приложении и виджет MaterialApp
-/// 
+///
 class MyAppAndRoutes extends StatelessWidget {
   const MyAppAndRoutes({Key? key}) : super(key: key);
   @override
@@ -38,7 +39,7 @@ class MyAppAndRoutes extends StatelessWidget {
         ROUTE_ADD: (context) => const ScreenAddPlace(),
         ROUTE_SELECT_CATEGORY: (context) => const SelectCategory(),
         ROUTE_SEARCH: (context) => PlaceSearchScreen(),
-        ROUTE_ONBOARDING: (context) => const OnboardingScreen(),
+        ROUTE_ONBOARDING: (context) => const ScreenOnboarding(),
         ROUTE_SPLASH: (context) => const SplashScreen(),
       },
     );

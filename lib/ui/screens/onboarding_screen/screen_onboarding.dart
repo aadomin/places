@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
-import 'package:places/ui/screens/onboarding_screen/onboarding_page_1.dart';
-import 'package:places/ui/screens/onboarding_screen/onboarding_page_2.dart';
-import 'package:places/ui/screens/onboarding_screen/onboarding_page_3.dart';
+import 'package:places/ui/screens/onboarding_screen/widget_inner_content.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
 /// Экран "Добро пожаловать" включающий в себя 3 подвкладки
-class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({Key? key}) : super(key: key);
+class ScreenOnboarding extends StatefulWidget {
+  const ScreenOnboarding({Key? key}) : super(key: key);
   @override
-  _OnboardingScreenState createState() => _OnboardingScreenState();
+  _ScreenOnboardingState createState() => _ScreenOnboardingState();
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
+class _ScreenOnboardingState extends State<ScreenOnboarding> {
   final PageController _pageController = PageController();
 
   double? currentPage = 1;
@@ -78,39 +76,52 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ],
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: Stack(
         children: [
           //
           // Открытая вкладка
           //
-          SizedBox(
-            height: 295,
-            child: PageView(
-              physics: const BouncingScrollPhysics(),
-              onPageChanged: (value) {
-                setState(() {});
-              },
-              controller: _pageController,
-              children: const [
-                OnboardingPage1(),
-                OnboardingPage2(),
-                OnboardingPage3(),
-              ],
-            ),
+          PageView(
+            physics: const BouncingScrollPhysics(),
+            onPageChanged: (value) {
+              setState(() {});
+            },
+            controller: _pageController,
+            children: const [
+              WidgetInnerContent(
+                onboardingImgPath: UiImagePaths.onboardingPage1,
+                onboardingText1: UiStrings.onboarding11,
+                onboardingText2: UiStrings.onboarding12,
+                isFinalPage: false,
+              ),
+              WidgetInnerContent(
+                onboardingImgPath: UiImagePaths.onboardingPage2,
+                onboardingText1: UiStrings.onboarding21,
+                onboardingText2: UiStrings.onboarding22,
+                isFinalPage: false,
+              ),
+              WidgetInnerContent(
+                onboardingImgPath: UiImagePaths.onboardingPage3,
+                onboardingText1: UiStrings.onboarding31,
+                onboardingText2: UiStrings.onboarding32,
+                isFinalPage: true,
+              ),
+            ],
           ),
 
           //
           // Индикатор выбранной (текущей) страницы
           //
-          SizedBox(
-            height: 30,
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              padding: const EdgeInsets.all(8),
-              child: Image.asset(
-                UiImagePaths.points,
-                width: 40,
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: SizedBox(
+              height: 80,
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Image.asset(
+                  UiImagePaths.points,
+                  width: 40,
+                ),
               ),
             ),
           ),
