@@ -10,8 +10,7 @@ class UiStrings {
   static const String addToFavorites = 'В избранное';
   static const String removeFromFavorites = 'Отменить лайк';
   static const String nothingIsFounded = 'Ничего не найдено';
-  static const String tryToChangeParametersOfSearch =
-      'Попробуйте изменить параметры поиска';
+  static const String tryToChangeParametersOfSearch = 'Попробуйте изменить параметры поиска';
   static const String camera = 'Камера';
   static const String photo = 'Фотография';
   static const String file = 'Файл';
@@ -30,6 +29,8 @@ class UiStrings {
   static const String cancelCaps = 'ОТМЕНА';
   static const String saveCaps = 'СОХРАНИТЬ';
   static const String selectionCategory = 'СОХРАНИТЬ';
+
+  // Экран Онбординг
   static const String miss = 'Пропустить';
   static const String onboarding11 = 'Добро пожаловать в Путеводитель';
   static const String onboarding12 = 'Ищи новые локации и сохраняй самые любимые';
@@ -38,4 +39,9 @@ class UiStrings {
   static const String onboarding31 = 'Добавляй места, которые нашел сам';
   static const String onboarding32 = 'Делись самыми интересными и помоги нам стать лучше!';
   static const String onboardingGogogo = 'НА СТАРТ';
+  
+  // Экран Настройки
+  static const String settings = 'Настройки';
+  static const String darkTheme = 'Темная тема';
+  static const String lookOnboarding = 'Смотреть туториал';
 }
