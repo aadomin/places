@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
 /// Страница "Добро пожаловать 3"
-class WidgetInnerContent extends StatelessWidget {
-  const WidgetInnerContent({
+class WidgetOnboargindPageTemplate extends StatelessWidget {
+  const WidgetOnboargindPageTemplate({
     required this.onboardingText1,
     required this.onboardingText2,
     required this.isFinalPage,
