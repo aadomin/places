@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui/screens/onboarding_screen/widget_circle_bar.dart';
 import 'package:places/ui/screens/onboarding_screen/widgets_all_onboarding_pages.dart';
-import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
 /// Экран "Добро пожаловать",
@@ -81,7 +80,7 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
           //
           Container(
             alignment: Alignment.bottomCenter,
-            padding: const EdgeInsets.only(bottom: 72),
+            padding: const EdgeInsets.only(bottom: 85),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

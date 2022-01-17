@@ -38,8 +38,12 @@ class WidgetInnerContent extends StatelessWidget {
 
                 // текст Онбординга 1
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 24, horizontal: 10),
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                    bottom: 24,
+                    left: 10,
+                    right: 10,
+                  ),
                   child: Text(
                     onboardingText1,
                     textAlign: TextAlign.center,

@@ -36,6 +36,7 @@ final lightTheme = ThemeData(
   colorScheme: ColorScheme.fromSwatch().copyWith(
     secondary: const Color(0xFF4CAF50),
   ),
+  splashColor: Colors.red, // цвет риппл эффекта??
 );
 
 final darkTheme = ThemeData(
@@ -66,4 +67,5 @@ final darkTheme = ThemeData(
   colorScheme: ColorScheme.fromSwatch().copyWith(
     secondary: const Color(0xFF4CAF50),
   ),
+  splashColor: Colors.red, // цвет риппл эффекта??
 );

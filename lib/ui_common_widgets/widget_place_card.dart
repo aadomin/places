@@ -104,89 +104,104 @@ class WidgetPlaceCard extends StatelessWidget {
             ),
           ),
         ),
-        child: Container(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: Stack(
-            children: [
-              Column(
-                children: [
-                  Container(
-                    width: double.infinity,
-                    height: 100,
-                    child: ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(12),
-                        topRight: Radius.circular(12),
-                      ),
-                      child: WidgetMyImage(
-                        url: place.url[0],
-                        fit: BoxFit.fitWidth,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding:
-                        const EdgeInsets.only(top: 16, right: 16, left: 16),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      place.name,
-                      maxLines: 1,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(top: 4, right: 16, left: 16),
-                    alignment: Alignment.topLeft,
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(
-                        //maxHeight: double.infinity,
-                      ),
-                      child: Text(
-                        place.details,
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 4,
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColorLight,
+        //
+        // Сама карточка
+        //
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
+          child: Container(
+            padding: const EdgeInsets.only(bottom: 16),
+            color: const Color(0xfff5f5f5),
+            child: Stack(
+              children: [
+                Column(
+                  children: [
+                    //
+                    // Картинка
+                    //
+                    Container(
+                      width: double.infinity,
+                      height: 100,
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(12),
+                          topRight: Radius.circular(12),
+                        ),
+                        child: WidgetMyImage(
+                          url: place.url[0],
+                          fit: BoxFit.fitWidth,
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              //
-              // Type of place on the top of card
-              //
-              Container(
-                padding: const EdgeInsets.all(16),
-                width: double.infinity,
-                child: Text(
-                  place.type,
-                  style: const TextStyle(
-                    color: Colors.white,
+                    //
+                    // Название места
+                    //
+                    Container(
+                      padding:
+                          const EdgeInsets.only(top: 16, right: 16, left: 16),
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        place.name,
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                    ),
+                    //
+                    // Детальное описание
+                    //
+                    Container(
+                      padding:
+                          const EdgeInsets.only(top: 4, right: 16, left: 16),
+                      alignment: Alignment.topLeft,
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(),
+                        child: Text(
+                          place.details,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 4,
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColorLight,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                //
+                // Type of place on the top of card
+                //
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  width: double.infinity,
+                  child: Text(
+                    place.type.toLowerCase(),
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-              //
-              // Icons on the top of card
-              //
-              Container(
-                alignment: Alignment.topRight,
-                padding: const EdgeInsets.all(16),
-                child: WidgetPlaceCardIcons(
-                  placeCardType: placeCardType,
-                  onDeleteFromSeen: onDeleteFromSeen,
-                  onDeleteFromWished: onDeleteFromWished,
-                  onAddToCalendar: onAddToCalendar,
-                  onAddToWished: onAddToWished,
-                  onShare: onShare,
-                  isLiked: isLiked,
+                //
+                // Icons on the top of card
+                //
+                Container(
+                  alignment: Alignment.topRight,
+                  padding: const EdgeInsets.all(16),
+                  child: WidgetPlaceCardIcons(
+                    placeCardType: placeCardType,
+                    onDeleteFromSeen: onDeleteFromSeen,
+                    onDeleteFromWished: onDeleteFromWished,
+                    onAddToCalendar: onAddToCalendar,
+                    onAddToWished: onAddToWished,
+                    onShare: onShare,
+                    isLiked: isLiked,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
