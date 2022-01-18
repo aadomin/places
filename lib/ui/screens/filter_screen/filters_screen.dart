@@ -193,7 +193,29 @@ class _FiltersScreenState extends State<FiltersScreen> {
           ),
         ],
       ),
+      bottomSheet: Container(
+        //
+        // Кнопка ПОКАЗАТЬ
+        //
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+          child: ElevatedButton(
+            onPressed: () {
+              onTapOnShow(context);
+            },
+            child: const Padding(
+              padding: EdgeInsets.all(12.0),
+              child: Text('ПОКАЗАТЬ (10)'),
+            ),
+          ),
+        ),
+      ),
     );
+  }
+
+  void onTapOnShow(BuildContext context) {
+    Navigator.of(context).pop();
   }
 }
 
