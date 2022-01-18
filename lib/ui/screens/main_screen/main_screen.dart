@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:places/ui/screens/main_1_places_list/screen_main1_places_route.dart';
 import 'package:places/ui/screens/main_2_map/screen_main_2_map.dart';
 import 'package:places/ui/screens/main_3_wished_and_seen/screen_main3_favorite_and_visited_route.dart';
@@ -8,7 +7,7 @@ import 'package:places/ui/screens/main_4_settings/screen_main_4_settings.dart';
 /// ГЛАВНЫЙ ЭКРАН.
 /// Состоит из 4х частей - переход к ним
 /// осуществляется через нажатие на кнопкам в BottomNavigationBar.
-/// 
+///
 class AllMainScreens extends StatefulWidget {
   const AllMainScreens({Key? key}) : super(key: key);
   @override
@@ -16,28 +15,29 @@ class AllMainScreens extends StatefulWidget {
 }
 
 class _AllMainScreensState extends State<AllMainScreens> {
-  int _page = 0;
-  late PageController _c;
-  @override
-  void initState() {
-    _c = PageController(
-      initialPage: _page,
-    );
-    super.initState();
-  }
+  List<Widget> widgetsPageList = const [
+    SafeArea(child: Center(child: ScreenMain1PlacesRoute())),
+    Center(child: ScreenMain2Map()),
+    Center(child: ScreenMain3FavoriteAndVisitedRoute()),
+    Center(child: ScreenMain4Settings()),
+  ];
+  int currentPage = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: AnimatedSwitcher(
+        child: widgetsPageList[currentPage],
+        duration: const Duration(milliseconds: 200),
+        transitionBuilder: (Widget child, Animation<double> animation) {
+          return ScaleTransition(scale: animation, child: child);
+        },
+      ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _page,
+        currentIndex: currentPage,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        onTap: (index) {
-          _c.animateToPage(index,
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeInOut);
-        },
+        onTap: onTap,
         type: BottomNavigationBarType.fixed,
         items: const [
           BottomNavigationBarItem(
@@ -58,20 +58,12 @@ class _AllMainScreensState extends State<AllMainScreens> {
           ),
         ],
       ),
-      body: PageView(
-        controller: _c,
-        onPageChanged: (newPage) {
-          setState(() {
-            _page = newPage;
-          });
-        },
-        children: const [
-          Center(child: ScreenMain1PlacesRoute()),
-          Center(child: ScreenMain2Map()),
-          Center(child: ScreenMain3FavoriteAndVisitedRoute()),
-          Center(child: ScreenMain4Settings()),
-        ],
-      ),
     );
+  }
+
+  void onTap(int value) {
+    setState(() {
+      currentPage = value;
+    });
   }
 }
