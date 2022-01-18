@@ -53,25 +53,31 @@ class PlaceSearchScreen extends StatelessWidget {
                     filled: true,
                     fillColor: const Color(0xfff5f5f5),
                     prefixIcon: const Icon(Icons.search, size: 15),
-                    suffixIcon: InkWell(
-                      onTap: () {
-                        textController.clear();
-                        context.read<SearchInteractor>().searchPlaces('');
-                      },
-                      child: UnconstrainedBox(
-                        child: ClipRRect(
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                          child: SizedBox(
-                            width: 20,
-                            height: 20,
-                            child: Container(
-                              color: Theme.of(context).primaryColor,
-                              child: Icon(
-                                Icons.close,
-                                size: 14,
-                                color: Theme.of(context).canvasColor,
+                    suffixIcon: Visibility(
+                      visible: textController.text != '',
+                      //
+                      // Кнопка очистки
+                      //
+                      child: InkWell(
+                        onTap: () {
+                          textController.clear();
+                          context.read<SearchInteractor>().searchPlaces('');
+                        },
+                        child: UnconstrainedBox(
+                          child: ClipRRect(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                            child: SizedBox(
+                              width: 20,
+                              height: 20,
+                              child: Container(
+                                color: Theme.of(context).primaryColor,
+                                child: Icon(
+                                  Icons.close,
+                                  size: 14,
+                                  color: Theme.of(context).canvasColor,
+                                ),
                               ),
                             ),
                           ),
