@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 
 class WidgetSearchAppBar extends StatelessWidget {
   const WidgetSearchAppBar({
@@ -9,33 +10,37 @@ class WidgetSearchAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        //
         // Кнопка Назад
+        //
         Expanded(
           child: Row(
             children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                style: TextButton.styleFrom(
-                  primary: Theme.of(context).primaryColorLight,
-                ),
-                child: const Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Отмена',
-                    style: TextStyle(fontSize: 16),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      size: 16,
+                      color: Theme.of(context).primaryColorLight,
+                    ),
                   ),
                 ),
               ),
             ],
           ),
         ),
+
         //
-        // Заголовок
+        // Заголовок страницы
         //
         Text(
-          'Поиск',
+          UiStrings.searchHeader,
           style: TextStyle(
             color: Theme.of(context).primaryColorDark,
             fontWeight: FontWeight.bold,

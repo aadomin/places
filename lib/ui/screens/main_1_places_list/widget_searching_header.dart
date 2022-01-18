@@ -18,21 +18,26 @@ class WidgetSearchingHeader extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Stack(
           children: [
-            TextField(
-              focusNode: focusNode1,
-              readOnly: true,
-              onTap: () {
-                focusNode1.unfocus();
-                Navigator.pushNamed(context, ROUTE_SEARCH);
-              },
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search, size: 15),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.0),
+            ClipRRect(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(10),
+              ),
+              child: TextField(
+                focusNode: focusNode1,
+                readOnly: true,
+                onTap: () {
+                  focusNode1.unfocus();
+                  Navigator.pushNamed(context, ROUTE_SEARCH);
+                },
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.search, size: 15),
+                  hintText: UiStrings.searching,
+                  contentPadding:
+                      EdgeInsets.only(top: 15, bottom: 10, left: 10, right: 10),
+                  border: InputBorder.none,
+                  filled: true,
+                  fillColor: Color(0xfff5f5f5),
                 ),
-                hintText: UiStrings.searching,
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10),
               ),
             ),
             Container(

@@ -31,48 +31,53 @@ class PlaceSearchScreen extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-
+              //
               // Поле ввода
-              child: TextField(
-                focusNode: focusNode1,
-                controller: textController,
-                onChanged: (String value) {
-                  context.read<SearchInteractor>().searchPlaces(value);
-                },
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search, size: 15),
-                  suffixIcon: InkWell(
-                    onTap: () {
-                      textController.clear();
-                      context.read<SearchInteractor>().searchPlaces('');
-                    },
-                    child: UnconstrainedBox(
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        child: SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: Container(
-                            color: Theme.of(context).primaryColor,
-                            child: Icon(
-                              Icons.close,
-                              size: 14,
-                              color: Theme.of(context).canvasColor,
+              //
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(10),
+                ),
+                child: TextField(
+                  focusNode: focusNode1,
+                  autofocus: true,
+                  controller: textController,
+                  onChanged: (String value) {
+                    context.read<SearchInteractor>().searchPlaces(value);
+                  },
+                  decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.only(
+                        top: 15, bottom: 10, left: 10, right: 10),
+                    border: InputBorder.none,
+                    hintText: UiStrings.searching,
+                    filled: true,
+                    fillColor: const Color(0xfff5f5f5),
+                    prefixIcon: const Icon(Icons.search, size: 15),
+                    suffixIcon: InkWell(
+                      onTap: () {
+                        textController.clear();
+                        context.read<SearchInteractor>().searchPlaces('');
+                      },
+                      child: UnconstrainedBox(
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                          child: SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: Container(
+                              color: Theme.of(context).primaryColor,
+                              child: Icon(
+                                Icons.close,
+                                size: 14,
+                                color: Theme.of(context).canvasColor,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  hintText: UiStrings.searching,
-                  contentPadding: const EdgeInsets.symmetric(
-                    vertical: 10.0,
-                    horizontal: 10,
                   ),
                 ),
               ),

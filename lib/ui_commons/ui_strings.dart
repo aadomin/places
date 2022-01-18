@@ -44,4 +44,8 @@ class UiStrings {
   static const String settings = 'Настройки';
   static const String darkTheme = 'Темная тема';
   static const String lookOnboarding = 'Смотреть туториал';
+
+  // Экран Поиск
+  static const String searchHeader = 'Список интересных мест';
+  static const String searchCancel = 'Отмена';
 }
