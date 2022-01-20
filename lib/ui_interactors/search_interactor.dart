@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/domain_entities/history_of_search_services.dart';
 import 'package:places/main.dart';
 
 import 'package:places/ui_commons/enums.dart';
@@ -21,10 +22,8 @@ class SearchInteractor with ChangeNotifier {
 
   SearchStatus searchStatus = SearchStatus.empty;
   List<Place> _searchResult = [];
-  String _searchText = '';
 
   late final List<String> _lastSearches;
-  DateTime _lastSearchDateTime = DateTime.now();
 
   List<String> get lastSearches {
     return _lastSearches;
@@ -35,13 +34,17 @@ class SearchInteractor with ChangeNotifier {
   }
 
   void searchPlaces(String searchText) {
-    doSearchItSelf(searchText);
-    updateListOfLastSearches(searchText);
+    _doSearchItself(searchText);
+    _updateListOfLastSearches(searchText);
     notifyListeners();
   }
 
-  void doSearchItSelf(String searchText) {
-    _searchText = searchText;
+  void _doSearchItself(String searchText) {
+    // тут лучше бы вызов функции через время, и если за это время введен еще один
+    // символ - изменение времени, от того, как она отсчитывается.
+
+    final String _searchText = searchText;
+
     final List<Place> result = [];
 
     if (_searchText == '') {
@@ -64,35 +67,12 @@ class SearchInteractor with ChangeNotifier {
     _searchResult = result;
   }
 
-  void updateListOfLastSearches(String searchText) {
-    final now = DateTime.now();
-    final int diffOfTime = now.difference(_lastSearchDateTime).inSeconds;
-
-    if (searchText == '') {
-      return;
-    }
-
-    // если прошло больше 2 секунды => это уже новый запрос
-    if (diffOfTime > 2) {
-      _lastSearches.insert(0, searchText);
-      if (_lastSearches.length > 5) {
-        _lastSearches.removeAt(_lastSearches.length - 1);
-      }
-    } else {
-      if (_lastSearches.isEmpty) {
-        if (searchText != '') {
-          _lastSearches.add(searchText);
-        }
-      } else {
-        _lastSearches[0] = searchText;
-      }
-    }
-    for (var i = 0; i < _lastSearches.length; i++) {
-      if (_lastSearches[i] == '') {
-        _lastSearches.removeAt(i);
-      }
-    }
-    _lastSearchDateTime = now;
+  void _updateListOfLastSearches(String searchText) {
+    _lastSearches = HistoryOfSearchServices.newListOfLastSearches(
+      maxCountOfItems: 5,
+      newInput: searchText,
+      lastSearches: lastSearches,
+    );
   }
 
   void removeItemFromHistory(int index) {
