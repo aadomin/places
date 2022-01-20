@@ -23,7 +23,7 @@ class SearchInteractor with ChangeNotifier {
   SearchStatus searchStatus = SearchStatus.empty;
   List<Place> _searchResult = [];
 
-  late final List<String> _lastSearches;
+  List<String> _lastSearches = [];
 
   List<String> get lastSearches {
     return _lastSearches;
