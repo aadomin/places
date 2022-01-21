@@ -13,8 +13,6 @@ class SearchInteractor with ChangeNotifier {
   static SearchInteractor? _instance;
   SearchInteractor._internal() {
     _instance = this;
-    //
-    _lastSearches = searchEntity.lastSearches;
   }
   // Singleton
 
@@ -77,6 +75,11 @@ class SearchInteractor with ChangeNotifier {
 
   void removeItemFromHistory(int index) {
     _lastSearches.removeAt(index);
+    notifyListeners();
+  }
+
+  void removeAllItemsFromHistory() {
+    _lastSearches.clear();
     notifyListeners();
   }
 }

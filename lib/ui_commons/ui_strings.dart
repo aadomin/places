@@ -48,4 +48,5 @@ class UiStrings {
   // Экран Поиск
   static const String searchHeader = 'Список интересных мест';
   static const String searchCancel = 'Отмена';
+  static const String clearHistory = 'Очистить историю';
 }

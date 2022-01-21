@@ -88,12 +88,15 @@ class PlaceSearchScreen extends StatelessWidget {
                 ),
               ),
             ),
+            //
+            // Основная страница
+            //
             if (context.watch<SearchInteractor>().searchStatus ==
                 SearchStatus.haveResult)
               const WidgetSearchResult(),
             if (context.watch<SearchInteractor>().searchStatus ==
                 SearchStatus.empty)
-              const WidgetSearchEmpty(),
+              WidgetSearchEmpty(textController: textController),
             if (context.watch<SearchInteractor>().searchStatus ==
                 SearchStatus.notFound)
               const WidgetSearchNotFound(),
