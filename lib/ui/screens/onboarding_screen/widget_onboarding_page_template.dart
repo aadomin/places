@@ -48,7 +48,7 @@ class WidgetOnboargindPageTemplate extends StatelessWidget {
                     onboardingText1,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontWeight: FontWeight.w800,
+                      fontWeight: FontWeight.w700,
                       color: Theme.of(context).primaryColor,
                       fontSize: 22,
                     ),

@@ -144,7 +144,7 @@ class WidgetPlaceCard extends StatelessWidget {
                         place.name,
                         maxLines: 1,
                         style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w700,
                           fontSize: 16,
                           color: Theme.of(context).primaryColor,
                         ),
@@ -181,6 +181,7 @@ class WidgetPlaceCard extends StatelessWidget {
                     place.type.toLowerCase(),
                     style: const TextStyle(
                       color: Colors.white,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ),

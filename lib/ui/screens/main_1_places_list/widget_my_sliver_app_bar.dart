@@ -22,6 +22,9 @@ class WidgetMySliverAppBar extends SliverPersistentHeaderDelegate {
     return Stack(
       children: [
         // Первоначальный заголовок
+        //
+        // Список интересных мест
+        //
         Opacity(
           opacity: 1 - shrinkOffset / expandedHeight,
           child: Container(
@@ -32,7 +35,7 @@ class WidgetMySliverAppBar extends SliverPersistentHeaderDelegate {
               text: TextSpan(
                 style: TextStyle(
                   fontSize: headerFontSize,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w700,
                   color: Theme.of(context).primaryColor,
                 ),
                 text: UiStrings.listOfInterestingPlaces,
