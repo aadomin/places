@@ -49,4 +49,19 @@ class UiStrings {
   static const String searchHeader = 'Список интересных мест';
   static const String searchCancel = 'Отмена';
   static const String clearHistory = 'Очистить историю';
+
+  // Экран Добавить место
+  static const String addPlaceCategory = 'КАТЕГОРИЯ';
+  static const String addPlaceName = 'Название';
+  static const String addPlaceNameHint = 'Название';
+  static const String addPlaceLat = 'ШИРОТА';
+  static const String addPlaceLatHint = 'Введите широту';
+  static const String addPlaceLon = 'ДОЛГОТА';
+  static const String addPlaceLonHint = 'Введите долготу';
+  static const String addPlaceUncorrectInput = 'Некорректный ввод';
+  static const String addPlaceShowing = 'Показываем карту...';
+  static const String addPlaceShowMap = 'Указать на карте';
+  static const String addPlaceDescription = 'Описание';
+  static const String addPlaceDescriptionHint = 'Введите описание';
+  static const String addPlaceAddPlace = 'СОХРАНИТЬ';
 }

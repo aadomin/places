@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui/screens/add_place_screen/widget_new_place_app_bar.dart';
 import 'package:places/ui_common_widgets/widget_bottom_button.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
@@ -33,7 +34,9 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
   //+
   List<String> _listOfPhotos = [];
 
-  final formAddPlaceKey = GlobalKey<FormState>();
+  final keyFormAddPlace = GlobalKey<FormState>();
+
+  bool isButtonSaveActive = false;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +57,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
           child: Form(
-            key: formAddPlaceKey,
+            key: keyFormAddPlace,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -165,7 +168,10 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                     ],
                   ),
                 ),
-                const WidgetSmallCategoryHeader('КАТЕГОРИЯ'),
+                //
+                // КАТЕГОРИЯ
+                //
+                const WidgetSmallCategoryHeader(UiStrings.addPlaceCategory),
                 InkWell(
                   onTap: () => onTapOnCategorySelection(context),
                   child: Row(
@@ -183,11 +189,28 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                     ],
                   ),
                 ),
-                const WidgetSmallCategoryHeader('НАЗВАНИЕ'),
+                //
+                // Поле ввода НАЗВАНИЕ
+                //
+                const WidgetSmallCategoryHeader(UiStrings.addPlaceName),
                 Padding(
                   padding: EdgeInsets.zero,
                   child: TextFormField(
                     controller: textControllerName,
+                    validator: (value) {
+                      final String text = value ?? '';
+                      final _nameExp = RegExp(r'^.{1,}$');
+                      if (!_nameExp.hasMatch(text) || text.isEmpty) {
+                        return UiStrings.addPlaceUncorrectInput;
+                      }
+                      return null;
+                    },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    onChanged: (value) {
+                      setState(() {
+                        activateButtonIfDone();
+                      });
+                    },
                     focusNode: focusNodeName,
                     keyboardType: TextInputType.text,
                     textInputAction: TextInputAction.next,
@@ -202,19 +225,23 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                         vertical: 10,
                         horizontal: 10,
                       ),
-                      hintText: 'Введите название',
+                      hintText: UiStrings.addPlaceNameHint,
                       border: OutlineInputBorder(),
                     ),
                   ),
                 ),
                 Row(
                   children: [
+                    //
+                    // Поле ввода ШИРОТА
+                    //
                     Expanded(
                       flex: 10,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const WidgetSmallCategoryHeader('ШИРОТА'),
+                          const WidgetSmallCategoryHeader(
+                              UiStrings.addPlaceLat),
                           TextFormField(
                             controller: textControllerLat,
                             validator: (value) {
@@ -223,9 +250,16 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                                   RegExp(r'^-?[0-9]{1,3}(?:\.[0-9]{1,20})?$');
                               if (!_coordinatesExp.hasMatch(text) ||
                                   text.isEmpty) {
-                                return 'Некорректный ввод';
+                                return UiStrings.addPlaceUncorrectInput;
                               }
                               return null;
+                            },
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            onChanged: (value) {
+                              setState(() {
+                                activateButtonIfDone();
+                              });
                             },
                             focusNode: focusNodeLat,
                             keyboardType: TextInputType.number,
@@ -239,7 +273,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                               focusNodeLon.requestFocus();
                             },
                             decoration: const InputDecoration(
-                              hintText: 'Введите широту',
+                              hintText: UiStrings.addPlaceLatHint,
                               border: OutlineInputBorder(),
                               contentPadding: EdgeInsets.symmetric(
                                 vertical: 10.0,
@@ -251,12 +285,17 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                       ),
                     ),
                     const SizedBox(width: 10, height: 10),
+
+                    //
+                    // Поле ввода ДОЛГОТА
+                    //
                     Expanded(
                       flex: 10,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const WidgetSmallCategoryHeader('ДОЛГОТА'),
+                          const WidgetSmallCategoryHeader(
+                              UiStrings.addPlaceLon),
                           TextFormField(
                             controller: textControllerLon,
                             validator: (value) {
@@ -265,9 +304,16 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                                   RegExp(r'^-?[0-9]{1,3}(?:\.[0-9]{1,20})?$');
                               if (!_coordinatesExp.hasMatch(text) ||
                                   text.isEmpty) {
-                                return 'Некорректный ввод';
+                                return UiStrings.addPlaceUncorrectInput;
                               }
                               return null;
+                            },
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            onChanged: (value) {
+                              setState(() {
+                                activateButtonIfDone();
+                              });
                             },
                             focusNode: focusNodeLon,
                             keyboardType: TextInputType.number,
@@ -280,7 +326,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                               focusNodeDescription.requestFocus();
                             },
                             decoration: const InputDecoration(
-                              hintText: 'Введите долготу',
+                              hintText: UiStrings.addPlaceLonHint,
                               border: OutlineInputBorder(),
                               contentPadding: EdgeInsets.symmetric(
                                 vertical: 10,
@@ -293,25 +339,47 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                     ),
                   ],
                 ),
+
+                //
+                // Кнопка УКАЗАТЬ НА КАРТЕ
+                //
                 TextButton(
                   onPressed: () {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
-                        content: Text('Показываем карту'),
+                        content: Text(UiStrings.addPlaceShowing),
                       ),
                     );
                   },
                   child: Text(
-                    'Указать на карте',
+                    UiStrings.addPlaceShowMap,
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.secondary,
                       fontSize: 16,
                     ),
                   ),
                 ),
-                const WidgetSmallCategoryHeader('ОПИСАНИЕ'),
+
+                //
+                // Поле ОПИСАНИЕ
+                //
+                const WidgetSmallCategoryHeader(UiStrings.addPlaceDescription),
                 TextFormField(
                   controller: textControllerDescription,
+                  validator: (value) {
+                    final String text = value ?? '';
+                    final _nameExp = RegExp(r'^.{1,}$');
+                    if (!_nameExp.hasMatch(text) || text.isEmpty) {
+                      return UiStrings.addPlaceUncorrectInput;
+                    }
+                    return null;
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  onChanged: (value) {
+                    setState(() {
+                      activateButtonIfDone();
+                    });
+                  },
                   focusNode: focusNodeDescription,
                   keyboardType: TextInputType.text,
                   textInputAction: TextInputAction.done,
@@ -322,7 +390,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                     focusNodeDescription.unfocus();
                   },
                   decoration: const InputDecoration(
-                    hintText: 'Введите текст',
+                    hintText: UiStrings.addPlaceDescriptionHint,
                     border: OutlineInputBorder(),
                     contentPadding: EdgeInsets.symmetric(
                       vertical: 10.0,
@@ -339,10 +407,23 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
         ),
       ),
       bottomSheet: WidgetBottomButton(
+        isActive: isButtonSaveActive,
         onPressOnButton: onTapOnSave,
-        buttonName: 'СОЗДАТЬ',
+        buttonName: UiStrings.addPlaceAddPlace,
       ),
     );
+  }
+
+  void activateButtonIfDone() {
+    final bool allFieldsFilled = (textControllerName.text != '') &&
+        (textControllerLon.text != '') &&
+        (textControllerLat.text != '') &&
+        (textControllerDescription.text != '');
+    if (allFieldsFilled) {
+      final bool isFormValid =
+          keyFormAddPlace.currentState?.validate() ?? false;
+      isButtonSaveActive = isFormValid;
+    }
   }
 
   void onTapOnPlus() {
@@ -370,7 +451,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
   }
 
   void onTapOnSave() {
-    if (formAddPlaceKey.currentState?.validate() ?? false) {
+    if (keyFormAddPlace.currentState?.validate() ?? false) {
       context.read<PlaceInteractor>().addNewPlace(
             name: textControllerName.text,
             lat: double.parse(textControllerLat.text),
