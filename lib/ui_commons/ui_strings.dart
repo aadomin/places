@@ -52,7 +52,7 @@ class UiStrings {
 
   // Экран Добавить место
   static const String addPlaceCategory = 'КАТЕГОРИЯ';
-  static const String addPlaceName = 'Название';
+  static const String addPlaceName = 'НАЗВАНИЕ';
   static const String addPlaceNameHint = 'Название';
   static const String addPlaceLat = 'ШИРОТА';
   static const String addPlaceLatHint = 'Введите широту';
@@ -61,7 +61,7 @@ class UiStrings {
   static const String addPlaceUncorrectInput = 'Некорректный ввод';
   static const String addPlaceShowing = 'Показываем карту...';
   static const String addPlaceShowMap = 'Указать на карте';
-  static const String addPlaceDescription = 'Описание';
+  static const String addPlaceDescription = 'ОПИСАНИЕ';
   static const String addPlaceDescriptionHint = 'Введите описание';
-  static const String addPlaceAddPlace = 'СОХРАНИТЬ';
+  static const String addPlaceAddPlace = 'СОЗДАТЬ';
 }

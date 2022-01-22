@@ -3,6 +3,7 @@ import 'package:places/ui/screens/place_search_screen/widget_search_app_bar.dart
 import 'package:places/ui/screens/place_search_screen/widget_search_empty.dart';
 import 'package:places/ui/screens/place_search_screen/widget_search_not_found.dart';
 import 'package:places/ui/screens/place_search_screen/widget_search_result.dart';
+import 'package:places/ui_common_widgets/widget_textfield_clear_button.dart';
 import 'package:provider/provider.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/ui_strings.dart';
@@ -45,6 +46,7 @@ class PlaceSearchScreen extends StatelessWidget {
                   onChanged: (String value) {
                     context.read<SearchInteractor>().searchPlaces(value);
                   },
+                  
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.only(
                         top: 15, bottom: 10, left: 10, right: 10),
@@ -53,36 +55,9 @@ class PlaceSearchScreen extends StatelessWidget {
                     filled: true,
                     fillColor: const Color(0xfff5f5f5),
                     prefixIcon: const Icon(Icons.search, size: 15),
-                    suffixIcon: Visibility(
-                      visible: textController.text != '',
-                      //
-                      // Кнопка очистки
-                      //
-                      child: InkWell(
-                        onTap: () {
-                          textController.clear();
-                          context.read<SearchInteractor>().searchPlaces('');
-                        },
-                        child: UnconstrainedBox(
-                          child: ClipRRect(
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(10),
-                            ),
-                            child: SizedBox(
-                              width: 20,
-                              height: 20,
-                              child: Container(
-                                color: Theme.of(context).primaryColor,
-                                child: Icon(
-                                  Icons.close,
-                                  size: 14,
-                                  color: Theme.of(context).canvasColor,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                    suffixIcon: WidgetTextFieldClearButton(
+                      fieldHasFocus: focusNode1.hasFocus,
+                      textController: textController,
                     ),
                   ),
                 ),

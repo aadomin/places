@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui/screens/add_place_screen/widget_new_place_app_bar.dart';
 import 'package:places/ui_common_widgets/widget_bottom_button.dart';
+import 'package:places/ui_common_widgets/widget_textfield_clear_button.dart';
+import 'package:places/ui_commons/platform_detector.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
@@ -220,13 +222,17 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                     onFieldSubmitted: (String value) {
                       focusNodeLat.requestFocus();
                     },
-                    decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(
                         vertical: 10,
                         horizontal: 10,
                       ),
                       hintText: UiStrings.addPlaceNameHint,
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
+                      suffixIcon: WidgetTextFieldClearButton(
+                        fieldHasFocus: focusNodeName.hasFocus,
+                        textController: textControllerName,
+                      ),
                     ),
                   ),
                 ),
@@ -262,7 +268,9 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                               });
                             },
                             focusNode: focusNodeLat,
-                            keyboardType: TextInputType.number,
+                            keyboardType: PlatformDetector.isIOS
+                                ? TextInputType.text
+                                : TextInputType.number,
                             textInputAction: TextInputAction.next,
                             textCapitalization: TextCapitalization.sentences,
                             // ignore: avoid_redundant_argument_values
@@ -272,12 +280,16 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                             onFieldSubmitted: (String value) {
                               focusNodeLon.requestFocus();
                             },
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               hintText: UiStrings.addPlaceLatHint,
-                              border: OutlineInputBorder(),
-                              contentPadding: EdgeInsets.symmetric(
+                              border: const OutlineInputBorder(),
+                              contentPadding: const EdgeInsets.symmetric(
                                 vertical: 10.0,
                                 horizontal: 10.0,
+                              ),
+                              suffixIcon: WidgetTextFieldClearButton(
+                                fieldHasFocus: focusNodeLat.hasFocus,
+                                textController: textControllerLat,
                               ),
                             ),
                           ),
@@ -316,7 +328,9 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                               });
                             },
                             focusNode: focusNodeLon,
-                            keyboardType: TextInputType.number,
+                            keyboardType: PlatformDetector.isIOS
+                                ? TextInputType.text
+                                : TextInputType.number,
                             textInputAction: TextInputAction.next,
                             textCapitalization: TextCapitalization.sentences,
                             // ignore: avoid_redundant_argument_values
@@ -325,12 +339,16 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                             onFieldSubmitted: (String value) {
                               focusNodeDescription.requestFocus();
                             },
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
                               hintText: UiStrings.addPlaceLonHint,
-                              border: OutlineInputBorder(),
-                              contentPadding: EdgeInsets.symmetric(
+                              border: const OutlineInputBorder(),
+                              contentPadding: const EdgeInsets.symmetric(
                                 vertical: 10,
                                 horizontal: 10,
+                              ),
+                              suffixIcon: WidgetTextFieldClearButton(
+                                fieldHasFocus: focusNodeLon.hasFocus,
+                                textController: textControllerLon,
                               ),
                             ),
                           ),
@@ -389,12 +407,16 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                   onFieldSubmitted: (String value) {
                     focusNodeDescription.unfocus();
                   },
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     hintText: UiStrings.addPlaceDescriptionHint,
-                    border: OutlineInputBorder(),
-                    contentPadding: EdgeInsets.symmetric(
+                    border: const OutlineInputBorder(),
+                    contentPadding: const EdgeInsets.symmetric(
                       vertical: 10.0,
                       horizontal: 10,
+                    ),
+                    suffixIcon: WidgetTextFieldClearButton(
+                      fieldHasFocus: focusNodeDescription.hasFocus,
+                      textController: textControllerDescription,
                     ),
                   ),
                 ),
