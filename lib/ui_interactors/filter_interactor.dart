@@ -11,9 +11,11 @@ class FilterInteractor with ChangeNotifier {
   FilterInteractor._internal() {
     _instance = this;
     //
-    _filterItems = filterRepository.filterItems;
+    _filterItems = filterEntity.filterItems;
+
     // инициализируем стрим первым значением
     _streamItems = BehaviorSubject<List<FilterItem>>.seeded(_filterItems);
+    
     // при появлении объекта из стрима обновляем интерфейс
     // т.к. StreamBuilder мы еще не проходили:
     items.listen((items) {
@@ -24,7 +26,7 @@ class FilterInteractor with ChangeNotifier {
 
   // </Singleton> }
 
-  final FilterEntity filterRepository = FilterEntity();
+  final FilterEntity filterEntity = FilterEntity();
 
   late List<FilterItem> _filterItems;
   List<FilterItem> get filterItems => _filterItems;
