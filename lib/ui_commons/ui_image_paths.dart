@@ -8,4 +8,7 @@ class UiImagePaths {
   static const String icon_select_file = 'res/images/icon_select_file.png';
   static const String icon_select_image = 'res/images/icon_select_image.png';
   static const String icon_take_photo = 'res/images/icon_take_photo.png';
+
+  static const String emptyFavoriteTab = 'res/images/empty_favorites.svg';
+  static const String emptySeenTab = 'res/images/empty_seen.svg';
 }

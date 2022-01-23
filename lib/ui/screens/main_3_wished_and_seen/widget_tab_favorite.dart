@@ -1,13 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:places/ui/screens/main_3_wished_and_seen/widget_empty_list.dart';
 import 'package:places/ui_blocs/places_cubit.dart';
+import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_common_widgets/widget_place_card.dart';
-import 'package:places/ui/screens/main_3_wished_and_seen/widget_empty_list.dart';
 import 'package:places/ui/screens/place_details_screen/screen_place_details.dart';
 
 import 'package:places/domain_models/place.dart';
@@ -32,6 +33,8 @@ class _WidgetTabFavoriteState extends State<WidgetTabFavorite> {
 
     if (_listOfItems.isEmpty) {
       return const WidgetEmptyList(
+        imagePath: UiImagePaths.emptyFavoriteTab,
+        headerLine: UiStrings.empty,
         commentLine: UiStrings.markFavotivePlacesAndItWillAppearHere,
       );
     } else {

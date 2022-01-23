@@ -13,8 +13,8 @@ dependencies:
   equatable: ^2.0.3
   flutter:
     sdk: flutter
-  # flutter_svg: ^0.19.3
   flutter_bloc: ^7.3.0
+  flutter_svg: ^1.0.3
   provider: ^6.0.0
   rxdart: ^0.27.1
   

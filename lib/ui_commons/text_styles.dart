@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-TextStyle tsVisitingScreenNoItemsHeader = TextStyle(
-  color: Colors.grey.shade400,
-  fontWeight: FontWeight.bold,
+TextStyle tsVisitingScreenNoItemsHeader = const TextStyle(
+  color: Color(0x887C7E92),
+  fontWeight: FontWeight.w500,
   fontSize: 20,
 );
 
-TextStyle tsVisitingScreenNoItemsText = TextStyle(
-  color: Colors.grey.shade300,
-  fontWeight: FontWeight.w500,
-  fontSize: 12,
+TextStyle tsVisitingScreenNoItemsText = const TextStyle(
+  color: Color(0x887C7E92),
+  fontWeight: FontWeight.w400,
+  fontSize: 14,
 );
