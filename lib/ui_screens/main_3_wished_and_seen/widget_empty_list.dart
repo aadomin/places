@@ -25,7 +25,6 @@ class WidgetEmptyList extends StatelessWidget {
           SvgPicture.asset(
             imagePath,
             color: const Color(0x887C7E92),
-            matchTextDirection: true,
             width: 70,
           ),
           const SizedBox(height: 10),

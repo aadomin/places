@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:places/ui_commons/ui_strings.dart';
 
@@ -29,8 +30,9 @@ class WidgetOnboargindPageTemplate extends StatelessWidget {
                 // изображение Онбординга 1
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20),
-                  child: Image.asset(
+                  child: SvgPicture.asset(
                     onboardingImgPath,
+                    color: Theme.of(context).primaryColor,
                     width: 100,
                     height: 100,
                   ),
@@ -61,7 +63,8 @@ class WidgetOnboargindPageTemplate extends StatelessWidget {
                   child: Text(
                     onboardingText2,
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Theme.of(context).primaryColor),
+                    style:
+                        TextStyle(color: Theme.of(context).primaryColorLight),
                   ),
                 ),
 
