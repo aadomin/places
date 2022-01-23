@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/main.dart';
-import 'package:places/ui/screens/main_3_wished_and_seen/screen_main3_favorite_and_visited.dart';
+import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_favorite_and_visited.dart';
 import 'package:places/ui_blocs/places_cubit.dart';
 import 'package:places/ui_common_widgets/widget_network_error.dart';
 

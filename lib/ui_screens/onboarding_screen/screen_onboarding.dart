@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/my_app_and_routes.dart';
-import 'package:places/ui/screens/onboarding_screen/widget_circle_indicator.dart';
-import 'package:places/ui/screens/onboarding_screen/widgets_all_onboarding_pages.dart';
+import 'package:places/ui_screens/onboarding_screen/widget_circle_indicator.dart';
+import 'package:places/ui_screens/onboarding_screen/widgets_all_onboarding_pages.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
 /// Экран "Добро пожаловать",

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:places/ui_commons/themes.dart';
-import 'package:places/ui/screens/onboarding_screen/screen_onboarding.dart';
-import 'package:places/ui/screens/filter_screen/filters_screen.dart';
-import 'package:places/ui/screens/add_place_screen/screen_add_place.dart';
-import 'package:places/ui/screens/select_category_screen/select_category_screen.dart';
-import 'package:places/ui/screens/place_search_screen/place_search_screen.dart';
-import 'package:places/ui/screens/main_screen/main_screen.dart';
-import 'package:places/ui/screens/splash_screen/splash_screen.dart';
+import 'package:places/ui_screens/onboarding_screen/screen_onboarding.dart';
+import 'package:places/ui_screens/filter_screen/filters_screen.dart';
+import 'package:places/ui_screens/add_place_screen/screen_add_place.dart';
+import 'package:places/ui_screens/select_category_screen/select_category_screen.dart';
+import 'package:places/ui_screens/place_search_screen/place_search_screen.dart';
+import 'package:places/ui_screens/main_screen/main_screen.dart';
+import 'package:places/ui_screens/splash_screen/splash_screen.dart';
 
 import 'package:places/ui_interactors/settings_interactor.dart';
 

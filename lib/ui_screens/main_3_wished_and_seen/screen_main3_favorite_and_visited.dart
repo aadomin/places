@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_models/place.dart';
 
-import 'package:places/ui/screens/main_3_wished_and_seen/widget_tab_favorite.dart';
-import 'package:places/ui/screens/main_3_wished_and_seen/widget_tab_visited.dart';
+import 'package:places/ui_screens/main_3_wished_and_seen/widget_tab_favorite.dart';
+import 'package:places/ui_screens/main_3_wished_and_seen/widget_tab_visited.dart';
 import 'package:places/ui_common_widgets/widget_my_header.dart';
 
 /// Экран 3. Список избранных и посещенных мест.

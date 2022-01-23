@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:places/ui/screens/place_details_screen/screen_place_details.dart';
+import 'package:places/ui_screens/place_details_screen/screen_place_details.dart';
 import 'package:places/ui_common_widgets/widget_my_image.dart';
 
 import 'package:places/domain_models/place.dart';

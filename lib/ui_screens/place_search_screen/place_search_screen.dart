@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui/screens/place_search_screen/widget_search_app_bar.dart';
-import 'package:places/ui/screens/place_search_screen/widget_search_empty.dart';
-import 'package:places/ui/screens/place_search_screen/widget_search_not_found.dart';
-import 'package:places/ui/screens/place_search_screen/widget_search_result.dart';
+import 'package:places/ui_screens/place_search_screen/widget_search_app_bar.dart';
+import 'package:places/ui_screens/place_search_screen/widget_search_empty.dart';
+import 'package:places/ui_screens/place_search_screen/widget_search_not_found.dart';
+import 'package:places/ui_screens/place_search_screen/widget_search_result.dart';
 import 'package:places/ui_common_widgets/widget_textfield_clear_button.dart';
 import 'package:provider/provider.dart';
 import 'package:places/ui_commons/enums.dart';
