@@ -28,18 +28,16 @@ class WidgetPlaceCardIcons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final int i = 3;
-    // if (i > 2) return Center();
     switch (placeCardType) {
       case PlaceCardType.general:
         final bool isHeartFilled = isLiked!;
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              padding: const EdgeInsets.only(left: 16),
-              child: InkWell(
-                onTap: onAddToWished,
+            InkWell(
+              onTap: onAddToWished,
+              child: Container(
+                padding: const EdgeInsets.all(8),
                 child: Icon(
                   isHeartFilled ? Icons.favorite : Icons.favorite_outline,
                   color: Colors.white,
@@ -52,17 +50,18 @@ class WidgetPlaceCardIcons extends StatelessWidget {
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              padding: const EdgeInsets.only(left: 16),
-              child: InkWell(
-                onTap: onAddToCalendar,
+            InkWell(
+              onTap: onAddToCalendar,
+              child: Container(
+                padding: const EdgeInsets.all(8),
                 child: const Icon(Icons.calendar_today, color: Colors.white),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.only(left: 16),
-              child: InkWell(
-                onTap: onDeleteFromWished,
+            const SizedBox(width: 8),
+            InkWell(
+              onTap: onDeleteFromWished,
+              child: Container(
+                padding: const EdgeInsets.all(8),
                 child: const Icon(Icons.close, color: Colors.white),
               ),
             ),
@@ -72,17 +71,18 @@ class WidgetPlaceCardIcons extends StatelessWidget {
         return Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              padding: const EdgeInsets.only(left: 16),
-              child: InkWell(
-                onTap: onShare,
+            InkWell(
+              onTap: onShare,
+              child: Container(
+                padding: const EdgeInsets.all(8),
                 child: const Icon(Icons.share, color: Colors.white),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.only(left: 16),
-              child: InkWell(
-                onTap: onDeleteFromSeen,
+            const SizedBox(width: 8),
+            InkWell(
+              onTap: onDeleteFromSeen,
+              child: Container(
+                padding: const EdgeInsets.all(8),
                 child: const Icon(Icons.close, color: Colors.white),
               ),
             ),

@@ -7,7 +7,7 @@ import 'package:places/ui_commons/ui_strings.dart';
 import 'package:provider/provider.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
-import 'package:places/ui_common_widgets/widget_place_card.dart';
+import 'package:places/ui_widgets_commons/widget_place_card.dart';
 import 'package:places/ui_screens/place_details_screen/screen_place_details.dart';
 import 'package:places/domain_models/place.dart';
 

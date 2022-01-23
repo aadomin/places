@@ -8,7 +8,7 @@ import 'package:places/ui_screens/main_1_places_list/widget_searching_header.dar
 import 'package:places/ui_screens/place_details_screen/screen_place_details.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
-import 'package:places/ui_common_widgets/widget_place_card.dart';
+import 'package:places/ui_widgets_commons/widget_place_card.dart';
 
 /// Экран 1. Список мест - узкий вариант
 /// Первый из четырех главных экранов, доступных по нажатию на

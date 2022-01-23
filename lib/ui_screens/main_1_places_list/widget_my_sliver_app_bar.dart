@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:places/ui_commons/ui_strings.dart';
-import 'package:places/ui_common_widgets/widget_my_header.dart';
+import 'package:places/ui_widgets_commons/widget_my_header.dart';
 
 /// Сливер-заголовок для главного экрана
 class WidgetMySliverAppBar extends SliverPersistentHeaderDelegate {
