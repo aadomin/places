@@ -25,7 +25,7 @@ class UiStrings {
   static const String empty = 'Пусто';
   static const String cancelCaps = 'ОТМЕНА';
   static const String saveCaps = 'СОХРАНИТЬ';
-  static const String selectionCategory = 'СОХРАНИТЬ';
+  static const String selectionCategory = 'Категория';
 
   // Экран Избранное и посещенные
   static const String delFromWished = 'Удалить из пройденных';

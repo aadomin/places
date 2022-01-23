@@ -73,6 +73,7 @@ class PlaceInteractor with ChangeNotifier {
 
   /// отображается на экране "Список интересных мест" и фильтруется в результатах Поиска
   List<Place> get filteredPlaces {
+    print(filterInteractor.filterItems.toString());
     return getPlaces(
       radius: filterInteractor.radius,
       categories: filterInteractor.filterItems,
@@ -208,6 +209,10 @@ class PlaceInteractor with ChangeNotifier {
     placeEntity.addPlace(newPlace);
 
     allPlaces.add(newPlace);
+    notifyListeners();
+  }
+
+  void updateScreen(){
     notifyListeners();
   }
 }

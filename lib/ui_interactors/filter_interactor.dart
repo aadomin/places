@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/main.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'package:places/domain_models/filter_item.dart';
@@ -21,6 +22,7 @@ class FilterInteractor with ChangeNotifier {
     items.listen((items) {
       _filterItems = items;
       notifyListeners();
+      placeInteractor.updateScreen();
     });
   }
 

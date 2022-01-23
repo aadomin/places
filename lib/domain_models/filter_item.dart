@@ -5,7 +5,12 @@ class FilterItem {
     required this.isSelected,
   });
 
-  String name = ''; 
+  String name = '';
   String assetPath = '';
   bool isSelected = true;
+
+  @override
+  String toString() {
+    return ("$name $assetPath $isSelected");
+  }
 }
