@@ -230,7 +230,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                       hintText: UiStrings.addPlaceNameHint,
                       border: const OutlineInputBorder(),
                       suffixIcon: WidgetTextFieldClearButton(
-                        fieldHasFocus: focusNodeName.hasFocus,
+                        showOnlyItHasThatFocus: focusNodeName.hasFocus,
                         textController: textControllerName,
                       ),
                     ),
@@ -288,7 +288,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                                 horizontal: 10.0,
                               ),
                               suffixIcon: WidgetTextFieldClearButton(
-                                fieldHasFocus: focusNodeLat.hasFocus,
+                                showOnlyItHasThatFocus: focusNodeLat.hasFocus,
                                 textController: textControllerLat,
                               ),
                             ),
@@ -347,7 +347,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                                 horizontal: 10,
                               ),
                               suffixIcon: WidgetTextFieldClearButton(
-                                fieldHasFocus: focusNodeLon.hasFocus,
+                                showOnlyItHasThatFocus: focusNodeLon.hasFocus,
                                 textController: textControllerLon,
                               ),
                             ),
@@ -415,7 +415,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                       horizontal: 10,
                     ),
                     suffixIcon: WidgetTextFieldClearButton(
-                      fieldHasFocus: focusNodeDescription.hasFocus,
+                      showOnlyItHasThatFocus: focusNodeDescription.hasFocus,
                       textController: textControllerDescription,
                     ),
                   ),

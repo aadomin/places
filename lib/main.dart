@@ -20,12 +20,13 @@ import 'package:places/domain_entities/settings_entity.dart';
 
 late final SettingsInteractor settingsInteractor;
 late final FilterInteractor filterInteractor;
+late final PlaceInteractor placeInteractor;
+late final SearchInteractor searchInteractor;
 
 late final SettingsEntity settingsEntity;
 late final GeoEntity geoEntity;
 late final SearchEntity searchEntity;
 late final PlaceEntity placeEntity;
-late final PlaceInteractor placeInteractor;
 
 void main() {
   final settingsRepository = SettingsRepository();
@@ -42,6 +43,7 @@ void main() {
 
   filterInteractor = FilterInteractor();
   placeInteractor = PlaceInteractor();
+  searchInteractor = SearchInteractor();
 
   Bloc.observer = MyBlocObserver();
 

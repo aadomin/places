@@ -9,10 +9,12 @@ import 'package:provider/provider.dart';
 class WidgetSearchEmpty extends StatelessWidget {
   const WidgetSearchEmpty({
     required this.textController,
+    this.keyOfSearchTextField,
     Key? key,
   }) : super(key: key);
 
   final TextEditingController textController;
+  final Key? keyOfSearchTextField;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,7 @@ class WidgetSearchEmpty extends StatelessWidget {
                   ),
                   onPressed: () {
                     textController.text = lastSearchesSnapshot[i];
+
                     context
                         .read<SearchInteractor>()
                         .searchPlaces(lastSearchesSnapshot[i]);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_entities/history_of_search_services.dart';
-import 'package:places/main.dart';
 
 import 'package:places/ui_commons/enums.dart';
 

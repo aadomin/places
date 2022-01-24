@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/main.dart';
 import 'package:places/ui_screens/place_search_screen/widget_search_app_bar.dart';
 import 'package:places/ui_screens/place_search_screen/widget_search_empty.dart';
 import 'package:places/ui_screens/place_search_screen/widget_search_not_found.dart';
@@ -16,6 +17,7 @@ class PlaceSearchScreen extends StatelessWidget {
   final FocusNode focusNode1 = FocusNode();
 
   final textController = TextEditingController();
+  final keyOfSearchTextField = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +42,13 @@ class PlaceSearchScreen extends StatelessWidget {
                   Radius.circular(10),
                 ),
                 child: TextField(
+                  key: keyOfSearchTextField,
                   focusNode: focusNode1,
                   autofocus: true,
                   controller: textController,
                   onChanged: (String value) {
                     context.read<SearchInteractor>().searchPlaces(value);
                   },
-                  
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.only(
                         top: 15, bottom: 10, left: 10, right: 10),
@@ -56,8 +58,10 @@ class PlaceSearchScreen extends StatelessWidget {
                     fillColor: const Color(0xfff5f5f5),
                     prefixIcon: const Icon(Icons.search, size: 15),
                     suffixIcon: WidgetTextFieldClearButton(
-                      fieldHasFocus: focusNode1.hasFocus,
                       textController: textController,
+                      onTap: () {
+                        searchInteractor.searchPlaces('');
+                      },
                     ),
                   ),
                 ),
@@ -71,7 +75,10 @@ class PlaceSearchScreen extends StatelessWidget {
               const WidgetSearchResult(),
             if (context.watch<SearchInteractor>().searchStatus ==
                 SearchStatus.empty)
-              WidgetSearchEmpty(textController: textController),
+              WidgetSearchEmpty(
+                textController: textController,
+                keyOfSearchTextField: keyOfSearchTextField,
+              ),
             if (context.watch<SearchInteractor>().searchStatus ==
                 SearchStatus.notFound)
               const WidgetSearchNotFound(),
