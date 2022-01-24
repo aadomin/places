@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/ui_commons/themes.dart';
+import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
 import 'package:provider/provider.dart';
 
@@ -126,11 +128,12 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                   ),
                   child: Column(
                     children: [
+                      //
+                      // Название объекта
+                      //
                       Container(
                         alignment: Alignment.topLeft,
-                        padding: const EdgeInsets.only(
-                          bottom: 2,
-                        ),
+                        padding: const EdgeInsets.only(bottom: 2),
                         child: Text(
                           sight.name,
                           style: TextStyle(
@@ -140,6 +143,9 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                           ),
                         ),
                       ),
+                      //
+                      // Тип объекта
+                      //
                       Align(
                         alignment: Alignment.topLeft,
                         child: Row(
@@ -152,6 +158,9 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
+                            //
+                            // и закрыто
+                            //
                             Text(
                               '    закрыто до 09:00',
                               style: TextStyle(
@@ -162,9 +171,12 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                           ],
                         ),
                       ),
+                      //
+                      // Детальное описание
+                      //
                       Container(
                         alignment: Alignment.topLeft,
-                        margin: const EdgeInsets.fromLTRB(0, 24, 0, 0),
+                        margin: const EdgeInsets.only(top: 24),
                         child: Text(
                           sight.details,
                           style: TextStyle(
@@ -172,8 +184,11 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                           ),
                         ),
                       ),
+                      //
+                      // Кнопка Построить маршрут
+                      //
                       Container(
-                        padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
+                        padding: const EdgeInsets.only(top: 16, bottom: 16),
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
@@ -183,17 +198,22 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                             padding: const EdgeInsets.all(12.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Icon(
-                                  Icons.play_arrow,
-                                  size: 12,
+                              children: [
+                                SvgPicture.asset(
+                                  UiImagePaths.route,
+                                  height: 18,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .textOnBottomButtonActive,
                                 ),
                                 Text(
                                   '  ${UiStrings.drawTrack}',
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .textOnBottomButtonActive,
                                   ),
                                 ),
                               ],
@@ -201,11 +221,17 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                           ),
                         ),
                       ),
+                      //
+                      // Ряд из 2х кнопок
+                      //
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 32),
+                        padding: const EdgeInsets.only(bottom: 32),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
+                            //
+                            // Кнопка Запланировать
+                            //
                             TextButton(
                               onPressed: () {
                                 context
@@ -213,15 +239,16 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                                     .schedulePlace(context, sight.id);
                               },
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(16, 6, 16, 6),
+                                padding: const EdgeInsets.only(
+                                    left: 0, right: 6, top: 12, bottom: 12),
                                 child: Row(
-                                  children: const [
-                                    Icon(
-                                      Icons.play_arrow,
-                                      size: 12,
+                                  children: [
+                                    SvgPicture.asset(
+                                      UiImagePaths.calendar,
+                                      height: 12,
+                                      color: Theme.of(context).primaryColor,
                                     ),
-                                    Text(
+                                    const Text(
                                       '  ${UiStrings.plan}',
                                       style: TextStyle(
                                         fontSize: 14,
@@ -231,6 +258,9 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                                 ),
                               ),
                             ),
+                            //
+                            // Кнопка В избранное
+                            //
                             TextButton(
                               onPressed: sight.wished
                                   ? () {
@@ -244,14 +274,19 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                                           .addToFavorites(sight.id);
                                     },
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(16, 6, 16, 6),
+                                padding: const EdgeInsets.only(
+                                    left: 6, right: 0, top: 12, bottom: 12),
                                 child: Row(
                                   children: [
-                                    const Icon(
-                                      Icons.favorite,
-                                      size: 12,
+                                    //ignore: prefer_if_elements_to_conditional_expressions
+                                    SvgPicture.asset(
+                                      sight.wished
+                                          ? UiImagePaths.heart_filled
+                                          : UiImagePaths.heart,
+                                      height: 12,
+                                      color: Theme.of(context).primaryColor,
                                     ),
+
                                     Text(
                                       sight.wished
                                           ? '  ${UiStrings.removeFromFavorites}'

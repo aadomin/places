@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:places/ui_commons/enums.dart';
+import 'package:places/ui_commons/ui_image_paths.dart';
 
 /// Иконки (кнопки) в карточке места
 class WidgetPlaceCardIcons extends StatelessWidget {
@@ -38,8 +40,11 @@ class WidgetPlaceCardIcons extends StatelessWidget {
               onTap: onAddToWished,
               child: Container(
                 padding: const EdgeInsets.all(8),
-                child: Icon(
-                  isHeartFilled ? Icons.favorite : Icons.favorite_outline,
+                child: SvgPicture.asset(
+                  isHeartFilled
+                      ? UiImagePaths.heart_filled
+                      : UiImagePaths.heart,
+                  height: 22,
                   color: Colors.white,
                 ),
               ),
@@ -54,15 +59,23 @@ class WidgetPlaceCardIcons extends StatelessWidget {
               onTap: onAddToCalendar,
               child: Container(
                 padding: const EdgeInsets.all(8),
-                child: const Icon(Icons.calendar_today, color: Colors.white),
+                child: SvgPicture.asset(
+                  UiImagePaths.calendar,
+                  height: 22,
+                  color: Colors.white,
+                ),
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 4),
             InkWell(
               onTap: onDeleteFromWished,
               child: Container(
                 padding: const EdgeInsets.all(8),
-                child: const Icon(Icons.close, color: Colors.white),
+                child: SvgPicture.asset(
+                  UiImagePaths.close,
+                  height: 22,
+                  color: Colors.white,
+                ),
               ),
             ),
           ],
@@ -75,15 +88,23 @@ class WidgetPlaceCardIcons extends StatelessWidget {
               onTap: onShare,
               child: Container(
                 padding: const EdgeInsets.all(8),
-                child: const Icon(Icons.share, color: Colors.white),
+                child: SvgPicture.asset(
+                  UiImagePaths.share,
+                  height: 22,
+                  color: Colors.white,
+                ),
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 4),
             InkWell(
               onTap: onDeleteFromSeen,
               child: Container(
                 padding: const EdgeInsets.all(8),
-                child: const Icon(Icons.close, color: Colors.white),
+                child: SvgPicture.asset(
+                  UiImagePaths.close,
+                  height: 22,
+                  color: Colors.white,
+                ),
               ),
             ),
           ],

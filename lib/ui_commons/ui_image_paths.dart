@@ -26,4 +26,9 @@ class UiImagePaths {
 
   static const String calendar = 'res/images/calendar.svg';
   static const String calendar_filled = 'res/images/calendar_filled.svg';
+
+  static const String close = 'res/images/close.svg';
+  static const String share = 'res/images/share.svg';
+
+  static const String route = 'res/images/route.svg';
 }

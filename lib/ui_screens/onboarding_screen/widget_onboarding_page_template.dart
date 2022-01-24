@@ -41,10 +41,10 @@ class WidgetOnboargindPageTemplate extends StatelessWidget {
                 // текст Онбординга 1
                 Padding(
                   padding: const EdgeInsets.only(
-                    top: 10,
+                    top: 25,
                     bottom: 24,
-                    left: 10,
-                    right: 10,
+                    left: 25,
+                    right: 25,
                   ),
                   child: Text(
                     onboardingText1,
