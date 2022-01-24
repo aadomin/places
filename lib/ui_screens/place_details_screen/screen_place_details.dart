@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
 import 'package:provider/provider.dart';
 
@@ -51,6 +52,9 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                   height: 250,
                   child: Stack(
                     children: [
+                      //
+                      // Картинки
+                      //
                       PageView(
                         controller: _pageController,
                         onPageChanged: (page) {
@@ -70,18 +74,26 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                             ),
                         ],
                       ),
+                      //
+                      // Кнопка Закрыть
+                      //
                       const Align(
                         alignment: Alignment.topRight,
                         child: WidgetBackButton(),
                       ),
+                      //
+                      // Индикатор текущей фотки
+                      //
                       Align(
                         alignment: Alignment.bottomLeft,
                         child: Padding(
                           padding: EdgeInsets.only(
+                              // рассчитываю отступ
                               left: _selectedPage *
                                   MediaQuery.of(context).size.width /
                                   _countOfPages),
                           child: SizedBox(
+                            // рассчитываю ширину
                             width: MediaQuery.of(context).size.width /
                                 _countOfPages,
                             height: 6,
@@ -90,7 +102,10 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                                 Radius.circular(3),
                               ),
                               child: Container(
-                                color: const Color(0xFF252849),
+                                //TODO исправить этот цвет
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .detailScreenPhotoIndicator,
                               ),
                             ),
                           ),

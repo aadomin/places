@@ -28,9 +28,11 @@ class MyAppAndRoutes extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Hey, Flutter!',
-      theme: context.watch<SettingsInteractor>().isDarkThemeOn
-          ? darkTheme
-          : lightTheme,
+      theme: lightTheme,
+      darkTheme: darkTheme,
+      themeMode: context.watch<SettingsInteractor>().isDarkThemeOn
+          ? ThemeMode.dark
+          : ThemeMode.light,
       initialRoute: ROUTE_SPLASH,
       debugShowCheckedModeBanner: false,
       routes: {
