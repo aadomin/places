@@ -14,4 +14,16 @@ class UiImagePaths {
 
   static const String filter = 'res/images/filter.svg';
   static const String search = 'res/images/search.svg';
+
+  static const String places = 'res/images/places.svg';
+  static const String places_filled = 'res/images/places_filled.svg';
+  static const String maps = 'res/images/map.svg';
+  static const String maps_filled = 'res/images/map_filled.svg';
+  static const String heart = 'res/images/heart.svg';
+  static const String heart_filled = 'res/images/heart_filled.svg';
+  static const String settings = 'res/images/settings.svg';
+  static const String settings_filled = 'res/images/settings_filled.svg';
+
+  static const String calendar = 'res/images/calendar.svg';
+  static const String calendar_filled = 'res/images/calendar_filled.svg';
 }
