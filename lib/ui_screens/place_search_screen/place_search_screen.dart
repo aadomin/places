@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/main.dart';
+import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_screens/place_search_screen/widget_search_app_bar.dart';
 import 'package:places/ui_screens/place_search_screen/widget_search_empty.dart';
 import 'package:places/ui_screens/place_search_screen/widget_search_not_found.dart';
@@ -59,7 +61,16 @@ class PlaceSearchScreen extends StatelessWidget {
                     hintText: UiStrings.searching,
                     filled: true,
                     fillColor: Theme.of(context).disabledColor,
-                    prefixIcon: const Icon(Icons.search, size: 15),
+                    // Значок Поиск
+                    prefixIcon: Padding(
+                      padding: const EdgeInsets.all(9),
+                      child: SvgPicture.asset(
+                        UiImagePaths.search,
+                        width: 18,
+                        height: 18,
+                        color: Theme.of(context).colorScheme.secondary,
+                      ),
+                    ),
                     suffixIcon: WidgetTextFieldClearButton(
                       textController: textController,
                       onTap: () {

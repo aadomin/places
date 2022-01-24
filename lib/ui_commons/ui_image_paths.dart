@@ -11,4 +11,7 @@ class UiImagePaths {
 
   static const String emptyFavoriteTab = 'res/images/empty_favorites.svg';
   static const String emptySeenTab = 'res/images/empty_seen.svg';
+
+  static const String filter = 'res/images/filter.svg';
+  static const String search = 'res/images/search.svg';
 }

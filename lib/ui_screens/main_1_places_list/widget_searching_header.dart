@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:places/my_app_and_routes.dart';
+import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
 /// Поле с поиском
@@ -18,6 +20,9 @@ class WidgetSearchingHeader extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Stack(
           children: [
+            //
+            // Поле поиска
+            //
             ClipRRect(
               borderRadius: const BorderRadius.all(
                 Radius.circular(10),
@@ -30,16 +35,28 @@ class WidgetSearchingHeader extends StatelessWidget {
                   Navigator.pushNamed(context, ROUTE_SEARCH);
                 },
                 decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search, size: 15),
                   hintText: UiStrings.searching,
                   contentPadding: const EdgeInsets.only(
                       top: 15, bottom: 10, left: 10, right: 10),
                   border: InputBorder.none,
                   filled: true,
                   fillColor: Theme.of(context).disabledColor,
+                  // Значок Поиск
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.all(9),
+                    child: SvgPicture.asset(
+                      UiImagePaths.search,
+                      width: 18,
+                      height: 18,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
                 ),
               ),
             ),
+            //
+            // Значек фильтр
+            //
             Container(
               padding: const EdgeInsets.only(top: 3),
               alignment: Alignment.centerRight,
@@ -48,9 +65,10 @@ class WidgetSearchingHeader extends StatelessWidget {
                   focusNode1.unfocus();
                   Navigator.pushNamed(context, ROUTE_FILTER);
                 },
-                icon: Icon(
-                  Icons.settings,
-                  size: 15,
+                icon: SvgPicture.asset(
+                  UiImagePaths.filter,
+                  width: 20,
+                  height: 20,
                   color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
