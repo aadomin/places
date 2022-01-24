@@ -104,7 +104,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                                 Radius.circular(3),
                               ),
                               child: Container(
-                                //TODO исправить этот цвет
+                                // TODO(me): исправить этот цвет
                                 color: Theme.of(context)
                                     .colorScheme
                                     .detailScreenPhotoIndicator,
@@ -240,7 +240,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                               },
                               child: Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 0, right: 6, top: 12, bottom: 12),
+                                    right: 6, top: 12, bottom: 12),
                                 child: Row(
                                   children: [
                                     SvgPicture.asset(
@@ -275,7 +275,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                                     },
                               child: Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 6, right: 0, top: 12, bottom: 12),
+                                    left: 6, top: 12, bottom: 12),
                                 child: Row(
                                   children: [
                                     //ignore: prefer_if_elements_to_conditional_expressions

@@ -11,6 +11,6 @@ class FilterItem {
 
   @override
   String toString() {
-    return ("$name $assetPath $isSelected");
+    return '$name $assetPath $isSelected';
   }
 }

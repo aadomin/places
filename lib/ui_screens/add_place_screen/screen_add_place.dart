@@ -209,6 +209,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                     },
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     onChanged: (value) {
+                      // ignore: unnecessary_lambdas
                       setState(() {
                         activateButtonIfDone();
                       });
