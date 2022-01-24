@@ -67,6 +67,7 @@ final darkTheme = ThemeData(
   ),
   colorScheme: ColorScheme.fromSwatch().copyWith(
     secondary: const Color(0xFF4CAF50),
+    brightness: Brightness.dark,
   ),
   splashColor: const Color(0x774CAF50), // цвет риппл эффекта??
   hintColor: const Color(0xff7c7e92),
@@ -74,9 +75,10 @@ final darkTheme = ThemeData(
 
 extension CustomColorScheme on ColorScheme {
   Color get textOnBottomButtonActive =>
-      brightness == Brightness.light ? Colors.white : Colors.black;
-  Color get textOnBottomButtonDisabled =>
-      brightness == Brightness.light ? const Color(0x7F7C7E92) : Colors.black;
+      brightness == Brightness.light ? Colors.white : Colors.white;
+  Color get textOnBottomButtonDisabled => brightness == Brightness.light
+      ? const Color(0x7F7C7E92)
+      : const Color(0x7F7C7E92);
   Color get detailScreenPhotoIndicator => brightness == Brightness.light
       ? const Color(0xFF252849)
       : const Color(0xFFFFFFFF);
