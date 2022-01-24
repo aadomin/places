@@ -9,22 +9,19 @@ class WidgetBackButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: SizedBox(
-        width: 32,
-        height: 32,
+        width: 36,
+        height: 36,
         child: TextButton(
           onPressed: () {
             Navigator.pop(context);
           },
           style: TextButton.styleFrom(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16.0),
+              borderRadius: BorderRadius.circular(18.0),
             ),
             backgroundColor: Theme.of(context).canvasColor,
           ),
-          child: const Padding(
-            padding: EdgeInsets.zero,
-            child: Icon(Icons.close, size: 20),
-          ),
+          child: const Icon(Icons.close, size: 20),
         ),
       ),
     );
