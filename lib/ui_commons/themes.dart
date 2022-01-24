@@ -37,6 +37,7 @@ final lightTheme = ThemeData(
     secondary: const Color(0xFF4CAF50),
   ),
   splashColor: const Color(0x774CAF50), // цвет риппл эффекта??
+  hintColor: const Color(0xff7c7e92),
 );
 
 final darkTheme = ThemeData(
@@ -46,7 +47,7 @@ final darkTheme = ThemeData(
   //
   canvasColor: const Color(0xff21222C),
   unselectedWidgetColor: const Color(0x7f7C7E92),
-  disabledColor: const Color(0x5f1A1A20),
+  disabledColor: const Color(0xff1A1A20),
   //
   selectedRowColor: Colors.white,
   //
@@ -68,4 +69,13 @@ final darkTheme = ThemeData(
     secondary: const Color(0xFF4CAF50),
   ),
   splashColor: const Color(0x774CAF50), // цвет риппл эффекта??
+  hintColor: const Color(0xff7c7e92),
 );
+
+extension CustomColorScheme on ColorScheme {
+  Color get textOnBottomButtonActive =>
+      brightness == Brightness.light ? Colors.white : Colors.white;
+  Color get textOnBottomButtonDisabled => brightness == Brightness.light
+      ? const Color(0x7F7C7E92)
+      : const Color(0x7F7C7E92);
+}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/ui_commons/themes.dart';
 
 /// Кнопка, прикрепленная к низу экрана
 class WidgetBottomButton extends StatefulWidget {
@@ -29,8 +30,11 @@ class _WidgetBottomButtonState extends State<WidgetBottomButton> {
           onPressed: widget.onPressOnButton,
           style: ElevatedButton.styleFrom(
             primary: widget.isActive
-                ? const Color(0xFF4CAF50)
-                : const Color(0xFFCCCCCC),
+                ? Theme.of(context).colorScheme.secondary
+                : Theme.of(context).disabledColor,
+            onPrimary: widget.isActive
+                ? Theme.of(context).colorScheme.textOnBottomButtonActive
+                : Theme.of(context).colorScheme.textOnBottomButtonDisabled,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),

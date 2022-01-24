@@ -49,13 +49,16 @@ class PlaceSearchScreen extends StatelessWidget {
                   onChanged: (String value) {
                     context.read<SearchInteractor>().searchPlaces(value);
                   },
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColorLight,
+                  ),
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.only(
                         top: 15, bottom: 10, left: 10, right: 10),
                     border: InputBorder.none,
                     hintText: UiStrings.searching,
                     filled: true,
-                    fillColor: const Color(0xfff5f5f5),
+                    fillColor: Theme.of(context).disabledColor,
                     prefixIcon: const Icon(Icons.search, size: 15),
                     suffixIcon: WidgetTextFieldClearButton(
                       textController: textController,

@@ -62,7 +62,7 @@ class WidgetPlaceCard extends StatelessWidget {
       borderRadius: const BorderRadius.all(Radius.circular(12)),
       child: Material(
         child: Ink(
-          color: const Color(0xfff5f5f5),
+          color: Theme.of(context).disabledColor,
           child: InkWell(
             onTap: onTap,
             child: Dismissible(

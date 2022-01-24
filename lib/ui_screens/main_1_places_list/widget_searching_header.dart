@@ -29,14 +29,14 @@ class WidgetSearchingHeader extends StatelessWidget {
                   focusNode1.unfocus();
                   Navigator.pushNamed(context, ROUTE_SEARCH);
                 },
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.search, size: 15),
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.search, size: 15),
                   hintText: UiStrings.searching,
-                  contentPadding:
-                      EdgeInsets.only(top: 15, bottom: 10, left: 10, right: 10),
+                  contentPadding: const EdgeInsets.only(
+                      top: 15, bottom: 10, left: 10, right: 10),
                   border: InputBorder.none,
                   filled: true,
-                  fillColor: Color(0xfff5f5f5),
+                  fillColor: Theme.of(context).disabledColor,
                 ),
               ),
             ),
