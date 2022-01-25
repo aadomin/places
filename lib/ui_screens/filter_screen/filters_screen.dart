@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:places/domain_models/place.dart';
+import 'package:places/ui_interactors/place_interactor.dart';
+import 'package:places/ui_screens/filter_screen/widget_checkmark.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui_commons/ui_strings.dart';
@@ -16,6 +19,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
 
   double _sliderValue = 0;
 
+  // TODO(me): реализовать фильтрацию еще и по расстоянию
   final List<String> _distanceList = [
     'от 1м до 50м',
     'от 50м до 100м',
@@ -32,6 +36,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Place> filteredPlaces =
+        context.watch<PlaceInteractor>().filteredPlaces;
+    final String numOfFilteredPlaces = filteredPlaces.length.toString();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).canvasColor,
@@ -132,7 +140,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                                         .watch<FilterInteractor>()
                                         .filterItems[i]
                                         .isSelected
-                                    ? CheckmarkWidget(
+                                    ? WidgetCheckmark(
                                         radiusOfRoundElement:
                                             _radiusOfRoundElement,
                                       )
@@ -204,9 +212,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
             onPressed: () {
               onTapOnShow(context);
             },
-            child: const Padding(
-              padding: EdgeInsets.all(12.0),
-              child: Text('ПОКАЗАТЬ (10)'),
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('${UiStrings.filterShow} ($numOfFilteredPlaces)'),
             ),
           ),
         ),
@@ -216,43 +224,5 @@ class _FiltersScreenState extends State<FiltersScreen> {
 
   void onTapOnShow(BuildContext context) {
     Navigator.of(context).pop();
-  }
-}
-
-// Галочка
-class CheckmarkWidget extends StatelessWidget {
-  const CheckmarkWidget({
-    required double radiusOfRoundElement,
-    Key? key,
-  })  : _radiusOfRoundElement = radiusOfRoundElement,
-        super(key: key);
-
-  final double _radiusOfRoundElement;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: _radiusOfRoundElement * 2,
-      height: _radiusOfRoundElement * 2,
-      child: Align(
-        alignment: Alignment.bottomRight,
-        child: ClipRRect(
-          borderRadius: const BorderRadius.all(
-            Radius.circular(12.0),
-          ),
-          child: Container(
-            color: Theme.of(context).primaryColor,
-            child: Padding(
-              padding: const EdgeInsets.all(1.0),
-              child: Icon(
-                Icons.done,
-                size: 17,
-                color: Theme.of(context).canvasColor,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
   }
 }

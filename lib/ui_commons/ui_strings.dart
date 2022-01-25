@@ -72,4 +72,7 @@ class UiStrings {
   static const String addPlaceDescription = 'ОПИСАНИЕ';
   static const String addPlaceDescriptionHint = 'Введите описание';
   static const String addPlaceAddPlace = 'СОЗДАТЬ';
+
+  // Экран Фильтр
+  static const String filterShow = 'СОЗДАТЬ';
 }
