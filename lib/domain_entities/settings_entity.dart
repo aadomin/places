@@ -1,5 +1,9 @@
 import 'package:places/data_repositories/settings_repository.dart';
 
+///
+/// Доменный слой приложения. Базовая бизнес-логика
+/// Настройки приложения
+///
 class SettingsEntity {
   SettingsEntity({
     required this.settingsRepository,

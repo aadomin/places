@@ -1,6 +1,9 @@
 import 'package:places/data_repositories/search_repository.dart';
 
-/// История поиска
+///
+/// Доменный слой приложения. Базовая бизнес-логика
+/// Поиск
+///
 class SearchEntity {
   SearchEntity({
     required this.searchRepository,

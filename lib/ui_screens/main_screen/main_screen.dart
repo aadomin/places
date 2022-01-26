@@ -18,10 +18,20 @@ class AllMainScreens extends StatefulWidget {
 
 class _AllMainScreensState extends State<AllMainScreens> {
   List<Widget> widgetsPageList = const [
-    SafeArea(child: Center(child: ScreenMain1PlacesRoute())),
-    Center(child: ScreenMain2Map()),
-    Center(child: ScreenMain3FavoriteAndVisitedRoute()),
-    Center(child: ScreenMain4Settings()),
+    SafeArea(
+      child: Center(
+        child: ScreenMain1PlacesRoute(),
+      ),
+    ),
+    Center(
+      child: ScreenMain2Map(),
+    ),
+    Center(
+      child: ScreenMain3FavoriteAndVisitedRoute(),
+    ),
+    Center(
+      child: ScreenMain4Settings(),
+    ),
   ];
   int currentPage = 0;
 

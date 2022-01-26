@@ -24,8 +24,6 @@ class FilterInteractor with ChangeNotifier {
     });
   }
 
-  // </Singleton> }
-
   final FilterEntity filterEntity = FilterEntity();
 
   late List<FilterItem> _filterItems;

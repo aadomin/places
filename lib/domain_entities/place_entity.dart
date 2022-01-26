@@ -1,12 +1,14 @@
 import 'package:places/data_repositories/place_repository.dart';
 import 'package:places/domain_models/place.dart';
 
+///
+/// Доменный слой приложения. Базовая бизнес-логика
+/// Места
+///
 class PlaceEntity {
   PlaceEntity({required this.placeRepository});
 
   PlaceRepository placeRepository;
-
-  //
 
   List<Place> get loadedPlaces => placeRepository.loadedPlaces;
   set loadedPlaces(List<Place> value) => placeRepository.loadedPlaces = value;

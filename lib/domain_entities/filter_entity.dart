@@ -1,5 +1,9 @@
 import 'package:places/domain_models/filter_item.dart';
 
+///
+/// Доменный слой приложения. Базовая бизнес-логика
+/// Фильтр
+///
 class FilterEntity {
   final List<FilterItem> filterItems = [
     FilterItem(
