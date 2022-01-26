@@ -5,18 +5,16 @@ import 'package:rxdart/rxdart.dart';
 import 'package:places/domain_models/filter_item.dart';
 import 'package:places/domain_entities/filter_entity.dart';
 
+///
+/// Интерактор Фильтра
+///
 class FilterInteractor with ChangeNotifier {
-  // <Singleton>
-  factory FilterInteractor() => _instance ?? FilterInteractor._internal();
-  static FilterInteractor? _instance;
-  FilterInteractor._internal() {
-    _instance = this;
-    //
+  FilterInteractor() {
     _filterItems = filterEntity.filterItems;
 
     // инициализируем стрим первым значением
     _streamItems = BehaviorSubject<List<FilterItem>>.seeded(_filterItems);
-    
+
     // при появлении объекта из стрима обновляем интерфейс
     // т.к. StreamBuilder мы еще не проходили:
     items.listen((items) {

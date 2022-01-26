@@ -1,3 +1,6 @@
+///
+/// Модель категории
+///
 class CategoryItem {
   CategoryItem({
     required this.name,

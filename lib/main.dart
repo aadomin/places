@@ -67,7 +67,6 @@ class MyAppProvider extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) {
-            //filterInteractor = FilterInteractor();
             return filterInteractor;
           },
         ),

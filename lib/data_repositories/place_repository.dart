@@ -7,6 +7,9 @@ import 'package:places/main.dart';
 
 late final Dio dio;
 
+///
+/// Обеспечивает хранение мест
+/// 
 class PlaceRepository {
   PlaceRepository() {
     final baseOptions = BaseOptions(

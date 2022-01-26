@@ -2,7 +2,9 @@ import 'package:places/domain_models/place.dart';
 // ignore_for_file: avoid_redundant_argument_values
 
 ///
-/// Для isDebugMockDataInPlaceOfHttp = true
+/// Моковые данные
+/// применяются только для
+/// isDebugMockDataInPlaceOfHttp = true
 ///
 final List<Place> mocks = [
   Place(

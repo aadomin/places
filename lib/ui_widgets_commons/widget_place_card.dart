@@ -7,7 +7,9 @@ import 'package:places/ui_widgets_commons/widget_place_card_icons.dart';
 
 import 'package:places/domain_models/place.dart';
 
+///
 /// Карточка места
+///
 class WidgetPlaceCard extends StatelessWidget {
   const WidgetPlaceCard({
     required this.place,

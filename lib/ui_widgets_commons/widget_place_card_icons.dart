@@ -4,7 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 
+///
 /// Иконки (кнопки) в карточке места
+///
 class WidgetPlaceCardIcons extends StatelessWidget {
   const WidgetPlaceCardIcons({
     required this.placeCardType,

@@ -6,15 +6,10 @@ import 'package:places/ui_commons/enums.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
 
+///
+/// Интерактор поиска
+///
 class SearchInteractor with ChangeNotifier {
-  // Singleton
-  factory SearchInteractor() => _instance ?? SearchInteractor._internal();
-  static SearchInteractor? _instance;
-  SearchInteractor._internal() {
-    _instance = this;
-  }
-  // Singleton
-
   final placeInteractor = PlaceInteractor();
 
   SearchStatus searchStatus = SearchStatus.empty;

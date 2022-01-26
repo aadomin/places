@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:places/main.dart';
 
-/// Виджет-обертка для Ink
+/// 
+/// Виджет-обертка для Ink (Image для работы ribble effect'a)
 /// (нужен для того, чтобы в режиме отладки работал flutter for web:
 /// подменяет url картинки моковой картинкой)
+/// 
 class WidgetMyImageInk extends StatefulWidget {
   const WidgetMyImageInk({
     required this.url,

@@ -1,3 +1,6 @@
+///
+/// Модель точки на карте
+///
 class ObjectLocation {
   ObjectLocation({required this.latitude, required this.longitude});
 

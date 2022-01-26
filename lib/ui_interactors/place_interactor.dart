@@ -8,18 +8,11 @@ import 'package:places/ui_commons/platform_detector.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_widgets_commons/widget_add_to_calendar_cuper_modal.dart';
 
+/// Интерактор мест
 class PlaceInteractor with ChangeNotifier {
-  // <singleton>
-  factory PlaceInteractor() => _instance ?? PlaceInteractor._internal();
-  static PlaceInteractor? _instance;
-  PlaceInteractor._internal() {
-    _instance = this;
-    //
-
+  PlaceInteractor() {
     initPlaces(); //асинхронная
   }
-
-  // </singleton>
 
   List<Place> allPlaces = [];
 
@@ -212,7 +205,7 @@ class PlaceInteractor with ChangeNotifier {
     notifyListeners();
   }
 
-  void updateScreen(){
+  void updateScreen() {
     notifyListeners();
   }
 }

@@ -1,3 +1,6 @@
+///
+/// Модель элемента фильтра
+///
 class FilterItem {
   FilterItem({
     required this.name,

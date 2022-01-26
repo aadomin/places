@@ -2,7 +2,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:places/my_app_and_routes.dart';
 
+/// 
 /// Имитация загрузки приложения
+/// 
 class InitInteractor {
   // ignore: avoid_void_async
   static void initAppAndThenChangeScreen(BuildContext context) async {

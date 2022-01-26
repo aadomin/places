@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+///
+/// Модальный экран выбор даты
+///
 class WidgetAddToCalendarCuperModal extends StatefulWidget {
   const WidgetAddToCalendarCuperModal({Key? key}) : super(key: key);
 

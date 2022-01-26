@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui_commons/themes.dart';
 
+///
 /// Кнопка, прикрепленная к низу экрана
+/// 
 class WidgetBottomButton extends StatefulWidget {
   const WidgetBottomButton({
     required this.onPressOnButton,

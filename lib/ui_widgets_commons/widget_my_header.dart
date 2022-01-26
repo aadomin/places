@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+///
+/// Общий AppBar
+///
 class WidgetMyHeader extends StatelessWidget {
   const WidgetMyHeader({
     required String header,

@@ -1,3 +1,6 @@
+///
+/// Модель места
+///
 class Place {
   Place({
     required this.id,

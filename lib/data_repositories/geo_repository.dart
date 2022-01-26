@@ -2,7 +2,12 @@ import 'dart:math';
 import 'package:places/domain_models/object_location.dart';
 import 'package:places/main.dart';
 
+///
+/// Класс обеспечивает хранение координат пользователя (со спутника)
+/// 
 class GeoRepository {
+  // текущие координаты пользователя
+  // заглушка
   ObjectLocation get currentUserLocation {
     final random = Random();
     if (isDebugUserStay) {

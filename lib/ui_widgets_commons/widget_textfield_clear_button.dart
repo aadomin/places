@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 ///
-/// Иконка для очистки текстового поля - распологается внутри него,
-/// видима если в поле не ''
+/// Иконка для очистки текстового поля - распологается внутри него
 ///
 class WidgetTextFieldClearButton extends StatelessWidget {
   const WidgetTextFieldClearButton({

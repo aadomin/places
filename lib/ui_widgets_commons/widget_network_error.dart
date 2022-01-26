@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
+///
+/// Виджет Ошибка сети
+///
 class WidgetNetworkError extends StatelessWidget {
   const WidgetNetworkError({
     Key? key,

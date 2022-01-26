@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:places/domain_models/category_item.dart';
 
+///
+/// Интерактор выбора категории
+///
 class SelectCategoryInteractor with ChangeNotifier {
   final List<CategoryItem> _myCategories = [
     CategoryItem(name: 'не выбрана', isSelected: true),
