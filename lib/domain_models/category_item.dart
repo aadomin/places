@@ -1,4 +1,5 @@
 ///
+/// Доменный слой приложения. Базовая бизнес-логика
 /// Модель категории
 ///
 class CategoryItem {
@@ -9,4 +10,9 @@ class CategoryItem {
 
   String name;
   bool isSelected;
+
+  @override
+  String toString() {
+    return '$name $isSelected';
+  }
 }

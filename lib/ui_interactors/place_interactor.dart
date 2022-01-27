@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/main.dart';
-import 'package:places/domain_models/filter_item.dart';
+import 'package:places/domain_models/category_item.dart';
 import 'package:places/ui_commons/platform_detector.dart';
 
 import 'package:places/domain_models/place.dart';
@@ -34,7 +34,7 @@ class PlaceInteractor with ChangeNotifier {
 
   List<Place> getPlaces({
     required int radius,
-    required List<FilterItem> categories,
+    required List<CategoryItem> categories,
   }) {
     final List<String> _selectedCategories = categories
         .where((element) => element.isSelected)

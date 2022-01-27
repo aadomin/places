@@ -1,49 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:places/main.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'package:places/domain_models/filter_item.dart';
-import 'package:places/domain_entities/filter_entity.dart';
+import 'package:places/domain_models/category_item.dart';
 
 ///
 /// Интерактор Фильтра
 ///
 class FilterInteractor with ChangeNotifier {
   FilterInteractor() {
-    _filterItems = filterEntity.filterItems;
+    _filterItemsState = _initFilterItemsState;
 
     // инициализируем стрим первым значением
-    _streamItems = BehaviorSubject<List<FilterItem>>.seeded(_filterItems);
+    _streamItems =
+        BehaviorSubject<List<CategoryItem>>.seeded(_filterItemsState);
 
     // при появлении объекта из стрима обновляем интерфейс
     // т.к. StreamBuilder мы еще не проходили:
     items.listen((items) {
-      _filterItems = items;
+      _filterItemsState = items;
       notifyListeners();
       placeInteractor.updateScreen();
     });
   }
 
-  final FilterEntity filterEntity = FilterEntity();
+  late List<CategoryItem> _filterItemsState;
+  List<CategoryItem> get filterItems => _filterItemsState;
 
-  late List<FilterItem> _filterItems;
-  List<FilterItem> get filterItems => _filterItems;
-
-  late BehaviorSubject<List<FilterItem>> _streamItems;
-  Stream<List<FilterItem>> get items => _streamItems.stream;
+  late BehaviorSubject<List<CategoryItem>> _streamItems;
+  Stream<List<CategoryItem>> get items => _streamItems.stream;
 
   void switchActiveCategories(int index) {
-    _filterItems[index].isSelected = !_filterItems[index].isSelected;
-    _streamItems.add(_filterItems);
+    _filterItemsState[index].isSelected = !_filterItemsState[index].isSelected;
+    _streamItems.add(_filterItemsState);
   }
 
   void clearActiveCategories() {
-    for (final element in _filterItems) {
+    for (final element in _filterItemsState) {
       element.isSelected = false;
     }
-    _streamItems.add(_filterItems);
+    _streamItems.add(_filterItemsState);
   }
 
   // TODO(me): радиус
   int radius = 1000;
+
+  final List<CategoryItem> _initFilterItemsState = [
+    CategoryItem(
+      name: UiStrings.hotel,
+      isSelected: true,
+    ),
+    CategoryItem(
+      name: UiStrings.rest,
+      isSelected: true,
+    ),
+    CategoryItem(
+      name: UiStrings.specialPlace,
+      isSelected: true,
+    ),
+    CategoryItem(
+      name: UiStrings.park,
+      isSelected: true,
+    ),
+    CategoryItem(
+      name: UiStrings.museum,
+      isSelected: true,
+    ),
+    CategoryItem(
+      name: UiStrings.cafe,
+      isSelected: true,
+    ),
+  ];
 }
