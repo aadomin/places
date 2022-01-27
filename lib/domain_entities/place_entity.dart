@@ -12,7 +12,7 @@ class PlaceEntity {
 
   // TODO(me): ТУТ ПЕРЕДЕЛАТЬ
 
-  /// загруженные места.
+  /// загруженные места
   List<Place> get loadedPlaces => placeRepository.loadedPlaces;
   set loadedPlaces(List<Place> value) => placeRepository.loadedPlaces = value;
 

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/widget_empty_list.dart';
-import 'package:places/ui_blocs/places_cubit.dart';
+import 'package:places/ui_blocs/visited_and_favorite_screen_cubit.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:provider/provider.dart';
@@ -62,7 +62,7 @@ class _WidgetTabVisitedState extends State<WidgetTabVisited> {
                         },
                         onDeleteFromSeen: () {
                           context
-                              .read<PlacesCubit>()
+                              .read<VisitedAndFavoriteScreenCubit>()
                               .removeFromVisited(_visitedPlaces[i.key].id);
                         },
                       ),

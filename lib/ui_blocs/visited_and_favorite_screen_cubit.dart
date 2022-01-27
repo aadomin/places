@@ -1,41 +1,34 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:places/domain_models/place.dart';
 import 'package:places/main.dart';
+import 'package:places/ui_blocs/visited_and_favorite_screen_state.dart';
 import 'package:places/ui_commons/platform_detector.dart';
 import 'package:places/ui_widgets_commons/widget_add_to_calendar_cuper_modal.dart';
 
-class PlacesCubit extends Cubit<VisitedAndFavoriteScreenState> {
-  PlacesCubit(VisitedAndFavoriteScreenState initialState) : super(initialState);
+class VisitedAndFavoriteScreenCubit
+    extends Cubit<VisitedAndFavoriteScreenState> {
+  VisitedAndFavoriteScreenCubit(VisitedAndFavoriteScreenState initialState)
+      : super(initialState);
 
   void init() {
-    final newState = VisitedAndFavoriteScreenState(
-      favoritePlaces: placeInteractor.getFavoritesPlaces,
-      visitedPlaces: placeInteractor.getVisitedPlaces,
-    );
-    emit(newState);
+    emit(_getNewState());
   }
 
   void removeFromFavorites(int id) {
     placeInteractor.removeFromFavorites(id);
-
-    final newState = VisitedAndFavoriteScreenState(
-      favoritePlaces: placeInteractor.getFavoritesPlaces,
-      visitedPlaces: placeInteractor.getVisitedPlaces,
-    );
-    emit(newState);
+    emit(_getNewState());
   }
 
   void removeFromVisited(int id) {
     placeInteractor.removeFromVisited(id);
-
-    final newState = VisitedAndFavoriteScreenState(
-      favoritePlaces: placeInteractor.getFavoritesPlaces,
-      visitedPlaces: placeInteractor.getVisitedPlaces,
-    );
-    emit(newState);
+    emit(_getNewState());
   }
+
+  VisitedAndFavoriteScreenState _getNewState() => VisitedAndFavoriteScreenState(
+        favoritePlaces: placeInteractor.getFavoritesPlaces,
+        visitedPlaces: placeInteractor.getVisitedPlaces,
+      );
 
   Future<void> schedulePlace(BuildContext context, int id) async {
     late final DateTime? _result;
@@ -64,14 +57,4 @@ class PlacesCubit extends Cubit<VisitedAndFavoriteScreenState> {
       );
     }
   }
-}
-
-class VisitedAndFavoriteScreenState {
-  VisitedAndFavoriteScreenState({
-    required this.visitedPlaces,
-    required this.favoritePlaces,
-  });
-
-  final List<Place> visitedPlaces;
-  final List<Place> favoritePlaces;
 }
