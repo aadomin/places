@@ -6,6 +6,7 @@ import 'package:places/domain_models/category_item.dart';
 import 'package:places/ui_commons/platform_detector.dart';
 
 import 'package:places/domain_models/place.dart';
+import 'package:places/ui_screens/add_place_screen/list_of_initial_photos.dart';
 import 'package:places/ui_widgets_commons/widget_add_to_calendar_cuper_modal.dart';
 
 /// Интерактор мест
@@ -150,13 +151,12 @@ class PlaceInteractor with ChangeNotifier {
   ///
   List<String>? _listOfPhotos;
 
+  // TODO(me): убрать listOfInitialPhotosForAdding
   ///
   /// Список изначальных фоток
   ///
-  List<String> get listOfInitialPhotosForAdding =>
-      placeEntity.listOfInitialPhotosForAdding;
-  set listOfInitialPhotosForAdding(List<String> value) =>
-      placeEntity.listOfInitialPhotosForAdding = value;
+  static const List<String> listOfInitialPhotosForAdding =
+      ListOfInitialPhotos.listOfInitialPhotosForAdding;
 
   ///
   /// Добавление нового: перечень фоток

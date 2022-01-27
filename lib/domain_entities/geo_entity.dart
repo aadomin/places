@@ -12,6 +12,7 @@ class GeoEntity {
 
   final GeoRepository geoRepository;
 
+  /// дистанция от точки до пользователя
   double distanceFromPointToUser({
     required double lat,
     required double lon,
@@ -25,6 +26,7 @@ class GeoEntity {
     );
   }
 
+  /// дистанция в километрах между двумя координатами
   double _distanceInKmBetweenEarthCoordinates({
     required double lat1,
     required double lon1,
@@ -46,6 +48,7 @@ class GeoEntity {
     return earthRadiusKm * c;
   }
 
+  /// перевод градусов в радианы
   double _degreesToRadians(double degrees) {
     return degrees * pi / 180;
   }

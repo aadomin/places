@@ -10,33 +10,26 @@ class PlaceEntity {
 
   PlaceRepository placeRepository;
 
+  // TODO(me): ТУТ ПЕРЕДЕЛАТЬ
+
+  /// загруженные места.
   List<Place> get loadedPlaces => placeRepository.loadedPlaces;
   set loadedPlaces(List<Place> value) => placeRepository.loadedPlaces = value;
 
+  /// был ли последний запрос данных закончен с ошибкой
   bool get isRequestDoneWithError => placeRepository.isRequestDoneWithError;
   set isRequestDoneWithError(bool value) =>
       placeRepository.isRequestDoneWithError = value;
 
+  /// загрузить место
   Future<void> loadPlaces() async {
+    // TODO(me): правильно ли тут сделано?
     await placeRepository.loadPlaces();
   }
 
+  /// добавить место
   Future<void> addPlace(Place newPlace) async {
     // ignore: unawaited_futures
     placeRepository.addPlace(newPlace);
-  }
-
-  /// Список изначальных фоток при добавлении
-  /// Для isDebugMockDataInPlaceOfHttp = true
-  ///
-  List<String> get listOfInitialPhotosForAdding {
-    return placeRepository.listOfInitialPhotosForAdding;
-  }
-
-  /// Список изначальных фоток при добавлении
-  /// Для isDebugMockDataInPlaceOfHttp = true
-  ///
-  set listOfInitialPhotosForAdding(List<String> value) {
-    placeRepository.listOfInitialPhotosForAdding = value;
   }
 }

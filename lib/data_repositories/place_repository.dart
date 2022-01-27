@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:places/data_other/exceptions.dart';
-import 'package:places/data_repositories/mocks.dart';
+import 'package:places/mocks.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/main.dart';
 
@@ -9,7 +9,7 @@ late final Dio dio;
 
 ///
 /// Обеспечивает хранение мест
-/// 
+///
 class PlaceRepository {
   PlaceRepository() {
     final baseOptions = BaseOptions(
@@ -119,13 +119,4 @@ class PlaceRepository {
       return;
     }
   }
-
-  List<String> listOfInitialPhotosForAdding = [
-    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-  ];
 }

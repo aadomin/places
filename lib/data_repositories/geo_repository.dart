@@ -3,7 +3,8 @@ import 'package:places/domain_models/object_location.dart';
 import 'package:places/main.dart';
 
 ///
-/// Класс обеспечивает получение из внешнего источника координат пользователя (со спутника)
+/// Класс обеспечивает получение из внешнего источника координат
+/// пользователя (например, со спутника)
 ///
 class GeoRepository {
   ///

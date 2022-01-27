@@ -47,29 +47,11 @@ class FilterInteractor with ChangeNotifier {
   int radius = 1000;
 
   final List<CategoryItem> _initFilterItemsState = [
-    CategoryItem(
-      name: UiStrings.hotel,
-      isSelected: true,
-    ),
-    CategoryItem(
-      name: UiStrings.rest,
-      isSelected: true,
-    ),
-    CategoryItem(
-      name: UiStrings.specialPlace,
-      isSelected: true,
-    ),
-    CategoryItem(
-      name: UiStrings.park,
-      isSelected: true,
-    ),
-    CategoryItem(
-      name: UiStrings.museum,
-      isSelected: true,
-    ),
-    CategoryItem(
-      name: UiStrings.cafe,
-      isSelected: true,
-    ),
+    CategoryItem(name: UiStrings.hotel, isSelected: true),
+    CategoryItem(name: UiStrings.rest, isSelected: true),
+    CategoryItem(name: UiStrings.specialPlace, isSelected: true),
+    CategoryItem(name: UiStrings.park, isSelected: true),
+    CategoryItem(name: UiStrings.museum, isSelected: true),
+    CategoryItem(name: UiStrings.cafe, isSelected: true),
   ];
 }

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:places/main.dart';
 
+///
+/// Интерактор выбора категории
+///
 class SettingsInteractor with ChangeNotifier {
   void changeTheme() {
     settingsEntity.changeTheme();

@@ -82,4 +82,6 @@ extension CustomColorScheme on ColorScheme {
   Color get detailScreenPhotoIndicator => brightness == Brightness.light
       ? const Color(0xFF252849)
       : const Color(0xFFFFFFFF);
+  LinearGradient get newPlaceGradient =>
+      const LinearGradient(colors: [Color(0xFF6ADA6F), Color(0xFFFFE769)]);
 }
