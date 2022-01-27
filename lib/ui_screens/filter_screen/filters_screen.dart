@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_models/place.dart';
+import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
 import 'package:places/ui_screens/filter_screen/widget_checkmark.dart';
 import 'package:provider/provider.dart';
@@ -33,6 +34,16 @@ class _FiltersScreenState extends State<FiltersScreen> {
     'от 10км до 50км',
     'от 50км до 200км',
   ];
+
+  // список картинок к категориям
+  static const Map<String, String> _imagePathOfCategory = {
+    UiStrings.hotel: UiImagePaths.hotel,
+    UiStrings.rest: UiImagePaths.rest,
+    UiStrings.specialPlace: UiImagePaths.specialPlace,
+    UiStrings.park: UiImagePaths.park,
+    UiStrings.museum: UiImagePaths.museum,
+    UiStrings.cafe: UiImagePaths.cafe,
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -125,10 +136,16 @@ class _FiltersScreenState extends State<FiltersScreen> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: Center(
                                           child: Image.asset(
-                                            context
-                                                .watch<FilterInteractor>()
-                                                .filterItems[i]
-                                                .assetPath,
+                                            // Если вдруг в поле оказалось что-то не то,
+                                            // чтобы не было null - берем первую
+                                            // (любую) картинку
+                                            _imagePathOfCategory[context
+                                                    .watch<FilterInteractor>()
+                                                    .filterItems[i]
+                                                    .name] ??
+                                                _imagePathOfCategory
+                                                    .entries.first
+                                                    .toString(),
                                             width: 32,
                                             height: 32,
                                           ),

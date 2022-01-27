@@ -31,4 +31,11 @@ class UiImagePaths {
   static const String share = 'res/images/share.svg';
 
   static const String route = 'res/images/route.svg';
+
+  static const String hotel = 'res/images/hotel.png';
+  static const String rest = 'res/images/rest.png';
+  static const String specialPlace = 'res/images/special.png';
+  static const String park = 'res/images/park.png';
+  static const String museum = 'res/images/museum.png';
+  static const String cafe = 'res/images/cafe.png';
 }

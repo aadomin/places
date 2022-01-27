@@ -75,4 +75,11 @@ class UiStrings {
 
   // Экран Фильтр
   static const String filterShow = 'СОЗДАТЬ';
+
+  static const String hotel = 'Отель';
+  static const String rest = 'Ресторан';
+  static const String specialPlace = 'Особое место';
+  static const String park = 'Парк';
+  static const String museum = 'Музей';
+  static const String cafe = 'Кафе';
 }

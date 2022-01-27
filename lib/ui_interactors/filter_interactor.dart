@@ -44,5 +44,6 @@ class FilterInteractor with ChangeNotifier {
     _streamItems.add(_filterItems);
   }
 
+  // TODO(me): радиус
   int radius = 1000;
 }
