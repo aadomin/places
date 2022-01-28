@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
@@ -38,7 +39,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
   // список картинок к категориям
   static const Map<String, String> _imagePathOfCategory = {
     UiStrings.hotel: UiImagePaths.hotel,
-    UiStrings.rest: UiImagePaths.rest,
+    UiStrings.restaurant: UiImagePaths.restaurant,
     UiStrings.specialPlace: UiImagePaths.specialPlace,
     UiStrings.park: UiImagePaths.park,
     UiStrings.museum: UiImagePaths.museum,
@@ -135,7 +136,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: Center(
-                                          child: Image.asset(
+                                          child: SvgPicture.asset(
                                             // Если вдруг в поле оказалось что-то не то,
                                             // чтобы не было null - берем первую
                                             // (любую) картинку
@@ -148,6 +149,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
                                                     .toString(),
                                             width: 32,
                                             height: 32,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondary,
                                           ),
                                         ),
                                       ),
@@ -205,6 +209,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
               onTap: () {},
             ),
 
+            // TODO(me): цвета слайдера, не работает слайдер
             //
             // Слайдер
             //

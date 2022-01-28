@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_models/place.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 
 import 'package:places/ui_screens/main_3_wished_and_seen/widget_tab_favorite.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/widget_tab_visited.dart';
@@ -44,7 +45,7 @@ class _ScreenMain3FavoriteAndVisitedState
 
   @override
   Widget build(BuildContext context) {
-    const String _header = 'Избранное';
+    const String _header = UiStrings.favorites;
 
     return DefaultTabController(
       length: 2,
@@ -77,17 +78,19 @@ class _ScreenMain3FavoriteAndVisitedState
                     color: Theme.of(context).selectedRowColor,
                   ),
                   tabs: const [
+                    // Хочу посетить
                     Tab(
                       child: Align(
                         child: Text(
-                          'Хочу посетить',
+                          UiStrings.wantToSee,
                         ),
                       ),
                     ),
+                    // Посетил
                     Tab(
                       child: Align(
                         child: Text(
-                          'Посетил',
+                          UiStrings.haveSeen,
                         ),
                       ),
                     ),

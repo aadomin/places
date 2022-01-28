@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:places/main.dart';
 import 'package:places/domain_models/category_item.dart';
 import 'package:places/ui_commons/platform_detector.dart';
-
 import 'package:places/domain_models/place.dart';
-import 'package:places/ui_screens/add_place_screen/list_of_initial_photos.dart';
 import 'package:places/ui_widgets_commons/widget_add_to_calendar_cuper_modal.dart';
 
 /// Интерактор мест
@@ -114,7 +112,7 @@ class PlaceInteractor with ChangeNotifier {
         return i;
       }
     }
-    throw Exception('Нет такого id');
+    throw Exception('There is no such ID');
   }
 
   /// запланировать посещение места - используется минимум двумя экранами
@@ -155,8 +153,14 @@ class PlaceInteractor with ChangeNotifier {
   ///
   /// Список изначальных фоток
   ///
-  static const List<String> listOfInitialPhotosForAdding =
-      ListOfInitialPhotos.listOfInitialPhotosForAdding;
+  static const List<String> listOfInitialPhotosForAdding = [
+    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
+  ];
 
   ///
   /// Добавление нового: перечень фоток
@@ -201,11 +205,14 @@ class PlaceInteractor with ChangeNotifier {
 
     placeEntity.addPlace(newPlace);
 
+    // TODO(me): hasNeedToBeReloaded так себе конечно
+    placeEntity.hasNeedToBeReloaded = true;
+
     allPlaces.add(newPlace);
     notifyListeners();
   }
 
-  void updateScreen() {
+  void updateScreens() {
     notifyListeners();
   }
 }

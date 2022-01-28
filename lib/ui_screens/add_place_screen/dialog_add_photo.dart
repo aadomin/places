@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
@@ -23,10 +24,11 @@ class DialogAddPhoto extends StatelessWidget {
                 child: SizedBox(
                   width: 24,
                   height: 24,
-                  child: Image.asset(
+                  child: SvgPicture.asset(
                     UiImagePaths.icon_take_photo,
                     width: 22,
                     height: 20,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
               ),
@@ -48,10 +50,11 @@ class DialogAddPhoto extends StatelessWidget {
                 child: SizedBox(
                   width: 24,
                   height: 24,
-                  child: Image.asset(
+                  child: SvgPicture.asset(
                     UiImagePaths.icon_select_image,
                     width: 24,
                     height: 24,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
               ),
@@ -73,10 +76,11 @@ class DialogAddPhoto extends StatelessWidget {
                 child: SizedBox(
                   width: 24,
                   height: 24,
-                  child: Image.asset(
+                  child: SvgPicture.asset(
                     UiImagePaths.icon_select_file,
                     width: 18,
                     height: 20,
+                    color: Theme.of(context).colorScheme.secondary,
                   ),
                 ),
               ),

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_models/category_item.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 
 ///
 /// Интерактор выбора категории
 ///
 class SelectCategoryInteractor with ChangeNotifier {
   final List<CategoryItem> _myCategories = [
-    CategoryItem(name: 'не выбрана', isSelected: true),
-    CategoryItem(name: 'Отель', isSelected: false),
-    CategoryItem(name: 'Ресторан', isSelected: false),
-    CategoryItem(name: 'Особое место', isSelected: false),
-    CategoryItem(name: 'Театр', isSelected: false),
-    CategoryItem(name: 'Музей', isSelected: false),
-    CategoryItem(name: 'Кафе', isSelected: false),
+    CategoryItem(name: UiStrings.notSelected, isSelected: true),
+    CategoryItem(name: UiStrings.hotel, isSelected: false),
+    CategoryItem(name: UiStrings.restaurant, isSelected: false),
+    CategoryItem(name: UiStrings.specialPlace, isSelected: false),
+    CategoryItem(name: UiStrings.theatre, isSelected: false),
+    CategoryItem(name: UiStrings.museum, isSelected: false),
+    CategoryItem(name: UiStrings.cafe, isSelected: false),
   ];
 
   List<CategoryItem> get myCategories => _myCategories;

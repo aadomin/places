@@ -27,6 +27,15 @@ class UiStrings {
   static const String saveCaps = 'СОХРАНИТЬ';
   static const String selectionCategory = 'Категория';
 
+  static const String haveSeen = 'Посетил';
+  static const String wantToSee = 'Хочу посетить';
+
+// Экран Главная BNB
+  static const String listOfPlaces = 'Список мест';
+  static const String maps = 'Карты';
+  static const String favorites = 'Избранное';
+  static const String settings = 'Настройки';
+
   // Экран Избранное и посещенные
   static const String delFromWished = 'Удалить из пройденных';
   static const String delFromSeen = 'Удалить из избранного';
@@ -49,7 +58,7 @@ class UiStrings {
   static const String onboardingGogogo = 'НА СТАРТ';
 
   // Экран Настройки
-  static const String settings = 'Настройки';
+
   static const String darkTheme = 'Темная тема';
   static const String lookOnboarding = 'Смотреть туториал';
 
@@ -75,11 +84,14 @@ class UiStrings {
 
   // Экран Фильтр
   static const String filterShow = 'СОЗДАТЬ';
-
   static const String hotel = 'Отель';
-  static const String rest = 'Ресторан';
+  static const String restaurant = 'Ресторан';
   static const String specialPlace = 'Особое место';
   static const String park = 'Парк';
   static const String museum = 'Музей';
   static const String cafe = 'Кафе';
+  static const String theatre = 'Театр'; // TODO(me): почему ее не было????
+  static const String notSelected = 'не выбрана';
+
+  static const String done = 'Готово';
 }

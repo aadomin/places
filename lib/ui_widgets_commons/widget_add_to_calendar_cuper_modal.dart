@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 
 ///
 /// Модальный экран выбор даты
@@ -44,7 +45,7 @@ class _WidgetAddToCalendarCuperModalState extends State<WidgetAddToCalendarCuper
                 onPressed: () {
                   Navigator.of(context).pop(_date);
                 },
-                child: const Text('Готово'),
+                child: const Text(UiStrings.done),
               ),
             ],
           ),

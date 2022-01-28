@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
+import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_interactors/init_interactor.dart';
 
 /// Экран-заставка во время загрузки
@@ -31,10 +33,11 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
         ),
         child: Center(
-          child: Image.asset(
+          child: SvgPicture.asset(
             UiImagePaths.logo,
             width: 100,
             height: 100,
+            color: Theme.of(context).colorScheme.textOnBottomButtonActive,
           ),
         ),
       ),

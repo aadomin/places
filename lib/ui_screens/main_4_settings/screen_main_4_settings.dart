@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:provider/provider.dart';
@@ -75,10 +76,11 @@ class _ScreenMain4SettingsState extends State<ScreenMain4Settings> {
               ),
               trailing: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-                child: Image.asset(
+                child: SvgPicture.asset(
                   UiImagePaths.info,
                   width: 20,
                   height: 20,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
               onTap: onTapOnTutorialLink,
