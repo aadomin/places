@@ -1,4 +1,4 @@
-// TODO(me): убрать наверно
+// TODO(me): убрать это
 
 /// Список изначальных фоток при добавлении
 /// Для isDebugMockDataInPlaceOfHttp = true

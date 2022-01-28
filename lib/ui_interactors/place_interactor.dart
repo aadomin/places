@@ -20,7 +20,7 @@ class PlaceInteractor with ChangeNotifier {
   bool isRequestDoneWithError = false;
 
   Future<void> initPlaces() async {
-    await placeEntity.loadPlaces();
+    await placeEntity.loadPlacesIfNeed();
 
     if (placeEntity.isRequestDoneWithError) {
       isRequestDoneWithError = true;

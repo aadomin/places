@@ -6,30 +6,38 @@ import 'package:places/domain_models/place.dart';
 /// Места
 ///
 class PlaceEntity {
-  PlaceEntity({required this.placeRepository});
-
+  PlaceEntity({required this.placeRepository}) {
+    init();
+  }
   PlaceRepository placeRepository;
 
-  // TODO(me): ТУТ ПЕРЕДЕЛАТЬ
-
-  /// загруженные места
-  List<Place> get loadedPlaces => placeRepository.loadedPlaces;
-  set loadedPlaces(List<Place> value) => placeRepository.loadedPlaces = value;
+  bool isLoading = false;
+  bool hasNeedToBeReloaded = true;
+  List<Place> loadedPlaces = [];
 
   /// был ли последний запрос данных закончен с ошибкой
   bool get isRequestDoneWithError => placeRepository.isRequestDoneWithError;
   set isRequestDoneWithError(bool value) =>
       placeRepository.isRequestDoneWithError = value;
 
+  void init() {
+    hasNeedToBeReloaded = true;
+    loadPlacesIfNeed();
+  }
+
   /// загрузить место
-  Future<void> loadPlaces() async {
-    // TODO(me): правильно ли тут сделано?
-    await placeRepository.loadPlaces();
+  Future<void> loadPlacesIfNeed() async {
+    isLoading = true;
+    if (hasNeedToBeReloaded == true) {
+      loadedPlaces = await placeRepository.getAllPlaces();
+      hasNeedToBeReloaded = false;
+    }
+    isLoading = false;
   }
 
   /// добавить место
   Future<void> addPlace(Place newPlace) async {
-    // ignore: unawaited_futures
-    placeRepository.addPlace(newPlace);
+    // TODO возвращаемое значение
+    await placeRepository.addPlace(newPlace);
   }
 }

@@ -12,6 +12,13 @@ late final Dio dio;
 ///
 class PlaceRepository {
   PlaceRepository() {
+    init();
+  }
+
+  List<Place> _loadedPlaces = [];
+  bool isRequestDoneWithError = false;
+
+  void init() {
     final baseOptions = BaseOptions(
       baseUrl: 'https://test-backend-flutter.surfstudio.ru',
       connectTimeout: 5000,
@@ -45,16 +52,13 @@ class PlaceRepository {
     );
   }
 
-  List<Place> loadedPlaces = [];
-
-  bool isRequestDoneWithError = false;
-
-  Future<void> loadPlaces() async {
+  // TODO переместить лоад
+  Future<List<Place>> getAllPlaces() async {
     if (isDebugMockDataInPlaceOfHttp) {
       await Future<dynamic>.delayed(const Duration(seconds: 3));
-      loadedPlaces = mocks;
+      
       isRequestDoneWithError = false;
-      return;
+      return mocks;
     } else {
       const String _path = '/place';
 
@@ -69,23 +73,23 @@ class PlaceRepository {
             errorName: '${response.statusCode} ${response.statusMessage}',
           );
         }
-        loadedPlaces = parsePlaces(response.data.toString());
+        _loadedPlaces = _parsePlaces(response.data.toString());
       } on NetworkException catch (e) {
         isRequestDoneWithError = true;
         print(e);
-        return;
+        return [];
         //ignore: avoid_catches_without_on_clauses
       } catch (e) {
         isRequestDoneWithError = true;
         print(e);
-        return;
+        return [];
       }
       isRequestDoneWithError = false;
-      return;
+      return _loadedPlaces;
     }
   }
 
-  List<Place> parsePlaces(String rawJson) {
+  List<Place> _parsePlaces(String rawJson) {
     final List postListJson = jsonDecode(rawJson) as List;
     return postListJson
         //ignore: avoid_annotating_with_dynamic

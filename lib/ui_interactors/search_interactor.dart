@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_entities/history_of_search_service.dart';
+import 'package:places/main.dart';
 
 import 'package:places/ui_commons/enums.dart';
 
@@ -15,7 +16,8 @@ class SearchInteractor with ChangeNotifier {
   SearchStatus searchStatus = SearchStatus.empty;
   List<Place> _searchResult = [];
 
-  List<String> _lastSearches = [];
+  List<String> get _lastSearches => searchEntity.lastSearches;
+  set _lastSearches(List<String> value) => searchEntity.lastSearches = value;
 
   List<String> get lastSearches {
     return _lastSearches;
@@ -60,7 +62,7 @@ class SearchInteractor with ChangeNotifier {
   }
 
   void _updateListOfLastSearches(String searchText) {
-    _lastSearches = HistoryOfSearchService.newListOfLastSearches(
+    _lastSearches = searchEntity.newListOfLastSearches(
       maxCountOfItems: 5,
       newInput: searchText,
       lastSearches: lastSearches,
