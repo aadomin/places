@@ -62,6 +62,14 @@ final darkTheme = ThemeData(
   textButtonTheme: TextButtonThemeData(
     style: TextButton.styleFrom(primary: Colors.white),
   ),
+  sliderTheme: SliderThemeData.fromPrimaryColors(
+    primaryColor: Colors.white,
+    primaryColorDark: Colors.white,
+    primaryColorLight: const Color(0xff7c7e92),
+    valueIndicatorTextStyle: const TextStyle(
+      fontSize: 14,
+    ),
+  ),
   bottomSheetTheme: const BottomSheetThemeData(
     backgroundColor: Colors.transparent, // для закругления
   ),
