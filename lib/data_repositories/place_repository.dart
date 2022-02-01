@@ -15,9 +15,11 @@ class PlaceRepository {
     init();
   }
 
-  List<Place> _loadedPlaces = [];
   bool isRequestDoneWithError = false;
 
+  //
+  // Загрузка
+  //
   void init() {
     final baseOptions = BaseOptions(
       baseUrl: 'https://test-backend-flutter.surfstudio.ru',
@@ -52,16 +54,19 @@ class PlaceRepository {
     );
   }
 
-  // TODO переместить лоад
+  /// 
+  /// Загружает все места и возвращает их
+  /// 
   Future<List<Place>> getAllPlaces() async {
     if (isDebugMockDataInPlaceOfHttp) {
       await Future<dynamic>.delayed(const Duration(seconds: 3));
-      
+
       isRequestDoneWithError = false;
       return mocks;
     } else {
       const String _path = '/place';
 
+      List<Place> _loadedPlaces = []; // сюда загрузим
       try {
         final Response response = await dio.get<String>(
           _path,
@@ -89,6 +94,9 @@ class PlaceRepository {
     }
   }
 
+  /// 
+  /// Распарсить результат с сервера - Места
+  /// 
   List<Place> _parsePlaces(String rawJson) {
     final List postListJson = jsonDecode(rawJson) as List;
     return postListJson
@@ -98,6 +106,9 @@ class PlaceRepository {
         .toList();
   }
 
+  ///
+  /// Добавить место на сервер
+  ///
   Future<void> addPlace(Place newPlace) async {
     if (isDebugMockDataInPlaceOfHttp) {
       await Future<dynamic>.delayed(const Duration(seconds: 3));

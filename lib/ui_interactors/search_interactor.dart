@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_entities/history_of_search_service.dart';
 import 'package:places/main.dart';
-
 import 'package:places/ui_commons/enums.dart';
-
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
 
@@ -13,26 +10,42 @@ import 'package:places/ui_interactors/place_interactor.dart';
 class SearchInteractor with ChangeNotifier {
   final placeInteractor = PlaceInteractor();
 
-  SearchStatus searchStatus = SearchStatus.empty;
+  /// Результат поиска
   List<Place> _searchResult = [];
 
-  List<String> get _lastSearches => searchEntity.lastSearches;
-  set _lastSearches(List<String> value) => searchEntity.lastSearches = value;
-
-  List<String> get lastSearches {
-    return _lastSearches;
-  }
-
+  /// Результат поиска
   List<Place> get searchResult {
     return _searchResult;
   }
 
+  /// Результат поиска - статус
+  SearchStatus searchStatus = SearchStatus.empty;
+
+  /// История поиска
+  List<String> get _lastSearches => searchEntity.lastSearches;
+
+  /// История поиска
+  set _lastSearches(List<String> value) => searchEntity.lastSearches = value;
+
+  /// История поиска
+  List<String> get lastSearches {
+    return _lastSearches;
+  }
+
+  ///
+  /// Выполняет поиск и сохраняет место в истории поиска
+  ///
   void searchPlaces(String searchText) {
     _doSearchItself(searchText);
     _updateListOfLastSearches(searchText);
     notifyListeners();
   }
 
+  ///
+  /// Выполняет собственно поиск, работает с placeInteractor,
+  /// Результат забирается из placeInteractor.getFilteredPlaces
+  /// и сохраняется _searchResult.
+  ///
   void _doSearchItself(String searchText) {
     // тут лучше бы вызов функции через время, и если за это время введен еще один
     // символ - изменение времени, от того, как она отсчитывается.
@@ -44,11 +57,11 @@ class SearchInteractor with ChangeNotifier {
     if (_searchText == '') {
       searchStatus = SearchStatus.empty;
     } else {
-      for (var i = 0; i < placeInteractor.filteredPlaces.length; i++) {
-        if (placeInteractor.filteredPlaces[i].name
+      for (var i = 0; i < placeInteractor.getFilteredPlaces.length; i++) {
+        if (placeInteractor.getFilteredPlaces[i].name
             .toLowerCase()
             .contains(_searchText.toLowerCase())) {
-          result.add(placeInteractor.filteredPlaces[i]);
+          result.add(placeInteractor.getFilteredPlaces[i]);
         }
       }
 
@@ -61,6 +74,9 @@ class SearchInteractor with ChangeNotifier {
     _searchResult = result;
   }
 
+  ///
+  /// Обновить историю поиска (обновить список)
+  ///
   void _updateListOfLastSearches(String searchText) {
     _lastSearches = searchEntity.newListOfLastSearches(
       maxCountOfItems: 5,
@@ -69,11 +85,17 @@ class SearchInteractor with ChangeNotifier {
     );
   }
 
+  ///
+  /// Удалить пункт из истории поиска
+  ///
   void removeItemFromHistory(int index) {
     _lastSearches.removeAt(index);
     notifyListeners();
   }
 
+  ///
+  /// Очистить историю поиска
+  ///
   void removeAllItemsFromHistory() {
     _lastSearches.clear();
     notifyListeners();

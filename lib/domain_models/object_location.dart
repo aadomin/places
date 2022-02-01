@@ -1,8 +1,8 @@
 ///
 /// Модель точки на карте
 ///
-class ObjectLocation {
-  ObjectLocation({required this.latitude, required this.longitude});
+class PointGetCoordinates {
+  PointGetCoordinates({required this.latitude, required this.longitude});
 
   final double latitude;
   final double longitude;

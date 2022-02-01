@@ -8,19 +8,20 @@ import 'package:places/main.dart';
 ///
 class GeoRepository {
   ///
-  /// текущие координаты пользователя
-  ObjectLocation get currentUserLocation {
-    final random = Random();
+  /// Возвращает текущие координаты пользователя
+  /// 
+  PointGetCoordinates get currentUserLocation {
     // режим для отладки - пользователь стоит на месте
     if (isDebugUserStay) {
-      return ObjectLocation(
+      return PointGetCoordinates(
         latitude: 54,
         longitude: 54,
       );
     }
     // режим для отладки - пользователь оказывается в разных местах
     else if (isDebugUserMove) {
-      return ObjectLocation(
+      final random = Random();
+      return PointGetCoordinates(
         latitude: random.nextDouble() * 20 + 40,
         longitude: random.nextDouble() * 20 + 40,
       );

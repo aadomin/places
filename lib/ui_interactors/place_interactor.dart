@@ -7,16 +7,20 @@ import 'package:places/ui_commons/platform_detector.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_widgets_commons/widget_add_to_calendar_cuper_modal.dart';
 
-/// Интерактор мест
+///
+/// Интерактор списка мест
+///
 class PlaceInteractor with ChangeNotifier {
   PlaceInteractor() {
     initPlaces(); //асинхронная
   }
 
+  /// Загруженный список мест
   List<Place> allPlaces = [];
 
   bool isRequestDoneWithError = false;
 
+  /// Инициализация интерактора
   Future<void> initPlaces() async {
     await placeEntity.loadPlacesIfNeed();
 
@@ -31,6 +35,7 @@ class PlaceInteractor with ChangeNotifier {
     notifyListeners();
   }
 
+  /// Возвращает список мест
   List<Place> getPlaces({
     required int radius,
     required List<CategoryItem> categories,
@@ -53,6 +58,7 @@ class PlaceInteractor with ChangeNotifier {
     return _filteredAndSortedPlacesList;
   }
 
+  /// Обновляет расстояния от объекта до пользователя
   void updateDistancesToUser() {
     allPlaces = allPlaces.map((place) {
       place.currentDistanceToUser = geoEntity.distanceFromPointToUser(
@@ -63,8 +69,9 @@ class PlaceInteractor with ChangeNotifier {
     }).toList();
   }
 
-  /// отображается на экране "Список интересных мест" и фильтруется в результатах Поиска
-  List<Place> get filteredPlaces {
+  /// Возвращает лист мест, которые отображаются на экране "Список интересных мест"
+  /// и на экране Поиска
+  List<Place> get getFilteredPlaces {
     print(filterInteractor.filterItems.toString());
     return getPlaces(
       radius: filterInteractor.radius,
@@ -72,40 +79,49 @@ class PlaceInteractor with ChangeNotifier {
     );
   }
 
+  /// Возвращает конкретное место (детали)
   Place getPlaceDetails(int id) {
     return allPlaces[indexOfPlaceInAllById(id)];
   }
 
+  /// Возвращает массив избранных мест
   List<Place> get getFavoritesPlaces =>
       allPlaces.where((s) => s.wished).toList();
 
+  /// Возвращает массив посещенных мест
   List<Place> get getVisitedPlaces => allPlaces.where((s) => s.seen).toList();
 
+  /// Удаляет место из избранных
   void removeFromFavorites(int id) {
     allPlaces[indexOfPlaceInAllById(id)].wished = false;
     notifyListeners();
   }
 
+  /// Удаляет место из посещенных
   void removeFromVisited(int id) {
     allPlaces[indexOfPlaceInAllById(id)].seen = false;
     notifyListeners();
   }
 
+  /// Удаляет совсем
   void removeAtAll(int id) {
     allPlaces.removeAt(indexOfPlaceInAllById(id));
     notifyListeners();
   }
 
+  /// Добавляет место в избранные
   void addToFavorites(int id) {
     allPlaces[indexOfPlaceInAllById(id)].wished = true;
     notifyListeners();
   }
 
+  /// Добавляет место в посещенные
   void addToVisitedPlaces(int id) {
     allPlaces[indexOfPlaceInAllById(id)].seen = true;
     notifyListeners();
   }
 
+  /// Возвращает индекс места в массиве по его ID
   int indexOfPlaceInAllById(int id) {
     for (var i = 0; i < allPlaces.length; i++) {
       if (allPlaces[i].id == id) {
@@ -115,7 +131,10 @@ class PlaceInteractor with ChangeNotifier {
     throw Exception('There is no such ID');
   }
 
-  /// запланировать посещение места - используется минимум двумя экранами
+  ///
+  /// Показать окно запланировать посещение места
+  /// - используется минимум двумя экранами
+  ///
   Future<void> schedulePlace(BuildContext context, int id) async {
     late final DateTime? _result;
     if (PlatformDetector.isAndroid || PlatformDetector.isWeb) {
@@ -205,13 +224,14 @@ class PlaceInteractor with ChangeNotifier {
 
     placeEntity.addPlace(newPlace);
 
-    // TODO(me): hasNeedToBeReloaded так себе конечно
+    // TODO(me): hasNeedToBeReloaded так себе идея конечно
     placeEntity.hasNeedToBeReloaded = true;
 
     allPlaces.add(newPlace);
     notifyListeners();
   }
 
+  // TODO(me): емае
   void updateScreens() {
     notifyListeners();
   }

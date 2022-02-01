@@ -26,7 +26,7 @@ class _ScreenMain1PlacesRouteState extends State<ScreenMain1PlacesRoute> {
   @override
   Widget build(BuildContext context) {
     final List<Place> filteredPlaces =
-        context.watch<PlaceInteractor>().filteredPlaces;
+        context.watch<PlaceInteractor>().getFilteredPlaces;
 
     if (filteredPlaces.isEmpty) {
       return const Scaffold(

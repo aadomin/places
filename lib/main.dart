@@ -79,7 +79,7 @@ class MyAppProvider extends StatelessWidget {
           create: (context) => SearchInteractor(),
         ),
         ChangeNotifierProvider(
-          create: (context) => SelectCategoryInteractor(),
+          create: (context) => SelectionCategoryInteractor(),
         ),
       ],
       child: const MyAppAndRoutes(),

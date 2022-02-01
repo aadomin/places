@@ -39,7 +39,7 @@ class MyAppAndRoutes extends StatelessWidget {
         ROUTE_HOME: (context) => const AllMainScreens(),
         ROUTE_FILTER: (context) => const FiltersScreen(),
         ROUTE_ADD: (context) => const ScreenAddPlace(),
-        ROUTE_SELECT_CATEGORY: (context) => const SelectCategory(),
+        ROUTE_SELECT_CATEGORY: (context) => const SelectionCategory(),
         ROUTE_SEARCH: (context) => PlaceSearchScreen(),
         ROUTE_ONBOARDING: (context) => const ScreenOnboarding(),
         ROUTE_SPLASH: (context) => const SplashScreen(),

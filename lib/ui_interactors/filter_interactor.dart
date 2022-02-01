@@ -30,11 +30,13 @@ class FilterInteractor with ChangeNotifier {
   late BehaviorSubject<List<CategoryItem>> _streamItems;
   Stream<List<CategoryItem>> get items => _streamItems.stream;
 
+  /// Переключить выбранность категории
   void switchActiveCategories(int index) {
     _filterItemsState[index].isSelected = !_filterItemsState[index].isSelected;
     _streamItems.add(_filterItemsState);
   }
 
+  /// Очистить выбранные категории
   void clearActiveCategories() {
     for (final element in _filterItemsState) {
       element.isSelected = false;
@@ -43,8 +45,11 @@ class FilterInteractor with ChangeNotifier {
   }
 
   // TODO(me): радиус
+  /// радиус
   int radius = 1000;
 
+  // TODO(me): так так так
+  /// инициализация состояния фильтра
   final List<CategoryItem> _initFilterItemsState = [
     CategoryItem(name: UiStrings.hotel, isSelected: true),
     CategoryItem(name: UiStrings.restaurant, isSelected: true),

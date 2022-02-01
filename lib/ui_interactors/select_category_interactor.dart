@@ -5,8 +5,11 @@ import 'package:places/ui_commons/ui_strings.dart';
 ///
 /// Интерактор выбора категории
 ///
-class SelectCategoryInteractor with ChangeNotifier {
-  final List<CategoryItem> _myCategories = [
+class SelectionCategoryInteractor with ChangeNotifier {
+  ///
+  /// Список категорий
+  ///
+  final List<CategoryItem> _allCategories = [
     CategoryItem(name: UiStrings.notSelected, isSelected: true),
     CategoryItem(name: UiStrings.hotel, isSelected: false),
     CategoryItem(name: UiStrings.restaurant, isSelected: false),
@@ -16,27 +19,36 @@ class SelectCategoryInteractor with ChangeNotifier {
     CategoryItem(name: UiStrings.cafe, isSelected: false),
   ];
 
-  List<CategoryItem> get myCategories => _myCategories;
+  ///
+  /// Список категорий
+  ///
+  List<CategoryItem> get allCategories => _allCategories;
 
-  void switchCategoryCheck(int index) {
-    if (_myCategories[index].isSelected) {
-      _myCategories[index].isSelected = false;
-      _myCategories[0].isSelected = true;
+  ///
+  /// Переключить выбранность категории
+  ///
+  void toggleCategorySelection(int index) {
+    if (_allCategories[index].isSelected) {
+      _allCategories[index].isSelected = false;
+      _allCategories[0].isSelected = true;
     } else {
-      for (final i in _myCategories) {
+      for (final i in _allCategories) {
         i.isSelected = false;
       }
-      _myCategories[index].isSelected = true;
+      _allCategories[index].isSelected = true;
     }
 
     notifyListeners();
   }
 
-  String get currentlySelected {
+  ///
+  /// Выбранная категория
+  ///
+  String get selectedCategory {
     var result = '';
-    for (var i = 0; i < _myCategories.length; i++) {
-      if (_myCategories[i].isSelected) {
-        result = _myCategories[i].name;
+    for (var i = 0; i < _allCategories.length; i++) {
+      if (_allCategories[i].isSelected) {
+        result = _allCategories[i].name;
       }
     }
     return result;

@@ -49,7 +49,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
   @override
   Widget build(BuildContext context) {
     final List<Place> filteredPlaces =
-        context.watch<PlaceInteractor>().filteredPlaces;
+        context.watch<PlaceInteractor>().getFilteredPlaces;
     final String numOfFilteredPlaces = filteredPlaces.length.toString();
 
     return Scaffold(

@@ -15,7 +15,9 @@ import 'package:places/ui_interactors/select_category_interactor.dart';
 import 'package:places/ui_widgets_commons/widget_my_image.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
 
+/// 
 /// Экран - Добавить место
+/// 
 class ScreenAddPlace extends StatefulWidget {
   const ScreenAddPlace({Key? key}) : super(key: key);
   @override
@@ -47,7 +49,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
 
     //+
     final _currentlySelectedCategory =
-        context.watch<SelectCategoryInteractor>().currentlySelected;
+        context.watch<SelectionCategoryInteractor>().selectedCategory;
 
     return Scaffold(
       appBar: AppBar(
@@ -482,7 +484,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
             // TODO(me): добавить url к создаваемому месту
             url: 'исправить',
             details: textControllerDescription.text,
-            type: context.read<SelectCategoryInteractor>().currentlySelected,
+            type: context.read<SelectionCategoryInteractor>().selectedCategory,
           );
       Navigator.pop(context);
     }

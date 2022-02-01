@@ -4,12 +4,12 @@ import 'package:provider/provider.dart';
 import 'package:places/ui_interactors/select_category_interactor.dart';
 
 /// Экран "Выбор категории"
-class SelectCategory extends StatelessWidget {
-  const SelectCategory({Key? key}) : super(key: key);
+class SelectionCategory extends StatelessWidget {
+  const SelectionCategory({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final _categories = context.watch<SelectCategoryInteractor>().myCategories;
+    final _categories = context.watch<SelectionCategoryInteractor>().allCategories;
 
     return Scaffold(
       appBar: AppBar(
@@ -54,8 +54,8 @@ class SelectCategory extends StatelessWidget {
               return ListTile(
                 onTap: () {
                   context
-                      .read<SelectCategoryInteractor>()
-                      .switchCategoryCheck(item.key);
+                      .read<SelectionCategoryInteractor>()
+                      .toggleCategorySelection(item.key);
                 },
                 title: Text(item.value.name),
                 trailing: item.value.isSelected
