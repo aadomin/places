@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/main_1_places_list/screen_main1_places_route.dart';
 import 'package:places/ui_screens/main_2_map/screen_main_2_map.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_favorite_and_visited_route.dart';
@@ -10,13 +11,13 @@ import 'package:places/ui_screens/main_4_settings/screen_main_4_settings.dart';
 /// Состоит из 4х частей - переход к ним
 /// осуществляется через нажатие на кнопкам в BottomNavigationBar.
 ///
-class AllMainScreens extends StatefulWidget {
-  const AllMainScreens({Key? key}) : super(key: key);
+class ScreenAllMain extends StatefulWidget {
+  const ScreenAllMain({Key? key}) : super(key: key);
   @override
-  _AllMainScreensState createState() => _AllMainScreensState();
+  _ScreenAllMainState createState() => _ScreenAllMainState();
 }
 
-class _AllMainScreensState extends State<AllMainScreens> {
+class _ScreenAllMainState extends State<ScreenAllMain> {
   List<Widget> widgetsPageList = const [
     SafeArea(
       child: Center(
@@ -60,7 +61,7 @@ class _AllMainScreensState extends State<AllMainScreens> {
               color: Theme.of(context).primaryColor,
               height: 20,
             ),
-            label: 'Список мест',
+            label: UiStrings.listOfPlaces,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -68,7 +69,7 @@ class _AllMainScreensState extends State<AllMainScreens> {
               color: Theme.of(context).primaryColor,
               height: 20,
             ),
-            label: 'Карта',
+            label: UiStrings.maps,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -76,7 +77,7 @@ class _AllMainScreensState extends State<AllMainScreens> {
               color: Theme.of(context).primaryColor,
               height: 20,
             ),
-            label: 'Избранное',
+            label: UiStrings.favorites,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -86,7 +87,7 @@ class _AllMainScreensState extends State<AllMainScreens> {
               color: Theme.of(context).primaryColor,
               height: 20,
             ),
-            label: 'Настройки',
+            label: UiStrings.settings,
           ),
         ],
       ),

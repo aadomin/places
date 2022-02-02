@@ -11,13 +11,13 @@ import 'package:flutter/services.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_screens/add_place_screen/widget_small_category_header.dart';
 import 'package:places/ui_screens/add_place_screen/dialog_add_photo.dart';
-import 'package:places/ui_interactors/select_category_interactor.dart';
+import 'package:places/ui_interactors/selection_category_interactor.dart';
 import 'package:places/ui_widgets_commons/widget_my_image.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
 
-/// 
+///
 /// Экран - Добавить место
-/// 
+///
 class ScreenAddPlace extends StatefulWidget {
   const ScreenAddPlace({Key? key}) : super(key: key);
   @override
@@ -42,14 +42,14 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
 
   bool isButtonSaveActive = false;
 
+  String _currentlySelectedCategory = UiStrings.notSelected;
+
   @override
   Widget build(BuildContext context) {
     //+
     _listOfPhotos = context.watch<PlaceInteractor>().listOfPhotos;
 
     //+
-    final _currentlySelectedCategory =
-        context.watch<SelectionCategoryInteractor>().selectedCategory;
 
     return Scaffold(
       appBar: AppBar(
@@ -472,7 +472,9 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
   }
 
   void onTapOnCategorySelection(BuildContext context) {
-    Navigator.pushNamed(context, ROUTE_SELECT_CATEGORY);
+    Navigator.of(context).pushNamed(ROUTE_SELECT_CATEGORY, arguments: _currentlySelectedCategory);
+    // TODO(me): СДЕЛАТЬ ТУТ
+    // _currentlySelectedCategory = context.watch<SelectionCategoryInteractor>().selectedCategory;
   }
 
   void onTapOnSave() {
@@ -484,8 +486,11 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
             // TODO(me): добавить url к создаваемому месту
             url: 'исправить',
             details: textControllerDescription.text,
-            type: context.read<SelectionCategoryInteractor>().selectedCategory,
+            type: _currentlySelectedCategory,
           );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text(UiStrings.done)),
+      );
       Navigator.pop(context);
     }
   }

@@ -5,14 +5,14 @@ import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_interactors/init_interactor.dart';
 
 /// Экран-заставка во время загрузки
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class ScreenSplash extends StatefulWidget {
+  const ScreenSplash({Key? key}) : super(key: key);
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _ScreenSplashState createState() => _ScreenSplashState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _ScreenSplashState extends State<ScreenSplash> {
   @override
   void initState() {
     // просто вызов статического метода

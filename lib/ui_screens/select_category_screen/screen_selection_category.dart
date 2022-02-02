@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:provider/provider.dart';
-import 'package:places/ui_interactors/select_category_interactor.dart';
+import 'package:places/ui_interactors/selection_category_interactor.dart';
 
 /// Экран "Выбор категории"
-class SelectionCategory extends StatelessWidget {
-  const SelectionCategory({Key? key}) : super(key: key);
+class ScreenSelectionCategory extends StatefulWidget {
+  const ScreenSelectionCategory({Key? key}) : super(key: key);
+
+  @override
+  State<ScreenSelectionCategory> createState() =>
+      _ScreenSelectionCategoryState();
+}
+
+class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<SelectionCategoryInteractor>().init();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final _categories = context.watch<SelectionCategoryInteractor>().allCategories;
+    final _categories =
+        context.watch<SelectionCategoryInteractor>().allCategories;
 
     return Scaffold(
       appBar: AppBar(
@@ -55,7 +68,7 @@ class SelectionCategory extends StatelessWidget {
                 onTap: () {
                   context
                       .read<SelectionCategoryInteractor>()
-                      .toggleCategorySelection(item.key);
+                      .toggleCategorySelection(item.value.name);
                 },
                 title: Text(item.value.name),
                 trailing: item.value.isSelected

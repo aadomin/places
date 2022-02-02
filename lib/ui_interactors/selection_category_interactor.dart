@@ -6,11 +6,30 @@ import 'package:places/ui_commons/ui_strings.dart';
 /// Интерактор выбора категории
 ///
 class SelectionCategoryInteractor with ChangeNotifier {
+  SelectionCategoryInteractor({
+    this.selectedCategory = UiStrings.notSelected,
+  }) {
+    init();
+  }
+
+  ///
+  /// Инициализация
+  ///
+  void init() {
+    for (final item in _allCategories) {
+      // ignore: unnecessary_parenthesis
+      item.isSelected = (item.name == selectedCategory);
+    }
+  }
+
+  /// Выбранная в данный момент категория
+  String selectedCategory;
+
   ///
   /// Список категорий
   ///
-  final List<CategoryItem> _allCategories = [
-    CategoryItem(name: UiStrings.notSelected, isSelected: true),
+  final _allCategories = [
+    CategoryItem(name: UiStrings.notSelected, isSelected: false),
     CategoryItem(name: UiStrings.hotel, isSelected: false),
     CategoryItem(name: UiStrings.restaurant, isSelected: false),
     CategoryItem(name: UiStrings.specialPlace, isSelected: false),
@@ -27,30 +46,12 @@ class SelectionCategoryInteractor with ChangeNotifier {
   ///
   /// Переключить выбранность категории
   ///
-  void toggleCategorySelection(int index) {
-    if (_allCategories[index].isSelected) {
-      _allCategories[index].isSelected = false;
-      _allCategories[0].isSelected = true;
-    } else {
-      for (final i in _allCategories) {
-        i.isSelected = false;
-      }
-      _allCategories[index].isSelected = true;
+  void toggleCategorySelection(String categoryName) {
+    selectedCategory = categoryName;
+    for (final item in _allCategories) {
+      // ignore: unnecessary_parenthesis
+      item.isSelected = (item.name == selectedCategory);
     }
-
     notifyListeners();
-  }
-
-  ///
-  /// Выбранная категория
-  ///
-  String get selectedCategory {
-    var result = '';
-    for (var i = 0; i < _allCategories.length; i++) {
-      if (_allCategories[i].isSelected) {
-        result = _allCategories[i].name;
-      }
-    }
-    return result;
   }
 }

@@ -10,13 +10,13 @@ import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_interactors/filter_interactor.dart';
 
 /// Экран Фильтр
-class FiltersScreen extends StatefulWidget {
-  const FiltersScreen({Key? key}) : super(key: key);
+class ScreenFilter extends StatefulWidget {
+  const ScreenFilter({Key? key}) : super(key: key);
   @override
-  _FiltersScreenState createState() => _FiltersScreenState();
+  _ScreenFilterState createState() => _ScreenFilterState();
 }
 
-class _FiltersScreenState extends State<FiltersScreen> {
+class _ScreenFilterState extends State<ScreenFilter> {
   final _radiusOfRoundElement = 26.0;
 
   double _sliderValue = 0;
