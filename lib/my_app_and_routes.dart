@@ -11,6 +11,7 @@ import 'package:places/ui_screens/splash_screen/screen_splash.dart';
 
 import 'package:places/ui_interactors/settings_interactor.dart';
 
+// TODO(me): переделать в ScreenAllMain.routeName и static const routeName = '/extractArguments';
 const String ROUTE_HOME = '/';
 const String ROUTE_FILTER = '/filter';
 const String ROUTE_ADD = '/add';

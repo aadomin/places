@@ -16,6 +16,7 @@ class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
   @override
   void initState() {
     super.initState();
+    // тут вопрос
     context.read<SelectionCategoryInteractor>().init();
   }
 
@@ -86,7 +87,9 @@ class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
           child: ElevatedButton(
             onPressed: () {
-              Navigator.pop(context);
+              final _selectedCategory =
+                  context.read<SelectionCategoryInteractor>().selectedCategory;
+              Navigator.pop(context, _selectedCategory);
             },
             child: const Padding(
               padding: EdgeInsets.all(12.0),

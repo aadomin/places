@@ -11,7 +11,6 @@ import 'package:flutter/services.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_screens/add_place_screen/widget_small_category_header.dart';
 import 'package:places/ui_screens/add_place_screen/dialog_add_photo.dart';
-import 'package:places/ui_interactors/selection_category_interactor.dart';
 import 'package:places/ui_widgets_commons/widget_my_image.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
 
@@ -471,9 +470,14 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
     });
   }
 
-  void onTapOnCategorySelection(BuildContext context) {
-    Navigator.of(context).pushNamed(ROUTE_SELECT_CATEGORY, arguments: _currentlySelectedCategory);
-    // TODO(me): СДЕЛАТЬ ТУТ
+  Future<void> onTapOnCategorySelection(BuildContext context) async {
+    _currentlySelectedCategory = await Navigator.of(context).pushNamed(
+        ROUTE_SELECT_CATEGORY,
+        arguments: _currentlySelectedCategory) as String;
+    // тут вопрос (async)
+    setState(() {});
+
+    // тут вопрос
     // _currentlySelectedCategory = context.watch<SelectionCategoryInteractor>().selectedCategory;
   }
 
@@ -489,7 +493,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
             type: _currentlySelectedCategory,
           );
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text(UiStrings.done)),
+        const SnackBar(content: Text(UiStrings.newPlaceCreated)),
       );
       Navigator.pop(context);
     }

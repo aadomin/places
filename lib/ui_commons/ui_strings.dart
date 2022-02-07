@@ -94,4 +94,5 @@ class UiStrings {
   static const String notSelected = 'не выбрана';
 
   static const String done = 'Готово';
+  static const String newPlaceCreated = 'Новое место создано!';
 }

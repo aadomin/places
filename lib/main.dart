@@ -10,7 +10,6 @@ import 'package:places/domain_entities/place_entity.dart';
 import 'package:places/domain_entities/search_entity.dart';
 import 'package:places/ui_blocs/my_bloc_observer.dart';
 import 'package:places/my_app_and_routes.dart';
-import 'package:places/ui_interactors/selection_category_interactor.dart';
 import 'package:places/ui_interactors/place_interactor.dart';
 import 'package:places/ui_interactors/settings_interactor.dart';
 import 'package:places/ui_interactors/filter_interactor.dart';

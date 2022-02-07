@@ -15,12 +15,14 @@ class _ScreenSelectionCategoryRouteState
     extends State<ScreenSelectionCategoryRoute> {
   @override
   Widget build(BuildContext context) {
-    final selectedCategory =
+    final _selectedCategory =
         ModalRoute.of(context)?.settings.arguments as String;
-
     return ChangeNotifierProvider(
-      create: (context) =>
-          SelectionCategoryInteractor(selectedCategory: selectedCategory),
+      create: (context) => SelectionCategoryInteractor(
+        selectedCategory: _selectedCategory,
+        // тут вопрос
+        // selectedCategory: ModalRoute.of(context)?.settings.arguments as String,
+      ),
       child: const ScreenSelectionCategory(),
     );
   }
