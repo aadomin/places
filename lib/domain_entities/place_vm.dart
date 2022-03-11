@@ -5,13 +5,14 @@ import 'package:places/main.dart';
 import 'package:places/domain_models/category_item.dart';
 import 'package:places/ui_commons/platform_detector.dart';
 import 'package:places/domain_models/place.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_widgets_commons/widget_add_to_calendar_cuper_modal.dart';
 
 ///
 /// Интерактор списка мест
 ///
-class PlaceInteractor with ChangeNotifier {
-  PlaceInteractor() {
+class PlaceVM with ChangeNotifier {
+  PlaceVM() {
     initPlaces(); //асинхронная
   }
 
@@ -69,13 +70,34 @@ class PlaceInteractor with ChangeNotifier {
     }).toList();
   }
 
+  // TODO(me): Переделать
+  late List<CategoryItem> _filterItemsState = [
+    CategoryItem(name: UiStrings.hotel, isSelected: true),
+    CategoryItem(name: UiStrings.restaurant, isSelected: true),
+    CategoryItem(name: UiStrings.specialPlace, isSelected: true),
+    CategoryItem(name: UiStrings.park, isSelected: true),
+    CategoryItem(name: UiStrings.museum, isSelected: true),
+    CategoryItem(name: UiStrings.cafe, isSelected: true),
+  ];
+
+  List<CategoryItem> get filterItemsState => _filterItemsState;
+
+  set filterItemsState(List<CategoryItem> value) {
+    _filterItemsState = value;
+    notifyListeners();
+  }
+
+  // TODO(me): радиус
+  /// радиус
+  int radius = 1000;
+
   /// Возвращает лист мест, которые отображаются на экране "Список интересных мест"
   /// и на экране Поиска
   List<Place> get getFilteredPlaces {
-    print(filterInteractor.filterItems.toString());
+    print(filterItemsState.toString());
     return getPlaces(
-      radius: filterInteractor.radius,
-      categories: filterInteractor.filterItems,
+      radius: radius,
+      categories: filterItemsState,
     );
   }
 

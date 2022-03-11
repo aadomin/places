@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:places/main.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/domain_models/place.dart';
-import 'package:places/ui_interactors/place_interactor.dart';
+import 'package:places/domain_entities/place_vm.dart';
 
 ///
 /// Интерактор поиска
 ///
-class SearchInteractor with ChangeNotifier {
-  final placeInteractor = PlaceInteractor();
+class SearchEntity2 with ChangeNotifier {
+  final placeInteractor = PlaceVM();
 
   /// Результат поиска
   List<Place> _searchResult = [];

@@ -5,7 +5,15 @@ import 'package:places/my_app_and_routes.dart';
 ///
 /// Имитация загрузки приложения
 ///
-class InitInteractor {
+class ScreenSplashVM with ChangeNotifier {
+  ScreenSplashVM({
+    required this.context,
+  }) {
+    initAppAndThenChangeScreen(context);
+  }
+
+  BuildContext context;
+
   // TODO(me): context
   ///
   /// Инициализация, одновременно с этим задержка

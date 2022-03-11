@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
-import 'package:places/ui_interactors/place_interactor.dart';
+import 'package:places/domain_entities/place_vm.dart';
 import 'package:places/ui_screens/filter_screen/widget_checkmark.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui_commons/ui_strings.dart';
-import 'package:places/ui_interactors/filter_interactor.dart';
+import 'package:places/ui_screens/filter_screen/screen_filter_vm.dart';
 
 /// Экран Фильтр
 class ScreenFilter extends StatefulWidget {
@@ -49,7 +49,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
   @override
   Widget build(BuildContext context) {
     final List<Place> filteredPlaces =
-        context.watch<PlaceInteractor>().getFilteredPlaces;
+        context.watch<PlaceVM>().getFilteredPlaces;
     final String numOfFilteredPlaces = filteredPlaces.length.toString();
 
     return Scaffold(
@@ -67,7 +67,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
           alignment: Alignment.centerRight,
           child: TextButton(
             onPressed: () {
-              context.read<FilterInteractor>().clearActiveCategories();
+              context.read<FilterVM>().clearActiveCategories();
             },
             style: TextButton.styleFrom(
               primary: Theme.of(context).colorScheme.secondary,
@@ -108,7 +108,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
                 spacing: 20,
                 children: [
                   for (var i = 0;
-                      i < context.watch<FilterInteractor>().filterItems.length;
+                      i < context.watch<FilterVM>().filterItemsState.length; 
                       i++)
                     SizedBox(
                       width: 110,
@@ -116,7 +116,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
                       child: TextButton(
                         onPressed: () {
                           context
-                              .read<FilterInteractor>()
+                              .read<FilterVM>()
                               .switchActiveCategories(i);
                         },
                         child: Padding(
@@ -141,8 +141,8 @@ class _ScreenFilterState extends State<ScreenFilter> {
                                             // чтобы не было null - берем первую
                                             // (любую) картинку
                                             _imagePathOfCategory[context
-                                                    .watch<FilterInteractor>()
-                                                    .filterItems[i]
+                                                    .watch<FilterVM>()
+                                                    .filterItemsState[i]
                                                     .name] ??
                                                 _imagePathOfCategory
                                                     .entries.first
@@ -159,8 +159,8 @@ class _ScreenFilterState extends State<ScreenFilter> {
                                   ),
                                   //ignore: prefer_if_elements_to_conditional_expressions
                                   context
-                                          .watch<FilterInteractor>()
-                                          .filterItems[i]
+                                          .watch<FilterVM>()
+                                          .filterItemsState[i]
                                           .isSelected
                                       ? WidgetCheckmark(
                                           radiusOfRoundElement:
@@ -173,8 +173,8 @@ class _ScreenFilterState extends State<ScreenFilter> {
                                 padding: const EdgeInsets.fromLTRB(4, 12, 4, 0),
                                 child: Text(
                                   context
-                                      .watch<FilterInteractor>()
-                                      .filterItems[i]
+                                      .watch<FilterVM>()
+                                      .filterItemsState[i]
                                       .name,
                                   style: const TextStyle(
                                     fontSize: 12,

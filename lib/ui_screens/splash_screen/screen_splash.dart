@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/themes.dart';
-import 'package:places/ui_interactors/init_interactor.dart';
+import 'package:places/ui_screens/splash_screen/screen_splash_vm.dart';
 
 /// Экран-заставка во время загрузки
 class ScreenSplash extends StatefulWidget {
@@ -13,11 +13,12 @@ class ScreenSplash extends StatefulWidget {
 }
 
 class _ScreenSplashState extends State<ScreenSplash> {
+  late final ScreenSplashVM _viewModel;
+
   @override
   void initState() {
-    // просто вызов статического метода
-    InitInteractor.initAppAndThenChangeScreen(context);
     super.initState();
+    _viewModel = ScreenSplashVM(context: context);
   }
 
   @override

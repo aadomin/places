@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/widget_empty_list.dart';
-import 'package:places/ui_blocs/visited_and_favorite_screen_cubit.dart';
+import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_favorite_and_visited_cubit.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:provider/provider.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:provider/provider.dart';
-import 'package:places/ui_interactors/selection_category_interactor.dart';
+import 'package:places/ui_screens/select_category_screen/screen_selection_category_vm.dart';
 
 /// Экран "Выбор категории"
 class ScreenSelectionCategory extends StatefulWidget {
@@ -17,13 +17,13 @@ class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
   void initState() {
     super.initState();
     // тут вопрос
-    context.read<SelectionCategoryInteractor>().init();
+    context.read<SelectionCategoryVM>().init();
   }
 
   @override
   Widget build(BuildContext context) {
     final _categories =
-        context.watch<SelectionCategoryInteractor>().allCategories;
+        context.watch<SelectionCategoryVM>().allCategories;
 
     return Scaffold(
       appBar: AppBar(
@@ -68,7 +68,7 @@ class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
               return ListTile(
                 onTap: () {
                   context
-                      .read<SelectionCategoryInteractor>()
+                      .read<SelectionCategoryVM>()
                       .toggleCategorySelection(item.value.name);
                 },
                 title: Text(item.value.name),
@@ -88,7 +88,7 @@ class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
           child: ElevatedButton(
             onPressed: () {
               final _selectedCategory =
-                  context.read<SelectionCategoryInteractor>().selectedCategory;
+                  context.read<SelectionCategoryVM>().selectedCategory;
               Navigator.pop(context, _selectedCategory);
             },
             child: const Padding(

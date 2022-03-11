@@ -5,8 +5,8 @@ import 'package:places/ui_commons/ui_strings.dart';
 ///
 /// Интерактор выбора категории
 ///
-class SelectionCategoryInteractor with ChangeNotifier {
-  SelectionCategoryInteractor({
+class SelectionCategoryVM with ChangeNotifier {
+  SelectionCategoryVM({
     this.selectedCategory = UiStrings.notSelected,
   }) {
     init();

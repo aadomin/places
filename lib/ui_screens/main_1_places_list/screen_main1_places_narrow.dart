@@ -59,15 +59,15 @@ class ScreenMain1PlacesNarrow extends StatelessWidget {
                       },
                       onAddToWished: () {
                         if (filteredPlacesSnapshot[i].wished) {
-                          placeInteractor.removeFromFavorites(
+                          placeVM.removeFromFavorites(
                               filteredPlacesSnapshot[i].id);
                         } else {
-                          placeInteractor
+                          placeVM
                               .addToFavorites(filteredPlacesSnapshot[i].id);
                         }
                       },
                       onDeleteAtAll: () {
-                        placeInteractor
+                        placeVM
                             .removeAtAll(filteredPlacesSnapshot[i].id);
                       },
                     ),

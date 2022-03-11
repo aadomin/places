@@ -31,27 +31,27 @@ class PlaceRepository {
     );
     dio = Dio(baseOptions);
 
-    dio.interceptors.add(
-      InterceptorsWrapper(
-        onRequest: (options, handler) {
-          print(
-            'Запрос: ${options.method} ${options.path} ${options.queryParameters}',
-          );
-          return handler.next(options);
-        },
-        onResponse: (response, handler) {
-          print('Ответ получен ${response.data.toString().substring(0, 100)} ');
-          return handler.next(response);
-        },
-        onError: (DioError e, handler) {
-          NetworkException(
-            queryPath: '',
-            errorName: 'dio error',
-          );
-          return handler.next(e);
-        },
-      ),
-    );
+    // dio.interceptors.add(
+    //   InterceptorsWrapper(
+    //     onRequest: (options, handler) {
+    //       print(
+    //         'Запрос: ${options.method} ${options.path} ${options.queryParameters}',
+    //       );
+    //       return handler.next(options);
+    //     },
+    //     onResponse: (response, handler) {
+    //       print('Ответ получен ${response.data.toString().substring(0, 100)} ');
+    //       return handler.next(response);
+    //     },
+    //     onError: (DioError e, handler) {
+    //       NetworkException(
+    //         queryPath: '',
+    //         errorName: 'dio error',
+    //       );
+    //       return handler.next(e);
+    //     },
+    //   ),
+    // );
   }
 
   /// 

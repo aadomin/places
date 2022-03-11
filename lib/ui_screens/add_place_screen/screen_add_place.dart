@@ -12,7 +12,7 @@ import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_screens/add_place_screen/widget_small_category_header.dart';
 import 'package:places/ui_screens/add_place_screen/dialog_add_photo.dart';
 import 'package:places/ui_widgets_commons/widget_my_image.dart';
-import 'package:places/ui_interactors/place_interactor.dart';
+import 'package:places/domain_entities/place_vm.dart';
 
 ///
 /// Экран - Добавить место
@@ -46,7 +46,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
   @override
   Widget build(BuildContext context) {
     //+
-    _listOfPhotos = context.watch<PlaceInteractor>().listOfPhotos;
+    _listOfPhotos = context.watch<PlaceVM>().listOfPhotos;
 
     //+
 
@@ -483,7 +483,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
 
   void onTapOnSave() {
     if (keyFormAddPlace.currentState?.validate() ?? false) {
-      context.read<PlaceInteractor>().addNewPlace(
+      context.read<PlaceVM>().addNewPlace(
             name: textControllerName.text,
             lat: double.parse(textControllerLat.text),
             lon: double.parse(textControllerLon.text),

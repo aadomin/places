@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/main.dart';
-import 'package:places/ui_blocs/visited_and_favorite_screen_state.dart';
+import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_favorite_and_visited_state.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_favorite_and_visited.dart';
-import 'package:places/ui_blocs/visited_and_favorite_screen_cubit.dart';
+import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_favorite_and_visited_cubit.dart';
 import 'package:places/ui_widgets_commons/widget_network_error.dart';
 
 /// Экран 3. Список избранных и посещенных мест.
@@ -34,7 +34,7 @@ class _ScreenMain3FavoriteAndVisitedRouteState
       child: BlocBuilder<VisitedAndFavoriteScreenCubit,
           VisitedAndFavoriteScreenState>(
         builder: (context, state) {
-          if (placeInteractor.isRequestDoneWithError) {
+          if (placeVM.isRequestDoneWithError) {
             return const Scaffold(
               body: WidgetNetworkError(),
             );

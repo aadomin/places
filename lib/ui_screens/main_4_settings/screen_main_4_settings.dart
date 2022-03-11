@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/ui_strings.dart';
+import 'package:places/ui_screens/main_4_settings/screen_main_4_settings_vm.dart';
 import 'package:provider/provider.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
-import 'package:places/ui_interactors/settings_interactor.dart';
 
 /// Экран 4. Настройки
 /// Четвертый из четырех главных экранов, доступных по нажатию на
@@ -19,6 +19,22 @@ class ScreenMain4Settings extends StatefulWidget {
 }
 
 class _ScreenMain4SettingsState extends State<ScreenMain4Settings> {
+  late final __viewModel = ScreenMain4SettingsVM(context: context);
+
+  @override
+  void initState() {
+    super.initState();
+    __viewModel.addListener(_vmListener);
+  }
+
+  void _vmListener() => setState(() {});
+
+  @override
+  void dispose() {
+    __viewModel.removeListener(_vmListener);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +65,7 @@ class _ScreenMain4SettingsState extends State<ScreenMain4Settings> {
             // Темная тема
             //
             ListTile(
-              onTap: onTapOnThemeSwitchTile,
+              onTap: __viewModel.onTapOnThemeSwitchTile,
               title: Text(
                 UiStrings.darkTheme,
                 style: TextStyle(
@@ -57,9 +73,9 @@ class _ScreenMain4SettingsState extends State<ScreenMain4Settings> {
                 ),
               ),
               trailing: CupertinoSwitch(
-                value: context.watch<SettingsInteractor>().isDarkThemeOn,
+                value: __viewModel.isDarkThemeOn,
                 onChanged: (currentValue) {
-                  onTapOnThemeSwitch();
+                  __viewModel.onTapOnThemeSwitch();
                 },
               ),
             ),
@@ -83,23 +99,11 @@ class _ScreenMain4SettingsState extends State<ScreenMain4Settings> {
                   color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
-              onTap: onTapOnTutorialLink,
+              onTap: __viewModel.onTapOnTutorialLink,
             ),
           ],
         ),
       ),
     );
-  }
-
-  void onTapOnTutorialLink() {
-    Navigator.of(context).pushNamed(ROUTE_ONBOARDING);
-  }
-
-  void onTapOnThemeSwitch() {
-    context.read<SettingsInteractor>().changeTheme();
-  }
-
-  void onTapOnThemeSwitchTile() {
-    context.read<SettingsInteractor>().changeTheme();
   }
 }

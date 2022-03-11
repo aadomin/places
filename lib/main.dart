@@ -8,19 +8,18 @@ import 'package:places/data_repositories/search_repository.dart';
 import 'package:places/domain_entities/geo_entity.dart';
 import 'package:places/domain_entities/place_entity.dart';
 import 'package:places/domain_entities/search_entity.dart';
-import 'package:places/ui_blocs/my_bloc_observer.dart';
+import 'package:places/ui_commons/my_bloc_observer.dart';
 import 'package:places/my_app_and_routes.dart';
-import 'package:places/ui_interactors/place_interactor.dart';
-import 'package:places/ui_interactors/settings_interactor.dart';
-import 'package:places/ui_interactors/filter_interactor.dart';
-import 'package:places/ui_interactors/search_interactor.dart';
+import 'package:places/domain_entities/place_vm.dart';
+
+import 'package:places/ui_screens/filter_screen/screen_filter_vm.dart';
+import 'package:places/domain_entities/search_entitiy2.dart';
 import 'package:places/data_repositories/settings_repository.dart';
 import 'package:places/domain_entities/settings_entity.dart';
 
-late final SettingsInteractor settingsInteractor;
-late final FilterInteractor filterInteractor;
-late final PlaceInteractor placeInteractor;
-late final SearchInteractor searchInteractor;
+late final FilterVM filterVM;
+late final PlaceVM placeVM;
+late final SearchEntity2 searchVM;
 
 late final SettingsEntity settingsEntity;
 late final GeoEntity geoEntity;
@@ -40,9 +39,9 @@ void main() {
   final placeRepository = PlaceRepository();
   placeEntity = PlaceEntity(placeRepository: placeRepository);
 
-  filterInteractor = FilterInteractor();
-  placeInteractor = PlaceInteractor();
-  searchInteractor = SearchInteractor();
+  placeVM = PlaceVM();
+  filterVM = FilterVM(placeVM: placeVM);
+  searchVM = SearchEntity2();
 
   Bloc.observer = MyBlocObserver();
 
@@ -58,28 +57,19 @@ class MyAppProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<SettingsInteractor>(
+        ChangeNotifierProvider(
           create: (context) {
-            settingsInteractor = SettingsInteractor();
-            return settingsInteractor;
+            return filterVM;
           },
         ),
         ChangeNotifierProvider(
           create: (context) {
-            return filterInteractor;
+            return placeVM;
           },
         ),
         ChangeNotifierProvider(
-          create: (context) {
-            return placeInteractor;
-          },
+          create: (context) => SearchEntity2(),
         ),
-        ChangeNotifierProvider(
-          create: (context) => SearchInteractor(),
-        ),
-        // ChangeNotifierProvider(
-        //   create: (context) => SelectionCategoryInteractor(),
-        // ),
       ],
       child: const MyAppAndRoutes(),
     );
