@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_entities/hard_work_entity.dart';
+import 'package:places/domain_entities/hardwork_services.dart';
 import 'package:places/my_app_and_routes.dart';
+import 'package:provider/provider.dart';
 
 ///
 /// Имитация загрузки приложения
@@ -14,13 +15,11 @@ class ScreenSplashVM with ChangeNotifier {
 
   BuildContext context;
 
-  // TODO(me): context
-  ///
   /// Инициализация, одновременно с этим задержка
   /// и после переход к другому экрану
   ///
   // ignore: avoid_void_async
-  static void initAppAndThenChangeScreen(BuildContext context) async {
+  void initAppAndThenChangeScreen(BuildContext context) async {
     print('starting of application');
     final _delayProcess = _doDelayForBeautifulChangeScreen();
     await _doInitializeApp();
@@ -31,16 +30,18 @@ class ScreenSplashVM with ChangeNotifier {
   ///
   /// Процедура загрузки
   ///
-  static Future<void> _doInitializeApp() async {
+  Future<void> _doInitializeApp() async {
     print('loading started at: ${DateTime.now()}');
-    HardWorkEntity.hardWork();
+
+    context.read<HardworkServices>().hardWork();
+
     print('loading done at: ${DateTime.now()}');
   }
 
   ///
   /// Задержка для красоты (если загрузка выполнилась меньше чем за 2 секунды)
   ///
-  static Future<bool> _doDelayForBeautifulChangeScreen() async {
+  Future<bool> _doDelayForBeautifulChangeScreen() async {
     print('delaying started at: ${DateTime.now()}');
     await Future<dynamic>.delayed(const Duration(seconds: 2));
     print('delaying done at: ${DateTime.now()}');

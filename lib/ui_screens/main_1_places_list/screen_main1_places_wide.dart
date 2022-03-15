@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:places/domain_entities/place_entity.dart';
 import 'package:places/domain_models/place.dart';
-import 'package:places/main.dart';
 import 'package:places/ui_screens/main_1_places_list/widget_my_sliver_app_bar.dart';
 import 'package:places/ui_screens/main_1_places_list/widget_new_place_button.dart';
 import 'package:places/ui_screens/main_1_places_list/widget_searching_header.dart';
@@ -9,6 +8,7 @@ import 'package:places/ui_screens/place_details_screen/screen_place_details.dart
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_widgets_commons/widget_place_card.dart';
+import 'package:provider/provider.dart';
 
 /// Экран 1. Список мест - широкий вариант в два столбца
 /// Первый из четырех главных экранов, доступных по нажатию на
@@ -66,15 +66,17 @@ class ScreenMain1PlacesWide extends StatelessWidget {
                         },
                         onAddToWished: () {
                           if (filteredPlacesSnapshot[i].wished) {
-                            placeVM.removeFromFavorites(
+                            context.read<PlaceEntity>().removeFromFavorites(
                                 filteredPlacesSnapshot[i].id);
                           } else {
-                            placeVM
+                            context
+                                .read<PlaceEntity>()
                                 .addToFavorites(filteredPlacesSnapshot[i].id);
                           }
                         },
                         onDeleteAtAll: () {
-                          placeVM
+                          context
+                              .read<PlaceEntity>()
                               .removeAtAll(filteredPlacesSnapshot[i].id);
                         },
                       ),

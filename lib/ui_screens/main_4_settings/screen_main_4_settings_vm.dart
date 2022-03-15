@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:places/main.dart';
+import 'package:places/domain_entities/settings_entity.dart';
 import 'package:places/my_app_and_routes.dart';
+import 'package:provider/provider.dart';
 
 class ScreenMain4SettingsVM with ChangeNotifier {
   ScreenMain4SettingsVM({
     required this.context,
   }) {
-    settingsEntity.addListener(_settingsEntityListener);
+    context.read<SettingsEntity>().addListener(_settingsEntityListener);
+    
   }
 
   void _settingsEntityListener() => notifyListeners();
 
   BuildContext context;
 
-  bool get isDarkThemeOn => settingsEntity.isDarkThemeOn;
+  bool get isDarkThemeOn => context.read<SettingsEntity>().isDarkThemeOn;
 
   void onTapOnTutorialLink() {
     Navigator.of(context).pushNamed(ROUTE_ONBOARDING);
@@ -28,6 +30,6 @@ class ScreenMain4SettingsVM with ChangeNotifier {
   }
 
   void _changeTheme() {
-    settingsEntity.changeTheme();
+    context.read<SettingsEntity>().changeTheme();
   }
 }

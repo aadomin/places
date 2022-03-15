@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:places/domain_entities/place_entity.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/main.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_favorite_and_visited_state.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_favorite_and_visited.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_favorite_and_visited_cubit.dart';
 import 'package:places/ui_widgets_commons/widget_network_error.dart';
+import 'package:provider/provider.dart';
 
 /// Экран 3. Список избранных и посещенных мест.
 /// Третий из четырех главных экранов, доступных по нажатию на
@@ -30,11 +32,12 @@ class _ScreenMain3FavoriteAndVisitedRouteState
           visitedPlaces: [Place(id: 0)],
           favoritePlaces: [Place(id: 0)],
         ),
+        context: context,
       )..init(),
       child: BlocBuilder<VisitedAndFavoriteScreenCubit,
           VisitedAndFavoriteScreenState>(
         builder: (context, state) {
-          if (placeVM.isRequestDoneWithError) {
+          if (context.watch<PlaceEntity>().isRequestDoneWithError) {
             return const Scaffold(
               body: WidgetNetworkError(),
             );

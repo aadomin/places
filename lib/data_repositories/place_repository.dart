@@ -1,62 +1,25 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:places/data_other/exceptions.dart';
-import 'package:places/mocks.dart';
+import 'package:places/data_other/mocks.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/main.dart';
-
-late final Dio dio;
 
 ///
 /// Обеспечивает хранение мест
 ///
 class PlaceRepository {
-  PlaceRepository() {
-    init();
-  }
+  PlaceRepository({
+    required this.dio,
+  });
+
+  final Dio dio;
 
   bool isRequestDoneWithError = false;
 
-  //
-  // Загрузка
-  //
-  void init() {
-    final baseOptions = BaseOptions(
-      baseUrl: 'https://test-backend-flutter.surfstudio.ru',
-      connectTimeout: 5000,
-      receiveTimeout: 5000,
-      sendTimeout: 5000,
-      // ignore: avoid_redundant_argument_values
-      responseType: ResponseType.json,
-    );
-    dio = Dio(baseOptions);
-
-    // dio.interceptors.add(
-    //   InterceptorsWrapper(
-    //     onRequest: (options, handler) {
-    //       print(
-    //         'Запрос: ${options.method} ${options.path} ${options.queryParameters}',
-    //       );
-    //       return handler.next(options);
-    //     },
-    //     onResponse: (response, handler) {
-    //       print('Ответ получен ${response.data.toString().substring(0, 100)} ');
-    //       return handler.next(response);
-    //     },
-    //     onError: (DioError e, handler) {
-    //       NetworkException(
-    //         queryPath: '',
-    //         errorName: 'dio error',
-    //       );
-    //       return handler.next(e);
-    //     },
-    //   ),
-    // );
-  }
-
-  /// 
+  ///
   /// Загружает все места и возвращает их
-  /// 
+  ///
   Future<List<Place>> getAllPlaces() async {
     if (isDebugMockDataInPlaceOfHttp) {
       await Future<dynamic>.delayed(const Duration(seconds: 3));
@@ -94,9 +57,9 @@ class PlaceRepository {
     }
   }
 
-  /// 
+  ///
   /// Распарсить результат с сервера - Места
-  /// 
+  ///
   List<Place> _parsePlaces(String rawJson) {
     final List postListJson = jsonDecode(rawJson) as List;
     return postListJson

@@ -5,8 +5,8 @@ import 'package:places/data_repositories/geo_repository.dart';
 /// Доменный слой приложения. Базовая бизнес-логика
 /// Геолокация
 ///
-class GeoEntity {
-  GeoEntity({
+class GeoServices {
+  GeoServices({
     required this.geoRepository,
   });
 

@@ -1,8 +1,10 @@
 import 'dart:math';
 
-class HardWorkEntity {
+import 'package:flutter/material.dart';
+
+class HardworkServices with ChangeNotifier {
   /// имитация сложной загрузки
-  static void hardWork() {
+  void hardWork() {
     print('Hard work started');
 
     List<String> list = [];

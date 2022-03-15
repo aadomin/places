@@ -10,7 +10,7 @@ import 'package:places/ui_widgets_commons/widget_textfield_clear_button.dart';
 import 'package:provider/provider.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/ui_strings.dart';
-import 'package:places/domain_entities/search_entitiy2.dart';
+import 'package:places/domain_entities/search_entity.dart';
 
 /// Экран "Поиск"
 class PlaceSearchScreen extends StatelessWidget {
@@ -49,7 +49,7 @@ class PlaceSearchScreen extends StatelessWidget {
                   autofocus: true,
                   controller: textController,
                   onChanged: (String value) {
-                    context.read<SearchEntity2>().searchPlaces(value);
+                    context.read<SearchEntity>().searchPlaces(value);
                   },
                   style: TextStyle(
                     color: Theme.of(context).primaryColorLight,
@@ -74,7 +74,7 @@ class PlaceSearchScreen extends StatelessWidget {
                     suffixIcon: WidgetTextFieldClearButton(
                       textController: textController,
                       onTap: () {
-                        searchVM.searchPlaces('');
+                        context.watch<SearchEntity>().searchPlaces('');
                       },
                     ),
                   ),
@@ -84,16 +84,16 @@ class PlaceSearchScreen extends StatelessWidget {
             //
             // Основная страница
             //
-            if (context.watch<SearchEntity2>().searchStatus ==
+            if (context.watch<SearchEntity>().searchStatus ==
                 SearchStatus.haveResult)
               const WidgetSearchResult(),
-            if (context.watch<SearchEntity2>().searchStatus ==
+            if (context.watch<SearchEntity>().searchStatus ==
                 SearchStatus.empty)
               WidgetSearchEmpty(
                 textController: textController,
                 keyOfSearchTextField: keyOfSearchTextField,
               ),
-            if (context.watch<SearchEntity2>().searchStatus ==
+            if (context.watch<SearchEntity>().searchStatus ==
                 SearchStatus.notFound)
               const WidgetSearchNotFound(),
           ],

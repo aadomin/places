@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
-import 'package:places/domain_entities/place_vm.dart';
+import 'package:places/domain_entities/place_entity.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui_commons/ui_strings.dart';
@@ -32,7 +32,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
   @override
   Widget build(BuildContext context) {
     final Place sight =
-        context.watch<PlaceVM>().getPlaceDetails(widget.placeId);
+        context.watch<PlaceEntity>().getPlaceDetails(widget.placeId);
     final int _countOfPages = sight.url.length;
 
     return Padding(
@@ -235,7 +235,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                             TextButton(
                               onPressed: () {
                                 context
-                                    .read<PlaceVM>()
+                                    .read<PlaceEntity>()
                                     .schedulePlace(context, sight.id);
                               },
                               child: Padding(
@@ -265,12 +265,12 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                               onPressed: sight.wished
                                   ? () {
                                       context
-                                          .read<PlaceVM>()
+                                          .read<PlaceEntity>()
                                           .removeFromFavorites(sight.id);
                                     }
                                   : () {
                                       context
-                                          .read<PlaceVM>()
+                                          .read<PlaceEntity>()
                                           .addToFavorites(sight.id);
                                     },
                               child: Padding(

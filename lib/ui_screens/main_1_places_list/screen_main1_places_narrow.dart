@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/domain_entities/place_entity.dart';
 
 import 'package:places/domain_models/place.dart';
 import 'package:places/main.dart';
@@ -9,6 +10,7 @@ import 'package:places/ui_screens/place_details_screen/screen_place_details.dart
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_widgets_commons/widget_place_card.dart';
+import 'package:provider/provider.dart';
 
 /// Экран 1. Список мест - узкий вариант
 /// Первый из четырех главных экранов, доступных по нажатию на
@@ -59,16 +61,14 @@ class ScreenMain1PlacesNarrow extends StatelessWidget {
                       },
                       onAddToWished: () {
                         if (filteredPlacesSnapshot[i].wished) {
-                          placeVM.removeFromFavorites(
+                          context.read<PlaceEntity>().removeFromFavorites(
                               filteredPlacesSnapshot[i].id);
                         } else {
-                          placeVM
-                              .addToFavorites(filteredPlacesSnapshot[i].id);
+                          context.read<PlaceEntity>().addToFavorites(filteredPlacesSnapshot[i].id);
                         }
                       },
                       onDeleteAtAll: () {
-                        placeVM
-                            .removeAtAll(filteredPlacesSnapshot[i].id);
+                        context.read<PlaceEntity>().removeAtAll(filteredPlacesSnapshot[i].id);
                       },
                     ),
                   ),
