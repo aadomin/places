@@ -136,7 +136,7 @@ class PlaceEntity with ChangeNotifier {
 
   /// Возвращает конкретное место (детали)
   Place getPlaceDetails(int id) {
-    return allPlaces[indexOfPlaceInAllById(id)];
+    return allPlaces[_indexOfPlaceInAllById(id)];
   }
 
   /// Возвращает массив избранных мест
@@ -148,36 +148,36 @@ class PlaceEntity with ChangeNotifier {
 
   /// Удаляет место из избранных
   void removeFromFavorites(int id) {
-    allPlaces[indexOfPlaceInAllById(id)].wished = false;
+    allPlaces[_indexOfPlaceInAllById(id)].wished = false;
     notifyListeners();
   }
 
   /// Удаляет место из посещенных
   void removeFromVisited(int id) {
-    allPlaces[indexOfPlaceInAllById(id)].seen = false;
+    allPlaces[_indexOfPlaceInAllById(id)].seen = false;
     notifyListeners();
   }
 
   /// Удаляет совсем
   void removeAtAll(int id) {
-    allPlaces.removeAt(indexOfPlaceInAllById(id));
+    allPlaces.removeAt(_indexOfPlaceInAllById(id));
     notifyListeners();
   }
 
   /// Добавляет место в избранные
   void addToFavorites(int id) {
-    allPlaces[indexOfPlaceInAllById(id)].wished = true;
+    allPlaces[_indexOfPlaceInAllById(id)].wished = true;
     notifyListeners();
   }
 
   /// Добавляет место в посещенные
   void addToVisitedPlaces(int id) {
-    allPlaces[indexOfPlaceInAllById(id)].seen = true;
+    allPlaces[_indexOfPlaceInAllById(id)].seen = true;
     notifyListeners();
   }
 
   /// Возвращает индекс места в массиве по его ID
-  int indexOfPlaceInAllById(int id) {
+  int _indexOfPlaceInAllById(int id) {
     for (var i = 0; i < allPlaces.length; i++) {
       if (allPlaces[i].id == id) {
         return i;

@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/main_4_settings/screen_main_4_settings_vm.dart';
-import 'package:provider/provider.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 
 /// Экран 4. Настройки
@@ -12,14 +10,18 @@ import 'package:places/ui_commons/ui_image_paths.dart';
 /// BottomNavigationBar.
 ///
 class ScreenMain4Settings extends StatefulWidget {
-  const ScreenMain4Settings({Key? key}) : super(key: key);
+  const ScreenMain4Settings({
+    required this.viewModel,
+    Key? key,
+  }) : super(key: key);
+  final ScreenMain4SettingsVM viewModel;
 
   @override
   _ScreenMain4SettingsState createState() => _ScreenMain4SettingsState();
 }
 
 class _ScreenMain4SettingsState extends State<ScreenMain4Settings> {
-  late final __viewModel = ScreenMain4SettingsVM(context: context);
+  ScreenMain4SettingsVM get __viewModel => widget.viewModel;
 
   @override
   void initState() {
