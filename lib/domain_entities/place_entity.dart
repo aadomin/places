@@ -38,7 +38,7 @@ class PlaceEntity with ChangeNotifier {
     if (!isRequestDoneWithError) {
       loadedAllPlaces = _loaded;
     }
-    updateDistancesFromAllPlacesToUser();
+    _updateDistancesFromAllPlacesToUser();
     isLoading = false;
     notifyListeners();
   }
@@ -65,7 +65,7 @@ class PlaceEntity with ChangeNotifier {
         .toList();
 
     // filtering and sorting
-    updateDistancesFromAllPlacesToUser();
+    _updateDistancesFromAllPlacesToUser();
     final List<Place> _filteredAndSortedPlacesList = loadedAllPlaces
         .where((element) => _selectedCategories
             .any((e) => element.type.toLowerCase() == e.toLowerCase()))
@@ -78,7 +78,7 @@ class PlaceEntity with ChangeNotifier {
   }
 
   /// Обновляет расстояния от объекта до пользователя
-  void updateDistancesFromAllPlacesToUser() {
+  void _updateDistancesFromAllPlacesToUser() {
     loadedAllPlaces = loadedAllPlaces.map((place) {
       place.currentDistanceToUser = geoEntity.distanceFromPointToUser(
         lat: place.lat,
