@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/my_app_and_routes.dart';
+import 'package:places/ui_screens/add_place_screen/screen_add_place_vm.dart';
 import 'package:places/ui_screens/add_place_screen/widget_new_place_app_bar.dart';
 import 'package:places/ui_widgets_commons/widget_bottom_button.dart';
 import 'package:places/ui_widgets_commons/widget_textfield_clear_button.dart';
@@ -18,7 +19,12 @@ import 'package:places/domain_entities/place_entity.dart';
 /// Экран - Добавить место
 ///
 class ScreenAddPlace extends StatefulWidget {
-  const ScreenAddPlace({Key? key}) : super(key: key);
+  const ScreenAddPlace({
+    required this.viewModel,
+    Key? key,
+  }) : super(key: key);
+
+  final ScreenAddPlaceVM viewModel;
   @override
   _ScreenAddPlaceState createState() => _ScreenAddPlaceState();
 }
@@ -35,6 +41,9 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
   final textControllerDescription = TextEditingController();
 
   //+
+  ScreenAddPlaceVM get __viewModel => widget.viewModel;
+
+  //+
   List<String> _listOfPhotos = [];
 
   final keyFormAddPlace = GlobalKey<FormState>();
@@ -46,7 +55,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
   @override
   Widget build(BuildContext context) {
     //+
-    _listOfPhotos = context.watch<PlaceEntity>().listOfPhotos;
+    _listOfPhotos = __viewModel.listOfPhotos;
 
     //+
 

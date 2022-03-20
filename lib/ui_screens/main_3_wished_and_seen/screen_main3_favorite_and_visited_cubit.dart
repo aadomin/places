@@ -35,7 +35,7 @@ class VisitedAndFavoriteScreenCubit
         visitedPlaces: context.read<PlaceEntity>().getVisitedPlaces,
       );
 
-  Future<void> schedulePlace(BuildContext context, int id) async {
+  Future<void> showPopupSchedulePlace(BuildContext context, int id) async {
     late final DateTime? _result;
     if (PlatformDetector.isAndroid || PlatformDetector.isWeb) {
       _result = await showDatePicker(

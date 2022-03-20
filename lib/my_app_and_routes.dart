@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/my_app_and_routes_vm.dart';
-import 'package:places/ui_screens/add_place_screen/screen_add_place_route.dart';
+import 'package:places/ui_screens/add_place_screen/screen_add_place_di.dart';
 import 'package:places/ui_screens/select_category_screen/screen_selection_category_route.dart';
 import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_screens/onboarding_screen/screen_onboarding.dart';
@@ -57,7 +57,7 @@ class _MyAppAndRoutesState extends State<MyAppAndRoutes> {
       routes: {
         ROUTE_HOME: (context) => const ScreenAllMain(),
         ROUTE_FILTER: (context) => const ScreenFilter(),
-        ROUTE_ADD: (context) => const ScreenAddPlaceRoute(),
+        ROUTE_ADD: (context) => createScreenAddPlace(context: context),
         ROUTE_SELECT_CATEGORY: (context) =>
             const ScreenSelectionCategoryRoute(),
         ROUTE_SEARCH: (context) => PlaceSearchScreen(),

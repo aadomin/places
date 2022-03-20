@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 class MyAppAndRoutesVM with ChangeNotifier {
   MyAppAndRoutesVM({required this.context}) {
+    // Здесь для сравнения DI на месте
     context.read<SettingsEntity>().addListener(_settingsEntityListener);
   }
 

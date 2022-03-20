@@ -31,9 +31,9 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
 
   @override
   Widget build(BuildContext context) {
-    final Place sight =
+    final Place __sight =
         context.watch<PlaceEntity>().getPlaceDetails(widget.placeId);
-    final int _countOfPages = sight.url.length;
+    final int _countOfPages = __sight.url.length;
 
     return Padding(
       padding: const EdgeInsets.only(top: 100),
@@ -70,7 +70,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                               height: 300,
                               width: 300,
                               child: WidgetMyImage(
-                                url: sight.url[i],
+                                url: __sight.url[i],
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -135,7 +135,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                         alignment: Alignment.topLeft,
                         padding: const EdgeInsets.only(bottom: 2),
                         child: Text(
-                          sight.name,
+                          __sight.name,
                           style: TextStyle(
                             fontSize: 26,
                             fontWeight: FontWeight.bold,
@@ -151,7 +151,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                         child: Row(
                           children: [
                             Text(
-                              sight.type,
+                              __sight.type,
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.grey.shade700,
@@ -178,7 +178,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                         alignment: Alignment.topLeft,
                         margin: const EdgeInsets.only(top: 24),
                         child: Text(
-                          sight.details,
+                          __sight.details,
                           style: TextStyle(
                             color: Theme.of(context).primaryColorLight,
                           ),
@@ -236,7 +236,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                               onPressed: () {
                                 context
                                     .read<PlaceEntity>()
-                                    .schedulePlace(context, sight.id);
+                                    .showPopupSchedulePlace(context, __sight.id);
                               },
                               child: Padding(
                                 padding: const EdgeInsets.only(
@@ -262,16 +262,16 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                             // Кнопка В избранное
                             //
                             TextButton(
-                              onPressed: sight.wished
+                              onPressed: __sight.wished
                                   ? () {
                                       context
                                           .read<PlaceEntity>()
-                                          .removeFromFavorites(sight.id);
+                                          .removeFromFavorites(__sight.id);
                                     }
                                   : () {
                                       context
                                           .read<PlaceEntity>()
-                                          .addToFavorites(sight.id);
+                                          .addToFavorites(__sight.id);
                                     },
                               child: Padding(
                                 padding: const EdgeInsets.only(
@@ -280,7 +280,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                                   children: [
                                     //ignore: prefer_if_elements_to_conditional_expressions
                                     SvgPicture.asset(
-                                      sight.wished
+                                      __sight.wished
                                           ? UiImagePaths.heart_filled
                                           : UiImagePaths.heart,
                                       height: 12,
@@ -288,7 +288,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                                     ),
 
                                     Text(
-                                      sight.wished
+                                      __sight.wished
                                           ? '  ${UiStrings.removeFromFavorites}'
                                           : '  ${UiStrings.addToFavorites}',
                                       style: const TextStyle(

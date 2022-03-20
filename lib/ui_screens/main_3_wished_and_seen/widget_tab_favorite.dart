@@ -64,7 +64,7 @@ class _WidgetTabFavoriteState extends State<WidgetTabFavorite> {
                           onAddToCalendar: () {
                             context
                                 .read<VisitedAndFavoriteScreenCubit>()
-                                .schedulePlace(
+                                .showPopupSchedulePlace(
                                   context,
                                   i.value.id,
                                 );

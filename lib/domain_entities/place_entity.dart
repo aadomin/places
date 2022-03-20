@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/data_repositories/place_repository.dart';
 import 'package:places/domain_entities/geo_services.dart';
-import 'package:places/main.dart';
 import 'package:places/domain_models/category_item.dart';
 import 'package:places/ui_commons/platform_detector.dart';
 import 'package:places/domain_models/place.dart';
@@ -18,56 +17,42 @@ class PlaceEntity with ChangeNotifier {
     required this.placeRepository,
     required this.geoEntity,
   }) {
-    init();
-    initPlaces(); //асинхронная
+    init(); //асинхронная
   }
   PlaceRepository placeRepository;
   GeoServices geoEntity;
 
-  void init() {
-    // че-то тут не то
-    needToBeReloaded = true;
-    _loadPlacesIfNeed();
+  bool isLoading = true;
+  List<Place> loadedAllPlaces = [];
+
+  /// Инициализация интерактора
+  Future<void> init() async {
+    await _loadAllPlaces();
   }
 
-  /// загрузить место
-  Future<void> _loadPlacesIfNeed() async {
-    itIsLoading = true;
-    if (needToBeReloaded == true) {
-      loadedPlaces = await placeRepository.getAllPlaces();
-      needToBeReloaded = false;
+  /// загрузить все места
+  Future<void> _loadAllPlaces() async {
+    isLoading = true;
+    notifyListeners();
+    final _loaded = await placeRepository.getAllPlaces();
+    if (!isRequestDoneWithError) {
+      loadedAllPlaces = _loaded;
     }
-    itIsLoading = false;
+    updateDistancesToUserFromAllPlaces();
+    isLoading = false;
+    notifyListeners();
   }
 
-  bool itIsLoading = false;
-  bool needToBeReloaded = true;
-  List<Place> loadedPlaces = [];
+  /// перезагрузить все места
+  Future<void> _reloadAllPlaces() async {
+    await _loadAllPlaces();
+  }
 
   /// был ли последний запрос данных закончен с ошибкой
   // TODO(me): переделать
   bool get isRequestDoneWithError => placeRepository.isRequestDoneWithError;
   set isRequestDoneWithError(bool value) =>
       placeRepository.isRequestDoneWithError = value;
-
-  /// Загруженный список мест
-  List<Place> allPlaces = [];
-
-  /// Инициализация интерактора
-  Future<void> initPlaces() async {
-    needToBeReloaded = true;
-    await _loadPlacesIfNeed();
-
-    if (isRequestDoneWithError) {
-      isRequestDoneWithError = true;
-      notifyListeners();
-      return;
-    }
-
-    allPlaces = loadedPlaces;
-    updateDistancesToUser();
-    notifyListeners();
-  }
 
   /// Возвращает список мест
   List<Place> getPlaces({
@@ -80,8 +65,8 @@ class PlaceEntity with ChangeNotifier {
         .toList();
 
     // filtering and sorting
-    updateDistancesToUser();
-    final List<Place> _filteredAndSortedPlacesList = allPlaces
+    updateDistancesToUserFromAllPlaces();
+    final List<Place> _filteredAndSortedPlacesList = loadedAllPlaces
         .where((element) => _selectedCategories
             .any((e) => element.type.toLowerCase() == e.toLowerCase()))
         .toList()
@@ -93,8 +78,8 @@ class PlaceEntity with ChangeNotifier {
   }
 
   /// Обновляет расстояния от объекта до пользователя
-  void updateDistancesToUser() {
-    allPlaces = allPlaces.map((place) {
+  void updateDistancesToUserFromAllPlaces() {
+    loadedAllPlaces = loadedAllPlaces.map((place) {
       place.currentDistanceToUser = geoEntity.distanceFromPointToUser(
         lat: place.lat,
         lon: place.lon,
@@ -103,7 +88,7 @@ class PlaceEntity with ChangeNotifier {
     }).toList();
   }
 
-  // TODO(me): Переделать
+  // TODO(me): Переделать, зависимость от UiStrings
   late List<CategoryItem> _filterItemsState = [
     CategoryItem(name: UiStrings.hotel, isSelected: true),
     CategoryItem(name: UiStrings.restaurant, isSelected: true),
@@ -136,50 +121,51 @@ class PlaceEntity with ChangeNotifier {
 
   /// Возвращает конкретное место (детали)
   Place getPlaceDetails(int id) {
-    return allPlaces[_indexOfPlaceInAllById(id)];
+    return loadedAllPlaces[_indexOfPlaceInAllById(id)];
   }
 
   /// Возвращает массив избранных мест
   List<Place> get getFavoritesPlaces =>
-      allPlaces.where((s) => s.wished).toList();
+      loadedAllPlaces.where((s) => s.wished).toList();
 
   /// Возвращает массив посещенных мест
-  List<Place> get getVisitedPlaces => allPlaces.where((s) => s.seen).toList();
+  List<Place> get getVisitedPlaces =>
+      loadedAllPlaces.where((s) => s.seen).toList();
 
   /// Удаляет место из избранных
   void removeFromFavorites(int id) {
-    allPlaces[_indexOfPlaceInAllById(id)].wished = false;
+    loadedAllPlaces[_indexOfPlaceInAllById(id)].wished = false;
     notifyListeners();
   }
 
   /// Удаляет место из посещенных
   void removeFromVisited(int id) {
-    allPlaces[_indexOfPlaceInAllById(id)].seen = false;
+    loadedAllPlaces[_indexOfPlaceInAllById(id)].seen = false;
     notifyListeners();
   }
 
   /// Удаляет совсем
   void removeAtAll(int id) {
-    allPlaces.removeAt(_indexOfPlaceInAllById(id));
+    loadedAllPlaces.removeAt(_indexOfPlaceInAllById(id));
     notifyListeners();
   }
 
   /// Добавляет место в избранные
   void addToFavorites(int id) {
-    allPlaces[_indexOfPlaceInAllById(id)].wished = true;
+    loadedAllPlaces[_indexOfPlaceInAllById(id)].wished = true;
     notifyListeners();
   }
 
   /// Добавляет место в посещенные
   void addToVisitedPlaces(int id) {
-    allPlaces[_indexOfPlaceInAllById(id)].seen = true;
+    loadedAllPlaces[_indexOfPlaceInAllById(id)].seen = true;
     notifyListeners();
   }
 
   /// Возвращает индекс места в массиве по его ID
   int _indexOfPlaceInAllById(int id) {
-    for (var i = 0; i < allPlaces.length; i++) {
-      if (allPlaces[i].id == id) {
+    for (var i = 0; i < loadedAllPlaces.length; i++) {
+      if (loadedAllPlaces[i].id == id) {
         return i;
       }
     }
@@ -190,7 +176,7 @@ class PlaceEntity with ChangeNotifier {
   /// Показать окно запланировать посещение места
   /// - используется минимум двумя экранами
   ///
-  Future<void> schedulePlace(BuildContext context, int id) async {
+  Future<void> showPopupSchedulePlace(BuildContext context, int id) async {
     late final DateTime? _result;
     if (PlatformDetector.isAndroid || PlatformDetector.isWeb) {
       _result = await showDatePicker(
@@ -219,52 +205,16 @@ class PlaceEntity with ChangeNotifier {
   }
 
   ///
-  /// Добавление нового: перечень фоток
-  ///
-  List<String>? _listOfPhotos;
-
-  // TODO(me): убрать listOfInitialPhotosForAdding
-  ///
-  /// Список изначальных фоток
-  ///
-  static const List<String> listOfInitialPhotosForAdding = [
-    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-    'https://i1.wallbox.ru/wallpapers/main/201249/zdanie-starinnoe-dom-3a26bef.jpg',
-  ];
-
-  ///
-  /// Добавление нового: перечень фоток
-  ///
-  List<String> get listOfPhotos {
-    // копируем изначальный список фоток, пока для красоты
-    _listOfPhotos ??= [
-      ...listOfInitialPhotosForAdding,
-    ];
-    return _listOfPhotos ?? []; // just for null safety
-  }
-
-  ///
-  /// Добавление нового: перечень фоток
-  ///
-  set listOfPhotos(List<String> value) {
-    _listOfPhotos = value;
-  }
-
-  ///
   /// Добавление нового: функция добавления
   ///
-  void addNewPlace({
+  Future<void> addNewPlace({
     required String name,
     required double lat,
     required double lon,
     required String url,
     required String details,
     required String type,
-  }) {
+  }) async {
     final random = Random();
 
     final newPlace = Place(
@@ -277,18 +227,11 @@ class PlaceEntity with ChangeNotifier {
       id: random.nextInt(50000),
     );
 
-    _addPlace(newPlace);
-
-    // TODO(me): hasNeedToBeReloaded так себе идея конечно
-    needToBeReloaded = true;
-
-    allPlaces.add(newPlace);
-    notifyListeners();
-  }
-
-  /// добавить место
-  Future<void> _addPlace(Place newPlace) async {
-    // TODO возвращаемое значение
     await placeRepository.addPlace(newPlace);
+
+    // TODO(me): сбросить кэш и загрузить снова экраны
+
+    loadedAllPlaces.add(newPlace);
+    notifyListeners();
   }
 }
