@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:places/domain_entities/place_entity.dart';
+import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/main.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_favorite_and_visited_state.dart';
 import 'package:places/ui_commons/platform_detector.dart';
@@ -21,18 +21,18 @@ class VisitedAndFavoriteScreenCubit
   }
 
   void removeFromFavorites(int id) {
-    context.read<PlaceEntity>().removeFromFavorites(id);
+    context.read<PlacesInteractor>().removeFromFavorites(id);
     emit(_getNewState());
   }
 
   void removeFromVisited(int id) {
-    context.read<PlaceEntity>().removeFromVisited(id);
+    context.read<PlacesInteractor>().removeFromVisited(id);
     emit(_getNewState());
   }
 
   VisitedAndFavoriteScreenState _getNewState() => VisitedAndFavoriteScreenState(
-        favoritePlaces: context.read<PlaceEntity>().getFavoritesPlaces,
-        visitedPlaces: context.read<PlaceEntity>().getVisitedPlaces,
+        favoritePlaces: context.read<PlacesInteractor>().getFavoritesPlaces,
+        visitedPlaces: context.read<PlacesInteractor>().getVisitedPlaces,
       );
 
   Future<void> showPopupSchedulePlace(BuildContext context, int id) async {

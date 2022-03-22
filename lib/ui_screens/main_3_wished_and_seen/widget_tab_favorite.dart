@@ -4,6 +4,7 @@ import 'package:places/ui_screens/main_3_wished_and_seen/widget_empty_list.dart'
 import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_favorite_and_visited_cubit.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
+import 'package:places/ui_screens/place_details_screen/screen_place_details_di.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui_commons/enums.dart';
@@ -90,7 +91,8 @@ class _WidgetTabFavoriteState extends State<WidgetTabFavorite> {
     showModalBottomSheet<bool>(
       isScrollControlled: true,
       context: context,
-      builder: (_) => ScreenPlaceDetails(
+      builder: (_) => createScreenPlaceDetails(
+        context: context,
         placeId: id,
       ),
     );

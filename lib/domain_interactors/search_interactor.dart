@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:places/data_repositories/search_repository.dart';
-import 'package:places/domain_entities/history_of_search_services.dart';
+import 'package:places/domain_interactors/history_of_search_services.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/domain_models/place.dart';
-import 'package:places/domain_entities/place_entity.dart';
+import 'package:places/domain_interactors/place_interactor.dart';
 
 ///
 /// Интерактор поиска
 ///
-class SearchEntity with ChangeNotifier {
-  SearchEntity({
+class SearchInteractor with ChangeNotifier {
+  SearchInteractor({
     required this.searchRepository,
-    required this.placeInteractor,
+    required this.placesInteractor,
   });
 
   final SearchRepository searchRepository;
 
-  final PlaceEntity placeInteractor;
+  final PlacesInteractor placesInteractor;
 
   /// Результат поиска
   List<Place> _searchResult = [];
@@ -67,11 +67,11 @@ class SearchEntity with ChangeNotifier {
     if (_searchText == '') {
       searchStatus = SearchStatus.empty;
     } else {
-      for (var i = 0; i < placeInteractor.getFilteredPlaces.length; i++) {
-        if (placeInteractor.getFilteredPlaces[i].name
+      for (var i = 0; i < placesInteractor.getFilteredPlaces.length; i++) {
+        if (placesInteractor.getFilteredPlaces[i].name
             .toLowerCase()
             .contains(_searchText.toLowerCase())) {
-          result.add(placeInteractor.getFilteredPlaces[i]);
+          result.add(placesInteractor.getFilteredPlaces[i]);
         }
       }
 

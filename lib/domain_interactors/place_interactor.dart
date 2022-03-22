@@ -2,7 +2,8 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/data_repositories/place_repository.dart';
-import 'package:places/domain_entities/geo_services.dart';
+import 'package:places/domain_interactors/filter_interactor.dart';
+import 'package:places/domain_interactors/geo_services.dart';
 import 'package:places/domain_models/category_item.dart';
 import 'package:places/ui_commons/platform_detector.dart';
 import 'package:places/domain_models/place.dart';
@@ -12,15 +13,17 @@ import 'package:places/ui_widgets_commons/widget_add_to_calendar_cuper_modal.dar
 ///
 /// Интерактор списка мест
 ///
-class PlaceEntity with ChangeNotifier {
-  PlaceEntity({
-    required this.placeRepository,
-    required this.geoEntity,
+class PlacesInteractor with ChangeNotifier {
+  PlacesInteractor({
+    required this.placesRepository,
+    required this.geoServices,
+    required this.filterInteractor,
   }) {
     init(); //асинхронная
   }
-  PlaceRepository placeRepository;
-  GeoServices geoEntity;
+  final PlaceRepository placesRepository;
+  final GeoServices geoServices;
+  final FilterInteractor filterInteractor;
 
   bool isLoading = true;
   List<Place> loadedAllPlaces = [];
@@ -34,7 +37,7 @@ class PlaceEntity with ChangeNotifier {
   Future<void> _loadAllPlaces() async {
     isLoading = true;
     notifyListeners();
-    final _loaded = await placeRepository.getAllPlaces();
+    final _loaded = await placesRepository.getAllPlaces();
     if (!isRequestDoneWithError) {
       loadedAllPlaces = _loaded;
     }
@@ -50,9 +53,9 @@ class PlaceEntity with ChangeNotifier {
 
   /// был ли последний запрос данных закончен с ошибкой
   // TODO(me): переделать
-  bool get isRequestDoneWithError => placeRepository.isRequestDoneWithError;
+  bool get isRequestDoneWithError => placesRepository.isRequestDoneWithError;
   set isRequestDoneWithError(bool value) =>
-      placeRepository.isRequestDoneWithError = value;
+      placesRepository.isRequestDoneWithError = value;
 
   /// Возвращает список мест
   List<Place> getPlaces({
@@ -80,7 +83,7 @@ class PlaceEntity with ChangeNotifier {
   /// Обновляет расстояния от объекта до пользователя
   void _updateDistancesFromAllPlacesToUser() {
     loadedAllPlaces = loadedAllPlaces.map((place) {
-      place.currentDistanceToUser = geoEntity.distanceFromPointToUser(
+      place.currentDistanceToUser = geoServices.distanceFromPointToUser(
         lat: place.lat,
         lon: place.lon,
       );
@@ -107,14 +110,14 @@ class PlaceEntity with ChangeNotifier {
 
   // TODO(me): радиус
   /// радиус
-  int radius = 1000;
+  int radiusOfSearch = 1000;
 
   /// Возвращает лист мест, которые отображаются на экране "Список интересных мест"
   /// и на экране Поиска
   List<Place> get getFilteredPlaces {
     print(filterItemsState.toString());
     return getPlaces(
-      radius: radius,
+      radius: radiusOfSearch,
       categories: filterItemsState,
     );
   }
@@ -174,7 +177,7 @@ class PlaceEntity with ChangeNotifier {
 
   ///
   /// Показать окно запланировать посещение места
-  /// - используется минимум двумя экранами
+  /// - используется минимум двумя экранами PopupManager
   ///
   Future<void> showPopupSchedulePlace(BuildContext context, int id) async {
     late final DateTime? _result;
@@ -227,7 +230,7 @@ class PlaceEntity with ChangeNotifier {
       id: random.nextInt(50000),
     );
 
-    await placeRepository.addPlace(newPlace);
+    await placesRepository.addPlace(newPlace);
 
     // TODO(me): сбросить кэш и загрузить снова экраны
 
@@ -235,3 +238,36 @@ class PlaceEntity with ChangeNotifier {
     notifyListeners();
   }
 }
+
+
+// ///
+// class PlaceInteractor {
+//   PlaceInteractor(this.filterInteractor, this.placeRepository);
+
+//   final FilterInteractor filterInteractor;
+//   final PlaceRepository placeRepository;
+
+//   Future<List<Place>> loadPlaces() {
+//     return placeRepository.getAllPlaces(filterInteractor.radiusOfSearch);
+//   }
+
+//   // Future<List<Place>> loadFavoritePlaces();
+
+//   // Future<List<Place>> loadVisitedPlaces();
+
+//   // Future<List<Place>> loadPlace(int id);
+
+//   // Future<void> removeFromFavorites(int id);
+
+//   // Future<void> removeFromVisited(int id);
+
+//   // Future<void> addToFavorites(int id);
+
+//   // Future<void> addToVisited(int id);
+
+//   // Future<void> createPlace();
+
+//   // bool isRequestDoneWithError();
+
+//   // int _indexOfPlaceInAllById(int id);
+// }

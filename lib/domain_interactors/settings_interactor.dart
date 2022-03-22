@@ -5,8 +5,8 @@ import 'package:places/data_repositories/settings_repository.dart';
 /// Доменный слой приложения. Базовая бизнес-логика
 /// Настройки приложения
 ///
-class SettingsEntity with ChangeNotifier {
-  SettingsEntity({
+class SettingsInteractor with ChangeNotifier {
+  SettingsInteractor({
     required this.settingsRepository,
   });
 

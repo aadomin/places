@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_entities/place_entity.dart';
+import 'package:places/domain_interactors/place_interactor.dart';
 
 class ScreenAddPlaceVM with ChangeNotifier {
   ScreenAddPlaceVM({
@@ -10,7 +10,7 @@ class ScreenAddPlaceVM with ChangeNotifier {
   }
 
   BuildContext context;
-  final PlaceEntity placesEntity;
+  final PlacesInteractor placesEntity;
   // void _settingsEntityListener() => notifyListeners();
 
   ///

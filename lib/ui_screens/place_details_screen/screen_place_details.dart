@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
-import 'package:places/domain_entities/place_entity.dart';
+import 'package:places/domain_interactors/place_interactor.dart';
+import 'package:places/ui_screens/main_4_settings/screen_main_4_settings_vm.dart';
+import 'package:places/ui_screens/place_details_screen/screen_place_details_vm.dart';
 import 'package:provider/provider.dart';
 
 import 'package:places/ui_commons/ui_strings.dart';
@@ -15,9 +17,12 @@ import 'package:places/domain_models/place.dart';
 /// Экран "Детальная страница места"
 class ScreenPlaceDetails extends StatefulWidget {
   const ScreenPlaceDetails({
+    required this.viewModel,
     required this.placeId,
     Key? key,
   }) : super(key: key);
+
+  final ScreenPlaceDetailsVM viewModel;
   final int placeId;
 
   @override
@@ -32,7 +37,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
   @override
   Widget build(BuildContext context) {
     final Place __sight =
-        context.watch<PlaceEntity>().getPlaceDetails(widget.placeId);
+        context.watch<PlacesInteractor>().getPlaceDetails(widget.placeId);
     final int _countOfPages = __sight.url.length;
 
     return Padding(
@@ -235,8 +240,9 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                             TextButton(
                               onPressed: () {
                                 context
-                                    .read<PlaceEntity>()
-                                    .showPopupSchedulePlace(context, __sight.id);
+                                    .read<PlacesInteractor>()
+                                    .showPopupSchedulePlace(
+                                        context, __sight.id);
                               },
                               child: Padding(
                                 padding: const EdgeInsets.only(
@@ -265,12 +271,12 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                               onPressed: __sight.wished
                                   ? () {
                                       context
-                                          .read<PlaceEntity>()
+                                          .read<PlacesInteractor>()
                                           .removeFromFavorites(__sight.id);
                                     }
                                   : () {
                                       context
-                                          .read<PlaceEntity>()
+                                          .read<PlacesInteractor>()
                                           .addToFavorites(__sight.id);
                                     },
                               child: Padding(

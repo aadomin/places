@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_entities/place_entity.dart';
+import 'package:places/domain_interactors/place_interactor.dart';
 
 import 'package:places/domain_models/place.dart';
 import 'package:places/main.dart';
@@ -9,6 +9,7 @@ import 'package:places/ui_screens/main_1_places_list/widget_searching_header.dar
 import 'package:places/ui_screens/place_details_screen/screen_place_details.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
+import 'package:places/ui_screens/place_details_screen/screen_place_details_di.dart';
 import 'package:places/ui_widgets_commons/widget_place_card.dart';
 import 'package:provider/provider.dart';
 
@@ -61,14 +62,18 @@ class ScreenMain1PlacesNarrow extends StatelessWidget {
                       },
                       onAddToWished: () {
                         if (filteredPlacesSnapshot[i].wished) {
-                          context.read<PlaceEntity>().removeFromFavorites(
+                          context.read<PlacesInteractor>().removeFromFavorites(
                               filteredPlacesSnapshot[i].id);
                         } else {
-                          context.read<PlaceEntity>().addToFavorites(filteredPlacesSnapshot[i].id);
+                          context
+                              .read<PlacesInteractor>()
+                              .addToFavorites(filteredPlacesSnapshot[i].id);
                         }
                       },
                       onDeleteAtAll: () {
-                        context.read<PlaceEntity>().removeAtAll(filteredPlacesSnapshot[i].id);
+                        context
+                            .read<PlacesInteractor>()
+                            .removeAtAll(filteredPlacesSnapshot[i].id);
                       },
                     ),
                   ),
@@ -88,7 +93,8 @@ class ScreenMain1PlacesNarrow extends StatelessWidget {
     showModalBottomSheet<bool>(
       isScrollControlled: true,
       context: context,
-      builder: (_) => ScreenPlaceDetails(
+      builder: (_) => createScreenPlaceDetails(
+        context: context,
         placeId: id,
       ),
     );

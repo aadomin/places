@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_entities/settings_entity.dart';
+import 'package:places/domain_interactors/settings_interactor.dart';
 import 'package:places/my_app_and_routes.dart';
 
 class ScreenMain4SettingsVM with ChangeNotifier {
@@ -10,8 +10,10 @@ class ScreenMain4SettingsVM with ChangeNotifier {
     settingsEntity.addListener(_settingsEntityListener);
   }
 
+  //method dispose должен быть вызван из виджета
+
   BuildContext context;
-  final SettingsEntity settingsEntity;
+  final SettingsInteractor settingsEntity;
   void _settingsEntityListener() => notifyListeners();
 
   //

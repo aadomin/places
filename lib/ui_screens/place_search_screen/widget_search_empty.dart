@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui_commons/ui_strings.dart';
-import 'package:places/domain_entities/search_entity.dart';
+import 'package:places/domain_interactors/search_interactor.dart';
 import 'package:provider/provider.dart';
 
 ///
@@ -19,7 +19,7 @@ class WidgetSearchEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> lastSearchesSnapshot =
-        context.watch<SearchEntity>().lastSearches;
+        context.watch<SearchInteractor>().lastSearches;
     return Column(
       children: [
         for (var i = 0; i < lastSearchesSnapshot.length; i++)
@@ -42,7 +42,7 @@ class WidgetSearchEmpty extends StatelessWidget {
                     textController.text = lastSearchesSnapshot[i];
 
                     context
-                        .read<SearchEntity>()
+                        .read<SearchInteractor>()
                         .searchPlaces(lastSearchesSnapshot[i]);
                   },
                 ),
@@ -53,7 +53,7 @@ class WidgetSearchEmpty extends StatelessWidget {
                 trailing: IconButton(
                   icon: const Icon(Icons.close),
                   onPressed: () {
-                    context.read<SearchEntity>().removeItemFromHistory(i);
+                    context.read<SearchInteractor>().removeItemFromHistory(i);
                   },
                 ),
               ),
@@ -74,7 +74,7 @@ class WidgetSearchEmpty extends StatelessWidget {
                     TextStyle(color: Theme.of(context).colorScheme.secondary),
               ),
               onPressed: () {
-                context.read<SearchEntity>().removeAllItemsFromHistory();
+                context.read<SearchInteractor>().removeAllItemsFromHistory();
               },
             ),
           ),

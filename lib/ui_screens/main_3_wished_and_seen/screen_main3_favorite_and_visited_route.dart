@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:places/domain_entities/place_entity.dart';
+import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/main.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_favorite_and_visited_state.dart';
@@ -37,7 +37,7 @@ class _ScreenMain3FavoriteAndVisitedRouteState
       child: BlocBuilder<VisitedAndFavoriteScreenCubit,
           VisitedAndFavoriteScreenState>(
         builder: (context, state) {
-          if (context.watch<PlaceEntity>().isRequestDoneWithError) {
+          if (context.watch<PlacesInteractor>().isRequestDoneWithError) {
             return const Scaffold(
               body: WidgetNetworkError(),
             );

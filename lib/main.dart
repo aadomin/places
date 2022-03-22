@@ -1,21 +1,22 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:places/data_repositories/dio_service.dart';
-import 'package:places/domain_entities/hardwork_services.dart';
+import 'package:places/data_repositories/dio_services.dart';
+import 'package:places/domain_interactors/filter_interactor.dart';
+import 'package:places/domain_interactors/hardwork_services.dart';
 import 'package:places/ui_commons/platform_detector.dart';
 import 'package:provider/provider.dart';
 import 'package:places/data_repositories/geo_repository.dart';
 import 'package:places/data_repositories/place_repository.dart';
 import 'package:places/data_repositories/search_repository.dart';
-import 'package:places/domain_entities/geo_services.dart';
-import 'package:places/domain_entities/place_entity.dart';
+import 'package:places/domain_interactors/geo_services.dart';
+import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/ui_commons/my_bloc_observer.dart';
 import 'package:places/my_app_and_routes.dart';
 
 import 'package:places/ui_screens/filter_screen/screen_filter_vm.dart';
-import 'package:places/domain_entities/search_entity.dart';
+import 'package:places/domain_interactors/search_interactor.dart';
 import 'package:places/data_repositories/settings_repository.dart';
-import 'package:places/domain_entities/settings_entity.dart';
+import 'package:places/domain_interactors/settings_interactor.dart';
 
 void main() {
   Bloc.observer = MyBlocObserver();
@@ -29,39 +30,41 @@ class MyAppProvider extends StatelessWidget {
   }) : super(key: key);
 
   late final geoRepository = GeoRepository();
-  late final geoEntity = GeoServices(geoRepository: geoRepository);
-  late final dioService = DioService();
-  late final placeRepository = PlaceRepository(dio: dioService.dio);
-  late final placeEntity = PlaceEntity(
-    placeRepository: placeRepository,
-    geoEntity: geoEntity,
+  late final geoServices = GeoServices(geoRepository: geoRepository);
+  late final dioServices = DioServices();
+  late final filterInteractor = FilterInteractor();
+  late final placesRepository = PlaceRepository(dio: dioServices.dio);
+  late final placesInteractor = PlacesInteractor(
+    placesRepository: placesRepository,
+    geoServices: geoServices,
+    filterInteractor:filterInteractor,
   );
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) {
-        return placeEntity;
+        return placesInteractor;
       },
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider(
             create: (context) {
-              return FilterVM(placeEntity: placeEntity);
+              return FilterVM(placesInteractor: placesInteractor);
             },
           ),
           ChangeNotifierProvider(
             create: (context) {
               final settingsRepository = SettingsRepository();
-              return SettingsEntity(settingsRepository: settingsRepository);
+              return SettingsInteractor(settingsRepository: settingsRepository);
             },
           ),
           ChangeNotifierProvider(
             create: (context) {
               final searchRepository = SearchRepository();
-              return SearchEntity(
+              return SearchInteractor(
                 searchRepository: searchRepository,
-                placeInteractor: placeEntity,
+                placesInteractor: placesInteractor,
               );
             },
           ),

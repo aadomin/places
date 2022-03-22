@@ -3,7 +3,7 @@ import 'package:places/main.dart';
 import 'package:flutter/material.dart';
 import 'package:places/ui_screens/main_1_places_list/screen_main1_places_narrow.dart';
 import 'package:places/ui_screens/main_1_places_list/screen_main1_places_wide.dart';
-import 'package:places/domain_entities/place_entity.dart';
+import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/ui_widgets_commons/widget_network_error.dart';
 import 'package:places/domain_models/place.dart';
 
@@ -26,7 +26,7 @@ class _ScreenMain1PlacesRouteState extends State<ScreenMain1PlacesRoute> {
   @override
   Widget build(BuildContext context) {
     final List<Place> filteredPlaces =
-        context.watch<PlaceEntity>().getFilteredPlaces;
+        context.watch<PlacesInteractor>().getFilteredPlaces;
 
     if (filteredPlaces.isEmpty) {
       return const Scaffold(
@@ -35,7 +35,7 @@ class _ScreenMain1PlacesRouteState extends State<ScreenMain1PlacesRoute> {
         ),
       );
     }
-    if (context.watch<PlaceEntity>().isRequestDoneWithError) {
+    if (context.watch<PlacesInteractor>().isRequestDoneWithError) {
       return const Scaffold(
         body: WidgetNetworkError(),
       );

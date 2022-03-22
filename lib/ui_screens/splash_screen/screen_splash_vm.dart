@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_entities/hardwork_services.dart';
+import 'package:places/domain_interactors/hardwork_services.dart';
 import 'package:places/my_app_and_routes.dart';
 import 'package:provider/provider.dart';
 

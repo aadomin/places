@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
-import 'package:places/domain_entities/place_entity.dart';
+import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/ui_screens/filter_screen/widget_checkmark.dart';
 import 'package:provider/provider.dart';
 
@@ -49,7 +49,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
   @override
   Widget build(BuildContext context) {
     final List<Place> filteredPlaces =
-        context.watch<PlaceEntity>().getFilteredPlaces;
+        context.watch<PlacesInteractor>().getFilteredPlaces;
     final String numOfFilteredPlaces = filteredPlaces.length.toString();
 
     return Scaffold(

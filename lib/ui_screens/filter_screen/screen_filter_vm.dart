@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_entities/place_entity.dart';
+import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:places/domain_models/category_item.dart';
 
@@ -7,27 +7,27 @@ import 'package:places/domain_models/category_item.dart';
 /// Вью-модель Фильтра
 ///
 class FilterVM with ChangeNotifier {
-  FilterVM({required this.placeEntity}) {
+  FilterVM({required this.placesInteractor}) {
     // при появлении объекта из стрима обновляем интерфейс
     streamFilterItemsState.listen((newFilterItemsState) {
-      placeEntity.filterItemsState = newFilterItemsState;
+      placesInteractor.filterItemsState = newFilterItemsState;
       notifyListeners();
     });
   }
 
-  final PlaceEntity placeEntity;
+  final PlacesInteractor placesInteractor;
 
-  List<CategoryItem> get filterItemsState => placeEntity.filterItemsState;
+  List<CategoryItem> get filterItemsState => placesInteractor.filterItemsState;
 
   late final BehaviorSubject<List<CategoryItem>> _streamFilterItemsState =
-      BehaviorSubject<List<CategoryItem>>.seeded(placeEntity.filterItemsState);
+      BehaviorSubject<List<CategoryItem>>.seeded(placesInteractor.filterItemsState);
   Stream<List<CategoryItem>> get streamFilterItemsState =>
       _streamFilterItemsState.stream;
 
   /// Переключить выбранность категории
   void switchActiveCategories(int index) {
     final List<CategoryItem> _newFilterItemsState =
-        placeEntity.filterItemsState;
+        placesInteractor.filterItemsState;
     _newFilterItemsState[index].isSelected =
         !_newFilterItemsState[index].isSelected;
     _streamFilterItemsState.add(_newFilterItemsState);
@@ -36,7 +36,7 @@ class FilterVM with ChangeNotifier {
   /// Очистить выбранные категории
   void clearActiveCategories() {
     final List<CategoryItem> _newFilterItemsState =
-        placeEntity.filterItemsState;
+        placesInteractor.filterItemsState;
     for (final element in _newFilterItemsState) {
       element.isSelected = false;
     }

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:places/data_other/exceptions.dart';
 
-class DioService {
-  DioService() {
+class DioServices {
+  DioServices() {
     final baseOptions = BaseOptions(
       baseUrl: 'https://test-backend-flutter.surfstudio.ru',
       connectTimeout: 5000,
