@@ -28,7 +28,7 @@ class PlacesInteractor with ChangeNotifier {
   bool isLoading = true;
   List<Place> loadedAllPlaces = [];
 
-  /// Инициализация интерактора
+  /// Инициализация интерактора - переделать в инитстейт
   Future<void> init() async {
     await _loadAllPlaces();
   }
@@ -37,10 +37,8 @@ class PlacesInteractor with ChangeNotifier {
   Future<void> _loadAllPlaces() async {
     isLoading = true;
     notifyListeners();
-    final _loaded = await placesRepository.getAllPlaces();
-    if (!isRequestDoneWithError) {
-      loadedAllPlaces = _loaded;
-    }
+
+    loadedAllPlaces = await placesRepository.getAllPlaces();
     _updateDistancesFromAllPlacesToUser();
     isLoading = false;
     notifyListeners();
@@ -52,10 +50,7 @@ class PlacesInteractor with ChangeNotifier {
   }
 
   /// был ли последний запрос данных закончен с ошибкой
-  // TODO(me): переделать
-  bool get isRequestDoneWithError => placesRepository.isRequestDoneWithError;
-  set isRequestDoneWithError(bool value) =>
-      placesRepository.isRequestDoneWithError = value;
+  // TODO(me): переделать placesRepository.isRequestDoneWithError
 
   /// Возвращает список мест
   List<Place> getPlaces({
@@ -91,26 +86,17 @@ class PlacesInteractor with ChangeNotifier {
     }).toList();
   }
 
-  // TODO(me): Переделать, зависимость от UiStrings
-  late List<CategoryItem> _filterItemsState = [
-    CategoryItem(name: UiStrings.hotel, isSelected: true),
-    CategoryItem(name: UiStrings.restaurant, isSelected: true),
-    CategoryItem(name: UiStrings.specialPlace, isSelected: true),
-    CategoryItem(name: UiStrings.park, isSelected: true),
-    CategoryItem(name: UiStrings.museum, isSelected: true),
-    CategoryItem(name: UiStrings.cafe, isSelected: true),
-  ];
-
+  // TODO(me): Переделать
+  // TODO(me): радиус
+  /// радиус
+  int radiusOfSearch = 1000;
+  late List<CategoryItem> _filterItemsState =
+      filterInteractor.filterConditions.filterItemsState;
   List<CategoryItem> get filterItemsState => _filterItemsState;
-
   set filterItemsState(List<CategoryItem> value) {
     _filterItemsState = value;
     notifyListeners();
   }
-
-  // TODO(me): радиус
-  /// радиус
-  int radiusOfSearch = 1000;
 
   /// Возвращает лист мест, которые отображаются на экране "Список интересных мест"
   /// и на экране Поиска
@@ -230,44 +216,9 @@ class PlacesInteractor with ChangeNotifier {
       id: random.nextInt(50000),
     );
 
+    // TODO(me): подумать, как сделать - сбросить кэш и загрузить снова экраны
     await placesRepository.addPlace(newPlace);
-
-    // TODO(me): сбросить кэш и загрузить снова экраны
-
     loadedAllPlaces.add(newPlace);
     notifyListeners();
   }
 }
-
-
-// ///
-// class PlaceInteractor {
-//   PlaceInteractor(this.filterInteractor, this.placeRepository);
-
-//   final FilterInteractor filterInteractor;
-//   final PlaceRepository placeRepository;
-
-//   Future<List<Place>> loadPlaces() {
-//     return placeRepository.getAllPlaces(filterInteractor.radiusOfSearch);
-//   }
-
-//   // Future<List<Place>> loadFavoritePlaces();
-
-//   // Future<List<Place>> loadVisitedPlaces();
-
-//   // Future<List<Place>> loadPlace(int id);
-
-//   // Future<void> removeFromFavorites(int id);
-
-//   // Future<void> removeFromVisited(int id);
-
-//   // Future<void> addToFavorites(int id);
-
-//   // Future<void> addToVisited(int id);
-
-//   // Future<void> createPlace();
-
-//   // bool isRequestDoneWithError();
-
-//   // int _indexOfPlaceInAllById(int id);
-// }
