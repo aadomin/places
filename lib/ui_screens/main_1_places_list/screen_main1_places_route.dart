@@ -35,11 +35,12 @@ class _ScreenMain1PlacesRouteState extends State<ScreenMain1PlacesRoute> {
         ),
       );
     }
-    if (context.watch<PlacesInteractor>().isRequestDoneWithError) {
-      return const Scaffold(
-        body: WidgetNetworkError(),
-      );
-    }
+    // TODO(me): error
+    // if (context.watch<PlacesInteractor>().isRequestDoneWithError) {
+    //   return const Scaffold(
+    //     body: WidgetNetworkError(),
+    //   );
+    // }
 
     if (MediaQuery.of(context).size.width <= criticalWidth) {
       return ScreenMain1PlacesNarrow(

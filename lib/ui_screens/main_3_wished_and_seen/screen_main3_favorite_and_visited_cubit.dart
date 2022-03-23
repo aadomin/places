@@ -35,31 +35,31 @@ class VisitedAndFavoriteScreenCubit
         visitedPlaces: context.read<PlacesInteractor>().getVisitedPlaces,
       );
 
-  Future<void> showPopupSchedulePlace(BuildContext context, int id) async {
-    late final DateTime? _result;
-    if (PlatformDetector.isAndroid || PlatformDetector.isWeb) {
-      _result = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime.now().subtract(const Duration(days: 1)),
-        lastDate: DateTime.now().add(const Duration(days: 365)),
-      );
-    }
-    if (PlatformDetector.isIOS) {
-      _result = await showCupertinoModalPopup(
-        context: context,
-        builder: (context) {
-          return const WidgetAddToCalendarCuperModal();
-        },
-      );
-    }
+  // Future<void> showPopupSchedulePlace(BuildContext context, int id) async {
+  //   late final DateTime? _result;
+  //   if (PlatformDetector.isAndroid || PlatformDetector.isWeb) {
+  //     _result = await showDatePicker(
+  //       context: context,
+  //       initialDate: DateTime.now(),
+  //       firstDate: DateTime.now().subtract(const Duration(days: 1)),
+  //       lastDate: DateTime.now().add(const Duration(days: 365)),
+  //     );
+  //   }
+  //   if (PlatformDetector.isIOS) {
+  //     _result = await showCupertinoModalPopup(
+  //       context: context,
+  //       builder: (context) {
+  //         return const WidgetAddToCalendarCuperModal();
+  //       },
+  //     );
+  //   }
 
-    if (_result != null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('added to calendar at $_result'),
-        ),
-      );
-    }
-  }
+  //   if (_result != null) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(
+  //         content: Text('added to calendar at $_result'),
+  //       ),
+  //     );
+  //   }
+  // }
 }

@@ -4,6 +4,7 @@ import 'package:places/data_repositories/dio_services.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
 import 'package:places/domain_interactors/hardwork_services.dart';
 import 'package:places/ui_commons/platform_detector.dart';
+import 'package:places/ui_commons/popup_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:places/data_repositories/geo_repository.dart';
 import 'package:places/data_repositories/place_repository.dart';
@@ -37,42 +38,44 @@ class MyAppProvider extends StatelessWidget {
   late final placesInteractor = PlacesInteractor(
     placesRepository: placesRepository,
     geoServices: geoServices,
-    filterInteractor:filterInteractor,
+    filterInteractor: filterInteractor,
   );
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) {
-        return placesInteractor;
-      },
-      child: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (context) {
-              return FilterVM(placesInteractor: placesInteractor);
-            },
-          ),
-          ChangeNotifierProvider(
-            create: (context) {
-              final settingsRepository = SettingsRepository();
-              return SettingsInteractor(settingsRepository: settingsRepository);
-            },
-          ),
-          ChangeNotifierProvider(
-            create: (context) {
-              final searchRepository = SearchRepository();
-              return SearchInteractor(
-                searchRepository: searchRepository,
-                placesInteractor: placesInteractor,
-              );
-            },
-          ),
-          ChangeNotifierProvider(
-            create: (context) => HardworkServices(),
-          ),
-        ],
-        child: const MyAppAndRoutes(),
+      create: (context) => PopupManager(),
+      child: ChangeNotifierProvider(
+        create: (context) => placesInteractor,
+        child: MultiProvider(
+          providers: [
+            ChangeNotifierProvider(
+              create: (context) {
+                return FilterVM(placesInteractor: placesInteractor);
+              },
+            ),
+            ChangeNotifierProvider(
+              create: (context) {
+                final settingsRepository = SettingsRepository();
+                return SettingsInteractor(
+                    settingsRepository: settingsRepository);
+              },
+            ),
+            ChangeNotifierProvider(
+              create: (context) {
+                final searchRepository = SearchRepository();
+                return SearchInteractor(
+                  searchRepository: searchRepository,
+                  placesInteractor: placesInteractor,
+                );
+              },
+            ),
+            ChangeNotifierProvider(
+              create: (context) => HardworkServices(),
+            ),
+          ],
+          child: const MyAppAndRoutes(),
+        ),
       ),
     );
   }

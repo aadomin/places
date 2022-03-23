@@ -6,7 +6,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 ///
 class PlatformDetector {
   PlatformDetector() {
-    // сначала проверяем именно веб, иначе ошибка импорт io!
+    // сначала проверяем именно kIsWeb, иначе ошибка импорт io!
     if (kIsWeb) {
       PlatformDetector.isWeb = true;
     } else {

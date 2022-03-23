@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:places/domain_interactors/place_interactor.dart';
+import 'package:places/ui_commons/popup_manager.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/widget_empty_list.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_favorite_and_visited_cubit.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
@@ -32,6 +34,8 @@ class _WidgetTabFavoriteState extends State<WidgetTabFavorite> {
   Widget build(BuildContext context) {
     final List<Place> _listOfItems = widget.favoritePlaces;
 
+    final __popupManager = context.read<PlacesInteractor>();
+
     if (_listOfItems.isEmpty) {
       return const WidgetEmptyList(
         imagePath: UiImagePaths.emptyFavoriteTab,
@@ -63,12 +67,10 @@ class _WidgetTabFavoriteState extends State<WidgetTabFavorite> {
                             onTapOnCard(i.value.id);
                           },
                           onAddToCalendar: () {
-                            context
-                                .read<VisitedAndFavoriteScreenCubit>()
-                                .showPopupSchedulePlace(
-                                  context,
-                                  i.value.id,
-                                );
+                            __popupManager.showPopupSchedulePlace(
+                              context,
+                              i.value.id,
+                            );
                           },
                           onDeleteFromWished: () {
                             context

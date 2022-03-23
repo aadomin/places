@@ -37,11 +37,12 @@ class _ScreenMain3FavoriteAndVisitedRouteState
       child: BlocBuilder<VisitedAndFavoriteScreenCubit,
           VisitedAndFavoriteScreenState>(
         builder: (context, state) {
-          if (context.watch<PlacesInteractor>().isRequestDoneWithError) {
-            return const Scaffold(
-              body: WidgetNetworkError(),
-            );
-          }
+          // TODO(me): error
+          // if (context.watch<PlacesInteractor>().isRequestDoneWithError) {
+          //   return const Scaffold(
+          //     body: WidgetNetworkError(),
+          //   );
+          // }
           return ScreenMain3FavoriteAndVisited(
             visitedPlaces: state.visitedPlaces,
             favoritePlaces: state.favoritePlaces,
