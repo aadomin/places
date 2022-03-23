@@ -51,7 +51,10 @@ class MyAppProvider extends StatelessWidget {
           providers: [
             ChangeNotifierProvider(
               create: (context) {
-                return FilterVM(placesInteractor: placesInteractor);
+                return FilterVM(
+                  placesInteractor: placesInteractor,
+                  filterInteractor: filterInteractor,
+                );
               },
             ),
             ChangeNotifierProvider(

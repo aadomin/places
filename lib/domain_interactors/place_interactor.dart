@@ -27,8 +27,11 @@ class PlacesInteractor with ChangeNotifier {
 
   /// Инициализация интерактора - переделать в инитстейт
   Future<void> init() async {
+    filterInteractor.addListener(filterInteractorListener);
     await _loadAllPlaces();
   }
+
+  void filterInteractorListener() => notifyListeners();
 
   /// загрузить все места
   Future<void> _loadAllPlaces() async {
@@ -83,25 +86,14 @@ class PlacesInteractor with ChangeNotifier {
     }).toList();
   }
 
-  // TODO(me): Переделать
-  // TODO(me): радиус
-  /// радиус
-  int radiusOfSearch = 1000;
-  late List<CategoryItem> _filterItemsState =
-      filterInteractor.filterConditions.filterItemsState;
-  List<CategoryItem> get filterItemsState => _filterItemsState;
-  set filterItemsState(List<CategoryItem> value) {
-    _filterItemsState = value;
-    notifyListeners();
-  }
+  // TODO(me): Переделать радиус
 
   /// Возвращает лист мест, которые отображаются на экране "Список интересных мест"
   /// и на экране Поиска
   List<Place> get getFilteredPlaces {
-    print(filterItemsState.toString());
     return getPlaces(
-      radius: radiusOfSearch,
-      categories: filterItemsState,
+      radius: filterInteractor.filterConditions.radiusOfSearch,
+      categories: filterInteractor.filterConditions.filterItemsState,
     );
   }
 
