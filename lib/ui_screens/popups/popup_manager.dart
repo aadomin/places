@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/ui_commons/platform_detector.dart';
-import 'package:places/ui_widgets_commons/widget_add_to_calendar_cuper_modal.dart';
+import 'package:places/ui_screens/popups/widget_add_to_calendar_cuper_modal.dart';
 
 class PopupManager with ChangeNotifier {
+  ///
+  /// Показать окно запланировать посещение места
+  /// - используется минимум двумя экранами PopupManager
+  ///
   Future<void> showPopupSchedulePlace(BuildContext context, int id) async {
     late final DateTime? _result;
     if (PlatformDetector.isAndroid || PlatformDetector.isWeb) {

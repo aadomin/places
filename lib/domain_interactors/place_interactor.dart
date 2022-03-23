@@ -5,10 +5,7 @@ import 'package:places/data_repositories/place_repository.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
 import 'package:places/domain_interactors/geo_services.dart';
 import 'package:places/domain_models/category_item.dart';
-import 'package:places/ui_commons/platform_detector.dart';
 import 'package:places/domain_models/place.dart';
-import 'package:places/ui_commons/ui_strings.dart';
-import 'package:places/ui_widgets_commons/widget_add_to_calendar_cuper_modal.dart';
 
 ///
 /// Интерактор списка мест
@@ -159,38 +156,6 @@ class PlacesInteractor with ChangeNotifier {
       }
     }
     throw Exception('There is no such ID');
-  }
-
-  ///
-  /// Показать окно запланировать посещение места
-  /// - используется минимум двумя экранами PopupManager
-  ///
-  Future<void> showPopupSchedulePlace(BuildContext context, int id) async {
-    late final DateTime? _result;
-    if (PlatformDetector.isAndroid || PlatformDetector.isWeb) {
-      _result = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime.now().subtract(const Duration(days: 1)),
-        lastDate: DateTime.now().add(const Duration(days: 365)),
-      );
-    }
-    if (PlatformDetector.isIOS) {
-      _result = await showCupertinoModalPopup(
-        context: context,
-        builder: (context) {
-          return const WidgetAddToCalendarCuperModal();
-        },
-      );
-    }
-
-    if (_result != null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('added to calendar at $_result'),
-        ),
-      );
-    }
   }
 
   ///

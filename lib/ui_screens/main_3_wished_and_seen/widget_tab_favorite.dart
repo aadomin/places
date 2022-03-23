@@ -1,19 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:places/domain_interactors/place_interactor.dart';
-import 'package:places/ui_commons/popup_manager.dart';
+import 'package:places/ui_screens/popups/popup_manager.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/widget_empty_list.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_favorite_and_visited_cubit.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/place_details_screen/screen_place_details_di.dart';
 import 'package:provider/provider.dart';
-
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_widgets_commons/widget_place_card.dart';
-import 'package:places/ui_screens/place_details_screen/screen_place_details.dart';
-
 import 'package:places/domain_models/place.dart';
 
 /// Экран "Избранные и посещенные", вкладка "Избранные"
@@ -34,7 +29,7 @@ class _WidgetTabFavoriteState extends State<WidgetTabFavorite> {
   Widget build(BuildContext context) {
     final List<Place> _listOfItems = widget.favoritePlaces;
 
-    final __popupManager = context.read<PlacesInteractor>();
+    final __popupManager = context.read<PopupManager>();
 
     if (_listOfItems.isEmpty) {
       return const WidgetEmptyList(

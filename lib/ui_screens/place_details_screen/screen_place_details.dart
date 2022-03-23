@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:places/ui_commons/popup_manager.dart';
+import 'package:places/ui_screens/popups/popup_manager.dart';
 import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
@@ -241,7 +241,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                             TextButton(
                               onPressed: () {
                                 context
-                                    .read<PlacesInteractor>()
+                                    .read<PopupManager>()
                                     .showPopupSchedulePlace(
                                         context, __sight.id);
                               },

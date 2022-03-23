@@ -4,7 +4,7 @@ import 'package:places/data_repositories/dio_services.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
 import 'package:places/domain_interactors/hardwork_services.dart';
 import 'package:places/ui_commons/platform_detector.dart';
-import 'package:places/ui_commons/popup_manager.dart';
+import 'package:places/ui_screens/popups/popup_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:places/data_repositories/geo_repository.dart';
 import 'package:places/data_repositories/place_repository.dart';
