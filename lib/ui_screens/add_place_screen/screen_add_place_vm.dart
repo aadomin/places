@@ -13,6 +13,11 @@ class ScreenAddPlaceVM with ChangeNotifier {
   final PlacesInteractor placesEntity;
   // void _settingsEntityListener() => notifyListeners();
 
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
   ///
   /// Добавление нового: перечень фоток
   ///

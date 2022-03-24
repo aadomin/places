@@ -11,12 +11,35 @@ import 'package:places/ui_screens/filter_screen/screen_filter_vm.dart';
 
 /// Экран Фильтр
 class ScreenFilter extends StatefulWidget {
-  const ScreenFilter({Key? key}) : super(key: key);
+  ScreenFilter({
+    required this.viewModel,
+    Key? key,
+  }) : super(key: key);
+
+  ScreenFilterVM viewModel;
+
   @override
   _ScreenFilterState createState() => _ScreenFilterState();
 }
 
 class _ScreenFilterState extends State<ScreenFilter> {
+  ScreenFilterVM get __viewModel => widget.viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    __viewModel.addListener(_vmListener);
+  }
+
+  void _vmListener() => setState(() {});
+
+  @override
+  void dispose() {
+    __viewModel.dispose();
+    __viewModel.removeListener(_vmListener);
+    super.dispose();
+  }
+
   final _radiusOfRoundElement = 26.0;
 
   double _sliderValue = 0;
@@ -67,7 +90,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
           alignment: Alignment.centerRight,
           child: TextButton(
             onPressed: () {
-              context.read<FilterVM>().clearActiveCategories();
+              context.read<ScreenFilterVM>().clearActiveCategories();
             },
             style: TextButton.styleFrom(
               primary: Theme.of(context).colorScheme.secondary,
@@ -108,7 +131,11 @@ class _ScreenFilterState extends State<ScreenFilter> {
                 spacing: 20,
                 children: [
                   for (var i = 0;
-                      i < context.watch<FilterVM>().filterItemsState.length; 
+                      i <
+                          context
+                              .watch<ScreenFilterVM>()
+                              .filterItemsState
+                              .length;
                       i++)
                     SizedBox(
                       width: 110,
@@ -116,7 +143,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
                       child: TextButton(
                         onPressed: () {
                           context
-                              .read<FilterVM>()
+                              .read<ScreenFilterVM>()
                               .switchActiveCategories(i);
                         },
                         child: Padding(
@@ -141,7 +168,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
                                             // чтобы не было null - берем первую
                                             // (любую) картинку
                                             _imagePathOfCategory[context
-                                                    .watch<FilterVM>()
+                                                    .watch<ScreenFilterVM>()
                                                     .filterItemsState[i]
                                                     .name] ??
                                                 _imagePathOfCategory
@@ -159,7 +186,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
                                   ),
                                   //ignore: prefer_if_elements_to_conditional_expressions
                                   context
-                                          .watch<FilterVM>()
+                                          .watch<ScreenFilterVM>()
                                           .filterItemsState[i]
                                           .isSelected
                                       ? WidgetCheckmark(
@@ -173,7 +200,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
                                 padding: const EdgeInsets.fromLTRB(4, 12, 4, 0),
                                 child: Text(
                                   context
-                                      .watch<FilterVM>()
+                                      .watch<ScreenFilterVM>()
                                       .filterItemsState[i]
                                       .name,
                                   style: const TextStyle(

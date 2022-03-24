@@ -16,6 +16,11 @@ class ScreenMain4SettingsVM with ChangeNotifier {
   final SettingsInteractor settingsEntity;
   void _settingsEntityListener() => notifyListeners();
 
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
   //
 
   bool get isDarkThemeOn => settingsEntity.isDarkThemeOn;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:places/my_app_and_routes_vm.dart';
 import 'package:places/ui_screens/add_place_screen/screen_add_place_di.dart';
+import 'package:places/ui_screens/filter_screen/screen_filter_di.dart';
 import 'package:places/ui_screens/select_category_screen/screen_selection_category_route.dart';
 import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_screens/onboarding_screen/screen_onboarding.dart';
-import 'package:places/ui_screens/filter_screen/screen_filter.dart';
 import 'package:places/ui_screens/place_search_screen/place_search_screen.dart';
 import 'package:places/ui_screens/main_screen/screen_all_main.dart';
 import 'package:places/ui_screens/splash_screen/screen_splash.dart';
@@ -56,7 +56,7 @@ class _MyAppAndRoutesState extends State<MyAppAndRoutes> {
       debugShowCheckedModeBanner: false,
       routes: {
         ROUTE_HOME: (context) => const ScreenAllMain(),
-        ROUTE_FILTER: (context) => const ScreenFilter(),
+        ROUTE_FILTER: (context) => createScreenFilter(context: context),
         ROUTE_ADD: (context) => createScreenAddPlace(context: context),
         ROUTE_SELECT_CATEGORY: (context) =>
             const ScreenSelectionCategoryRoute(),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_screens/add_place_screen/screen_add_place_vm.dart';
@@ -30,6 +29,8 @@ class ScreenAddPlace extends StatefulWidget {
 }
 
 class _ScreenAddPlaceState extends State<ScreenAddPlace> {
+
+  
   FocusNode focusNodeName = FocusNode();
   FocusNode focusNodeLat = FocusNode();
   FocusNode focusNodeLon = FocusNode();

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
-import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_models/filter_condition.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:places/domain_models/category_item.dart';
@@ -8,9 +7,8 @@ import 'package:places/domain_models/category_item.dart';
 ///
 /// Вью-модель Фильтра
 ///
-class FilterVM with ChangeNotifier {
-  FilterVM({
-    required this.placesInteractor,
+class ScreenFilterVM with ChangeNotifier {
+  ScreenFilterVM({
     required this.filterInteractor,
   }) {
     // при появлении объекта из стрима обновляем интерфейс
@@ -24,7 +22,12 @@ class FilterVM with ChangeNotifier {
     });
   }
 
-  final PlacesInteractor placesInteractor;
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
   final FilterInteractor filterInteractor;
 
   List<CategoryItem> get filterItemsState =>
