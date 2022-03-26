@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:places/data_repositories/dio_services.dart';
+import 'package:places/di.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
 import 'package:places/domain_interactors/hardwork_services.dart';
 import 'package:places/ui_commons/platform_detector.dart';
@@ -13,8 +14,6 @@ import 'package:places/domain_interactors/geo_services.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/ui_commons/my_bloc_observer.dart';
 import 'package:places/my_app_and_routes.dart';
-
-import 'package:places/ui_screens/filter_screen/screen_filter_vm.dart';
 import 'package:places/domain_interactors/search_interactor.dart';
 import 'package:places/data_repositories/settings_repository.dart';
 import 'package:places/domain_interactors/settings_interactor.dart';
@@ -30,53 +29,59 @@ class MyAppProvider extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  late final geoRepository = GeoRepository();
-  late final geoServices = GeoServices(geoRepository: geoRepository);
-  late final dioServices = DioServices();
-  late final filterInteractor = FilterInteractor();
+  final settingsRepository = SettingsRepository();
+  late final settingsInteractor =
+      SettingsInteractor(settingsRepository: settingsRepository);
+
+  final geoRepository = GeoRepository();
+  late final _geoInteractor = GeoServices(geoRepository: geoRepository);
+
+  final dioServices = DioServices();
+  final filterInteractor = FilterInteractor();
   late final placesRepository = PlaceRepository(dio: dioServices.dio);
   late final placesInteractor = PlacesInteractor(
     placesRepository: placesRepository,
-    geoServices: geoServices,
+    geoServices: _geoInteractor,
     filterInteractor: filterInteractor,
   );
 
+  final searchRepository = SearchRepository();
+  late final searchInteractor = SearchInteractor(
+    searchRepository: searchRepository,
+    placesInteractor: placesInteractor,
+  );
+
+  final hardworkInteractor = HardworkInteractor();
+
+  final di = DI();
+
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => PopupManager(),
-      child: ChangeNotifierProvider(
-        create: (context) => placesInteractor,
-        child: MultiProvider(
-          providers: [
-            ChangeNotifierProvider(
-              create: (context) {
-                return filterInteractor;
-              },
-            ),
-            ChangeNotifierProvider(
-              create: (context) {
-                final settingsRepository = SettingsRepository();
-                return SettingsInteractor(
-                    settingsRepository: settingsRepository);
-              },
-            ),
-            ChangeNotifierProvider(
-              create: (context) {
-                final searchRepository = SearchRepository();
-                return SearchInteractor(
-                  searchRepository: searchRepository,
-                  placesInteractor: placesInteractor,
-                );
-              },
-            ),
-            ChangeNotifierProvider(
-              create: (context) => HardworkServices(),
-            ),
-          ],
-          child: const MyAppAndRoutes(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => hardworkInteractor,
         ),
-      ),
+        ChangeNotifierProvider(
+          create: (context) => filterInteractor,
+        ),
+        ChangeNotifierProvider(
+          create: (context) => settingsInteractor,
+        ),
+        ChangeNotifierProvider(
+          create: (context) => searchInteractor,
+        ),
+        ChangeNotifierProvider(
+          create: (context) => placesInteractor,
+        ),
+        Provider(
+          create: (context) => di,
+        ),
+        ChangeNotifierProvider(
+          create: (context) => PopupManager(),
+        ),
+      ],
+      child: const MyAppAndRoutes(),
     );
   }
 }

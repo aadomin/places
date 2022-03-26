@@ -33,7 +33,7 @@ class ScreenSplashVM with ChangeNotifier {
   Future<void> _doInitializeApp() async {
     print('loading started at: ${DateTime.now()}');
 
-    context.read<HardworkServices>().hardWork();
+    context.read<HardworkInteractor>().hardWork();
 
     print('loading done at: ${DateTime.now()}');
   }

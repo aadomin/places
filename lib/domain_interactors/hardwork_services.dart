@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-class HardworkServices with ChangeNotifier {
+class HardworkInteractor with ChangeNotifier {
   /// имитация сложной загрузки
   void hardWork() {
     print('Hard work started');

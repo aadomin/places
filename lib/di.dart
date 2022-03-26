@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:places/data_repositories/dio_services.dart';
 import 'package:places/data_repositories/geo_repository.dart';
 import 'package:places/data_repositories/place_repository.dart';
@@ -9,34 +10,30 @@ import 'package:places/domain_interactors/hardwork_services.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_interactors/search_interactor.dart';
 import 'package:places/domain_interactors/settings_interactor.dart';
-import 'package:places/ui_commons/platform_detector.dart';
-import 'package:places/ui_screens/popups/popup_manager.dart';
 
-class AppModules {
-  late final dioServices = DioServices();
-
-  late final geoRepository = GeoRepository();
-  late final geoServices = GeoServices(geoRepository: geoRepository);
-
-  final settingsRepository = SettingsRepository();
+class DI{
+  final _settingsRepository = SettingsRepository();
   late final settingsInteractor =
-      SettingsInteractor(settingsRepository: settingsRepository);
+      SettingsInteractor(settingsRepository: _settingsRepository);
 
-  late final filterInteractor = FilterInteractor();
-  late final placesRepository = PlaceRepository(dio: dioServices.dio);
+  final _geoRepository = GeoRepository();
+  late final geoInteractor = GeoServices(geoRepository: _geoRepository);
+
+  final filterInteractor = FilterInteractor();
+  
+  final _dioServices = DioServices();
+  late final _placesRepository = PlaceRepository(dio: _dioServices.dio);
   late final placesInteractor = PlacesInteractor(
-    placesRepository: placesRepository,
-    geoServices: geoServices,
+    placesRepository: _placesRepository,
+    geoServices: geoInteractor,
     filterInteractor: filterInteractor,
   );
-  late final popupManager = PopupManager();
-  final searchRepository = SearchRepository();
+
+  final _searchRepository = SearchRepository();
   late final searchInteractor = SearchInteractor(
-    searchRepository: searchRepository,
+    searchRepository: _searchRepository,
     placesInteractor: placesInteractor,
   );
 
-  final hardworkServices = HardworkServices();
-
-  final platformDetector = PlatformDetector();
+  final hardworkInteractor = HardworkInteractor();
 }
