@@ -56,13 +56,6 @@ class MyAppProvider extends StatelessWidget {
             ),
             ChangeNotifierProvider(
               create: (context) {
-                return ScreenFilterVM(
-                  filterInteractor: filterInteractor,
-                );
-              },
-            ),
-            ChangeNotifierProvider(
-              create: (context) {
                 final settingsRepository = SettingsRepository();
                 return SettingsInteractor(
                     settingsRepository: settingsRepository);

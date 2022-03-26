@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
+import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_models/filter_condition.dart';
+import 'package:places/domain_models/place.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:places/domain_models/category_item.dart';
 
@@ -9,7 +11,9 @@ import 'package:places/domain_models/category_item.dart';
 ///
 class ScreenFilterVM with ChangeNotifier {
   ScreenFilterVM({
+    required this.context,
     required this.filterInteractor,
+    required this.placesInteractor,
   }) {
     // при появлении объекта из стрима обновляем интерфейс
     streamFilterItemsState.listen((newFilterItemsState) {
@@ -29,6 +33,8 @@ class ScreenFilterVM with ChangeNotifier {
   }
 
   final FilterInteractor filterInteractor;
+  final PlacesInteractor placesInteractor;
+  final BuildContext context;
 
   List<CategoryItem> get filterItemsState =>
       filterInteractor.filterConditions.filterItemsState;
@@ -54,4 +60,15 @@ class ScreenFilterVM with ChangeNotifier {
     }
     _streamFilterItemsState.add(_newFilterItemsState);
   }
+
+  void onTapOnShow() {
+    Navigator.of(context).pop();
+  }
+
+  // List<Place> get filteredPlaces => placesInteractor.getFilteredPlaces;
+
+  // final List<Place> filteredPlaces =
+  //     context.watch<PlacesInteractor>().getFilteredPlaces;
+
+  // int numOfFilteredPlaces = filteredPlaces.length;
 }
