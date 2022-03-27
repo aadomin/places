@@ -33,7 +33,8 @@ class _ScreenMain4SettingsState extends State<ScreenMain4Settings> {
 
   @override
   void dispose() {
-    __viewModel.dispose();
+    // TODO(me): тут ошибка!!!
+    //__viewModel.dispose();
     __viewModel.removeListener(_vmListener);
     super.dispose();
   }

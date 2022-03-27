@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:places/main.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
+import 'package:places/ui_screens/place_search_screen/screen_search_vm.dart';
 import 'package:places/ui_screens/place_search_screen/widget_search_app_bar.dart';
 import 'package:places/ui_screens/place_search_screen/widget_search_empty.dart';
 import 'package:places/ui_screens/place_search_screen/widget_search_not_found.dart';
@@ -13,12 +13,40 @@ import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/domain_interactors/search_interactor.dart';
 
 /// Экран "Поиск"
-class PlaceSearchScreen extends StatelessWidget {
-  PlaceSearchScreen({Key? key}) : super(key: key);
+class ScreenSearch extends StatefulWidget {
+  const ScreenSearch({required this.viewModel, Key? key}) : super(key: key);
+
+  final ScreenSearchVM viewModel;
+
+  @override
+  State<ScreenSearch> createState() => _ScreenSearchState();
+}
+
+class _ScreenSearchState extends State<ScreenSearch> {
+  ScreenSearchVM get __viewModel => widget.viewModel;
+
+  @override
+  void initState() {
+    super.initState();
+    __viewModel.addListener(_vmListener);
+  }
+
+  void _vmListener() => setState(() {});
+
+  @override
+  void dispose() {
+    // TODO(me): тут ошибка возникает!!!
+    //__viewModel.dispose();
+    __viewModel.removeListener(_vmListener);
+    super.dispose();
+  }
+
+  //
 
   final FocusNode focusNode1 = FocusNode();
 
   final textController = TextEditingController();
+
   final keyOfSearchTextField = GlobalKey();
 
   @override

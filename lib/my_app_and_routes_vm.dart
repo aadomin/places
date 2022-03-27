@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_interactors/settings_interactor.dart';
+import 'package:places/di.dart';
 import 'package:provider/provider.dart';
 
 class MyAppAndRoutesVM with ChangeNotifier {
   MyAppAndRoutesVM({required this.context}) {
     // Здесь для сравнения DI на месте
-    context.read<SettingsInteractor>().addListener(_settingsEntityListener);
+    context.read<DI>().settingsInteractor.addListener(_settingsEntityListener);
   }
 
   void _settingsEntityListener() => notifyListeners();
 
   BuildContext context;
 
-  bool get isDarkThemeOn => context.read<SettingsInteractor>().isDarkThemeOn;
+  bool get isDarkThemeOn => context.read<DI>().settingsInteractor.isDarkThemeOn;
 }

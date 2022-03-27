@@ -5,15 +5,15 @@ import 'package:places/my_app_and_routes.dart';
 class ScreenMain4SettingsVM with ChangeNotifier {
   ScreenMain4SettingsVM({
     required this.context,
-    required this.settingsEntity,
+    required this.settingsInteractor,
   }) {
-    settingsEntity.addListener(_settingsEntityListener);
+    settingsInteractor.addListener(_settingsEntityListener);
   }
 
   //method dispose должен быть вызван из виджета
 
   BuildContext context;
-  final SettingsInteractor settingsEntity;
+  final SettingsInteractor settingsInteractor;
   void _settingsEntityListener() => notifyListeners();
 
   void dispose() {
@@ -23,7 +23,7 @@ class ScreenMain4SettingsVM with ChangeNotifier {
 
   //
 
-  bool get isDarkThemeOn => settingsEntity.isDarkThemeOn;
+  bool get isDarkThemeOn => settingsInteractor.isDarkThemeOn;
 
   void onTapOnTutorialLink() {
     Navigator.of(context).pushNamed(ROUTE_ONBOARDING);
@@ -38,6 +38,6 @@ class ScreenMain4SettingsVM with ChangeNotifier {
   }
 
   void _changeTheme() {
-    settingsEntity.changeTheme();
+    settingsInteractor.changeTheme();
   }
 }

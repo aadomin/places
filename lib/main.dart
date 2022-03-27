@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:places/data_repositories/dio_services.dart';
 import 'package:places/di.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
-import 'package:places/domain_interactors/hardwork_services.dart';
+import 'package:places/domain_interactors/hardwork_interactor.dart';
 import 'package:places/ui_commons/platform_detector.dart';
 import 'package:places/ui_screens/popups/popup_manager.dart';
 import 'package:provider/provider.dart';
@@ -29,31 +29,34 @@ class MyAppProvider extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final settingsRepository = SettingsRepository();
+  final _settingsRepository = SettingsRepository();
   late final settingsInteractor =
-      SettingsInteractor(settingsRepository: settingsRepository);
+      SettingsInteractor(settingsRepository: _settingsRepository);
 
-  final geoRepository = GeoRepository();
-  late final _geoInteractor = GeoServices(geoRepository: geoRepository);
+  final _geoRepository = GeoRepository();
+  late final geoInteractor = GeoServices(geoRepository: _geoRepository);
 
-  final dioServices = DioServices();
   final filterInteractor = FilterInteractor();
-  late final placesRepository = PlaceRepository(dio: dioServices.dio);
+
+  final _dioServices = DioServices();
+  late final _placesRepository = PlaceRepository(dio: _dioServices.dio);
   late final placesInteractor = PlacesInteractor(
-    placesRepository: placesRepository,
-    geoServices: _geoInteractor,
+    placesRepository: _placesRepository,
+    geoServices: geoInteractor,
     filterInteractor: filterInteractor,
   );
 
-  final searchRepository = SearchRepository();
+  final _searchRepository = SearchRepository();
   late final searchInteractor = SearchInteractor(
-    searchRepository: searchRepository,
+    searchRepository: _searchRepository,
     placesInteractor: placesInteractor,
   );
 
   final hardworkInteractor = HardworkInteractor();
 
-  final di = DI();
+  //
+
+  final _di = DI();
 
   @override
   Widget build(BuildContext context) {
@@ -65,9 +68,9 @@ class MyAppProvider extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => filterInteractor,
         ),
-        ChangeNotifierProvider(
-          create: (context) => settingsInteractor,
-        ),
+        // ChangeNotifierProvider(
+        //   create: (context) => settingsInteractor,
+        // ),
         ChangeNotifierProvider(
           create: (context) => searchInteractor,
         ),
@@ -75,7 +78,7 @@ class MyAppProvider extends StatelessWidget {
           create: (context) => placesInteractor,
         ),
         Provider(
-          create: (context) => di,
+          create: (context) => _di,
         ),
         ChangeNotifierProvider(
           create: (context) => PopupManager(),

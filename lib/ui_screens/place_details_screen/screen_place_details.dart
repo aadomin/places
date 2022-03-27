@@ -4,7 +4,6 @@ import 'package:places/ui_screens/popups/popup_manager.dart';
 import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
-import 'package:places/ui_screens/main_4_settings/screen_main_4_settings_vm.dart';
 import 'package:places/ui_screens/place_details_screen/screen_place_details_vm.dart';
 import 'package:provider/provider.dart';
 

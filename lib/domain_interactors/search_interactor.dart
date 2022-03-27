@@ -15,7 +15,6 @@ class SearchInteractor with ChangeNotifier {
   });
 
   final SearchRepository searchRepository;
-
   final PlacesInteractor placesInteractor;
 
   /// Результат поиска
