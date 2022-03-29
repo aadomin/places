@@ -17,6 +17,7 @@ class ScreenSearchVM with ChangeNotifier {
   }
 
   //method dispose должен быть вызван из виджета
+  // ого This method overrides a method annotated as mustCallSuper
   void dispose() {
     searchInteractor.removeListener(_placesInteractorListener);
   }

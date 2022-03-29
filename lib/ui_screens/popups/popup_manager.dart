@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:places/ui_commons/platform_detector.dart';
 import 'package:places/ui_screens/popups/widget_add_to_calendar_cuper_modal.dart';
 
-class PopupManager with ChangeNotifier {
+class PopupManager {
   ///
   /// Показать окно запланировать посещение места
   /// - используется минимум двумя экранами PopupManager

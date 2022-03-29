@@ -63,14 +63,8 @@ class MyAppProvider extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => hardworkInteractor,
-        ),
-        ChangeNotifierProvider(
           create: (context) => filterInteractor,
         ),
-        // ChangeNotifierProvider(
-        //   create: (context) => settingsInteractor,
-        // ),
         ChangeNotifierProvider(
           create: (context) => searchInteractor,
         ),
@@ -80,7 +74,7 @@ class MyAppProvider extends StatelessWidget {
         Provider(
           create: (context) => _di,
         ),
-        ChangeNotifierProvider(
+        Provider(
           create: (context) => PopupManager(),
         ),
       ],

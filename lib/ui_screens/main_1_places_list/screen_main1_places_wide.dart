@@ -4,7 +4,6 @@ import 'package:places/domain_models/place.dart';
 import 'package:places/ui_screens/main_1_places_list/widget_my_sliver_app_bar.dart';
 import 'package:places/ui_screens/main_1_places_list/widget_new_place_button.dart';
 import 'package:places/ui_screens/main_1_places_list/widget_searching_header.dart';
-import 'package:places/ui_screens/place_details_screen/screen_place_details.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_screens/place_details_screen/screen_place_details_di.dart';

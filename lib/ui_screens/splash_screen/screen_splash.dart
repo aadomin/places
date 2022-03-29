@@ -19,6 +19,7 @@ class _ScreenSplashState extends State<ScreenSplash> {
   void initState() {
     super.initState();
     _viewModel = ScreenSplashVM(context: context);
+    _viewModel.init();
   }
 
   @override

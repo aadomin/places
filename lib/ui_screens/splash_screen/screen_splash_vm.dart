@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_interactors/hardwork_interactor.dart';
+import 'package:places/di.dart';
 import 'package:places/my_app_and_routes.dart';
 import 'package:provider/provider.dart';
 
@@ -9,11 +9,13 @@ import 'package:provider/provider.dart';
 class ScreenSplashVM with ChangeNotifier {
   ScreenSplashVM({
     required this.context,
-  }) {
-    initAppAndThenChangeScreen(context);
-  }
+  }) {}
 
   BuildContext context;
+
+  void init() {
+    initAppAndThenChangeScreen(context);
+  }
 
   /// Инициализация, одновременно с этим задержка
   /// и после переход к другому экрану
@@ -33,7 +35,7 @@ class ScreenSplashVM with ChangeNotifier {
   Future<void> _doInitializeApp() async {
     print('loading started at: ${DateTime.now()}');
 
-    context.read<HardworkInteractor>().hardWork();
+    context.read<DI>().hardworkInteractor.hardwork();
 
     print('loading done at: ${DateTime.now()}');
   }

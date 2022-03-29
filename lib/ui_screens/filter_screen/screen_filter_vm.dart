@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_models/filter_condition.dart';
-import 'package:places/domain_models/place.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:places/domain_models/category_item.dart';
 
@@ -28,7 +27,7 @@ class ScreenFilterVM with ChangeNotifier {
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    // TODO(me): implement dispose
     super.dispose();
   }
 

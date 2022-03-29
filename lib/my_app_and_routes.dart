@@ -6,7 +6,6 @@ import 'package:places/ui_screens/place_search_screen/screen_search_di.dart';
 import 'package:places/ui_screens/select_category_screen/screen_selection_category_route.dart';
 import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_screens/onboarding_screen/screen_onboarding.dart';
-import 'package:places/ui_screens/place_search_screen/screen_search.dart';
 import 'package:places/ui_screens/main_screen/screen_all_main.dart';
 import 'package:places/ui_screens/splash_screen/screen_splash.dart';
 

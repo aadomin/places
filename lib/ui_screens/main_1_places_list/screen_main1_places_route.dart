@@ -1,10 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:places/main.dart';
 import 'package:flutter/material.dart';
 import 'package:places/ui_screens/main_1_places_list/screen_main1_places_narrow.dart';
 import 'package:places/ui_screens/main_1_places_list/screen_main1_places_wide.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
-import 'package:places/ui_widgets_commons/widget_network_error.dart';
 import 'package:places/domain_models/place.dart';
 
 /// Экран 1. Список мест.

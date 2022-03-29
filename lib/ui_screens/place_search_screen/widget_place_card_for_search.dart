@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'package:places/ui_screens/place_details_screen/screen_place_details.dart';
 import 'package:places/ui_screens/place_details_screen/screen_place_details_di.dart';
 import 'package:places/ui_widgets_commons/widget_my_image.dart';
-
 import 'package:places/domain_models/place.dart';
 
 /// Маленькая карточка места, например, для экрана поиска

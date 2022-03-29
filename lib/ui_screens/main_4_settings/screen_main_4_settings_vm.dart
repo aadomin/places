@@ -16,6 +16,7 @@ class ScreenMain4SettingsVM with ChangeNotifier {
   final SettingsInteractor settingsInteractor;
   void _settingsEntityListener() => notifyListeners();
 
+  @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();

@@ -1,10 +1,8 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-
-class HardworkInteractor with ChangeNotifier {
+class HardworkInteractor {
   /// имитация сложной загрузки
-  void hardWork() {
+  void hardwork() {
     print('Hard work started');
 
     List<String> list = [];

@@ -13,8 +13,9 @@ class ScreenAddPlaceVM with ChangeNotifier {
   final PlacesInteractor placesEntity;
   // void _settingsEntityListener() => notifyListeners();
 
+  @override
   void dispose() {
-    // TODO: implement dispose
+    // TODO(me): implement dispose
     super.dispose();
   }
 
