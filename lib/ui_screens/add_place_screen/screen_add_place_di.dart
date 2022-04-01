@@ -10,7 +10,7 @@ ScreenAddPlace createScreenAddPlace({
   return ScreenAddPlace(
     viewModel: ScreenAddPlaceVM(
       context: context,
-      placesEntity: context.read<PlacesInteractor>(),
+      placesInteractor: context.read<PlacesInteractor>(),
     ),
   );
 }

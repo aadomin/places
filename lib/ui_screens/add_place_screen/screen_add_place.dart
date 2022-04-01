@@ -29,8 +29,6 @@ class ScreenAddPlace extends StatefulWidget {
 }
 
 class _ScreenAddPlaceState extends State<ScreenAddPlace> {
-
-  
   FocusNode focusNodeName = FocusNode();
   FocusNode focusNodeLat = FocusNode();
   FocusNode focusNodeLon = FocusNode();
@@ -492,8 +490,9 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
   }
 
   void onTapOnSave() {
+    //ТУТВОПРОС
     if (keyFormAddPlace.currentState?.validate() ?? false) {
-      context.read<PlacesInteractor>().addNewPlace(
+      __viewModel.onTapOnAddNewPlace(
             name: textControllerName.text,
             lat: double.parse(textControllerLat.text),
             lon: double.parse(textControllerLon.text),

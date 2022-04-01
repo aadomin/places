@@ -122,6 +122,7 @@ class _ScreenSearchState extends State<ScreenSearch> {
                   case SearchStatus.empty:
                     print('2 empty');
                     return WidgetSearchEmpty(
+                      viewModel: __viewModel,
                       textController: textController,
                       keyOfSearchTextField: keyOfSearchTextField,
                     );

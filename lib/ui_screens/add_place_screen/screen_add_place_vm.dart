@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 
 class ScreenAddPlaceVM with ChangeNotifier {
   ScreenAddPlaceVM({
     required this.context,
-    required this.placesEntity,
+    required this.placesInteractor,
   }) {
     //  settingsEntity.addListener(_settingsEntityListener);
   }
 
   BuildContext context;
-  final PlacesInteractor placesEntity;
+  final PlacesInteractor placesInteractor;
   // void _settingsEntityListener() => notifyListeners();
 
   @override
@@ -18,6 +19,8 @@ class ScreenAddPlaceVM with ChangeNotifier {
     // TODO(me): implement dispose
     super.dispose();
   }
+
+  //
 
   ///
   /// Добавление нового: перечень фоток
@@ -53,5 +56,28 @@ class ScreenAddPlaceVM with ChangeNotifier {
   ///
   set listOfPhotos(List<String> value) {
     _listOfPhotos = value;
+  }
+
+  Future<void> onTapOnAddNewPlace({
+    required String name,
+    required double lat,
+    required double lon,
+    required String url,
+    required String details,
+    required String type,
+  }) async {
+    await placesInteractor.addNewPlace(
+      name: name,
+      lat: lat,
+      lon: lon,
+      // TODO(me): добавить url к создаваемому месту
+      url: 'исправить',
+      details: details,
+      type: type,
+    );
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text(UiStrings.newPlaceCreated)),
+    );
+    Navigator.pop(context);
   }
 }
