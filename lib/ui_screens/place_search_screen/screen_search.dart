@@ -28,10 +28,14 @@ class _ScreenSearchState extends State<ScreenSearch> {
   @override
   void initState() {
     super.initState();
+    __viewModel.init();
     __viewModel.addListener(_vmListener);
   }
 
-  void _vmListener() => setState(() {});
+  void _vmListener() {
+    setState(() {});
+    print('vmListener');
+  }
 
   @override
   void dispose() {
@@ -44,9 +48,7 @@ class _ScreenSearchState extends State<ScreenSearch> {
   //
 
   final FocusNode focusNode1 = FocusNode();
-
   final textController = TextEditingController();
-
   final keyOfSearchTextField = GlobalKey();
 
   @override
@@ -76,9 +78,8 @@ class _ScreenSearchState extends State<ScreenSearch> {
                   focusNode: focusNode1,
                   autofocus: true,
                   controller: textController,
-                  onChanged: (String value) {
-                    context.read<SearchInteractor>().searchPlaces(value);
-                  },
+                  onChanged: (String value) =>
+                      __viewModel.onSearchFieldChanged(value),
                   style: TextStyle(
                     color: Theme.of(context).primaryColorLight,
                   ),
@@ -101,9 +102,7 @@ class _ScreenSearchState extends State<ScreenSearch> {
                     ),
                     suffixIcon: WidgetTextFieldClearButton(
                       textController: textController,
-                      onTap: () {
-                        context.watch<SearchInteractor>().searchPlaces('');
-                      },
+                      onTap: () => __viewModel.onTapOnClearButton(),
                     ),
                   ),
                 ),
@@ -112,18 +111,26 @@ class _ScreenSearchState extends State<ScreenSearch> {
             //
             // Основная страница
             //
-            if (context.watch<SearchInteractor>().searchStatus ==
-                SearchStatus.haveResult)
-              const WidgetSearchResult(),
-            if (context.watch<SearchInteractor>().searchStatus ==
-                SearchStatus.empty)
-              WidgetSearchEmpty(
-                textController: textController,
-                keyOfSearchTextField: keyOfSearchTextField,
-              ),
-            if (context.watch<SearchInteractor>().searchStatus ==
-                SearchStatus.notFound)
-              const WidgetSearchNotFound(),
+            Builder(
+              builder: (context) {
+                switch (__viewModel.searchStatus) {
+                  case SearchStatus.haveResult:
+                    print('1 haveResult');
+                    return WidgetSearchResult(
+                      searchResult: __viewModel.searchResult,
+                    );
+                  case SearchStatus.empty:
+                    print('2 empty');
+                    return WidgetSearchEmpty(
+                      textController: textController,
+                      keyOfSearchTextField: keyOfSearchTextField,
+                    );
+                  case SearchStatus.notFound:
+                    print('3 notFound');
+                    return const WidgetSearchNotFound();
+                }
+              },
+            )
           ],
         ),
       ),

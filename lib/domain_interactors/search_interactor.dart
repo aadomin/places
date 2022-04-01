@@ -34,6 +34,7 @@ class SearchInteractor with ChangeNotifier {
   /// История поиска
   set _lastSearches(List<String> value) {
     searchRepository.lastSearches = value;
+    notifyListeners();
   }
 
   /// История поиска
@@ -48,6 +49,7 @@ class SearchInteractor with ChangeNotifier {
     _doSearchItself(searchText);
     _updateListOfLastSearches(searchText);
     notifyListeners();
+    print('searchPlaces');
   }
 
   ///
@@ -105,7 +107,7 @@ class SearchInteractor with ChangeNotifier {
   ///
   /// Очистить историю поиска
   ///
-  void removeAllItemsFromHistory() {
+  void removeAllHelpersFromHistory() {
     _lastSearches.clear();
     notifyListeners();
   }

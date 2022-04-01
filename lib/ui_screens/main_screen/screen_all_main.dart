@@ -37,7 +37,7 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
         child: ScreenMain3FavoriteAndVisitedRoute(),
       ),
       Center(
-        child: createPageMain4Settings(context),
+        child: createScreenMain4Settings(context),
       ),
     ];
   }

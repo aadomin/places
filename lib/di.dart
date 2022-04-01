@@ -11,6 +11,10 @@ import 'package:places/domain_interactors/search_interactor.dart';
 import 'package:places/domain_interactors/settings_interactor.dart';
 
 class DI {
+  DI({required this.placesInteractor});
+
+  PlacesInteractor placesInteractor;
+
   final _settingsRepository = SettingsRepository();
   late final settingsInteractor =
       SettingsInteractor(settingsRepository: _settingsRepository);
@@ -20,13 +24,13 @@ class DI {
 
   final filterInteractor = FilterInteractor();
 
-  final _dioServices = DioServices();
-  late final _placesRepository = PlaceRepository(dio: _dioServices.dio);
-  late final placesInteractor = PlacesInteractor(
-    placesRepository: _placesRepository,
-    geoServices: geoInteractor,
-    filterInteractor: filterInteractor,
-  );
+  // final _dioServices = DioServices();
+  // late final _placesRepository = PlaceRepository(dio: _dioServices.dio);
+  // late final placesInteractor = PlacesInteractor(
+  //   placesRepository: _placesRepository,
+  //   geoServices: geoInteractor,
+  //   filterInteractor: filterInteractor,
+  // );
 
   final _searchRepository = SearchRepository();
   late final searchInteractor = SearchInteractor(

@@ -19,7 +19,7 @@ class WidgetSearchEmpty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> lastSearchesSnapshot =
-        context.watch<SearchInteractor>().lastSearches;
+        context.read<SearchInteractor>().lastSearches;
     return Column(
       children: [
         for (var i = 0; i < lastSearchesSnapshot.length; i++)
@@ -74,7 +74,7 @@ class WidgetSearchEmpty extends StatelessWidget {
                     TextStyle(color: Theme.of(context).colorScheme.secondary),
               ),
               onPressed: () {
-                context.read<SearchInteractor>().removeAllItemsFromHistory();
+                context.read<SearchInteractor>().removeAllHelpersFromHistory();
               },
             ),
           ),

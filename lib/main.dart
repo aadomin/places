@@ -56,7 +56,7 @@ class MyAppProvider extends StatelessWidget {
 
   //
 
-  final _di = DI();
+  late final _di = DI(placesInteractor: placesInteractor);
 
   @override
   Widget build(BuildContext context) {

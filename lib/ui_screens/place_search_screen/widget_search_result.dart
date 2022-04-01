@@ -8,16 +8,20 @@ import 'package:provider/provider.dart';
 /// Результаты поиска
 ///
 class WidgetSearchResult extends StatelessWidget {
-  const WidgetSearchResult({Key? key}) : super(key: key);
+  const WidgetSearchResult({
+    required this.searchResult,
+    Key? key,
+  }) : super(key: key);
+
+  final List<Place> searchResult;
+
   @override
   Widget build(BuildContext context) {
-    final List<Place> searchResults =
-        context.watch<SearchInteractor>().searchResult;
     return Column(
       children: [
-        for (var i = 0; i < searchResults.length; i++)
+        for (var i = 0; i < searchResult.length; i++)
           WidgetPlaceCartForSearch(
-            place: context.watch<SearchInteractor>().searchResult[i],
+            place: searchResult[i],
           ),
       ],
     );
