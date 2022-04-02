@@ -6,9 +6,9 @@ class ScreenAddPlaceVM with ChangeNotifier {
   ScreenAddPlaceVM({
     required this.context,
     required this.placesInteractor,
-  }) {
-    //  settingsEntity.addListener(_settingsEntityListener);
-  }
+  }) {}
+
+  //  settingsEntity.addListener(_settingsEntityListener);
 
   BuildContext context;
   final PlacesInteractor placesInteractor;

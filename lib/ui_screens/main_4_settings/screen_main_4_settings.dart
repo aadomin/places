@@ -21,12 +21,12 @@ class ScreenMain4Settings extends StatefulWidget {
 }
 
 class _ScreenMain4SettingsState extends State<ScreenMain4Settings> {
-  ScreenMain4SettingsVM get __viewModel => widget.viewModel;
+  ScreenMain4SettingsVM get ___viewModel => widget.viewModel;
 
   @override
   void initState() {
     super.initState();
-    __viewModel.addListener(_vmListener);
+    ___viewModel.addListener(_vmListener);
   }
 
   void _vmListener() => setState(() {});
@@ -34,8 +34,8 @@ class _ScreenMain4SettingsState extends State<ScreenMain4Settings> {
   @override
   void dispose() {
     // TODO(me): тут ошибка!!!
-    //__viewModel.dispose();
-    __viewModel.removeListener(_vmListener);
+    //___viewModel.dispose();
+    ___viewModel.removeListener(_vmListener);
     super.dispose();
   }
 
@@ -69,7 +69,7 @@ class _ScreenMain4SettingsState extends State<ScreenMain4Settings> {
             // Темная тема
             //
             ListTile(
-              onTap: __viewModel.onTapOnThemeSwitchTile,
+              onTap: ___viewModel.onTapOnThemeSwitchTile,
               title: Text(
                 UiStrings.darkTheme,
                 style: TextStyle(
@@ -77,9 +77,9 @@ class _ScreenMain4SettingsState extends State<ScreenMain4Settings> {
                 ),
               ),
               trailing: CupertinoSwitch(
-                value: __viewModel.isDarkThemeOn,
+                value: ___viewModel.isDarkThemeOn,
                 onChanged: (currentValue) {
-                  __viewModel.onTapOnThemeSwitch();
+                  ___viewModel.onTapOnThemeSwitch();
                 },
               ),
             ),
@@ -103,7 +103,7 @@ class _ScreenMain4SettingsState extends State<ScreenMain4Settings> {
                   color: Theme.of(context).colorScheme.secondary,
                 ),
               ),
-              onTap: __viewModel.onTapOnTutorialLink,
+              onTap: ___viewModel.onTapOnTutorialLink,
             ),
           ],
         ),

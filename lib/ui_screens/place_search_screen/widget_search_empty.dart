@@ -21,11 +21,11 @@ class WidgetSearchEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ScreenSearchVM __viewModel = viewModel;
+    final ScreenSearchVM ___viewModel = viewModel;
 
     return Column(
       children: [
-        for (var i = 0; i < __viewModel.lastSearchesSnapshot.length; i++)
+        for (var i = 0; i < ___viewModel.lastSearchesSnapshot.length; i++)
           Column(
             children: [
               ListTile(
@@ -36,16 +36,16 @@ class WidgetSearchEmpty extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      __viewModel.lastSearchesSnapshot[i],
+                      ___viewModel.lastSearchesSnapshot[i],
                       style:
                           TextStyle(color: Theme.of(context).primaryColorLight),
                     ),
                   ),
                   onPressed: () {
                     // ВОПРОСТУТ
-                    textController.text = __viewModel.lastSearchesSnapshot[i];
+                    textController.text = ___viewModel.lastSearchesSnapshot[i];
 
-                    __viewModel.onTapOnOneOfLastSearches(i);
+                    ___viewModel.onTapOnOneOfLastSearches(i);
                   },
                 ),
 
@@ -54,7 +54,7 @@ class WidgetSearchEmpty extends StatelessWidget {
                 //
                 trailing: IconButton(
                   icon: const Icon(Icons.close),
-                  onPressed: () => __viewModel.onTapOnRemoveItemFromHistory(i),
+                  onPressed: () => ___viewModel.onTapOnRemoveItemFromHistory(i),
                 ),
               ),
               const Divider(),
@@ -63,7 +63,7 @@ class WidgetSearchEmpty extends StatelessWidget {
         //
         // Кнопка Очистить историю поиска
         //
-        if (__viewModel.lastSearchesSnapshot.isNotEmpty)
+        if (___viewModel.lastSearchesSnapshot.isNotEmpty)
           Container(
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -73,7 +73,7 @@ class WidgetSearchEmpty extends StatelessWidget {
                 style:
                     TextStyle(color: Theme.of(context).colorScheme.secondary),
               ),
-              onPressed: () => __viewModel.onTapOnRemoveAllItemsFromHistory(),
+              onPressed: () => ___viewModel.onTapOnRemoveAllItemsFromHistory(),
             ),
           ),
       ],

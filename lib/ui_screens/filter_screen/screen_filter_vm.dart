@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_models/filter_condition.dart';
+import 'package:places/domain_models/place.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:places/domain_models/category_item.dart';
 
@@ -13,7 +14,16 @@ class ScreenFilterVM with ChangeNotifier {
     required this.context,
     required this.filterInteractor,
     required this.placesInteractor,
-  }) {
+  });
+
+  final FilterInteractor filterInteractor;
+  final PlacesInteractor placesInteractor;
+  final BuildContext context;
+
+  void init() {
+    filterInteractor.addListener(_placesInteractorListener);
+    placesInteractor.addListener(_filterInteractorListener);
+
     // при появлении объекта из стрима обновляем интерфейс
     streamFilterItemsState.listen((newFilterItemsState) {
       filterInteractor.filterConditions.filterItemsState = newFilterItemsState;
@@ -25,15 +35,19 @@ class ScreenFilterVM with ChangeNotifier {
     });
   }
 
+  void _placesInteractorListener() => notifyListeners();
+  void _filterInteractorListener() => notifyListeners();
+
   @override
   void dispose() {
-    // TODO(me): implement dispose
+    filterInteractor.removeListener(_placesInteractorListener);
+    placesInteractor.removeListener(_filterInteractorListener);
     super.dispose();
   }
 
-  final FilterInteractor filterInteractor;
-  final PlacesInteractor placesInteractor;
-  final BuildContext context;
+  //
+  // ТУТВОПРОС
+  List<Place> get filteredPlaces => placesInteractor.getFilteredPlaces;
 
   List<CategoryItem> get filterItemsState =>
       filterInteractor.filterConditions.filterItemsState;

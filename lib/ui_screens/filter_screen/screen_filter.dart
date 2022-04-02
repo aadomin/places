@@ -28,6 +28,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
   @override
   void initState() {
     super.initState();
+    ___viewModel.init();
     ___viewModel.addListener(_vmListener);
   }
 
@@ -36,7 +37,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
   @override
   void dispose() {
     //TODO(x): тут вопрос
-    //___viewModel.dispose();
+    //____viewModel.dispose();
     ___viewModel.removeListener(_vmListener);
     super.dispose();
   }
@@ -72,14 +73,6 @@ class _ScreenFilterState extends State<ScreenFilter> {
 
   @override
   Widget build(BuildContext context) {
-    //
-    //
-    final List<Place> filteredPlaces =
-        context.watch<PlacesInteractor>().getFilteredPlaces;
-    //
-    //
-    final int numOfFilteredPlaces = filteredPlaces.length;
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).canvasColor,
@@ -258,7 +251,8 @@ class _ScreenFilterState extends State<ScreenFilter> {
             onPressed: ___viewModel.onTapOnShow,
             child: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: Text('${UiStrings.filterShow} ($numOfFilteredPlaces)'),
+              child: Text(
+                  '${UiStrings.filterShow} (${___viewModel.filteredPlaces.length})'),
             ),
           ),
         ),

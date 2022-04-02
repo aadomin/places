@@ -40,7 +40,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
   final textControllerDescription = TextEditingController();
 
   //+
-  ScreenAddPlaceVM get __viewModel => widget.viewModel;
+  ScreenAddPlaceVM get ___viewModel => widget.viewModel;
 
   //+
   List<String> _listOfPhotos = [];
@@ -54,7 +54,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
   @override
   Widget build(BuildContext context) {
     //+
-    _listOfPhotos = __viewModel.listOfPhotos;
+    _listOfPhotos = ___viewModel.listOfPhotos;
 
     //+
 
@@ -492,7 +492,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
   void onTapOnSave() {
     //ТУТВОПРОС
     if (keyFormAddPlace.currentState?.validate() ?? false) {
-      __viewModel.onTapOnAddNewPlace(
+      ___viewModel.onTapOnAddNewPlace(
             name: textControllerName.text,
             lat: double.parse(textControllerLat.text),
             lon: double.parse(textControllerLon.text),

@@ -23,13 +23,13 @@ class ScreenSearch extends StatefulWidget {
 }
 
 class _ScreenSearchState extends State<ScreenSearch> {
-  ScreenSearchVM get __viewModel => widget.viewModel;
+  ScreenSearchVM get ___viewModel => widget.viewModel;
 
   @override
   void initState() {
     super.initState();
-    __viewModel.init();
-    __viewModel.addListener(_vmListener);
+    ___viewModel.init();
+    ___viewModel.addListener(_vmListener);
   }
 
   void _vmListener() {
@@ -40,8 +40,8 @@ class _ScreenSearchState extends State<ScreenSearch> {
   @override
   void dispose() {
     // TODO(me): тут ошибка возникает!!!
-    //__viewModel.dispose();
-    __viewModel.removeListener(_vmListener);
+    //___viewModel.dispose();
+    ___viewModel.removeListener(_vmListener);
     super.dispose();
   }
 
@@ -79,7 +79,7 @@ class _ScreenSearchState extends State<ScreenSearch> {
                   autofocus: true,
                   controller: textController,
                   onChanged: (String value) =>
-                      __viewModel.onSearchFieldChanged(value),
+                      ___viewModel.onSearchFieldChanged(value),
                   style: TextStyle(
                     color: Theme.of(context).primaryColorLight,
                   ),
@@ -102,7 +102,7 @@ class _ScreenSearchState extends State<ScreenSearch> {
                     ),
                     suffixIcon: WidgetTextFieldClearButton(
                       textController: textController,
-                      onTap: () => __viewModel.onTapOnClearButton(),
+                      onTap: () => ___viewModel.onTapOnClearButton(),
                     ),
                   ),
                 ),
@@ -113,16 +113,16 @@ class _ScreenSearchState extends State<ScreenSearch> {
             //
             Builder(
               builder: (context) {
-                switch (__viewModel.searchStatus) {
+                switch (___viewModel.searchStatus) {
                   case SearchStatus.haveResult:
                     print('1 haveResult');
                     return WidgetSearchResult(
-                      searchResult: __viewModel.searchResult,
+                      searchResult: ___viewModel.searchResult,
                     );
                   case SearchStatus.empty:
                     print('2 empty');
                     return WidgetSearchEmpty(
-                      viewModel: __viewModel,
+                      viewModel: ___viewModel,
                       textController: textController,
                       keyOfSearchTextField: keyOfSearchTextField,
                     );
