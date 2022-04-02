@@ -11,8 +11,8 @@ import 'package:places/ui_widgets_commons/widget_my_header.dart';
 /// BottomNavigationBar.
 /// Данный класс описывает ГЛАВНОЕ состояние экрана
 ///
-class ScreenMain3FavoriteAndVisited extends StatefulWidget {
-  const ScreenMain3FavoriteAndVisited({
+class ScreenMain3FavAndVisit extends StatefulWidget {
+  const ScreenMain3FavAndVisit({
     required this.visitedPlaces,
     required this.favoritePlaces,
     Key? key,
@@ -22,12 +22,12 @@ class ScreenMain3FavoriteAndVisited extends StatefulWidget {
   final List<Place> favoritePlaces;
 
   @override
-  _ScreenMain3FavoriteAndVisitedState createState() =>
-      _ScreenMain3FavoriteAndVisitedState();
+  _ScreenMain3FavAndVisitState createState() =>
+      _ScreenMain3FavAndVisitState();
 }
 
-class _ScreenMain3FavoriteAndVisitedState
-    extends State<ScreenMain3FavoriteAndVisited>
+class _ScreenMain3FavAndVisitState
+    extends State<ScreenMain3FavAndVisit>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 

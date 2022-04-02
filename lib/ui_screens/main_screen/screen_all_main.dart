@@ -3,8 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/main_1_places_list/screen_main1_places_route.dart';
+import 'package:places/ui_screens/main_1_places_list/screen_main1_places_route_di.dart';
 import 'package:places/ui_screens/main_2_map/screen_main_2_map.dart';
-import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_favorite_and_visited_route.dart';
+import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_fav_and_visit_route.dart';
 import 'package:places/ui_screens/main_4_settings/screen_main_4_settings_di.dart';
 
 /// ГЛАВНЫЙ ЭКРАН.
@@ -25,9 +26,10 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
   void initState() {
     super.initState();
     _widgetsPageList = [
-      const SafeArea(
+      // ТУТВОПРОС
+      SafeArea(
         child: Center(
-          child: ScreenMain1PlacesRoute(),
+          child: createScreenMain1PlacesRoute(context),
         ),
       ),
       const Center(

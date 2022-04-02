@@ -27,14 +27,14 @@ class _ScreenMain4SettingsState extends State<ScreenMain4Settings> {
   void initState() {
     super.initState();
     ___viewModel.addListener(_vmListener);
+    ___viewModel.initVM();
   }
 
   void _vmListener() => setState(() {});
 
   @override
   void dispose() {
-    // TODO(me): тут ошибка!!!
-    //___viewModel.dispose();
+    ___viewModel.disposeVM();
     ___viewModel.removeListener(_vmListener);
     super.dispose();
   }

@@ -6,20 +6,19 @@ class ScreenMain4SettingsVM with ChangeNotifier {
   ScreenMain4SettingsVM({
     required this.context,
     required this.settingsInteractor,
-  }) {
-    settingsInteractor.addListener(_settingsInteractorListener);
-  }
-
-  //method dispose должен быть вызван из виджета
+  });
 
   BuildContext context;
   final SettingsInteractor settingsInteractor;
+
+  void initVM() {
+    settingsInteractor.addListener(_settingsInteractorListener);
+  }
+
   void _settingsInteractorListener() => notifyListeners();
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
+  void disposeVM() {
+    settingsInteractor.removeListener(_settingsInteractorListener);
   }
 
   //

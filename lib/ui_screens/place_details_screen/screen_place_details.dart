@@ -37,6 +37,22 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
   double _selectedPage = 0;
 
   @override
+  void initState() {
+    __viewModel.init();
+    __viewModel.addListener(_vmListener);
+    super.initState();
+  }
+
+  void _vmListener() => setState(() {});
+
+  @override
+  void dispose() {
+    __viewModel.removeListener(_vmListener);
+    __viewModel.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // ТУТВОПРОС
     final Place __sight = __viewModel.getPlaceDetails(
@@ -243,10 +259,8 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                             //
                             TextButton(
                               onPressed: () {
-                                context
-                                    .read<PopupManager>()
-                                    .showPopupSchedulePlace(
-                                        context, __sight.id);
+                                __viewModel.onShowPopupSchedulePlace(
+                                    placeId: __sight.id);
                               },
                               child: Padding(
                                 padding: const EdgeInsets.only(
@@ -272,16 +286,15 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                             // Кнопка В избранное
                             //
                             TextButton(
+                              // ТУТВОПРОС
                               onPressed: __sight.wished
                                   ? () {
-                                      context
-                                          .read<PlacesInteractor>()
-                                          .removeFromFavorites(__sight.id);
+                                      __viewModel.onRemoveFromFavorites(
+                                          placeId: __sight.id);
                                     }
                                   : () {
-                                      context
-                                          .read<PlacesInteractor>()
-                                          .addToFavorites(__sight.id);
+                                      __viewModel.onAddToFavorites(
+                                          placeId: __sight.id);
                                     },
                               child: Padding(
                                 padding: const EdgeInsets.only(
