@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
+import 'package:places/domain_models/place.dart';
 import 'package:places/ui_screens/popups/popup_manager.dart';
 
 class ScreenPlaceDetailsVM with ChangeNotifier {
@@ -24,10 +25,6 @@ class ScreenPlaceDetailsVM with ChangeNotifier {
 
   //
 
-  // bool get isDarkThemeOn => settingsEntity.isDarkThemeOn;
-
-  // void onTapOnTutorialLink() {
-  //   Navigator.of(context).pushNamed(ROUTE_ONBOARDING);
-  // }
-
+  Place getPlaceDetails({required int placeId}) =>
+      placesInteractor.getPlaceDetails(placeId);
 }

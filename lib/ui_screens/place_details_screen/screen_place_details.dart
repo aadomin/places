@@ -32,13 +32,17 @@ class ScreenPlaceDetails extends StatefulWidget {
 class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
   final PageController _pageController = PageController();
 
+  ScreenPlaceDetailsVM get __viewModel => widget.viewModel;
+
   double _selectedPage = 0;
 
   @override
   Widget build(BuildContext context) {
-    final Place __sight =
-        context.watch<PlacesInteractor>().getPlaceDetails(widget.placeId);
-    final int _countOfPages = __sight.url.length;
+    // ТУТВОПРОС
+    final Place __sight = __viewModel.getPlaceDetails(
+      placeId: widget.placeId,
+    );
+    final int __countOfPages = __sight.url.length;
 
     return Padding(
       padding: const EdgeInsets.only(top: 100),
@@ -70,7 +74,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                           });
                         },
                         children: [
-                          for (var i = 0; i < _countOfPages; i++)
+                          for (var i = 0; i < __countOfPages; i++)
                             Container(
                               height: 300,
                               width: 300,
@@ -98,11 +102,11 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                               // рассчитываю отступ
                               left: _selectedPage *
                                   MediaQuery.of(context).size.width /
-                                  _countOfPages),
+                                  __countOfPages),
                           child: SizedBox(
                             // рассчитываю ширину
                             width: MediaQuery.of(context).size.width /
-                                _countOfPages,
+                                __countOfPages,
                             height: 6,
                             child: ClipRRect(
                               borderRadius: const BorderRadius.all(
