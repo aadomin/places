@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/data_repositories/place_repository.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
-import 'package:places/domain_interactors/geo_services.dart';
+import 'package:places/domain_interactors/geo_interactor.dart';
 import 'package:places/domain_models/category_item.dart';
 import 'package:places/domain_models/place.dart';
 
@@ -13,13 +13,13 @@ import 'package:places/domain_models/place.dart';
 class PlacesInteractor with ChangeNotifier {
   PlacesInteractor({
     required this.placesRepository,
-    required this.geoServices,
+    required this.geoInteractor,
     required this.filterInteractor,
   }) {
     init(); //асинхронная
   }
   final PlaceRepository placesRepository;
-  final GeoServices geoServices;
+  final GeoInteractor geoInteractor;
   final FilterInteractor filterInteractor;
 
   bool isLoading = true;
@@ -78,7 +78,7 @@ class PlacesInteractor with ChangeNotifier {
   /// Обновляет расстояния от объекта до пользователя
   void _updateDistancesFromAllPlacesToUser() {
     loadedAllPlaces = loadedAllPlaces.map((place) {
-      place.currentDistanceToUser = geoServices.distanceFromPointToUser(
+      place.currentDistanceToUser = geoInteractor.distanceFromPointToUser(
         lat: place.lat,
         lon: place.lon,
       );

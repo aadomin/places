@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 class ScreenSplashVM with ChangeNotifier {
   ScreenSplashVM({
     required this.context,
-  }) {}
+  }) ;
 
   BuildContext context;
 

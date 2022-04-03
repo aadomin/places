@@ -4,33 +4,29 @@ import 'package:places/data_repositories/place_repository.dart';
 import 'package:places/data_repositories/search_repository.dart';
 import 'package:places/data_repositories/settings_repository.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
-import 'package:places/domain_interactors/geo_services.dart';
+import 'package:places/domain_interactors/geo_interactor.dart';
 import 'package:places/domain_interactors/hardwork_interactor.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_interactors/search_interactor.dart';
 import 'package:places/domain_interactors/settings_interactor.dart';
 
 class DI {
-  DI({required this.placesInteractor});
-
-  PlacesInteractor placesInteractor;
-
   final _settingsRepository = SettingsRepository();
   late final settingsInteractor =
       SettingsInteractor(settingsRepository: _settingsRepository);
 
   final _geoRepository = GeoRepository();
-  late final geoInteractor = GeoServices(geoRepository: _geoRepository);
+  late final geoInteractor = GeoInteractor(geoRepository: _geoRepository);
 
   final filterInteractor = FilterInteractor();
 
-  // final _dioServices = DioServices();
-  // late final _placesRepository = PlaceRepository(dio: _dioServices.dio);
-  // late final placesInteractor = PlacesInteractor(
-  //   placesRepository: _placesRepository,
-  //   geoServices: geoInteractor,
-  //   filterInteractor: filterInteractor,
-  // );
+  final _dioServices = DioServices();
+  late final _placesRepository = PlaceRepository(dio: _dioServices.dio);
+  late final placesInteractor = PlacesInteractor(
+    placesRepository: _placesRepository,
+    geoInteractor: geoInteractor,
+    filterInteractor: filterInteractor,
+  );
 
   final _searchRepository = SearchRepository();
   late final searchInteractor = SearchInteractor(
