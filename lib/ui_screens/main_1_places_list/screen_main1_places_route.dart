@@ -25,7 +25,7 @@ class _ScreenMain1PlacesRouteState extends State<ScreenMain1PlacesRoute> {
   /// ширина экрана при которой появляются 2 столбца
   static const criticalWidth = 800.0;
 
-  ScreenMain1PlacesRouteVM get __viewModel => widget.viewModel;
+  ScreenMain1PlacesRouteVM get ___viewModel => widget.viewModel;
 
   @override
   void initState() {
@@ -47,7 +47,7 @@ class _ScreenMain1PlacesRouteState extends State<ScreenMain1PlacesRoute> {
   Widget build(BuildContext context) {
     // ТУТВОПРОС нужен ли тут final
     // ТУТВОПРОС ради одного
-    final List<Place> filteredPlaces = __viewModel.filteredPlaces;
+    final List<Place> filteredPlaces = ___viewModel.filteredPlaces;
 
     // ТУТВОПРОС
     if (filteredPlaces.isEmpty) {
@@ -67,10 +67,14 @@ class _ScreenMain1PlacesRouteState extends State<ScreenMain1PlacesRoute> {
     // ТУТВОПРОС
     if (MediaQuery.of(context).size.width <= criticalWidth) {
       return ScreenMain1PlacesNarrow(
+        //ТУТВОПРОС - можно ли одну VM на двух
+        ___viewModel,
         filteredPlacesSnapshot: filteredPlaces,
+        //ТУТВОПРОС - можно ли одну VM на двух
       );
     } else {
       return ScreenMain1PlacesWide(
+        ___viewModel,
         filteredPlacesSnapshot: filteredPlaces,
         criticalWidth: criticalWidth,
       );

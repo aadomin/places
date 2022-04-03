@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_models/place.dart';
+import 'package:places/ui_screens/main_1_places_list/screen_main1_places_route_vm.dart';
 import 'package:places/ui_screens/main_1_places_list/widget_my_sliver_app_bar.dart';
 import 'package:places/ui_screens/main_1_places_list/widget_new_place_button.dart';
 import 'package:places/ui_screens/main_1_places_list/widget_searching_header.dart';
@@ -16,11 +17,14 @@ import 'package:provider/provider.dart';
 /// Данный класс описывает ГЛАВНОЕ состояние экрана
 ///
 class ScreenMain1PlacesWide extends StatelessWidget {
-  ScreenMain1PlacesWide({
+  ScreenMain1PlacesWide(
+    this.___viewModel, {
     required this.filteredPlacesSnapshot,
     required this.criticalWidth,
     Key? key,
   }) : super(key: key);
+
+  final ScreenMain1PlacesRouteVM ___viewModel;
 
   final List<Place> filteredPlacesSnapshot;
 
@@ -62,22 +66,24 @@ class ScreenMain1PlacesWide extends StatelessWidget {
                         placeCardType: PlaceCardType.general,
                         isLiked: filteredPlacesSnapshot[i].wished,
                         onTap: () {
-                          onTap(context, filteredPlacesSnapshot[i].id);
+                          onTap(
+                            context,
+                            filteredPlacesSnapshot[i].id,
+                          );
                         },
-                        onAddToWished: () {
+                        onToggleWished: () {
+                          // ТУТВОПРОС
                           if (filteredPlacesSnapshot[i].wished) {
-                            context.read<PlacesInteractor>().removeFromFavorites(
+                            ___viewModel.onRemoveFromFavorites(
                                 filteredPlacesSnapshot[i].id);
                           } else {
-                            context
-                                .read<PlacesInteractor>()
-                                .addToFavorites(filteredPlacesSnapshot[i].id);
+                            ___viewModel
+                                .onAddToFavorites(filteredPlacesSnapshot[i].id);
                           }
                         },
                         onDeleteAtAll: () {
-                          context
-                              .read<PlacesInteractor>()
-                              .removeAtAll(filteredPlacesSnapshot[i].id);
+                          ___viewModel
+                              .onRemoveAtAll(filteredPlacesSnapshot[i].id);
                         },
                       ),
                     ),

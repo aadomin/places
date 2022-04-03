@@ -24,4 +24,11 @@ class ScreenMain1PlacesRouteVM with ChangeNotifier {
   //
 
   List<Place> get filteredPlaces => placesInteractor.getFilteredPlaces;
+
+  void onRemoveFromFavorites(int id) =>
+      placesInteractor.removeFromFavorites(id);
+
+  void onAddToFavorites(int id) => placesInteractor.addToFavorites(id);
+
+  void onRemoveAtAll(int id) => placesInteractor.removeAtAll(id);
 }

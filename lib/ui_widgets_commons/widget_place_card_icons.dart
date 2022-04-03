@@ -10,7 +10,7 @@ import 'package:places/ui_commons/ui_image_paths.dart';
 class WidgetPlaceCardIcons extends StatelessWidget {
   const WidgetPlaceCardIcons({
     required this.placeCardType,
-    this.onAddToWished,
+    this.onToggleWished,
     this.onAddToCalendar,
     this.onDeleteFromWished,
     this.onShare,
@@ -21,7 +21,7 @@ class WidgetPlaceCardIcons extends StatelessWidget {
 
   final PlaceCardType placeCardType;
 
-  final VoidCallback? onAddToWished;
+  final VoidCallback? onToggleWished;
 
   final VoidCallback? onAddToCalendar;
   final VoidCallback? onDeleteFromWished;
@@ -39,7 +39,7 @@ class WidgetPlaceCardIcons extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             InkWell(
-              onTap: onAddToWished,
+              onTap: onToggleWished,
               child: Container(
                 padding: const EdgeInsets.all(8),
                 child: SvgPicture.asset(

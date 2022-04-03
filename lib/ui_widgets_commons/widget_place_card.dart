@@ -15,7 +15,7 @@ class WidgetPlaceCard extends StatelessWidget {
     required this.place,
     required this.placeCardType,
     required this.onTap,
-    this.onAddToWished,
+    this.onToggleWished,
     this.onAddToCalendar,
     this.onDeleteFromWished,
     this.onShare,
@@ -30,7 +30,7 @@ class WidgetPlaceCard extends StatelessWidget {
 
   final VoidCallback onTap;
 
-  final VoidCallback? onAddToWished;
+  final VoidCallback? onToggleWished;
   final VoidCallback? onAddToCalendar;
   final VoidCallback? onDeleteFromWished;
   final VoidCallback? onShare;
@@ -200,7 +200,7 @@ class WidgetPlaceCard extends StatelessWidget {
                         onDeleteFromSeen: onDeleteFromSeen,
                         onDeleteFromWished: onDeleteFromWished,
                         onAddToCalendar: onAddToCalendar,
-                        onAddToWished: onAddToWished,
+                        onToggleWished: onToggleWished,
                         onShare: onShare,
                         isLiked: isLiked,
                       ),
