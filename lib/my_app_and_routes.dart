@@ -8,6 +8,7 @@ import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_screens/onboarding_screen/screen_onboarding.dart';
 import 'package:places/ui_screens/main_screen/screen_all_main.dart';
 import 'package:places/ui_screens/splash_screen/screen_splash.dart';
+import 'package:places/ui_screens/splash_screen/screen_splash_di.dart';
 
 // TODO(me): переделать в ScreenAllMain.routeName и static const routeName = '/extractArguments';
 const String ROUTE_HOME = '/';
@@ -22,26 +23,29 @@ const String ROUTE_SPLASH = '/splash';
 /// Класс содержит маршруты в приложении и виджет MaterialApp
 ///
 class MyAppAndRoutes extends StatefulWidget {
-  const MyAppAndRoutes({Key? key}) : super(key: key);
+  const MyAppAndRoutes({required this.viewModel, Key? key}) : super(key: key);
+
+  final MyAppAndRoutesVM viewModel;
 
   @override
   State<MyAppAndRoutes> createState() => _MyAppAndRoutesState();
 }
 
 class _MyAppAndRoutesState extends State<MyAppAndRoutes> {
-  late final MyAppAndRoutesVM _viewModel = MyAppAndRoutesVM(context: context);
+  MyAppAndRoutesVM get ___viewModel => widget.viewModel;
 
   @override
   void initState() {
     super.initState();
-    _viewModel.addListener(_vmListener);
+    ___viewModel.addListener(_vmListener);
+    ___viewModel.initVM();
   }
 
   void _vmListener() => setState(() {});
 
   @override
   void dispose() {
-    _viewModel.removeListener(_vmListener);
+    ___viewModel.removeListener(_vmListener);
     super.dispose();
   }
 
@@ -51,7 +55,7 @@ class _MyAppAndRoutesState extends State<MyAppAndRoutes> {
       title: 'Hey, Flutter!',
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: _viewModel.isDarkThemeOn ? ThemeMode.dark : ThemeMode.light,
+      themeMode: ___viewModel.isDarkThemeOn ? ThemeMode.dark : ThemeMode.light,
       initialRoute: ROUTE_SPLASH,
       debugShowCheckedModeBanner: false,
       routes: {
@@ -62,7 +66,7 @@ class _MyAppAndRoutesState extends State<MyAppAndRoutes> {
             const ScreenSelectionCategoryRoute(),
         ROUTE_SEARCH: (context) => createScreenSearch(context: context),
         ROUTE_ONBOARDING: (context) => const ScreenOnboarding(),
-        ROUTE_SPLASH: (context) => const ScreenSplash(),
+        ROUTE_SPLASH: (context) => createScreenSplash(context: context),
       },
     );
   }

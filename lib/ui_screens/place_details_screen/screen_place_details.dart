@@ -33,7 +33,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
 
   @override
   void initState() {
-    __viewModel.init();
+    __viewModel.initVM();
     __viewModel.addListener(_vmListener);
     super.initState();
   }
@@ -43,7 +43,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
   @override
   void dispose() {
     __viewModel.removeListener(_vmListener);
-    __viewModel.dispose();
+    __viewModel.disposeVM();
     super.dispose();
   }
 

@@ -14,21 +14,16 @@ class ScreenPlaceDetailsVM with ChangeNotifier {
   final PlacesInteractor placesInteractor;
   final PopupManager popupManager;
 
-  void init() {
+  void initVM() {
     placesInteractor.addListener(_placesInteractorListener);
   }
 
   void _placesInteractorListener() => notifyListeners();
 
-  @override
-  void dispose() {
-    //method dispose должен быть вызван из виджета
+  void disposeVM() {
     placesInteractor.removeListener(_placesInteractorListener);
-    super.dispose();
   }
 
-  //
-  //
   //
 
   Place getPlaceDetails({required int placeId}) =>

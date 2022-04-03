@@ -6,20 +6,30 @@ import 'package:places/ui_screens/splash_screen/screen_splash_vm.dart';
 
 /// Экран-заставка во время загрузки
 class ScreenSplash extends StatefulWidget {
-  const ScreenSplash({Key? key}) : super(key: key);
+  const ScreenSplash({
+    required this.viewModel,
+    Key? key,
+  }) : super(key: key);
+
+  final ScreenSplashVM viewModel;
 
   @override
   _ScreenSplashState createState() => _ScreenSplashState();
 }
 
 class _ScreenSplashState extends State<ScreenSplash> {
-  late final ScreenSplashVM _viewModel;
+  ScreenSplashVM get _viewModel => widget.viewModel;
 
   @override
   void initState() {
     super.initState();
-    _viewModel = ScreenSplashVM(context: context);
-    _viewModel.init();
+    _viewModel.initVM(); //Тут не просто инит, тут работа
+  }
+
+  @override
+  void dispose() {
+    _viewModel.disposeVM();
+    super.dispose();
   }
 
   @override
