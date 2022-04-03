@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/di.dart';
-import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_fav_and_visit_state.dart';
 import 'package:provider/provider.dart';
 

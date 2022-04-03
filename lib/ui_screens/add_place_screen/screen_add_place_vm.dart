@@ -6,19 +6,10 @@ class ScreenAddPlaceVM with ChangeNotifier {
   ScreenAddPlaceVM({
     required this.context,
     required this.placesInteractor,
-  }) {}
-
-  //  settingsEntity.addListener(_settingsEntityListener);
+  });
 
   BuildContext context;
   final PlacesInteractor placesInteractor;
-  // void _settingsEntityListener() => notifyListeners();
-
-  @override
-  void dispose() {
-    // TODO(me): implement dispose
-    super.dispose();
-  }
 
   //
 

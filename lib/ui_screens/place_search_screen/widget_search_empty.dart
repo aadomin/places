@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui_commons/ui_strings.dart';
-import 'package:places/domain_interactors/search_interactor.dart';
 import 'package:places/ui_screens/place_search_screen/screen_search_vm.dart';
-import 'package:provider/provider.dart';
 
 ///
 /// Отображается, пока поле поиска еще пустое

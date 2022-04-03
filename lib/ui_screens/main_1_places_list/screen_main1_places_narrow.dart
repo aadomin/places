@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_interactors/place_interactor.dart';
-
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_screens/main_1_places_list/screen_main1_places_route_vm.dart';
 import 'package:places/ui_screens/main_1_places_list/widget_my_sliver_app_bar.dart';
@@ -10,7 +8,6 @@ import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_screens/place_details_screen/screen_place_details_di.dart';
 import 'package:places/ui_widgets_commons/widget_place_card.dart';
-import 'package:provider/provider.dart';
 
 /// Экран 1. Список мест - узкий вариант
 /// Первый из четырех главных экранов, доступных по нажатию на
@@ -66,7 +63,7 @@ class ScreenMain1PlacesNarrow extends StatelessWidget {
                         if (filteredPlacesSnapshot[i].wished) {
                           ___viewModel.onRemoveFromFavorites(
                               filteredPlacesSnapshot[i].id);
-                        } else { 
+                        } else {
                           ___viewModel
                               .onAddToFavorites(filteredPlacesSnapshot[i].id);
                         }

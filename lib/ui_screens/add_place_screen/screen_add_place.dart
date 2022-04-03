@@ -6,13 +6,11 @@ import 'package:places/ui_widgets_commons/widget_bottom_button.dart';
 import 'package:places/ui_widgets_commons/widget_textfield_clear_button.dart';
 import 'package:places/ui_commons/platform_detector.dart';
 import 'package:places/ui_commons/ui_strings.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_screens/add_place_screen/widget_small_category_header.dart';
 import 'package:places/ui_screens/add_place_screen/dialog_add_photo.dart';
 import 'package:places/ui_widgets_commons/widget_my_image.dart';
-import 'package:places/domain_interactors/place_interactor.dart';
 
 ///
 /// Экран - Добавить место
@@ -493,14 +491,14 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
     //ТУТВОПРОС
     if (keyFormAddPlace.currentState?.validate() ?? false) {
       ___viewModel.onTapOnAddNewPlace(
-            name: textControllerName.text,
-            lat: double.parse(textControllerLat.text),
-            lon: double.parse(textControllerLon.text),
-            // TODO(me): добавить url к создаваемому месту
-            url: 'исправить',
-            details: textControllerDescription.text,
-            type: _currentlySelectedCategory,
-          );
+        name: textControllerName.text,
+        lat: double.parse(textControllerLat.text),
+        lon: double.parse(textControllerLon.text),
+        // TODO(me): добавить url к создаваемому месту
+        url: 'исправить',
+        details: textControllerDescription.text,
+        type: _currentlySelectedCategory,
+      );
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text(UiStrings.newPlaceCreated)),
       );

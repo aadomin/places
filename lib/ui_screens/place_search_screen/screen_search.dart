@@ -7,10 +7,8 @@ import 'package:places/ui_screens/place_search_screen/widget_search_empty.dart';
 import 'package:places/ui_screens/place_search_screen/widget_search_not_found.dart';
 import 'package:places/ui_screens/place_search_screen/widget_search_result.dart';
 import 'package:places/ui_widgets_commons/widget_textfield_clear_button.dart';
-import 'package:provider/provider.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/ui_strings.dart';
-import 'package:places/domain_interactors/search_interactor.dart';
 
 /// Экран "Поиск"
 class ScreenSearch extends StatefulWidget {
@@ -28,19 +26,16 @@ class _ScreenSearchState extends State<ScreenSearch> {
   @override
   void initState() {
     super.initState();
-    ___viewModel.init();
     ___viewModel.addListener(_vmListener);
+    ___viewModel.initVM();
   }
 
-  void _vmListener() {
-    setState(() {});
-    print('vmListener');
-  }
+  void _vmListener() => setState(() {});
 
   @override
   void dispose() {
     // TODO(me): тут ошибка возникает!!!
-    //___viewModel.dispose();
+    ___viewModel.disposeVM();
     ___viewModel.removeListener(_vmListener);
     super.dispose();
   }

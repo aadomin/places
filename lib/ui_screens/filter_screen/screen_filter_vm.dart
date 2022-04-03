@@ -20,7 +20,7 @@ class ScreenFilterVM with ChangeNotifier {
   final PlacesInteractor placesInteractor;
   final BuildContext context;
 
-  void init() {
+  void initVM() {
     filterInteractor.addListener(_placesInteractorListener);
     placesInteractor.addListener(_filterInteractorListener);
 
@@ -38,11 +38,9 @@ class ScreenFilterVM with ChangeNotifier {
   void _placesInteractorListener() => notifyListeners();
   void _filterInteractorListener() => notifyListeners();
 
-  @override
-  void dispose() {
+  void disposeVM() {
     filterInteractor.removeListener(_placesInteractorListener);
     placesInteractor.removeListener(_filterInteractorListener);
-    super.dispose();
   }
 
   //

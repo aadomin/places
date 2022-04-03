@@ -44,10 +44,10 @@ class PlacesInteractor with ChangeNotifier {
     notifyListeners();
   }
 
-  /// перезагрузить все места
-  Future<void> _reloadAllPlaces() async {
-    await _loadAllPlaces();
-  }
+  // /// перезагрузить все места
+  // Future<void> _reloadAllPlaces() async {
+  //   await _loadAllPlaces();
+  // }
 
   /// был ли последний запрос данных закончен с ошибкой
   // TODO(me): переделать placesRepository.isRequestDoneWithError

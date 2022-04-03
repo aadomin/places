@@ -12,12 +12,16 @@ class ScreenSearchVM with ChangeNotifier {
   BuildContext context;
   final SearchInteractor searchInteractor;
 
-  void init() => searchInteractor.addListener(_searchInteractorListener);
+  void initVM() {
+    searchInteractor.addListener(_searchInteractorListener);
+  }
 
   void _searchInteractorListener() => notifyListeners();
 
   //method dispose должен быть вызван из виджета // ого This method overrides a method annotated as mustCallSuper
-  void dispose() => searchInteractor.removeListener(_searchInteractorListener);
+  void disposeVM() {
+    searchInteractor.removeListener(_searchInteractorListener);
+  }
 
   //
 

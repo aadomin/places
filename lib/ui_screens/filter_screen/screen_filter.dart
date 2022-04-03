@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:places/domain_models/place.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
-import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/ui_screens/filter_screen/widget_checkmark.dart';
-import 'package:provider/provider.dart';
 
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/filter_screen/screen_filter_vm.dart';
@@ -28,16 +25,16 @@ class _ScreenFilterState extends State<ScreenFilter> {
   @override
   void initState() {
     super.initState();
-    ___viewModel.init();
     ___viewModel.addListener(_vmListener);
+    ___viewModel.initVM();
   }
 
   void _vmListener() => setState(() {});
 
   @override
   void dispose() {
-    //TODO(x): тут вопрос
-    //____viewModel.dispose();
+    // TODO(me): ТУТВОПРОС
+    ___viewModel.disposeVM();
     ___viewModel.removeListener(_vmListener);
     super.dispose();
   }
