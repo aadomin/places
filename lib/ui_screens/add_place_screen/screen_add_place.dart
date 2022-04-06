@@ -27,18 +27,17 @@ class ScreenAddPlace extends StatefulWidget {
 }
 
 class _ScreenAddPlaceState extends State<ScreenAddPlace> {
+  ScreenAddPlaceVM get ___viewModel => widget.viewModel;
+
   FocusNode focusNodeName = FocusNode();
   FocusNode focusNodeLat = FocusNode();
   FocusNode focusNodeLon = FocusNode();
   FocusNode focusNodeDescription = FocusNode();
 
-  final textControllerName = TextEditingController();
-  final textControllerLat = TextEditingController();
-  final textControllerLon = TextEditingController();
-  final textControllerDescription = TextEditingController();
-
-  //+
-  ScreenAddPlaceVM get ___viewModel => widget.viewModel;
+  //final textControllerName = TextEditingController();
+  //final textControllerLat = TextEditingController();
+  //final textControllerLon = TextEditingController();
+  //final textControllerDescription = TextEditingController();
 
   //+
   List<String> _listOfPhotos = [];
@@ -205,7 +204,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                 Padding(
                   padding: EdgeInsets.zero,
                   child: TextFormField(
-                    controller: textControllerName,
+                    controller: ___viewModel.textControllerName,
                     validator: (value) {
                       final String text = value ?? '';
                       final _nameExp = RegExp(r'^.{1,}$');
@@ -239,7 +238,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                       border: const OutlineInputBorder(),
                       suffixIcon: WidgetTextFieldClearButton(
                         showOnlyItHasThatFocus: focusNodeName.hasFocus,
-                        textController: textControllerName,
+                        textController: ___viewModel.textControllerName,
                       ),
                     ),
                   ),
@@ -257,7 +256,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                           const WidgetSmallCategoryHeader(
                               UiStrings.addPlaceLat),
                           TextFormField(
-                            controller: textControllerLat,
+                            controller: ___viewModel.textControllerLat,
                             validator: (value) {
                               final String text = value ?? '';
                               final _coordinatesExp =
@@ -297,7 +296,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                               ),
                               suffixIcon: WidgetTextFieldClearButton(
                                 showOnlyItHasThatFocus: focusNodeLat.hasFocus,
-                                textController: textControllerLat,
+                                textController: ___viewModel.textControllerLat,
                               ),
                             ),
                           ),
@@ -317,7 +316,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                           const WidgetSmallCategoryHeader(
                               UiStrings.addPlaceLon),
                           TextFormField(
-                            controller: textControllerLon,
+                            controller: ___viewModel.textControllerLon,
                             validator: (value) {
                               final String text = value ?? '';
                               final _coordinatesExp =
@@ -356,7 +355,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                               ),
                               suffixIcon: WidgetTextFieldClearButton(
                                 showOnlyItHasThatFocus: focusNodeLon.hasFocus,
-                                textController: textControllerLon,
+                                textController: ___viewModel.textControllerLon,
                               ),
                             ),
                           ),
@@ -391,7 +390,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                 //
                 const WidgetSmallCategoryHeader(UiStrings.addPlaceDescription),
                 TextFormField(
-                  controller: textControllerDescription,
+                  controller: ___viewModel.textControllerDescription,
                   validator: (value) {
                     final String text = value ?? '';
                     final _nameExp = RegExp(r'^.{1,}$');
@@ -424,7 +423,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                     ),
                     suffixIcon: WidgetTextFieldClearButton(
                       showOnlyItHasThatFocus: focusNodeDescription.hasFocus,
-                      textController: textControllerDescription,
+                      textController: ___viewModel.textControllerDescription,
                     ),
                   ),
                 ),
@@ -445,10 +444,10 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
   }
 
   void activateButtonIfDone() {
-    final bool allFieldsFilled = (textControllerName.text != '') &&
-        (textControllerLon.text != '') &&
-        (textControllerLat.text != '') &&
-        (textControllerDescription.text != '');
+    final bool allFieldsFilled = (___viewModel.textControllerName.text != '') &&
+        (___viewModel.textControllerLon.text != '') &&
+        (___viewModel.textControllerLat.text != '') &&
+        (___viewModel.textControllerDescription.text != '');
     if (allFieldsFilled) {
       final bool isFormValid =
           keyFormAddPlace.currentState?.validate() ?? false;
@@ -491,12 +490,12 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
     //ТУТВОПРОС
     if (keyFormAddPlace.currentState?.validate() ?? false) {
       ___viewModel.onTapOnAddNewPlace(
-        name: textControllerName.text,
-        lat: double.parse(textControllerLat.text),
-        lon: double.parse(textControllerLon.text),
+        name: ___viewModel.textControllerName.text,
+        lat: double.parse(___viewModel.textControllerLat.text),
+        lon: double.parse(___viewModel.textControllerLon.text),
         // TODO(me): добавить url к создаваемому месту
         url: 'исправить',
-        details: textControllerDescription.text,
+        details: ___viewModel.textControllerDescription.text,
         type: _currentlySelectedCategory,
       );
       ScaffoldMessenger.of(context).showSnackBar(

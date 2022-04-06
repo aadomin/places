@@ -13,6 +13,11 @@ class ScreenAddPlaceVM with ChangeNotifier {
 
   //
 
+  final textControllerName = TextEditingController();
+  final textControllerLat = TextEditingController();
+  final textControllerLon = TextEditingController();
+  final textControllerDescription = TextEditingController();
+
   ///
   /// Добавление нового: перечень фоток
   ///

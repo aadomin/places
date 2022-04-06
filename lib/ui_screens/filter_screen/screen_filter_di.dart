@@ -8,7 +8,6 @@ ScreenFilter createScreenFilter({required BuildContext context}) {
   return ScreenFilter(
     viewModel: ScreenFilterVM(
       context: context,
-      // ТУТВОПРОС - две ссылки - это норм?
       filterInteractor: context.read<DI>().filterInteractor,
       placesInteractor: context.read<DI>().placesInteractor,
     ),

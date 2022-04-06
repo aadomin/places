@@ -40,7 +40,7 @@ class WidgetSearchEmpty extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    // ВОПРОСТУТ
+                    // ТУТВОПРОС
                     textController.text = ___viewModel.lastSearchesSnapshot[i];
 
                     ___viewModel.onTapOnOneOfLastSearches(i);

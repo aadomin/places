@@ -12,9 +12,8 @@ ScreenPlaceDetails createScreenPlaceDetails({
   return ScreenPlaceDetails(
     viewModel: ScreenPlaceDetailsVM(
       context: context,
-      // ТУТВОПРОС - две зависимости
       placesInteractor: context.read<DI>().placesInteractor,
-      popupManager: context.read<PopupManager>(),
+      popupManager: context.read<DI>().popupManager,
     ),
     placeId: placeId,
   );

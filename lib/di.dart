@@ -9,6 +9,7 @@ import 'package:places/domain_interactors/hardwork_interactor.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_interactors/search_interactor.dart';
 import 'package:places/domain_interactors/settings_interactor.dart';
+import 'package:places/ui_screens/popups/popup_manager.dart';
 
 class DI {
   final _settingsRepository = SettingsRepository();
@@ -35,4 +36,6 @@ class DI {
   );
 
   final hardworkInteractor = HardworkInteractor();
+
+  final popupManager = PopupManager();
 }
