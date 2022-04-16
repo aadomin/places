@@ -13,7 +13,6 @@ class ScreenMain4SettingsVM with ChangeNotifier {
 
   void initVM() {
     settingsInteractor.addListener(_settingsInteractorListener);
-    // settingsInteractor.initInteractor(); ТУТВОПРОС нужно ли делать так?
   }
 
   void _settingsInteractorListener() => notifyListeners();

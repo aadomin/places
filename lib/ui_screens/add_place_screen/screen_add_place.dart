@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_screens/add_place_screen/screen_add_place_vm.dart';
 import 'package:places/ui_screens/add_place_screen/widget_new_place_app_bar.dart';
 import 'package:places/ui_widgets_commons/widget_bottom_button.dart';
@@ -9,10 +8,8 @@ import 'package:places/ui_commons/ui_strings.dart';
 import 'package:flutter/services.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_screens/add_place_screen/widget_small_category_header.dart';
-import 'package:places/ui_screens/add_place_screen/dialog_add_photo.dart';
 import 'package:places/ui_widgets_commons/widget_my_image.dart';
 
-///
 /// Экран - Добавить место
 ///
 class ScreenAddPlace extends StatefulWidget {
@@ -34,38 +31,21 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
   FocusNode focusNodeLon = FocusNode();
   FocusNode focusNodeDescription = FocusNode();
 
-  //final textControllerName = TextEditingController();
-  //final textControllerLat = TextEditingController();
-  //final textControllerLon = TextEditingController();
-  //final textControllerDescription = TextEditingController();
-
-  //+
-  List<String> _listOfPhotos = [];
-
-  final keyFormAddPlace = GlobalKey<FormState>();
-
-  bool isButtonSaveActive = false;
-
-  String _currentlySelectedCategory = UiStrings.notSelected;
-
   @override
   Widget build(BuildContext context) {
-    //+
-    _listOfPhotos = ___viewModel.listOfPhotos;
-
-    //+
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Theme.of(context).canvasColor,
-        title: const WidgetNewPlaceAppBar(),
+        title: WidgetNewPlaceAppBar(
+          onCancel: ___viewModel.onCancelOnAppbar,
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
           child: Form(
-            key: keyFormAddPlace,
+            key: ___viewModel.keyFormAddPlace,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -79,7 +59,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                       Container(
                         margin: const EdgeInsets.only(right: 16),
                         child: InkWell(
-                          onTap: onTapOnPlus,
+                          onTap: ___viewModel.onTapOnPlus,
                           child: Container(
                             padding: const EdgeInsets.all(1),
                             decoration: BoxDecoration(
@@ -115,7 +95,10 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           physics: MyScrollPhysics.physics,
-                          children: _listOfPhotos.asMap().entries.map((item) {
+                          children: ___viewModel.listOfPhotos
+                              .asMap()
+                              .entries
+                              .map((item) {
                             return Dismissible(
                               background: Container(
                                 padding: const EdgeInsets.all(16),
@@ -131,7 +114,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                               key: ObjectKey(item),
                               direction: DismissDirection.vertical,
                               onDismissed: (_) =>
-                                  onDismissPhoto(_listOfPhotos, item.key),
+                                  ___viewModel.onDismissPhoto(item.key),
                               child: Stack(
                                 alignment: Alignment.topRight,
                                 children: [
@@ -158,7 +141,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                                     ),
                                     child: GestureDetector(
                                       onTap: () {
-                                        onTapOnDelete(_listOfPhotos, item.key);
+                                        ___viewModel.onDeletePhoto(item.key);
                                       },
                                       child: const Icon(
                                         Icons.close,
@@ -181,13 +164,13 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                 //
                 const WidgetSmallCategoryHeader(UiStrings.addPlaceCategory),
                 InkWell(
-                  onTap: () => onTapOnCategorySelection(context),
+                  onTap: () => ___viewModel.onTapOnCategorySelection(context),
                   child: Row(
                     children: [
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(12, 12, 0, 12),
-                          child: Text(_currentlySelectedCategory),
+                          child: Text(___viewModel.currentlySelectedCategory),
                         ),
                       ),
                       const Align(
@@ -215,10 +198,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                     },
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     onChanged: (value) {
-                      // ignore: unnecessary_lambdas
-                      setState(() {
-                        activateButtonIfDone();
-                      });
+                      ___viewModel.activateButtonSaveIfCan();
                     },
                     focusNode: focusNodeName,
                     keyboardType: TextInputType.text,
@@ -270,9 +250,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             onChanged: (value) {
-                              setState(() {
-                                activateButtonIfDone();
-                              });
+                              ___viewModel.activateButtonSaveIfCan();
                             },
                             focusNode: focusNodeLat,
                             keyboardType: PlatformDetector.isIOS
@@ -330,9 +308,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             onChanged: (value) {
-                              setState(() {
-                                activateButtonIfDone();
-                              });
+                              ___viewModel.activateButtonSaveIfCan();
                             },
                             focusNode: focusNodeLon,
                             keyboardType: PlatformDetector.isIOS
@@ -369,13 +345,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                 // Кнопка УКАЗАТЬ НА КАРТЕ
                 //
                 TextButton(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(UiStrings.addPlaceShowing),
-                      ),
-                    );
-                  },
+                  onPressed: () => ___viewModel.onShowTheMap(),
                   child: Text(
                     UiStrings.addPlaceShowMap,
                     style: TextStyle(
@@ -391,6 +361,8 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                 const WidgetSmallCategoryHeader(UiStrings.addPlaceDescription),
                 TextFormField(
                   controller: ___viewModel.textControllerDescription,
+
+                  //TODO(me): вынести валидаторы
                   validator: (value) {
                     final String text = value ?? '';
                     final _nameExp = RegExp(r'^.{1,}$');
@@ -401,9 +373,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                   },
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   onChanged: (value) {
-                    setState(() {
-                      activateButtonIfDone();
-                    });
+                    ___viewModel.activateButtonSaveIfCan();
                   },
                   focusNode: focusNodeDescription,
                   keyboardType: TextInputType.text,
@@ -436,72 +406,12 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
         ),
       ),
       bottomSheet: WidgetBottomButton(
-        isActive: isButtonSaveActive,
-        onPressOnButton: onTapOnSave,
+        isActive: ___viewModel.isButtonSaveActive,
+        onPressOnButton: () {
+          ___viewModel.onTapOnSave();
+        },
         buttonName: UiStrings.addPlaceAddPlace,
       ),
     );
-  }
-
-  void activateButtonIfDone() {
-    final bool allFieldsFilled = (___viewModel.textControllerName.text != '') &&
-        (___viewModel.textControllerLon.text != '') &&
-        (___viewModel.textControllerLat.text != '') &&
-        (___viewModel.textControllerDescription.text != '');
-    if (allFieldsFilled) {
-      final bool isFormValid =
-          keyFormAddPlace.currentState?.validate() ?? false;
-      isButtonSaveActive = isFormValid;
-    }
-  }
-
-  void onTapOnPlus() {
-    showModalBottomSheet<bool>(
-      context: context,
-      enableDrag: false,
-      builder: (_) => const DialogAddPhoto(),
-    );
-  }
-
-  void onTapOnDelete(List<String> _listOfPhotos, int index) {
-    return setState(() {
-      _listOfPhotos.removeAt(index);
-    });
-  }
-
-  void onDismissPhoto(List<String> _listOfPhotos, int index) {
-    return setState(() {
-      _listOfPhotos.removeAt(index);
-    });
-  }
-
-  Future<void> onTapOnCategorySelection(BuildContext context) async {
-    _currentlySelectedCategory = await Navigator.of(context).pushNamed(
-        ROUTE_SELECT_CATEGORY,
-        arguments: _currentlySelectedCategory) as String;
-    // тут вопрос (async)
-    setState(() {});
-
-    // тут вопрос
-    // _currentlySelectedCategory = context.watch<SelectionCategoryInteractor>().selectedCategory;
-  }
-
-  void onTapOnSave() {
-    //ТУТВОПРОС
-    if (keyFormAddPlace.currentState?.validate() ?? false) {
-      ___viewModel.onTapOnAddNewPlace(
-        name: ___viewModel.textControllerName.text,
-        lat: double.parse(___viewModel.textControllerLat.text),
-        lon: double.parse(___viewModel.textControllerLon.text),
-        // TODO(me): добавить url к создаваемому месту
-        url: 'исправить',
-        details: ___viewModel.textControllerDescription.text,
-        type: _currentlySelectedCategory,
-      );
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text(UiStrings.newPlaceCreated)),
-      );
-      Navigator.pop(context);
-    }
   }
 }

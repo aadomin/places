@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
+import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/ui_strings.dart';
+import 'package:places/ui_screens/add_place_screen/dialog_add_photo.dart';
 
 class ScreenAddPlaceVM with ChangeNotifier {
   ScreenAddPlaceVM({
@@ -17,6 +19,10 @@ class ScreenAddPlaceVM with ChangeNotifier {
   final textControllerLat = TextEditingController();
   final textControllerLon = TextEditingController();
   final textControllerDescription = TextEditingController();
+
+  final keyFormAddPlace = GlobalKey<FormState>();
+
+  String currentlySelectedCategory = UiStrings.notSelected;
 
   ///
   /// Добавление нового: перечень фоток
@@ -54,26 +60,76 @@ class ScreenAddPlaceVM with ChangeNotifier {
     _listOfPhotos = value;
   }
 
-  Future<void> onTapOnAddNewPlace({
-    required String name,
-    required double lat,
-    required double lon,
-    required String url,
-    required String details,
-    required String type,
-  }) async {
-    await placesInteractor.addNewPlace(
-      name: name,
-      lat: lat,
-      lon: lon,
-      // TODO(me): добавить url к создаваемому месту
-      url: 'исправить',
-      details: details,
-      type: type,
+  Future<void> onTapOnSave() async {
+    //ТУТВОПРОС
+    if (keyFormAddPlace.currentState?.validate() ?? false) {
+      await placesInteractor.addNewPlace(
+        name: textControllerName.text,
+        lat: double.parse(textControllerLat.text),
+        lon: double.parse(textControllerLon.text),
+        // TODO(me): добавить url к создаваемому месту
+        url: 'исправить',
+        details: textControllerDescription.text,
+        type: currentlySelectedCategory,
+      );
+      // TODO(me): тут так ли
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text(UiStrings.newPlaceCreated)),
+      );
+      Navigator.pop(context);
+    }
+  }
+
+  void onDeletePhoto(int index) {
+    listOfPhotos.removeAt(index);
+    notifyListeners();
+  }
+
+  void onDismissPhoto(int index) {
+    listOfPhotos.removeAt(index);
+    notifyListeners();
+  }
+
+  void onTapOnPlus() {
+    showModalBottomSheet<bool>(
+      context: context,
+      enableDrag: false,
+      builder: (_) => const DialogAddPhoto(),
     );
+  }
+
+  void onCancelOnAppbar() {
+    Navigator.of(context).pop();
+  }
+
+  bool isButtonSaveActive = false;
+
+  void activateButtonSaveIfCan() {
+    final bool allFieldsFilled = (textControllerName.text != '') &&
+        (textControllerLon.text != '') &&
+        (textControllerLat.text != '') &&
+        (textControllerDescription.text != '');
+    if (allFieldsFilled) {
+      final bool isFormValid =
+          keyFormAddPlace.currentState?.validate() ?? false;
+      isButtonSaveActive = isFormValid;
+      notifyListeners();
+    }
+    // TODO(me): тут еще исправить
+  }
+
+  Future<void> onTapOnCategorySelection(BuildContext context) async {
+    currentlySelectedCategory = await Navigator.of(context).pushNamed(
+        ROUTE_SELECT_CATEGORY,
+        arguments: currentlySelectedCategory) as String;
+    notifyListeners();
+  }
+
+  void onShowTheMap() {
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text(UiStrings.newPlaceCreated)),
+      const SnackBar(
+        content: Text(UiStrings.addPlaceShowing),
+      ),
     );
-    Navigator.pop(context);
   }
 }

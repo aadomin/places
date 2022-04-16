@@ -51,23 +51,26 @@ class _MyAppAndRoutesState extends State<MyAppAndRoutes> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Hey, Flutter!',
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: ___viewModel.isDarkThemeOn ? ThemeMode.dark : ThemeMode.light,
-      initialRoute: ROUTE_SPLASH,
-      debugShowCheckedModeBanner: false,
-      routes: {
-        ROUTE_HOME: (context) => const ScreenAllMain(),
-        ROUTE_FILTER: (context) => createScreenFilter(context: context),
-        ROUTE_ADD: (context) => createScreenAddPlace(context: context),
-        ROUTE_SELECT_CATEGORY: (context) =>
-            const ScreenSelectionCategoryRoute(),
-        ROUTE_SEARCH: (context) => createScreenSearch(context: context),
-        ROUTE_ONBOARDING: (context) => const ScreenOnboarding(),
-        ROUTE_SPLASH: (context) => createScreenSplash(context: context),
-      },
+    return StreamBuilder(
+      stream: ___viewModel.streamIsDartThemeOn,
+      builder: (context, snapshot) => MaterialApp(
+        title: 'Hey, Flutter!',
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        themeMode: snapshot.data == true ? ThemeMode.dark : ThemeMode.light,
+        initialRoute: ROUTE_SPLASH,
+        debugShowCheckedModeBanner: false,
+        routes: {
+          ROUTE_HOME: (context) => const ScreenAllMain(),
+          ROUTE_FILTER: (context) => createScreenFilter(context: context),
+          ROUTE_ADD: (context) => createScreenAddPlace(context: context),
+          ROUTE_SELECT_CATEGORY: (context) =>
+              const ScreenSelectionCategoryRoute(),
+          ROUTE_SEARCH: (context) => createScreenSearch(context: context),
+          ROUTE_ONBOARDING: (context) => const ScreenOnboarding(),
+          ROUTE_SPLASH: (context) => createScreenSplash(context: context),
+        },
+      ),
     );
   }
 }

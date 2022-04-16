@@ -6,7 +6,7 @@ import 'package:places/domain_models/place.dart';
 import 'package:places/main.dart';
 
 ///
-/// Обеспечивает хранение мест
+/// Репозиторий. Обеспечивает хранение мест
 ///
 class PlaceRepository {
   PlaceRepository({

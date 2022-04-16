@@ -16,7 +16,7 @@ class PlacesInteractor with ChangeNotifier {
     required this.geoInteractor,
     required this.filterInteractor,
   }) {
-    init(); //асинхронная
+    //init(); //асинхронная
   }
   final PlaceRepository placesRepository;
   final GeoInteractor geoInteractor;
@@ -26,12 +26,18 @@ class PlacesInteractor with ChangeNotifier {
   List<Place> loadedAllPlaces = [];
 
   /// Инициализация интерактора - переделать в инитстейт
-  Future<void> init() async {
+  Future<void> initInteractor() async {
     filterInteractor.addListener(filterInteractorListener);
+    isLoading = false;
     await _loadAllPlaces();
+    isLoading = true;
   }
 
   void filterInteractorListener() => notifyListeners();
+
+  void disposeInteractor(){
+    filterInteractor.removeListener(filterInteractorListener);
+  }
 
   /// загрузить все места
   Future<void> _loadAllPlaces() async {

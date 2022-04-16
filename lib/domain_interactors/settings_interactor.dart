@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:places/data_repositories/settings_repository.dart';
 
 ///
-/// Доменный слой приложения. Базовая бизнес-логика
-/// Настройки приложения
+/// Интерактор настроек приложения
 ///
 class SettingsInteractor with ChangeNotifier {
   SettingsInteractor({
@@ -14,29 +13,20 @@ class SettingsInteractor with ChangeNotifier {
 
   final SettingsRepository settingsRepository;
 
-  // ТУТВОПРОС - где закрывать sink
+  final streamIsDarkThemeOnController = StreamController<bool>();
+  Stream<bool> get streamIsDarkThemeOn => streamIsDarkThemeOnController.stream;
 
-  // ignore: close_sinks
-  final stateStreamController =
-      StreamController<SettingInteractorStateForStream>();
-  Stream<SettingInteractorStateForStream> get state =>
-      stateStreamController.stream;
-
-  //
+  @override
+  void dispose() {
+    streamIsDarkThemeOnController.close();
+    super.dispose();
+  }
 
   void changeTheme() {
+    streamIsDarkThemeOnController.add(false);
     settingsRepository.isDarkThemeOn = !settingsRepository.isDarkThemeOn;
     notifyListeners();
   }
 
   bool get isDarkThemeOn => settingsRepository.isDarkThemeOn;
-
-  //
-}
-
-// ТУТВОПРОС
-class SettingInteractorStateForStream {
-  bool inDarkThemeOn = false;
-  bool isLoading = false;
-  List<String>? justAnotherList;
 }

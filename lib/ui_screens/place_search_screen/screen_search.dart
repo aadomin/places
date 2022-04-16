@@ -110,19 +110,16 @@ class _ScreenSearchState extends State<ScreenSearch> {
               builder: (context) {
                 switch (___viewModel.searchStatus) {
                   case SearchStatus.haveResult:
-                    print('1 haveResult');
                     return WidgetSearchResult(
                       searchResult: ___viewModel.searchResult,
                     );
                   case SearchStatus.empty:
-                    print('2 empty');
                     return WidgetSearchEmpty(
                       viewModel: ___viewModel,
                       textController: textController,
                       keyOfSearchTextField: keyOfSearchTextField,
                     );
                   case SearchStatus.notFound:
-                    print('3 notFound');
                     return const WidgetSearchNotFound();
                 }
               },

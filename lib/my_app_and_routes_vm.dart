@@ -10,18 +10,19 @@ class MyAppAndRoutesVM with ChangeNotifier {
   BuildContext context;
   final SettingsInteractor settingsInteractor;
 
+  // ТУТВОПРОС //ТУТВОПРОС где listen & subscribe ?
+  late Stream<bool> streamIsDartThemeOn =
+      settingsInteractor.streamIsDarkThemeOn;
+
   void initVM() {
-    settingsInteractor.addListener(_settingsEntityListener);
+    //  settingsInteractor.addListener(_settingsEntityListener);
   }
 
-  void _settingsEntityListener() => notifyListeners();
+  // void _settingsEntityListener() => notifyListeners();
 
   void disposeVM() {
-    settingsInteractor.removeListener(_settingsEntityListener);
+    // settingsInteractor.removeListener(_settingsEntityListener);
   }
 
-  //
-
   bool get isDarkThemeOn => settingsInteractor.isDarkThemeOn;
-  // ТУТВОПРОС
 }

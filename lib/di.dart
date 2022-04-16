@@ -27,7 +27,7 @@ class DI {
     placesRepository: _placesRepository,
     geoInteractor: geoInteractor,
     filterInteractor: filterInteractor,
-  );
+  )..initInteractor();
 
   final _searchRepository = SearchRepository();
   late final searchInteractor = SearchInteractor(

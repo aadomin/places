@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
-/// Экран 2. Карта
+/// Экран 2. Карта.
 /// Второй из четырех главных экранов, доступных по нажатию на
 /// BottomNavigationBar.
 ///

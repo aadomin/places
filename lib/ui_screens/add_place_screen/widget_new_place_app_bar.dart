@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
 class WidgetNewPlaceAppBar extends StatelessWidget {
-  const WidgetNewPlaceAppBar({
+  WidgetNewPlaceAppBar({
+    required this.onCancel,
     Key? key,
   }) : super(key: key);
+
+  VoidCallback onCancel;
+  VoidCallback get ___onCancel => onCancel;
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +21,7 @@ class WidgetNewPlaceAppBar extends StatelessWidget {
           child: Row(
             children: [
               TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                onPressed: ___onCancel,
                 style: TextButton.styleFrom(
                   primary: Theme.of(context).primaryColorLight,
                 ),

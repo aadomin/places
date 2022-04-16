@@ -5,16 +5,16 @@ class WidgetCheckmark extends StatelessWidget {
   const WidgetCheckmark({
     required double radiusOfRoundElement,
     Key? key,
-  })  : _radiusOfRoundElement = radiusOfRoundElement,
+  })  : ___radiusOfRoundElement = radiusOfRoundElement,
         super(key: key);
 
-  final double _radiusOfRoundElement;
+  final double ___radiusOfRoundElement;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: _radiusOfRoundElement * 2,
-      height: _radiusOfRoundElement * 2,
+      width: ___radiusOfRoundElement * 2,
+      height: ___radiusOfRoundElement * 2,
       child: Align(
         alignment: Alignment.bottomRight,
         child: ClipRRect(

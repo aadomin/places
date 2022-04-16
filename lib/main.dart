@@ -27,9 +27,6 @@ class MyAppProvider extends StatelessWidget {
         Provider(
           create: (context) => _di,
         ),
-        // Provider(
-        //   create: (context) => PopupManager(),
-        // ),
       ],
       child: Builder(builder: (context) {
         return createMyAppAndRoutes(context: context);

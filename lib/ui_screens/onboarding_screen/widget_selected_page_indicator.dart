@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class WidgetCircleIndicator extends StatefulWidget {
-  const WidgetCircleIndicator({
+class WidgetSelectedPageIndicator extends StatefulWidget {
+  const WidgetSelectedPageIndicator({
     required this.kActiveColor,
     required this.kNonActiveColor,
     required this.isActive,
@@ -12,10 +12,10 @@ class WidgetCircleIndicator extends StatefulWidget {
   final Color kNonActiveColor;
 
   @override
-  _WidgetCircleIndicatorState createState() => _WidgetCircleIndicatorState();
+  _WidgetSelectedPageIndicatorState createState() => _WidgetSelectedPageIndicatorState();
 }
 
-class _WidgetCircleIndicatorState extends State<WidgetCircleIndicator> {
+class _WidgetSelectedPageIndicatorState extends State<WidgetSelectedPageIndicator> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(

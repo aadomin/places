@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/my_app_and_routes.dart';
-import 'package:places/ui_screens/onboarding_screen/widget_circle_indicator.dart';
+import 'package:places/ui_screens/onboarding_screen/widget_selected_page_indicator.dart';
 import 'package:places/ui_screens/onboarding_screen/widgets_all_onboarding_pages.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
@@ -86,13 +86,13 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
               children: [
                 for (int i = 0; i < widgetsAllOnboardingPages.length; i++)
                   if (i == currentPage) ...[
-                    WidgetCircleIndicator(
+                    WidgetSelectedPageIndicator(
                       isActive: true,
                       kActiveColor: Theme.of(context).colorScheme.secondary,
                       kNonActiveColor: Theme.of(context).unselectedWidgetColor,
                     )
                   ] else
-                    WidgetCircleIndicator(
+                    WidgetSelectedPageIndicator(
                       isActive: false,
                       kActiveColor: Theme.of(context).colorScheme.secondary,
                       kNonActiveColor: Theme.of(context).unselectedWidgetColor,

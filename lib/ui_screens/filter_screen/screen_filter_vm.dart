@@ -76,10 +76,25 @@ class ScreenFilterVM with ChangeNotifier {
     Navigator.of(context).pop();
   }
 
-  // List<Place> get filteredPlaces => placesInteractor.getFilteredPlaces;
+  double _sliderValue = 0;
+  double get sliderValue => _sliderValue;
+  void setSliderState(double newValue) {
+    _sliderValue = newValue;
+    notifyListeners();
+  }
 
-  // final List<Place> filteredPlaces =
-  //     context.watch<PlacesInteractor>().getFilteredPlaces;
-
-  // int numOfFilteredPlaces = filteredPlaces.length;
+  // TODO(me): реализовать фильтрацию еще и по расстоянию
+  final List<String> distanceList = [
+    'от 1м до 50м',
+    'от 50м до 100м',
+    'от 100м до 200м',
+    'от 200м до 300м',
+    'от 400м до 600м',
+    'от 600м до 1км',
+    'от 1км до 2км',
+    'от 2км до 5км',
+    'от 5км до 10км',
+    'от 10км до 50км',
+    'от 50км до 200км',
+  ];
 }

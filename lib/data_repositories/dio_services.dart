@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:places/data_other/exceptions.dart';
 
+///
+/// Сервис отвечающий за отправку и прием http запросов
+///
 class DioServices {
   DioServices() {
     final baseOptions = BaseOptions(

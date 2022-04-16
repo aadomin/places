@@ -41,23 +41,6 @@ class _ScreenFilterState extends State<ScreenFilter> {
 
   final _radiusOfRoundElement = 26.0;
 
-  double _sliderValue = 0;
-
-  // TODO(me): реализовать фильтрацию еще и по расстоянию
-  final List<String> _distanceList = [
-    'от 1м до 50м',
-    'от 50м до 100м',
-    'от 100м до 200м',
-    'от 200м до 300м',
-    'от 400м до 600м',
-    'от 600м до 1км',
-    'от 1км до 2км',
-    'от 2км до 5км',
-    'от 5км до 10км',
-    'от 10км до 50км',
-    'от 50км до 200км',
-  ];
-
   // список картинок к категориям
   static const Map<String, String> _imagePathOfCategory = {
     UiStrings.hotel: UiImagePaths.hotel,
@@ -84,9 +67,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
         title: Align(
           alignment: Alignment.centerRight,
           child: TextButton(
-            onPressed: () {
-              ___viewModel.clearActiveCategories();
-            },
+            onPressed: () => ___viewModel.clearActiveCategories(),
             style: TextButton.styleFrom(
               primary: Theme.of(context).colorScheme.secondary,
             ),
@@ -130,9 +111,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
                       width: 110,
                       height: 105,
                       child: TextButton(
-                        onPressed: () {
-                          ___viewModel.switchActiveCategories(i);
-                        },
+                        onPressed: () => ___viewModel.switchActiveCategories(i),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 10.0),
                           child: Column(
@@ -208,7 +187,9 @@ class _ScreenFilterState extends State<ScreenFilter> {
                 ),
               ),
               trailing: Text(
-                _distanceList[(_sliderValue * 10).toInt()].toString(),
+                ___viewModel
+                    .distanceList[(___viewModel.sliderValue * 10).toInt()]
+                    .toString(),
                 style: TextStyle(
                   color: Theme.of(context).primaryColorLight,
                 ),
@@ -222,12 +203,8 @@ class _ScreenFilterState extends State<ScreenFilter> {
             //
             Slider(
               divisions: 10,
-              value: _sliderValue,
-              onChanged: (newValue) {
-                setState(() {
-                  _sliderValue = newValue;
-                });
-              },
+              value: ___viewModel.sliderValue,
+              onChanged: (newValue) => ___viewModel.setSliderState(newValue),
             ),
 
             //

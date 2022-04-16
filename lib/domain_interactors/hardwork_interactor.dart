@@ -1,5 +1,8 @@
 import 'dart:math';
 
+/// 
+/// Интерактор - имитация сложной загрузки
+/// 
 class HardworkInteractor {
   /// имитация сложной загрузки
   void hardwork() {

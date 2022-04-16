@@ -3,6 +3,7 @@ import 'package:places/domain_models/object_location.dart';
 import 'package:places/main.dart';
 
 ///
+/// Репозиторий координат.
 /// Класс обеспечивает получение из внешнего источника координат
 /// пользователя (например, со спутника)
 ///

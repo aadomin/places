@@ -2,8 +2,7 @@ import 'dart:math';
 import 'package:places/data_repositories/geo_repository.dart';
 
 ///
-/// Доменный слой приложения. Базовая бизнес-логика
-/// Геолокация
+/// Интерактор. Геолокация
 ///
 class GeoInteractor {
   GeoInteractor({

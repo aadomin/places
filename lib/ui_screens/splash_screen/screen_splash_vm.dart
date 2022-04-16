@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:places/di.dart';
-import 'package:places/domain_interactors/settings_interactor.dart';
 import 'package:places/my_app_and_routes.dart';
 import 'package:provider/provider.dart';
 
