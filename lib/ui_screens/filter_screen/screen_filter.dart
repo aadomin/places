@@ -106,7 +106,9 @@ class _ScreenFilterState extends State<ScreenFilter> {
                 runSpacing: 20,
                 spacing: 20,
                 children: [
-                  for (var i = 0; i < ___viewModel.filterItemsState.length; i++)
+                  for (var i = 0;
+                      i < ___viewModel.filterConditions.filterItemsState.length;
+                      i++)
                     SizedBox(
                       width: 110,
                       height: 105,
@@ -134,6 +136,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
                                             // чтобы не было null - берем первую
                                             // (любую) картинку
                                             _imagePathOfCategory[___viewModel
+                                                    .filterConditions
                                                     .filterItemsState[i]
                                                     .name] ??
                                                 _imagePathOfCategory
@@ -150,7 +153,8 @@ class _ScreenFilterState extends State<ScreenFilter> {
                                     ),
                                   ),
                                   //ignore: prefer_if_elements_to_conditional_expressions
-                                  ___viewModel.filterItemsState[i].isSelected
+                                  ___viewModel.filterConditions
+                                          .filterItemsState[i].isSelected
                                       ? WidgetCheckmark(
                                           radiusOfRoundElement:
                                               _radiusOfRoundElement,
@@ -161,7 +165,8 @@ class _ScreenFilterState extends State<ScreenFilter> {
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(4, 12, 4, 0),
                                 child: Text(
-                                  ___viewModel.filterItemsState[i].name,
+                                  ___viewModel.filterConditions
+                                      .filterItemsState[i].name,
                                   style: const TextStyle(
                                     fontSize: 12,
                                   ),
