@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:places/di.dart';
 import 'package:places/my_app_and_routes_di.dart';
 import 'package:places/ui_commons/platform_detector.dart';
-import 'package:places/ui_screens/popups/popup_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:places/ui_commons/my_bloc_observer.dart';
 

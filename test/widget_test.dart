@@ -9,10 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:places/di.dart';
+import 'package:places/di_provider.dart';
 import 'package:places/main.dart';
 import 'package:places/ui_commons/my_bloc_observer.dart';
-import 'package:places/ui_screens/main_1_places_list/screen_main1_places_route.dart';
-import 'package:places/ui_screens/main_1_places_list/screen_main1_places_route_vm.dart';
 
 void main() {
   // ignore: avoid_types_on_closure_parameters
@@ -33,7 +32,7 @@ void main() {
     //   },
     // ), const Duration(seconds: 4));
 
-    await tester.pumpWidget(MyAppProvider(), const Duration(seconds: 4));
+    await tester.pumpWidget(DIProvider(), const Duration(seconds: 4));
 
     // Verify that our counter starts at 0.
     expect(find.text('Добро'), findsOneWidget);

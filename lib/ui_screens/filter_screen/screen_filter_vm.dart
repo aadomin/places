@@ -3,7 +3,6 @@ import 'package:places/domain_interactors/filter_interactor.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_models/filter_condition.dart';
 import 'package:places/domain_models/place.dart';
-import 'package:rxdart/rxdart.dart';
 
 ///
 /// Вью-модель Фильтра
@@ -15,18 +14,13 @@ class ScreenFilterVM with ChangeNotifier {
     required this.placesInteractor,
   });
 
+  final BuildContext context;
   final FilterInteractor filterInteractor;
   final PlacesInteractor placesInteractor;
-  final BuildContext context;
 
   void initVM() {
     filterInteractor.addListener(_placesInteractorListener);
     placesInteractor.addListener(_filterInteractorListener);
-
-    // при появлении объекта из стрима - закидиваем наверх
-    streamFilterState.listen((newFilterConditions) {
-      filterInteractor.filterConditions = newFilterConditions;
-    });
   }
 
   void _placesInteractorListener() => notifyListeners();
@@ -44,10 +38,6 @@ class ScreenFilterVM with ChangeNotifier {
 
   FilterCondition get filterConditions => filterInteractor.filterConditions;
 
-  late final _scFilterState =
-      BehaviorSubject<FilterCondition>.seeded(filterConditions);
-  Stream<FilterCondition> get streamFilterState => _scFilterState.stream;
-
   /// Переключить выбранность категории
   void switchActiveCategories(int index) {
     final FilterCondition _newFilterConditions = FilterCondition(
@@ -57,7 +47,7 @@ class ScreenFilterVM with ChangeNotifier {
     _newFilterConditions.filterItemsState[index].isSelected =
         !_newFilterConditions.filterItemsState[index].isSelected;
     //
-    _scFilterState.add(_newFilterConditions);
+    filterInteractor.filterConditions = _newFilterConditions;
   }
 
   /// Очистить выбранные категории
@@ -69,8 +59,9 @@ class ScreenFilterVM with ChangeNotifier {
     for (final element in _newFilterConditions.filterItemsState) {
       element.isSelected = false;
     }
+
     //
-    _scFilterState.add(_newFilterConditions);
+    filterInteractor.filterConditions = _newFilterConditions;
   }
 
   /// Нажатие на "Показать"
@@ -93,9 +84,9 @@ class ScreenFilterVM with ChangeNotifier {
     _sliderValue = newValue;
     final FilterCondition _newFilterConditions = FilterCondition(
       filterItemsState: filterConditions.filterItemsState,
-      radiusOfSearch: int.parse(newValue.toString()),
+      radiusOfSearch: valueOfSelectedRadiusItem,
     );
-    _scFilterState.add(_newFilterConditions);
+    filterInteractor.filterConditions = _newFilterConditions;
   }
 
   // TODO(me): реализовать фильтрацию еще и по расстоянию
@@ -104,22 +95,21 @@ class ScreenFilterVM with ChangeNotifier {
     100: 'до 100м',
     200: 'до 200м',
     300: 'до 300м',
-    600: 'до 600м',
+    600: 'до 500м',
     1000: 'до 1км',
     2000: 'до 2км',
     5000: 'до 5км',
     10000: 'до 10км',
   };
 
-  List<String> get distansesTextList =>
-      distancesMap.entries.map((item) => item.toString()).toList();
+  int get indexOfSelectedRadiusItem => int.parse((_sliderValue * 8).toString());
 
-  int get numOfRadiusSliderDivisions => distansesTextList.length - 1;
+  String get descriptionOfSelectedRadiusItem =>
+      distancesMap.values.toList()[indexOfSelectedRadiusItem];
 
-  int get selectedRadiusItemNumber => int.parse((sliderValue * 8).toString());
+  int get valueOfSelectedRadiusItem =>
+      distancesMap.keys.toList()[indexOfSelectedRadiusItem];
 
-  String get textForRadiusSlider => distansesTextList[selectedRadiusItemNumber];
-
-  int get selectedRadiusValue =>
-      distancesMap.keys.toList()[selectedRadiusItemNumber];
+  int get countOfRadiusSliderDivisions =>
+      distancesMap.values.toList().length - 1;
 }
