@@ -7,7 +7,6 @@ import 'package:places/ui_screens/select_category_screen/screen_selection_catego
 import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_screens/onboarding_screen/screen_onboarding.dart';
 import 'package:places/ui_screens/main_screen/screen_all_main.dart';
-import 'package:places/ui_screens/splash_screen/screen_splash.dart';
 import 'package:places/ui_screens/splash_screen/screen_splash_di.dart';
 
 // TODO(me): переделать в ScreenAllMain.routeName и static const routeName = '/extractArguments';
