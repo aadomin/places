@@ -1,37 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:places/di.dart';
-import 'package:places/my_app_and_routes_di.dart';
+import 'package:places/di_provider.dart';
 import 'package:places/ui_commons/platform_detector.dart';
-import 'package:provider/provider.dart';
 import 'package:places/ui_commons/my_bloc_observer.dart';
 
 void main() {
   Bloc.observer = MyBlocObserver();
 
-  runApp(MyAppProvider());
-}
-
-class MyAppProvider extends StatelessWidget {
-  MyAppProvider({
-    Key? key,
-  }) : super(key: key);
-
-  late final _di = DI();
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider(
-          create: (context) => _di,
-        ),
-      ],
-      child: Builder(builder: (context) {
-        return createMyAppAndRoutes(context: context);
-      }),
-    );
-  }
+  runApp(DIProvider());
 }
 
 PlatformDetector platformDetector = PlatformDetector();
