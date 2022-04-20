@@ -192,9 +192,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
                 ),
               ),
               trailing: Text(
-                ___viewModel
-                    .distanceList[(___viewModel.sliderValue * 10).toInt()]
-                    .toString(),
+                ___viewModel.textForRadiusSlider,
                 style: TextStyle(
                   color: Theme.of(context).primaryColorLight,
                 ),
@@ -207,7 +205,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
             // Слайдер
             //
             Slider(
-              divisions: 10,
+              divisions: ___viewModel.numOfRadiusSliderDivisions,
               value: ___viewModel.sliderValue,
               onChanged: (newValue) => ___viewModel.setSliderState(newValue),
             ),

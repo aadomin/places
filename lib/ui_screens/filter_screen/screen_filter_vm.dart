@@ -4,7 +4,6 @@ import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_models/filter_condition.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:places/domain_models/category_item.dart';
 
 ///
 /// Вью-модель Фильтра
@@ -40,7 +39,7 @@ class ScreenFilterVM with ChangeNotifier {
 
   //
 
-  // ТУТВОПРОС
+  // TODO(me): переделать
   List<Place> get filteredPlaces => placesInteractor.getFilteredPlaces;
 
   FilterCondition get filterConditions => filterInteractor.filterConditions;
@@ -74,13 +73,22 @@ class ScreenFilterVM with ChangeNotifier {
     _scFilterState.add(_newFilterConditions);
   }
 
-  /// Положение фильтра
+  /// Нажатие на "Показать"
+  void onTapOnShow() {
+    Navigator.of(context).pop();
+  }
+
+  //
+  // Слайдер
+  //
+
+  /// Положение слайдера по расстоянию
   double _sliderValue = 0;
 
-  /// Положение фильтра
+  /// Положение слайдера по расстоянию
   double get sliderValue => _sliderValue;
 
-  /// Изменить положение фильтра
+  /// Изменить положение слайдера по расстоянию
   void setSliderState(double newValue) {
     _sliderValue = newValue;
     final FilterCondition _newFilterConditions = FilterCondition(
@@ -90,23 +98,28 @@ class ScreenFilterVM with ChangeNotifier {
     _scFilterState.add(_newFilterConditions);
   }
 
-  /// Нажатие на "Показать"
-  void onTapOnShow() {
-    Navigator.of(context).pop();
-  }
-
   // TODO(me): реализовать фильтрацию еще и по расстоянию
-  final List<String> distanceList = [
-    'от 1м до 50м',
-    'от 50м до 100м',
-    'от 100м до 200м',
-    'от 200м до 300м',
-    'от 400м до 600м',
-    'от 600м до 1км',
-    'от 1км до 2км',
-    'от 2км до 5км',
-    'от 5км до 10км',
-    'от 10км до 50км',
-    'от 50км до 200км',
-  ];
+  Map<int, String> distancesMap = <int, String>{
+    50: 'до 50м',
+    100: 'до 100м',
+    200: 'до 200м',
+    300: 'до 300м',
+    600: 'до 600м',
+    1000: 'до 1км',
+    2000: 'до 2км',
+    5000: 'до 5км',
+    10000: 'до 10км',
+  };
+
+  List<String> get distansesTextList =>
+      distancesMap.entries.map((item) => item.toString()).toList();
+
+  int get numOfRadiusSliderDivisions => distansesTextList.length - 1;
+
+  int get selectedRadiusItemNumber => int.parse((sliderValue * 8).toString());
+
+  String get textForRadiusSlider => distansesTextList[selectedRadiusItemNumber];
+
+  int get selectedRadiusValue =>
+      distancesMap.keys.toList()[selectedRadiusItemNumber];
 }

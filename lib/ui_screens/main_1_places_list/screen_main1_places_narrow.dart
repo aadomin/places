@@ -47,33 +47,45 @@ class ScreenMain1PlacesNarrow extends StatelessWidget {
               // ОСНОВНОЙ СПИСОК узкий вариат (в один столбец)
               SliverList(
                 delegate: SliverChildBuilderDelegate(
-                  (context, i) => Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: WidgetPlaceCard(
-                      place: filteredPlacesSnapshot[i],
-                      placeCardType: PlaceCardType.general,
-                      isLiked: filteredPlacesSnapshot[i].wished,
-                      onTap: () {
-                        onTap(
-                          context,
-                          filteredPlacesSnapshot[i].id,
-                        );
-                      },
-                      onToggleWished: () {
-                        if (filteredPlacesSnapshot[i].wished) {
-                          ___viewModel.onRemoveFromFavorites(
-                              filteredPlacesSnapshot[i].id);
-                        } else {
-                          ___viewModel
-                              .onAddToFavorites(filteredPlacesSnapshot[i].id);
-                        }
-                      },
-                      onDeleteAtAll: () {
-                        ___viewModel
-                            .onRemoveAtAll(filteredPlacesSnapshot[i].id);
-                      },
-                    ),
-                  ),
+                  (context, i) {
+                    try {
+                      print(i);
+                      return Padding(
+                        key: UniqueKey(),
+                        padding: const EdgeInsets.all(16.0),
+                        child: WidgetPlaceCard(
+                          place: filteredPlacesSnapshot[i],
+                          placeCardType: PlaceCardType.general,
+                          isLiked: filteredPlacesSnapshot[i].wished,
+                          onTap: () {
+                            onTap(
+                              context,
+                              filteredPlacesSnapshot[i].id,
+                            );
+                          },
+                          onToggleWished: () {
+                            if (filteredPlacesSnapshot[i].wished) {
+                              ___viewModel.onRemoveFromFavorites(
+                                  filteredPlacesSnapshot[i].id);
+                            } else {
+                              ___viewModel.onAddToFavorites(
+                                  filteredPlacesSnapshot[i].id);
+                            }
+                          },
+                          onDeleteAtAll: () {
+                            ___viewModel
+                                .onRemoveAtAll(filteredPlacesSnapshot[i].id);
+                          },
+                        ),
+                      );
+                    } on Object catch (e) {
+                      // TODO
+                      print(e);
+                      print(i.toString());
+                      print('Lenght: ${filteredPlacesSnapshot.length}');
+                      return Text('X');
+                    }
+                  },
                   childCount: filteredPlacesSnapshot.length,
                 ),
               ),

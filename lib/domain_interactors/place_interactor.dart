@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:places/data_other/mocks.dart';
 import 'package:places/data_repositories/place_repository.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
 import 'package:places/domain_interactors/geo_interactor.dart';
@@ -35,7 +36,7 @@ class PlacesInteractor with ChangeNotifier {
 
   void filterInteractorListener() => notifyListeners();
 
-  void disposeInteractor(){
+  void disposeInteractor() {
     filterInteractor.removeListener(filterInteractorListener);
   }
 
@@ -63,6 +64,7 @@ class PlacesInteractor with ChangeNotifier {
     required int radius,
     required List<CategoryItem> categories,
   }) {
+    
     final List<String> _selectedCategories = categories
         .where((element) => element.isSelected)
         .map((element) => element.name)
@@ -78,6 +80,7 @@ class PlacesInteractor with ChangeNotifier {
         (a, b) => a.currentDistanceToUser.compareTo(b.currentDistanceToUser),
       );
 
+    
     return _filteredAndSortedPlacesList;
   }
 
@@ -151,6 +154,7 @@ class PlacesInteractor with ChangeNotifier {
     for (var i = 0; i < loadedAllPlaces.length; i++) {
       if (loadedAllPlaces[i].id == id) {
         return i;
+        //TODO(me): убрать эту функцию
       }
     }
     throw Exception('There is no such ID');

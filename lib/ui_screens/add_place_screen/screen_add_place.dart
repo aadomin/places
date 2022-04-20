@@ -345,7 +345,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                 // Кнопка УКАЗАТЬ НА КАРТЕ
                 //
                 TextButton(
-                  onPressed: () => ___viewModel.onShowTheMap(),
+                  onPressed: ___viewModel.onShowTheMap,
                   child: Text(
                     UiStrings.addPlaceShowMap,
                     style: TextStyle(

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
 class WidgetNewPlaceAppBar extends StatelessWidget {
-  WidgetNewPlaceAppBar({
+  const WidgetNewPlaceAppBar({
     required this.onCancel,
     Key? key,
   }) : super(key: key);
 
-  VoidCallback onCancel;
+  final VoidCallback onCancel;
   VoidCallback get ___onCancel => onCancel;
 
   @override
