@@ -362,7 +362,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                 TextFormField(
                   controller: ___viewModel.textControllerDescription,
 
-                  //TODO(me): вынести валидаторы
+                  // TODO(me): вынести валидаторы
                   validator: (value) {
                     final String text = value ?? '';
                     final _nameExp = RegExp(r'^.{1,}$');

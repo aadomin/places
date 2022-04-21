@@ -153,7 +153,7 @@ class PlacesInteractor with ChangeNotifier {
     for (var i = 0; i < loadedAllPlaces.length; i++) {
       if (loadedAllPlaces[i].id == id) {
         return i;
-        //TODO(me): убрать эту функцию
+        // TODO(me): убрать эту функцию
       }
     }
     throw Exception('There is no such ID');

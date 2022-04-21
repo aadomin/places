@@ -37,7 +37,7 @@ class ScreenMain1PlacesVM with ChangeNotifier {
 
   void onRemoveAtAll(int id) => placesInteractor.removeAtAll(id);
 
-  // TODO
+  // TODO(me): 3
   void onTapOnPlace(BuildContext context, int id) {
     showModalBottomSheet<bool>(
       isScrollControlled: true,
