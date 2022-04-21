@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_models/place.dart';
 
-class ScreenMain1PlacesRouteVM with ChangeNotifier {
-  ScreenMain1PlacesRouteVM({
+class ScreenMain1PlacesVM with ChangeNotifier {
+  ScreenMain1PlacesVM({
     required this.context,
     required this.placesInteractor,
   });
