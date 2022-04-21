@@ -11,7 +11,6 @@ import 'package:places/ui_widgets_commons/widget_place_card.dart';
 /// Экран 1. Список мест.
 /// Первый из четырех главных экранов, доступных по нажатию на
 /// BottomNavigationBar.
-/// Данный класс описывает разные состояния экрана (в т.ч. ошибка, загрузка)
 ///
 class ScreenMain1Places extends StatefulWidget {
   const ScreenMain1Places({

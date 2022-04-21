@@ -3,6 +3,7 @@ import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_screens/popups/popup_manager.dart';
 
+/// VM экрана Детальное место
 class ScreenPlaceDetailsVM with ChangeNotifier {
   ScreenPlaceDetailsVM({
     required this.context,

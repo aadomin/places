@@ -3,6 +3,7 @@ import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_screens/place_details_screen/screen_place_details_di.dart';
 
+/// VM экрана Главный экран 1 - список мест
 class ScreenMain1PlacesVM with ChangeNotifier {
   ScreenMain1PlacesVM({
     required this.context,

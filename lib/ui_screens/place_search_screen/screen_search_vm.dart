@@ -3,6 +3,7 @@ import 'package:places/domain_interactors/search_interactor.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_commons/enums.dart';
 
+/// VM экрана поиска
 class ScreenSearchVM with ChangeNotifier {
   ScreenSearchVM({
     required this.context,
