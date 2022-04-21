@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_models/place.dart';
+import 'package:places/ui_screens/place_details_screen/screen_place_details_di.dart';
 
 class ScreenMain1PlacesVM with ChangeNotifier {
   ScreenMain1PlacesVM({
@@ -23,6 +24,10 @@ class ScreenMain1PlacesVM with ChangeNotifier {
 
   //
 
+  bool isLoading = false;
+  bool isEmpty = false;
+  bool isReady = true;
+
   List<Place> get filteredPlaces => placesInteractor.getFilteredPlaces;
 
   void onRemoveFromFavorites(int id) =>
@@ -31,4 +36,16 @@ class ScreenMain1PlacesVM with ChangeNotifier {
   void onAddToFavorites(int id) => placesInteractor.addToFavorites(id);
 
   void onRemoveAtAll(int id) => placesInteractor.removeAtAll(id);
+
+  // TODO
+  void onTapOnPlace(BuildContext context, int id) {
+    showModalBottomSheet<bool>(
+      isScrollControlled: true,
+      context: context,
+      builder: (_) => createScreenPlaceDetails(
+        context: context,
+        placeId: id,
+      ),
+    );
+  }
 }

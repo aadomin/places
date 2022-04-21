@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:places/main.dart';
 
-/// 
+///
 /// Виджет-обертка для Ink (Image для работы ribble effect'a)
 /// (нужен для того, чтобы в режиме отладки работал flutter for web:
 /// подменяет url картинки моковой картинкой)
-/// 
+///
 class WidgetMyImageInk extends StatefulWidget {
   const WidgetMyImageInk({
     required this.url,
@@ -21,22 +21,32 @@ class WidgetMyImageInk extends StatefulWidget {
 }
 
 class _WidgetMyImageInkState extends State<WidgetMyImageInk> {
-  var _imageFromNetwork = const NetworkImage('');
-  bool _loaded = false;
+  late NetworkImage _imageFromNetwork;
+  bool _isLoading = true;
+  bool _isError = false;
 
   @override
   void initState() {
-    _imageFromNetwork = NetworkImage(widget.url);
     super.initState();
-    _imageFromNetwork
-        .resolve(ImageConfiguration.empty)
-        .addListener(ImageStreamListener((_, __) {
-      if (mounted) {
-        setState(() {
-          _loaded = true;
-        });
-      }
-    }));
+    _imageFromNetwork = NetworkImage(widget.url);
+    _imageFromNetwork.resolve(ImageConfiguration.empty).addListener(
+          ImageStreamListener(
+            (_, __) {
+              //ТУТВОПРОС
+              if (mounted) {
+                setState(() {
+                  _isLoading = false;
+                });
+              }
+            },
+            onError: (_, __) {
+              setState(() {
+                _isError = true;
+                _isLoading = false;
+              });
+            },
+          ),
+        );
   }
 
   @override
@@ -49,12 +59,21 @@ class _WidgetMyImageInkState extends State<WidgetMyImageInk> {
       );
     }
 
-    if (!_loaded) {
+    if (_isLoading) {
       return const Center(
         child: SizedBox(
           width: 20,
           height: 20,
           child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
+    if (_isError) {
+      return const Center(
+        child: ColoredBox(
+          color: Colors.red,
+          child: Text('ошибка сети'),
         ),
       );
     }

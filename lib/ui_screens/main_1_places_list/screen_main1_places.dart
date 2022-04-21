@@ -3,10 +3,9 @@ import 'package:places/domain_models/place.dart';
 import 'package:places/ui_screens/main_1_places_list/screen_main1_places_vm.dart';
 import 'package:places/ui_screens/main_1_places_list/widget_my_sliver_app_bar.dart';
 import 'package:places/ui_screens/main_1_places_list/widget_new_place_button.dart';
-import 'package:places/ui_screens/main_1_places_list/widget_searching_header.dart';
+import 'package:places/ui_screens/main_1_places_list/widget_searching_panel.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
-import 'package:places/ui_screens/place_details_screen/screen_place_details_di.dart';
 import 'package:places/ui_widgets_commons/widget_place_card.dart';
 
 /// Экран 1. Список мест.
@@ -69,11 +68,16 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
               ),
 
               // Заголовок "Поиск"
-              WidgetSearchingHeader(focusNode1: focusNode1),
+              WidgetSearchingPanel(focusNode1: focusNode1),
 
-              if (___filteredPlaces.isEmpty)
+              if (___viewModel.isLoading)
                 const Center(
                   child: CircularProgressIndicator(),
+                ),
+
+              if (___viewModel.isEmpty)
+                const Center(
+                  child: Text('Пустой список'),
                 ),
 
               // TODO(me): error
@@ -83,11 +87,13 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
               //   );
               // }
 
-              // ОСНОВНОЙ СПИСОК широкий вариат (в два столбеца)
-              if (MediaQuery.of(context).size.width <= criticalWidth)
-                narrowList(context),
-              if (MediaQuery.of(context).size.width > criticalWidth)
-                wideList(context),
+              // ОСНОВНОЙ СПИСОК узкий и широкий вариант (в два столбца)
+              if (___viewModel.isReady)
+                if (MediaQuery.of(context).size.width <= criticalWidth)
+                  narrowList(context),
+              if (___viewModel.isReady)
+                if (MediaQuery.of(context).size.width > criticalWidth)
+                  wideList(context),
             ],
           ),
           const WidgetNewPlaceButton(),
@@ -100,39 +106,30 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, i) {
-          try {
-            print(i);
-            return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: WidgetPlaceCard(
-                place: ___filteredPlaces[i],
-                placeCardType: PlaceCardType.general,
-                isLiked: ___filteredPlaces[i].wished,
-                onTap: () {
-                  onTap(
-                    context,
-                    ___filteredPlaces[i].id,
-                  );
-                },
-                onToggleWished: () {
-                  if (___filteredPlaces[i].wished) {
-                    ___viewModel.onRemoveFromFavorites(___filteredPlaces[i].id);
-                  } else {
-                    ___viewModel.onAddToFavorites(___filteredPlaces[i].id);
-                  }
-                },
-                onDeleteAtAll: () {
-                  ___viewModel.onRemoveAtAll(___filteredPlaces[i].id);
-                },
-              ),
-            );
-          } on Object catch (e) {
-            // TODO
-            print(e);
-            print(i.toString());
-            print('Lenght: ${___filteredPlaces.length}');
-            return const Text('X');
-          }
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: WidgetPlaceCard(
+              place: ___filteredPlaces[i],
+              placeCardType: PlaceCardType.general,
+              isLiked: ___filteredPlaces[i].wished,
+              onTap: () {
+                ___viewModel.onTapOnPlace(
+                  context,
+                  ___filteredPlaces[i].id,
+                );
+              },
+              onToggleWished: () {
+                if (___filteredPlaces[i].wished) {
+                  ___viewModel.onRemoveFromFavorites(___filteredPlaces[i].id);
+                } else {
+                  ___viewModel.onAddToFavorites(___filteredPlaces[i].id);
+                }
+              },
+              onDeleteAtAll: () {
+                ___viewModel.onRemoveAtAll(___filteredPlaces[i].id);
+              },
+            ),
+          );
         },
         childCount: ___filteredPlaces.length,
       ),
@@ -156,7 +153,7 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
               placeCardType: PlaceCardType.general,
               isLiked: ___filteredPlaces[i].wished,
               onTap: () {
-                onTap(
+                ___viewModel.onTapOnPlace(
                   context,
                   ___filteredPlaces[i].id,
                 );
@@ -174,18 +171,6 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
             ),
           ),
       ]),
-    );
-  }
-
-  // TODO
-  void onTap(BuildContext context, int id) {
-    showModalBottomSheet<bool>(
-      isScrollControlled: true,
-      context: context,
-      builder: (_) => createScreenPlaceDetails(
-        context: context,
-        placeId: id,
-      ),
     );
   }
 }

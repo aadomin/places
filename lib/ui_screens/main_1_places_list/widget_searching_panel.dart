@@ -5,8 +5,8 @@ import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
 /// Поле с поиском
-class WidgetSearchingHeader extends StatelessWidget {
-  const WidgetSearchingHeader({
+class WidgetSearchingPanel extends StatelessWidget {
+  const WidgetSearchingPanel({
     required this.focusNode1,
     Key? key,
   }) : super(key: key);

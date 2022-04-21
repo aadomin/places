@@ -12,7 +12,7 @@ class Place {
     this.url = const ['http'],
     this.details = 'Description',
     this.type = 'Type',
-    
+
     // TODO(me): время работы
     this.timeOfWork = 'Закрыто до 09:00',
     this.wished = false,
@@ -33,7 +33,8 @@ class Place {
 
   @override
   String toString() {
-    return '$name $lat $lon $url $details $type';
+    final trimDetails = details.length > 5 ? details.substring(0, 4) : details;
+    return '$id $name $lat $lon $url $trimDetails $type \n\n/n/n';
   }
 
   //ignore: sort_constructors_first
