@@ -96,6 +96,49 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
     );
   }
 
+  SliverList narrowList(BuildContext context) {
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, i) {
+          try {
+            print(i);
+            return Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: WidgetPlaceCard(
+                place: ___filteredPlaces[i],
+                placeCardType: PlaceCardType.general,
+                isLiked: ___filteredPlaces[i].wished,
+                onTap: () {
+                  onTap(
+                    context,
+                    ___filteredPlaces[i].id,
+                  );
+                },
+                onToggleWished: () {
+                  if (___filteredPlaces[i].wished) {
+                    ___viewModel.onRemoveFromFavorites(___filteredPlaces[i].id);
+                  } else {
+                    ___viewModel.onAddToFavorites(___filteredPlaces[i].id);
+                  }
+                },
+                onDeleteAtAll: () {
+                  ___viewModel.onRemoveAtAll(___filteredPlaces[i].id);
+                },
+              ),
+            );
+          } on Object catch (e) {
+            // TODO
+            print(e);
+            print(i.toString());
+            print('Lenght: ${___filteredPlaces.length}');
+            return const Text('X');
+          }
+        },
+        childCount: ___filteredPlaces.length,
+      ),
+    );
+  }
+
   SliverGrid wideList(BuildContext context) {
     return SliverGrid(
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
@@ -131,50 +174,6 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
             ),
           ),
       ]),
-    );
-  }
-
-  SliverList narrowList(BuildContext context) {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, i) {
-          try {
-            print(i);
-            return Padding(
-              key: UniqueKey(),
-              padding: const EdgeInsets.all(16.0),
-              child: WidgetPlaceCard(
-                place: ___filteredPlaces[i],
-                placeCardType: PlaceCardType.general,
-                isLiked: ___filteredPlaces[i].wished,
-                onTap: () {
-                  onTap(
-                    context,
-                    ___filteredPlaces[i].id,
-                  );
-                },
-                onToggleWished: () {
-                  if (___filteredPlaces[i].wished) {
-                    ___viewModel.onRemoveFromFavorites(___filteredPlaces[i].id);
-                  } else {
-                    ___viewModel.onAddToFavorites(___filteredPlaces[i].id);
-                  }
-                },
-                onDeleteAtAll: () {
-                  ___viewModel.onRemoveAtAll(___filteredPlaces[i].id);
-                },
-              ),
-            );
-          } on Object catch (e) {
-            // TODO
-            print(e);
-            print(i.toString());
-            print('Lenght: ${___filteredPlaces.length}');
-            return const Text('X');
-          }
-        },
-        childCount: ___filteredPlaces.length,
-      ),
     );
   }
 

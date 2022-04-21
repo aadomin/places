@@ -23,20 +23,19 @@ class WidgetPlaceCard extends StatelessWidget {
     this.onDeleteAtAll,
     this.isLiked,
     Key? key,
-  }) :
-        // assert(
-        //           (placeCardType == PlaceCardType.general &&
-        //                   (isLiked != null) &&
-        //                   (onDeleteAtAll != null) &&
-        //                   (onToggleWished != null)) ||
-        //               (placeCardType == PlaceCardType.seen &&
-        //                   (onShare != null) &&
-        //                   (onDeleteFromSeen != null)) ||
-        //               (placeCardType == PlaceCardType.wished &&
-        //                   (onAddToCalendar != null) &&
-        //                   (onDeleteFromWished != null) &&
-        //                   (isLiked != null) ,
-        //           'NТУТ'), // TODO
+  })  : assert(
+            ((placeCardType == PlaceCardType.general) &&
+                    (isLiked != null) &&
+                    (onDeleteAtAll != null) &&
+                    (onToggleWished != null)) ||
+                ((placeCardType == PlaceCardType.seen) &&
+                    (onShare != null) &&
+                    (onDeleteFromSeen != null)) ||
+                ((placeCardType == PlaceCardType.wished) &&
+                    (onAddToCalendar != null) &&
+                    (onDeleteFromWished != null) &&
+                    (isLiked != null)),
+            'NТУТ'),
         super(key: key);
 
   final Place place;
