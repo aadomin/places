@@ -17,7 +17,7 @@ class FilterInteractor with ChangeNotifier {
         CategoryItem(name: UiStrings.museum, isSelected: true),
         CategoryItem(name: UiStrings.cafe, isSelected: true),
       ],
-      radiusOfSearch: 1000,
+      radiusOfSearch: 10000,
     );
   }
 

@@ -26,6 +26,22 @@ class ScreenAddPlace extends StatefulWidget {
 class _ScreenAddPlaceState extends State<ScreenAddPlace> {
   ScreenAddPlaceVM get ___viewModel => widget.viewModel;
 
+  @override
+  void initState() {
+    widget.viewModel.addListener(_vmListener);
+    widget.viewModel.initVM();
+    super.initState();
+  }
+
+  void _vmListener() => setState(() {});
+
+  @override
+  void dispose() {
+    widget.viewModel.disposeVM();
+    widget.viewModel.removeListener(_vmListener);
+    super.dispose();
+  }
+
   FocusNode focusNodeName = FocusNode();
   FocusNode focusNodeLat = FocusNode();
   FocusNode focusNodeLon = FocusNode();
@@ -362,7 +378,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                 TextFormField(
                   controller: ___viewModel.textControllerDescription,
 
-                  // TODO(me): вынести валидаторы
+                  // TODO(me): вынести валидаторы в отдельный файл
                   validator: (value) {
                     final String text = value ?? '';
                     final _nameExp = RegExp(r'^.{1,}$');

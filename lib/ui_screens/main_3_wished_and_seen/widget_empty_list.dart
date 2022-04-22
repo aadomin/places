@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/ui_commons/text_styles.dart';
 
 /// Экран "Избранные и посещенные", состояние когда список пуст
+/// 
 class WidgetEmptyList extends StatelessWidget {
   const WidgetEmptyList({
     required this.imagePath,

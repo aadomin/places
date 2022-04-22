@@ -15,22 +15,15 @@ class PlacesInteractor with ChangeNotifier {
     required this.placesRepository,
     required this.geoInteractor,
     required this.filterInteractor,
-  }) {
-    //init(); //асинхронная
-  }
+  });
+
   final PlaceRepository placesRepository;
   final GeoInteractor geoInteractor;
   final FilterInteractor filterInteractor;
 
-  bool isLoading = true;
-  List<Place> loadedAllPlaces = [];
-
-  /// Инициализация интерактора - переделать в инитстейт
-  Future<void> initInteractor() async {
+  void initInteractor() {
     filterInteractor.addListener(filterInteractorListener);
-    isLoading = false;
-    await _loadAllPlaces();
-    isLoading = true;
+    _loadAllPlaces();
   }
 
   void filterInteractorListener() => notifyListeners();
@@ -39,31 +32,30 @@ class PlacesInteractor with ChangeNotifier {
     filterInteractor.removeListener(filterInteractorListener);
   }
 
+  //
+
+  List<Place> _allPlacesLoaded = [];
+
   /// загрузить все места
   Future<void> _loadAllPlaces() async {
-    isLoading = true;
-    notifyListeners();
-
-    loadedAllPlaces = await placesRepository.getAllPlaces();
+    _allPlacesLoaded = await placesRepository.getAllPlaces();
     _updateDistancesFromAllPlacesToUser();
-    isLoading = false;
     notifyListeners();
   }
 
-  // /// перезагрузить все места
-  // Future<void> _reloadAllPlaces() async {
-  //   await _loadAllPlaces();
-  // }
-
-  /// был ли последний запрос данных закончен с ошибкой
   // TODO(me): переделать placesRepository.isRequestDoneWithError
+  // TODO(me): переделать по-другому
+
+  /////
+  /////
+  /////
+  /////
 
   /// Возвращает список мест
   List<Place> getPlaces({
     required int radius,
     required List<CategoryItem> categories,
   }) {
-    
     final List<String> _selectedCategories = categories
         .where((element) => element.isSelected)
         .map((element) => element.name)
@@ -71,21 +63,22 @@ class PlacesInteractor with ChangeNotifier {
 
     // filtering and sorting
     _updateDistancesFromAllPlacesToUser();
-    final List<Place> _filteredAndSortedPlacesList = loadedAllPlaces
-        .where((element) => _selectedCategories
-            .any((e) => element.type.toLowerCase() == e.toLowerCase()))
+    final List<Place> _filteredAndSortedPlacesList = _allPlacesLoaded
+        .where((element) => _selectedCategories.any(
+              (e) => element.type.toLowerCase() == e.toLowerCase(),
+            ))
+        .where((element) => element.currentDistanceToUser.toInt() < radius)
         .toList()
       ..sort(
         (a, b) => a.currentDistanceToUser.compareTo(b.currentDistanceToUser),
       );
 
-    
     return _filteredAndSortedPlacesList;
   }
 
   /// Обновляет расстояния от объекта до пользователя
   void _updateDistancesFromAllPlacesToUser() {
-    loadedAllPlaces = loadedAllPlaces.map((place) {
+    _allPlacesLoaded = _allPlacesLoaded.map((place) {
       place.currentDistanceToUser = geoInteractor.distanceFromPointToUser(
         lat: place.lat,
         lon: place.lon,
@@ -93,8 +86,6 @@ class PlacesInteractor with ChangeNotifier {
       return place;
     }).toList();
   }
-
-  // TODO(me): Переделать радиус
 
   /// Возвращает лист мест, которые отображаются на экране "Список интересных мест"
   /// и на экране Поиска
@@ -105,58 +96,52 @@ class PlacesInteractor with ChangeNotifier {
     );
   }
 
+  /////
+  /////
+  /////
+  /////
+
   /// Возвращает конкретное место (детали)
   Place getPlaceDetails(int id) {
-    return loadedAllPlaces[_indexOfPlaceInAllById(id)];
+    return _allPlacesLoaded.where((item) => item.id == id).first;
   }
 
   /// Возвращает массив избранных мест
   List<Place> get getFavoritesPlaces =>
-      loadedAllPlaces.where((s) => s.wished).toList();
+      _allPlacesLoaded.where((s) => s.wished).toList();
 
   /// Возвращает массив посещенных мест
   List<Place> get getVisitedPlaces =>
-      loadedAllPlaces.where((s) => s.seen).toList();
+      _allPlacesLoaded.where((s) => s.seen).toList();
 
   /// Удаляет место из избранных
   void removeFromFavorites(int id) {
-    loadedAllPlaces[_indexOfPlaceInAllById(id)].wished = false;
+    _allPlacesLoaded.where((item) => item.id == id).first.wished = false;
     notifyListeners();
   }
 
   /// Удаляет место из посещенных
   void removeFromVisited(int id) {
-    loadedAllPlaces[_indexOfPlaceInAllById(id)].seen = false;
+    _allPlacesLoaded.where((item) => item.id == id).first.seen = false;
     notifyListeners();
   }
 
   /// Удаляет совсем
   void removeAtAll(int id) {
-    loadedAllPlaces.removeAt(_indexOfPlaceInAllById(id));
+    _allPlacesLoaded.removeWhere((item) => item.id == id);
     notifyListeners();
   }
 
   /// Добавляет место в избранные
   void addToFavorites(int id) {
-    loadedAllPlaces[_indexOfPlaceInAllById(id)].wished = true;
+    _allPlacesLoaded.where((item) => item.id == id).first.wished = true;
     notifyListeners();
   }
 
   /// Добавляет место в посещенные
   void addToVisitedPlaces(int id) {
-    loadedAllPlaces[_indexOfPlaceInAllById(id)].seen = true;
+    _allPlacesLoaded.where((item) => item.id == id).first.seen = true;
     notifyListeners();
-  }
-
-  /// Возвращает индекс места в массиве по его ID
-  int _indexOfPlaceInAllById(int id) {
-    for (var i = 0; i < loadedAllPlaces.length; i++) {
-      if (loadedAllPlaces[i].id == id) {
-        return i;
-        // TODO(me): убрать эту функцию
-      }
-    }
-    throw Exception('There is no such ID');
   }
 
   ///
@@ -182,9 +167,9 @@ class PlacesInteractor with ChangeNotifier {
       id: random.nextInt(50000),
     );
 
-    // TODO(me): подумать, как сделать - сбросить кэш и загрузить снова экраны
+    // TODO(me): подумать, как сделать сброс кэша и перезагрузка экранов
     await placesRepository.addPlace(newPlace);
-    loadedAllPlaces.add(newPlace);
+    _allPlacesLoaded.add(newPlace);
     notifyListeners();
   }
 }

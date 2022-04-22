@@ -87,6 +87,8 @@ class PlaceRepository {
             queryPath: _path,
             errorName: '${response.statusCode} ${response.statusMessage}',
           );
+        } else {
+          print('Place added on the server');
         }
       } on NetworkException catch (e) {
         isRequestDoneWithError = true;

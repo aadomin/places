@@ -9,7 +9,6 @@ import 'package:places/ui_widgets_commons/widget_my_header.dart';
 /// Экран 3. Список избранных и посещенных мест.
 /// Третий из четырех главных экранов, доступных по нажатию на
 /// BottomNavigationBar.
-/// Данный класс описывает ГЛАВНОЕ состояние экрана
 ///
 class ScreenMain3FavAndVisit extends StatefulWidget {
   const ScreenMain3FavAndVisit({

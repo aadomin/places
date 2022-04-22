@@ -83,7 +83,7 @@ class UiStrings {
   static const String addPlaceAddPlace = 'СОЗДАТЬ';
 
   // Экран Фильтр
-  static const String filterShow = 'СОЗДАТЬ';
+  static const String filterShow = 'ПОКАЗАТЬ';
   static const String hotel = 'Отель';
   static const String restaurant = 'Ресторан';
   static const String specialPlace = 'Особое место';

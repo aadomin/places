@@ -26,7 +26,7 @@ class DioServices {
           return handler.next(options);
         },
         onResponse: (response, handler) {
-          print('Ответ получен ${response.data.toString().substring(0, 100)} ');
+          print('Ответ получен ${response.data.toString().substring(0, 400)} ');
           return handler.next(response);
         },
         onError: (DioError e, handler) {

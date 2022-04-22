@@ -4,7 +4,7 @@ import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/main_1_places_list/screen_main1_places_di.dart';
 import 'package:places/ui_screens/main_2_map/screen_main_2_map.dart';
-import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_fav_and_visit_route.dart';
+import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_fav_and_visit_di.dart';
 import 'package:places/ui_screens/main_4_settings/screen_main_4_settings_di.dart';
 
 /// ГЛАВНЫЙ ЭКРАН.
@@ -35,7 +35,7 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
         child: ScreenMain2Map(),
       ),
       const Center(
-        child: ScreenMain3FavoriteAndVisitedRoute(),
+        child: ScreenMain3FavoriteAndVisitedDI(),
       ),
       Center(
         child: createScreenMain4Settings(context),

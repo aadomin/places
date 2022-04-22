@@ -14,6 +14,9 @@ class ScreenAddPlaceVM with ChangeNotifier {
   BuildContext context;
   final PlacesInteractor placesInteractor;
 
+  void initVM() {}
+
+  void disposeVM() {}
   //
 
   final textControllerName = TextEditingController();
@@ -73,7 +76,7 @@ class ScreenAddPlaceVM with ChangeNotifier {
         details: textControllerDescription.text,
         type: currentlySelectedCategory,
       );
-      // TODO(me): тут так ли
+      // TODO(me): тут так ли - мифическая ошибка
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text(UiStrings.newPlaceCreated)),
       );

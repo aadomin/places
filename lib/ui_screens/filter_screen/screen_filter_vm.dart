@@ -21,6 +21,7 @@ class ScreenFilterVM with ChangeNotifier {
   void initVM() {
     filterInteractor.addListener(_placesInteractorListener);
     placesInteractor.addListener(_filterInteractorListener);
+
   }
 
   void _placesInteractorListener() => notifyListeners();
@@ -60,8 +61,9 @@ class ScreenFilterVM with ChangeNotifier {
       element.isSelected = false;
     }
 
-    //
     filterInteractor.filterConditions = _newFilterConditions;
+
+    setSliderState(1);
   }
 
   /// Нажатие на "Показать"
@@ -74,7 +76,7 @@ class ScreenFilterVM with ChangeNotifier {
   //
 
   /// Положение слайдера по расстоянию
-  double _sliderValue = 0;
+  double _sliderValue = 1;
 
   /// Положение слайдера по расстоянию
   double get sliderValue => _sliderValue;
@@ -91,24 +93,27 @@ class ScreenFilterVM with ChangeNotifier {
 
   // TODO(me): реализовать фильтрацию еще и по расстоянию
   Map<int, String> distancesMap = <int, String>{
-    50: 'до 50м',
     100: 'до 100м',
     200: 'до 200м',
     300: 'до 300м',
-    600: 'до 500м',
+    500: 'до 500м',
     1000: 'до 1км',
     2000: 'до 2км',
+    3000: 'до 3км',
     5000: 'до 5км',
     10000: 'до 10км',
   };
 
-  int get indexOfSelectedRadiusItem => int.parse((_sliderValue * 8).toString());
+  int get indexOfSelectedRadiusItem =>
+      int.parse((_sliderValue * (countOfRadiusSliderItems - 1)).toString());
 
   String get descriptionOfSelectedRadiusItem =>
       distancesMap.values.toList()[indexOfSelectedRadiusItem];
 
   int get valueOfSelectedRadiusItem =>
       distancesMap.keys.toList()[indexOfSelectedRadiusItem];
+
+  int get countOfRadiusSliderItems => distancesMap.values.toList().length;
 
   int get countOfRadiusSliderDivisions =>
       distancesMap.values.toList().length - 1;
