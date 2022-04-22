@@ -26,7 +26,11 @@ class DioServices {
           return handler.next(options);
         },
         onResponse: (response, handler) {
-          print('Ответ получен ${response.data.toString().substring(0, 400)} ');
+          final txtFromResponse = response.data.toString();
+          final txtFromResponseCropped = txtFromResponse.length <= 201
+              ? txtFromResponse
+              : txtFromResponse.substring(0, 200);
+          print('Ответ получен $txtFromResponseCropped ');
           return handler.next(response);
         },
         onError: (DioError e, handler) {
