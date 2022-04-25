@@ -9,9 +9,12 @@ import 'package:places/domain_interactors/hardwork_interactor.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_interactors/search_interactor.dart';
 import 'package:places/domain_interactors/settings_interactor.dart';
+import 'package:places/ui_commons/platform_detector.dart';
 import 'package:places/ui_screens/popups/popup_manager.dart';
 
 class DI {
+  final platformDetector = PlatformDetector();
+
   final _settingsRepository = SettingsRepository();
   late final settingsInteractor =
       SettingsInteractor(settingsRepository: _settingsRepository);

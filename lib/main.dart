@@ -10,8 +10,6 @@ void main() {
   runApp(DIProvider());
 }
 
-PlatformDetector platformDetector = PlatformDetector();
-
 const bool isDebugMockImagesInPlaceOfHttp = false;
 const bool isDebugMockDataInPlaceOfHttp = false;
 
