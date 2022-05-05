@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:places/data_other/exceptions.dart';
 import 'package:places/data_other/mocks.dart';
+
 import 'package:places/domain_models/place.dart';
 import 'package:places/main.dart';
 
@@ -37,14 +38,14 @@ class PlaceRepository {
         print(response.statusCode);
         if (response.statusCode != 200) {
           throw NetworkException(
-            queryPath: _path,
+            queryPath: response.realUri.path,
             errorName: '${response.statusCode} ${response.statusMessage}',
           );
         }
         _loadedPlaces = _parsePlaces(response.data.toString());
       } on NetworkException catch (e) {
         isRequestDoneWithError = true;
-        print(e);
+        print('${e.errorName}, ${e.queryPath}, ${e.toString()}');
         return [];
         //ignore: avoid_catches_without_on_clauses
       } catch (e) {

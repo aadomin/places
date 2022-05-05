@@ -13,15 +13,44 @@ import 'package:places/di_provider.dart';
 import 'package:places/main.dart';
 import 'package:places/ui_commons/my_bloc_observer.dart';
 
+import 'fake_di.dart';
+
+const bool isDebugMockImagesInPlaceOfHttp = false;
+const bool isDebugMockDataInPlaceOfHttp = false;
+
+const bool isDebugUserStay = true;
+const bool isDebugUserMove = false;
+
 void main() {
   // ignore: avoid_types_on_closure_parameters
   testWidgets('My very first test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
     Bloc.observer = MyBlocObserver();
+    final di = FakeDI();
+    await tester.pumpWidget(DIProvider(di));
 
-    final di = DI();
+    await tester.pumpAndSettle(const Duration(seconds: 6));
 
-    // await tester.pumpWidget(Builder(
+    await tester.pumpAndSettle(const Duration(seconds: 1));
+
+    expect(find.text('Добро'), findsOneWidget);
+  });
+
+  // ignore: avoid_types_on_closure_parameters
+  testWidgets('My 2 very first test', (WidgetTester tester) async {
+    Bloc.observer = MyBlocObserver();
+    final di = FakeDI();
+    await tester.pumpWidget(DIProvider(di));
+
+    await tester.pumpAndSettle(const Duration(seconds: 6));
+
+    expect(find.text('областной'), findsOneWidget);
+  });
+}
+
+
+
+
+// await tester.pumpWidget(Builder(
     //   builder: (BuildContext context) {
     //     return ScreenMain1PlacesRoute(
     //       viewModel: ScreenMain1PlacesRouteVM(
@@ -32,10 +61,7 @@ void main() {
     //   },
     // ), const Duration(seconds: 4));
 
-    await tester.pumpWidget(DIProvider(), const Duration(seconds: 4));
-
-    // Verify that our counter starts at 0.
-    expect(find.text('Добро'), findsOneWidget);
+    
     //expect(find.text('Перк'), findsNothing);
 
     // Tap the '+' icon and trigger a frame.
@@ -48,5 +74,3 @@ void main() {
     // expect(find.text('Парк'), findsOneWidget);
     // // expect(find.text('0'), findsNothing);
     // // expect(find.text('1'), findsOneWidget);
-  });
-}

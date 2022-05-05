@@ -4,18 +4,19 @@ import 'package:places/di.dart';
 import 'package:provider/provider.dart';
 
 class DIProvider extends StatelessWidget {
-  DIProvider({
+  const DIProvider(
+    this.di, {
     Key? key,
   }) : super(key: key);
 
-  late final _di = DI();
+  final DI di;
 
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         Provider(
-          create: (context) => _di,
+          create: (context) => di,
         ),
       ],
       child: Builder(builder: (context) {

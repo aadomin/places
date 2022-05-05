@@ -34,6 +34,7 @@ class DioServices {
           return handler.next(response);
         },
         onError: (DioError e, handler) {
+          // DioError взять статус-код
           NetworkException(
             queryPath: '',
             errorName: 'dio error',

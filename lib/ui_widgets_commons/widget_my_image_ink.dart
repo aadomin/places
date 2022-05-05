@@ -70,12 +70,7 @@ class _WidgetMyImageInkState extends State<WidgetMyImageInk> {
     }
 
     if (_isError) {
-      return const Center(
-        child: ColoredBox(
-          color: Colors.red,
-          child: Text('ошибка сети'),
-        ),
-      );
+      return const ColoredBox(color: Colors.grey,);
     }
 
     return Ink.image(

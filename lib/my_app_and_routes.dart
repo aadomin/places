@@ -10,13 +10,13 @@ import 'package:places/ui_screens/main_screen/screen_all_main.dart';
 import 'package:places/ui_screens/splash_screen/screen_splash_di.dart';
 
 // TODO(me): переделать в ScreenAllMain.routeName и static const routeName = '/extractArguments';
-const String ROUTE_HOME = '/';
+const String ROUTE_HOME = '/home';
 const String ROUTE_FILTER = '/filter';
 const String ROUTE_ADD = '/add';
 const String ROUTE_SELECT_CATEGORY = '/select_category';
 const String ROUTE_SEARCH = '/search';
 const String ROUTE_ONBOARDING = '/onboarding';
-const String ROUTE_SPLASH = '/splash';
+const String ROUTE_SPLASH = '/';
 
 ///
 /// Класс содержит маршруты в приложении и виджет MaterialApp
