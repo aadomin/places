@@ -38,7 +38,7 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
             //
             Expanded(
               child: currentPage == 2
-                  ? const SizedBox.shrink()
+                  ? const SizedBox.shrink() // на последней кнопку не отображаем 
                   : TextButton(
                       onPressed: () {
                         Navigator.pushReplacementNamed(context, ROUTE_HOME);

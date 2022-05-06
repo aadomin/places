@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:places/my_app_and_routes.dart';
 
 import 'package:places/ui_commons/ui_strings.dart';
 
@@ -88,7 +89,7 @@ class WidgetOnboargindPageTemplate extends StatelessWidget {
                   child: isFinalPage == true
                       ? ElevatedButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, '/');
+                            Navigator.pushReplacementNamed(context, ROUTE_HOME);
                           },
                           child: const Padding(
                             padding: EdgeInsets.all(12.0),
