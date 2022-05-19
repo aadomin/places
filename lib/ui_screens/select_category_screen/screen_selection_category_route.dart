@@ -20,8 +20,6 @@ class _ScreenSelectionCategoryRouteState
     return ChangeNotifierProvider(
       create: (context) => SelectionCategoryVM(
         selectedCategory: _selectedCategory,
-        // тут вопрос
-        // selectedCategory: ModalRoute.of(context)?.settings.arguments as String,
       ),
       child: const ScreenSelectionCategory(),
     );

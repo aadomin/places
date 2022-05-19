@@ -27,14 +27,14 @@ class ScreenPlaceDetails extends StatefulWidget {
 class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
   final PageController _pageController = PageController();
 
-  ScreenPlaceDetailsVM get __viewModel => widget.viewModel;
+  ScreenPlaceDetailsVM get ___viewModel => widget.viewModel;
 
   double _selectedPage = 0;
 
   @override
   void initState() {
-    __viewModel.initVM();
-    __viewModel.addListener(_vmListener);
+    ___viewModel.initVM();
+    ___viewModel.addListener(_vmListener);
     super.initState();
   }
 
@@ -42,18 +42,17 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
 
   @override
   void dispose() {
-    __viewModel.removeListener(_vmListener);
-    __viewModel.disposeVM();
+    ___viewModel.removeListener(_vmListener);
+    ___viewModel.disposeVM();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // ТУТВОПРОС
-    final Place __sight = __viewModel.getPlaceDetails(
+    final Place ___sight = ___viewModel.getPlaceDetails(
       placeId: widget.placeId,
     );
-    final int __countOfPages = __sight.url.length;
+    final int ___countOfPages = ___sight.url.length;
 
     return Padding(
       padding: const EdgeInsets.only(top: 100),
@@ -85,12 +84,12 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                           });
                         },
                         children: [
-                          for (var i = 0; i < __countOfPages; i++)
+                          for (var i = 0; i < ___countOfPages; i++)
                             Container(
                               height: 300,
                               width: 300,
                               child: WidgetMyImage(
-                                url: __sight.url[i],
+                                url: ___sight.url[i],
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -113,18 +112,17 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                               // рассчитываю отступ
                               left: _selectedPage *
                                   MediaQuery.of(context).size.width /
-                                  __countOfPages),
+                                  ___countOfPages),
                           child: SizedBox(
                             // рассчитываю ширину
                             width: MediaQuery.of(context).size.width /
-                                __countOfPages,
+                                ___countOfPages,
                             height: 6,
                             child: ClipRRect(
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(3),
                               ),
                               child: Container(
-                                // TODO(me): исправить этот цвет
                                 color: Theme.of(context)
                                     .colorScheme
                                     .detailScreenPhotoIndicator,
@@ -155,7 +153,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                         alignment: Alignment.topLeft,
                         padding: const EdgeInsets.only(bottom: 2),
                         child: Text(
-                          __sight.name,
+                          ___sight.name,
                           style: TextStyle(
                             fontSize: 26,
                             fontWeight: FontWeight.bold,
@@ -171,7 +169,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                         child: Row(
                           children: [
                             Text(
-                              __sight.type,
+                              ___sight.type,
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.grey.shade700,
@@ -198,7 +196,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                         alignment: Alignment.topLeft,
                         margin: const EdgeInsets.only(top: 24),
                         child: Text(
-                          __sight.details,
+                          ___sight.details,
                           style: TextStyle(
                             color: Theme.of(context).primaryColorLight,
                           ),
@@ -212,7 +210,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            // print('построить');
+                            // TODO(me): реализовать построение маршрута
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -254,8 +252,8 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                             //
                             TextButton(
                               onPressed: () {
-                                __viewModel.onShowPopupSchedulePlace(
-                                    placeId: __sight.id);
+                                ___viewModel.onShowPopupSchedulePlace(
+                                    placeId: ___sight.id);
                               },
                               child: Padding(
                                 padding: const EdgeInsets.only(
@@ -281,15 +279,14 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                             // Кнопка В избранное
                             //
                             TextButton(
-                              // ТУТВОПРОС
-                              onPressed: __sight.wished
+                              onPressed: ___sight.wished
                                   ? () {
-                                      __viewModel.onRemoveFromFavorites(
-                                          placeId: __sight.id);
+                                      ___viewModel.onRemoveFromFavorites(
+                                          placeId: ___sight.id);
                                     }
                                   : () {
-                                      __viewModel.onAddToFavorites(
-                                          placeId: __sight.id);
+                                      ___viewModel.onAddToFavorites(
+                                          placeId: ___sight.id);
                                     },
                               child: Padding(
                                 padding: const EdgeInsets.only(
@@ -298,7 +295,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                                   children: [
                                     //ignore: prefer_if_elements_to_conditional_expressions
                                     SvgPicture.asset(
-                                      __sight.wished
+                                      ___sight.wished
                                           ? UiImagePaths.heart_filled
                                           : UiImagePaths.heart,
                                       height: 12,
@@ -306,7 +303,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                                     ),
 
                                     Text(
-                                      __sight.wished
+                                      ___sight.wished
                                           ? '  ${UiStrings.removeFromFavorites}'
                                           : '  ${UiStrings.addToFavorites}',
                                       style: const TextStyle(

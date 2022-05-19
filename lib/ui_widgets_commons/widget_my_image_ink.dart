@@ -32,7 +32,7 @@ class _WidgetMyImageInkState extends State<WidgetMyImageInk> {
     _imageFromNetwork.resolve(ImageConfiguration.empty).addListener(
           ImageStreamListener(
             (_, __) {
-              //ТУТВОПРОС
+              // ТУТВОПРОС про изображения и про mounted
               if (mounted) {
                 setState(() {
                   _isLoading = false;

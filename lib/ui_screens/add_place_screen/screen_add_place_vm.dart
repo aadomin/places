@@ -65,7 +65,6 @@ class ScreenAddPlaceVM with ChangeNotifier {
   }
 
   Future<void> onTapOnSave() async {
-    //ТУТВОПРОС
     if (keyFormAddPlace.currentState?.validate() ?? false) {
       await placesInteractor.addNewPlace(
         name: textControllerName.text,

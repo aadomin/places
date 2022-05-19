@@ -147,7 +147,7 @@ class WidgetPlaceCard extends StatelessWidget {
                             ),
                             child: WidgetMyImageInk(
                               url: place.url.isNotEmpty ? place.url[0] : '',
-                              // TODO(me): 1
+                              // TODO(me): не помню
                               fit: BoxFit.fitWidth,
                             ),
                           ),

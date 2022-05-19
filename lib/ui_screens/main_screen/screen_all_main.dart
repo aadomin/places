@@ -25,7 +25,7 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
   void initState() {
     super.initState();
     _widgetsPageList = [
-      // ТУТВОПРОС
+      // ТУТВОПРОС как это сделать лучше
       SafeArea(
         child: Center(
           child: createScreenMain1Places(context),

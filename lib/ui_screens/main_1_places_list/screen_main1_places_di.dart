@@ -1,5 +1,3 @@
-// ТУТВОПРОС
-
 import 'package:flutter/material.dart';
 import 'package:places/di.dart';
 import 'package:places/ui_screens/main_1_places_list/screen_main1_places.dart';

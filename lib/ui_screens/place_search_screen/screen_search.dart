@@ -34,7 +34,6 @@ class _ScreenSearchState extends State<ScreenSearch> {
 
   @override
   void dispose() {
-    // TODO(me): тут ошибка возникает!!!
     ___viewModel.disposeVM();
     ___viewModel.removeListener(_vmListener);
     super.dispose();

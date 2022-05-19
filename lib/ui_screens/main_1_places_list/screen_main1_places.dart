@@ -89,10 +89,10 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
               // ОСНОВНОЙ СПИСОК узкий и широкий вариант (в два столбца)
               if (___viewModel.isReady)
                 if (MediaQuery.of(context).size.width <= criticalWidth)
-                  narrowList(context),
+                  wNarrowList(context),
               if (___viewModel.isReady)
                 if (MediaQuery.of(context).size.width > criticalWidth)
-                  wideList(context),
+                  wWideList(context),
             ],
           ),
           const WidgetNewPlaceButton(),
@@ -101,7 +101,7 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
     );
   }
 
-  SliverList narrowList(BuildContext context) {
+  SliverList wNarrowList(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, i) {
@@ -135,7 +135,7 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
     );
   }
 
-  SliverGrid wideList(BuildContext context) {
+  SliverGrid wWideList(BuildContext context) {
     return SliverGrid(
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: criticalWidth,

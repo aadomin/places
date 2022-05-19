@@ -33,7 +33,6 @@ class _ScreenFilterState extends State<ScreenFilter> {
 
   @override
   void dispose() {
-    // TODO(me): ТУТВОПРОС
     ___viewModel.disposeVM();
     ___viewModel.removeListener(_vmListener);
     super.dispose();

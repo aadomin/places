@@ -16,7 +16,7 @@ class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
   @override
   void initState() {
     super.initState();
-    // тут вопрос
+    // ТУТВОПРОС потому что не помню почему watch
     context.read<SelectionCategoryVM>().init();
   }
 
