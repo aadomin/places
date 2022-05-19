@@ -15,7 +15,9 @@ class ScreenMain4SettingsVM with ChangeNotifier {
     settingsInteractor.addListener(_settingsInteractorListener);
   }
 
-  void _settingsInteractorListener() => notifyListeners();
+  void _settingsInteractorListener() {
+    notifyListeners();
+  }
 
   void disposeVM() {
     settingsInteractor.removeListener(_settingsInteractorListener);

@@ -63,7 +63,7 @@ class ScreenFilterVM with ChangeNotifier {
 
     filterInteractor.filterConditions = _newFilterConditions;
 
-    setSliderState(1);
+    setSliderState(1); // TODO(me): так не должно быть - получить из интерактора значение!
   }
 
   /// Нажатие на "Показать"

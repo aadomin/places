@@ -23,7 +23,7 @@ class SettingsInteractor with ChangeNotifier {
   }
 
   void changeTheme() {
-    streamIsDarkThemeOnController.add(false);
+    streamIsDarkThemeOnController.add(!settingsRepository.isDarkThemeOn);
     settingsRepository.isDarkThemeOn = !settingsRepository.isDarkThemeOn;
     notifyListeners();
   }
