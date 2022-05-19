@@ -89,7 +89,9 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                               height: 300,
                               width: 300,
                               child: WidgetMyImage(
-                                url: ___sight.url[i],
+                                url: ___sight.url.isNotEmpty
+                                    ? ___sight.url[i]
+                                    : '',
                                 fit: BoxFit.cover,
                               ),
                             ),
