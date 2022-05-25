@@ -6,6 +6,7 @@ import 'package:places/ui_screens/main_1_places_list/widget_new_place_button.dar
 import 'package:places/ui_screens/main_1_places_list/widget_searching_panel.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
+import 'package:places/ui_widgets_commons/widget_network_error.dart';
 import 'package:places/ui_widgets_commons/widget_place_card.dart';
 
 /// Экран 1. Список мест.
@@ -52,7 +53,7 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
   Widget build(BuildContext context) {
     final FocusNode focusNode1 = FocusNode();
 
-    ___filteredPlaces = ___viewModel.filteredPlaces;
+    ___filteredPlaces = ___viewModel.filteredPlaces; //TODO(me) убрать вторую
 
     return Scaffold(
       body: Stack(
@@ -69,28 +70,32 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
               // Заголовок "Поиск"
               WidgetSearchingPanel(focusNode1: focusNode1),
 
-              if (___viewModel.isLoading)
-                const Center(
-                  child: CircularProgressIndicator(),
+              if (___viewModel.status == VMStatus.isLoading)
+                const SliverToBoxAdapter(
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
                 ),
 
-              if (___viewModel.isEmpty)
-                const Center(
-                  child: Text('Пустой список'),
+              if (___viewModel.status == VMStatus.isEmpty)
+                const SliverToBoxAdapter(
+                  child: Center(
+                    child: Text('Пустой список'),
+                  ),
                 ),
 
-              // TODO(me): error
-              // if (context.watch<PlacesInteractor>().isRequestDoneWithError) {
-              //   return const Scaffold(
-              //     body: WidgetNetworkError(),
-              //   );
-              // }
+              if (___viewModel.status == VMStatus.isError)
+                const SliverToBoxAdapter(
+                  child: Center(
+                    child: WidgetNetworkError(),
+                  ),
+                ),
 
               // ОСНОВНОЙ СПИСОК узкий и широкий вариант (в два столбца)
-              if (___viewModel.isReady)
+              if (___viewModel.status == VMStatus.isReady)
                 if (MediaQuery.of(context).size.width <= criticalWidth)
                   wNarrowList(context),
-              if (___viewModel.isReady)
+              if (___viewModel.status == VMStatus.isReady)
                 if (MediaQuery.of(context).size.width > criticalWidth)
                   wWideList(context),
             ],

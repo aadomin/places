@@ -18,28 +18,28 @@ class ScreenAllMain extends StatefulWidget {
 }
 
 class _ScreenAllMainState extends State<ScreenAllMain> {
-  int currentPage = 0;
-  late List<Widget> _widgetsPageList;
+  late List<Widget Function()> _wPageList;
+  int numOfCurrentPage = 0;
 
   @override
   void initState() {
     super.initState();
-    _widgetsPageList = [
+    _wPageList = [
       // ТУТВОПРОС как это сделать лучше
-      SafeArea(
-        child: Center(
-          child: createScreenMain1Places(context),
-        ),
-      ),
-      const Center(
-        child: ScreenMain2Map(),
-      ),
-      const Center(
-        child: ScreenMain3FavoriteAndVisitedDI(),
-      ),
-      Center(
-        child: createScreenMain4Settings(context),
-      ),
+      () => SafeArea(
+            child: Center(
+              child: createScreenMain1Places(context),
+            ),
+          ),
+      () => const Center(
+            child: ScreenMain2Map(),
+          ),
+      () => const Center(
+            child: ScreenMain3FavoriteAndVisitedDI(),
+          ),
+      () => Center(
+            child: createScreenMain4Settings(context),
+          ),
     ];
   }
 
@@ -47,14 +47,14 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedSwitcher(
-        child: _widgetsPageList[currentPage],
+        child: _wPageList[numOfCurrentPage].call(), //ТУТВОПРОС
         duration: const Duration(milliseconds: 200),
         transitionBuilder: (Widget child, Animation<double> animation) {
           return ScaleTransition(scale: animation, child: child);
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentPage,
+        currentIndex: numOfCurrentPage,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         onTap: onTap,
@@ -62,7 +62,7 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
         items: [
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              currentPage == 0
+              numOfCurrentPage == 0
                   ? UiImagePaths.places_filled
                   : UiImagePaths.places,
               color: Theme.of(context).primaryColor,
@@ -72,7 +72,9 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              currentPage == 1 ? UiImagePaths.maps_filled : UiImagePaths.maps,
+              numOfCurrentPage == 1
+                  ? UiImagePaths.maps_filled
+                  : UiImagePaths.maps,
               color: Theme.of(context).primaryColor,
               height: 20,
             ),
@@ -80,7 +82,9 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              currentPage == 2 ? UiImagePaths.heart_filled : UiImagePaths.heart,
+              numOfCurrentPage == 2
+                  ? UiImagePaths.heart_filled
+                  : UiImagePaths.heart,
               color: Theme.of(context).primaryColor,
               height: 20,
             ),
@@ -88,7 +92,7 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              currentPage == 3
+              numOfCurrentPage == 3
                   ? UiImagePaths.settings_filled
                   : UiImagePaths.settings,
               color: Theme.of(context).primaryColor,
@@ -103,7 +107,7 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
 
   void onTap(int value) {
     setState(() {
-      currentPage = value;
+      numOfCurrentPage = value;
     });
   }
 }

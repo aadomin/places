@@ -87,6 +87,17 @@ class PlacesInteractor with ChangeNotifier {
     }).toList();
   }
 
+  //TODO(me): ну теперь тут переделать
+
+  Future<List<Place>> get filteredWithFilterPlaces async {
+    await Future<dynamic>.delayed(const Duration(seconds: 1)); //ТУТВОПРОС
+
+    return getPlaces(
+      radius: filterInteractor.filterConditions.radiusOfSearch,
+      categories: filterInteractor.filterConditions.filterItemsState,
+    );
+  }
+
   /// Возвращает лист мест, которые отображаются на экране "Список интересных мест"
   /// и на экране Поиска
   List<Place> get getFilteredPlaces {

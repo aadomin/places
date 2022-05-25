@@ -22,7 +22,7 @@ void main() {
   // LiveTestWidgetsFlutterBinding();
 
   // ignore: avoid_types_on_closure_parameters
-  testWidgets('Onboarding screen access', (WidgetTester tester) async {
+  testWidgets('Onboarding screen must be shown', (WidgetTester tester) async {
     Bloc.observer = MyBlocObserver();
     final di = FakeDI();
     await tester.pumpWidget(DIProvider(di));
@@ -30,5 +30,22 @@ void main() {
     await tester.pumpAndSettle(const Duration(seconds: 5));
 
     expect(find.text('Добро пожаловать в Путеводитель'), findsOneWidget);
+  });
+
+  testWidgets('Main screen must be shown', (WidgetTester tester) async {
+    Bloc.observer = MyBlocObserver();
+    final di = FakeDI();
+    await tester.pumpWidget(DIProvider(di));
+
+    await tester.pumpAndSettle(const Duration(seconds: 5));
+
+    expect(find.text('Пропустить'), findsOneWidget);
+
+    await tester.tap(find.text('Пропустить'));
+
+    await tester.pump();
+
+    expect(
+        find.text('Воронежский областной краеведческий музей'), findsOneWidget);
   });
 }
