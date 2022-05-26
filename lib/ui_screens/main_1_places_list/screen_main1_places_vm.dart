@@ -15,12 +15,12 @@ class ScreenMain1PlacesVM with ChangeNotifier {
   final PlacesInteractor placesInteractor;
 
   void initVM() {
-    loadFilteredPlaces();
     placesInteractor.addListener(_placesInteractorListener);
+    _loadFilteredPlaces(showLoadingIndicator: true);
   }
 
   void _placesInteractorListener() {
-    loadFilteredPlaces();
+    _loadFilteredPlaces(showLoadingIndicator: false);
     notifyListeners();
   }
 
@@ -38,10 +38,11 @@ class ScreenMain1PlacesVM with ChangeNotifier {
     return _filteredPlaces;
   }
 
-  Future<void> loadFilteredPlaces() async {
-    status = VMStatus.isLoading;
-
-    notifyListeners();
+  Future<void> _loadFilteredPlaces({required bool showLoadingIndicator}) async {
+    if (showLoadingIndicator) {
+      status = VMStatus.isLoading;
+      notifyListeners();
+    }
     try {
       _filteredPlaces = await placesInteractor.filteredWithFilterPlaces;
       if (filteredPlaces.isEmpty) {
