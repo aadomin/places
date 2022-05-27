@@ -16,45 +16,40 @@ class PlaceRepository {
 
   final Dio dio;
 
-  bool isRequestDoneWithError = false;
-
   ///
   /// Загружает все места и возвращает их
   ///
   Future<List<Place>> getAllPlaces() async {
     if (isDebugMockDataInPlaceOfHttp) {
       await Future<dynamic>.delayed(const Duration(seconds: 3));
-
-      isRequestDoneWithError = false;
+      // TODO(me): переделать мокирование
       return mocks;
     } else {
       const String _path = '/place';
 
-      List<Place> _loadedPlaces = []; // сюда загрузим
       try {
         final Response response = await dio.get<String>(
           _path,
         );
         print(response.statusCode);
         if (response.statusCode != 200) {
+          // TODO(me): переделать обработку ошибок
           throw NetworkException(
             queryPath: response.realUri.path,
             errorName: '${response.statusCode} ${response.statusMessage}',
           );
         }
-        _loadedPlaces = _parsePlaces(response.data.toString());
+        final List<Place> _loadedPlaces =
+            _parsePlaces(response.data.toString());
+        return _loadedPlaces;
       } on NetworkException catch (e) {
-        isRequestDoneWithError = true;
         print('${e.errorName}, ${e.queryPath}, ${e.toString()}');
         return [];
         //ignore: avoid_catches_without_on_clauses
-      } catch (e) {
-        isRequestDoneWithError = true;
+      } catch (e) { //ТУТ ВОПРОС
         print(e);
         return [];
       }
-      isRequestDoneWithError = false;
-      return _loadedPlaces;
     }
   }
 
@@ -76,7 +71,6 @@ class PlaceRepository {
   Future<void> addPlace(Place newPlace) async {
     if (isDebugMockDataInPlaceOfHttp) {
       await Future<dynamic>.delayed(const Duration(seconds: 3));
-      isRequestDoneWithError = false;
       return;
     } else {
       const String _path = '/place';
@@ -92,11 +86,9 @@ class PlaceRepository {
           print('Place added on the server');
         }
       } on NetworkException catch (e) {
-        isRequestDoneWithError = true;
         print(e);
         return;
       }
-      isRequestDoneWithError = false;
       return;
     }
   }

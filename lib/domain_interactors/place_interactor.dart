@@ -43,9 +43,6 @@ class PlacesInteractor with ChangeNotifier {
     notifyListeners();
   }
 
-  // TODO(me): переделать placesRepository.isRequestDoneWithError
-  // TODO(me): переделать по-другому
-
   /////
   /////
   /////
@@ -89,8 +86,9 @@ class PlacesInteractor with ChangeNotifier {
 
   //TODO(me): ну теперь тут переделать
 
+  /// Лист отфильтрованных мест, которые отображаются на экране "Список интересных мест"
   Future<List<Place>> get filteredWithFilterPlaces async {
-    await Future<dynamic>.delayed(const Duration(seconds: 1)); //ТУТВОПРОС
+    await Future<dynamic>.delayed(const Duration(seconds: 1));
 
     return getPlaces(
       radius: filterInteractor.filterConditions.radiusOfSearch,
@@ -98,8 +96,7 @@ class PlacesInteractor with ChangeNotifier {
     );
   }
 
-  /// Возвращает лист мест, которые отображаются на экране "Список интересных мест"
-  /// и на экране Поиска
+  /// Возвращает лист мест, которые отображаются на экране Поиска
   List<Place> get getFilteredPlaces {
     return getPlaces(
       radius: filterInteractor.filterConditions.radiusOfSearch,
@@ -178,7 +175,7 @@ class PlacesInteractor with ChangeNotifier {
       id: random.nextInt(50000),
     );
 
-    // TODO(me): подумать, как сделать сброс кэша и перезагрузка экранов
+    // TODO(me): подумать, как сделать сброс кэша
     await placesRepository.addPlace(newPlace);
     _allPlacesLoaded.add(newPlace);
     notifyListeners();

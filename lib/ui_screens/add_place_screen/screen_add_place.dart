@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/ui_commons/validator_for.dart';
 import 'package:places/ui_screens/add_place_screen/screen_add_place_vm.dart';
 import 'package:places/ui_screens/add_place_screen/widget_new_place_app_bar.dart';
 import 'package:places/ui_widgets_commons/widget_bottom_button.dart';
@@ -204,17 +205,10 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                   padding: EdgeInsets.zero,
                   child: TextFormField(
                     controller: ___viewModel.textControllerName,
-                    validator: (value) {
-                      final String text = value ?? '';
-                      final _nameExp = RegExp(r'^.{1,}$');
-                      if (!_nameExp.hasMatch(text) || text.isEmpty) {
-                        return UiStrings.addPlaceUncorrectInput;
-                      }
-                      return null;
-                    },
+                    validator: ValidatorFor.nameOfPlace,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     onChanged: (value) {
-                      ___viewModel.activateButtonSaveIfCan();
+                      ___viewModel.activateButtonSaveIfPossible();
                     },
                     focusNode: focusNodeName,
                     keyboardType: TextInputType.text,
@@ -253,20 +247,11 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                               UiStrings.addPlaceLat),
                           TextFormField(
                             controller: ___viewModel.textControllerLat,
-                            validator: (value) {
-                              final String text = value ?? '';
-                              final _coordinatesExp =
-                                  RegExp(r'^-?[0-9]{1,3}(?:\.[0-9]{1,20})?$');
-                              if (!_coordinatesExp.hasMatch(text) ||
-                                  text.isEmpty) {
-                                return UiStrings.addPlaceUncorrectInput;
-                              }
-                              return null;
-                            },
+                            validator: ValidatorFor.longitudeOrLatit,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             onChanged: (value) {
-                              ___viewModel.activateButtonSaveIfCan();
+                              ___viewModel.activateButtonSaveIfPossible();
                             },
                             focusNode: focusNodeLat,
                             keyboardType: PlatformDetector.isIOS
@@ -311,20 +296,11 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                               UiStrings.addPlaceLon),
                           TextFormField(
                             controller: ___viewModel.textControllerLon,
-                            validator: (value) {
-                              final String text = value ?? '';
-                              final _coordinatesExp =
-                                  RegExp(r'^-?[0-9]{1,3}(?:\.[0-9]{1,20})?$');
-                              if (!_coordinatesExp.hasMatch(text) ||
-                                  text.isEmpty) {
-                                return UiStrings.addPlaceUncorrectInput;
-                              }
-                              return null;
-                            },
+                            validator: ValidatorFor.longitudeOrLatit,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             onChanged: (value) {
-                              ___viewModel.activateButtonSaveIfCan();
+                              ___viewModel.activateButtonSaveIfPossible();
                             },
                             focusNode: focusNodeLon,
                             keyboardType: PlatformDetector.isIOS
@@ -377,19 +353,10 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                 const WidgetSmallCategoryHeader(UiStrings.addPlaceDescription),
                 TextFormField(
                   controller: ___viewModel.textControllerDescription,
-
-                  // TODO(me): вынести валидаторы в отдельный файл
-                  validator: (value) {
-                    final String text = value ?? '';
-                    final _nameExp = RegExp(r'^.{1,}$');
-                    if (!_nameExp.hasMatch(text) || text.isEmpty) {
-                      return UiStrings.addPlaceUncorrectInput;
-                    }
-                    return null;
-                  },
+                  validator: ValidatorFor.descriptionOfPlace,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   onChanged: (value) {
-                    ___viewModel.activateButtonSaveIfCan();
+                    ___viewModel.activateButtonSaveIfPossible();
                   },
                   focusNode: focusNodeDescription,
                   keyboardType: TextInputType.text,

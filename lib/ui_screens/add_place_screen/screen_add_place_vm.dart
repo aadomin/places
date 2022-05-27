@@ -107,7 +107,7 @@ class ScreenAddPlaceVM with ChangeNotifier {
 
   bool isButtonSaveActive = false;
 
-  void activateButtonSaveIfCan() {
+  void activateButtonSaveIfPossible() {
     final bool allFieldsFilled = (textControllerName.text != '') &&
         (textControllerLon.text != '') &&
         (textControllerLat.text != '') &&
