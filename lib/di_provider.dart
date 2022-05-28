@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:places/my_app_and_routes_di.dart';
 import 'package:places/di.dart';
+import 'package:places/my_app_and_routes_di.dart';
 import 'package:provider/provider.dart';
 
 class DIProvider extends StatelessWidget {

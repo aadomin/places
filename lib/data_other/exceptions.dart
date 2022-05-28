@@ -1,9 +1,12 @@
+import 'package:flutter/material.dart';
+
 class NetworkException implements Exception {
   NetworkException({
     required this.queryPath,
     required this.errorName,
   }) {
-    print(this);
+    // ignore: unnecessary_this
+    debugPrint(this.toString());
   }
 
   final String queryPath;

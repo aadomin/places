@@ -53,7 +53,7 @@ class ScreenMain1PlacesVM with ChangeNotifier {
       notifyListeners();
       return;
     } on Object catch (e) {
-      print('$e'); // TODO(me): error log
+      debugPrint('$e'); // TODO(me): error log
       status = VMStatus.isError;
       notifyListeners();
       return;

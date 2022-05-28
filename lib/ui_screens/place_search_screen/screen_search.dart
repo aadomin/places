@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/place_search_screen/screen_search_vm.dart';
 import 'package:places/ui_screens/place_search_screen/widget_search_app_bar.dart';
 import 'package:places/ui_screens/place_search_screen/widget_search_empty.dart';
 import 'package:places/ui_screens/place_search_screen/widget_search_not_found.dart';
 import 'package:places/ui_screens/place_search_screen/widget_search_result.dart';
 import 'package:places/ui_widgets_commons/widget_textfield_clear_button.dart';
-import 'package:places/ui_commons/enums.dart';
-import 'package:places/ui_commons/ui_strings.dart';
 
 /// Экран "Поиск"
 class ScreenSearch extends StatefulWidget {

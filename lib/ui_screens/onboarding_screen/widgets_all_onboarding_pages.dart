@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui_screens/onboarding_screen/widget_onboarding_page_template.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
+import 'package:places/ui_screens/onboarding_screen/widget_onboarding_page_template.dart';
 
 List<Widget> widgetsAllOnboardingPages = const [
   WidgetOnboargindPageTemplate(

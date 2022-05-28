@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_models/place.dart';
+import 'package:places/ui_commons/enums.dart';
+import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_screens/main_1_places_list/screen_main1_places_vm.dart';
 import 'package:places/ui_screens/main_1_places_list/widget_my_sliver_app_bar.dart';
 import 'package:places/ui_screens/main_1_places_list/widget_new_place_button.dart';
 import 'package:places/ui_screens/main_1_places_list/widget_searching_panel.dart';
-import 'package:places/ui_commons/enums.dart';
-import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_widgets_commons/widget_network_error.dart';
 import 'package:places/ui_widgets_commons/widget_place_card.dart';
 
@@ -53,7 +53,7 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
   Widget build(BuildContext context) {
     final FocusNode focusNode1 = FocusNode();
 
-    ___filteredPlaces = ___viewModel.filteredPlaces; //TODO(me) убрать вторую
+    ___filteredPlaces = ___viewModel.filteredPlaces; // TODO(me): убрать вторую
 
     return Scaffold(
       body: Stack(

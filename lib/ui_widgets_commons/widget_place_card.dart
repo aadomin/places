@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:places/domain_models/place.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_widgets_commons/widget_my_image_ink.dart';
 import 'package:places/ui_widgets_commons/widget_place_card_icons.dart';
-
-import 'package:places/domain_models/place.dart';
 
 ///
 /// Карточка места

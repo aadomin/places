@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
+// ignore_for_file: avoid_types_on_closure_parameters
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:places/ui_widgets_commons/widget_bottom_button.dart';
 

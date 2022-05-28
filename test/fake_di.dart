@@ -1,5 +1,6 @@
+// ignore_for_file: overridden_fields, annotate_overrides
+
 import 'package:dio/dio.dart';
-import 'package:places/data_repositories/dio_services.dart';
 import 'package:places/data_repositories/geo_repository.dart';
 
 import 'package:places/data_repositories/search_repository.dart';

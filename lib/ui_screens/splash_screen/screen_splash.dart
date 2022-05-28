@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/themes.dart';
+import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_screens/splash_screen/screen_splash_vm.dart';
 
 /// Экран-заставка во время загрузки

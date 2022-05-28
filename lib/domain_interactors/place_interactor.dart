@@ -84,7 +84,7 @@ class PlacesInteractor with ChangeNotifier {
     }).toList();
   }
 
-  //TODO(me): ну теперь тут переделать
+  // TODO(me): ну теперь тут переделать
 
   /// Лист отфильтрованных мест, которые отображаются на экране "Список интересных мест"
   Future<List<Place>> get filteredWithFilterPlaces async {

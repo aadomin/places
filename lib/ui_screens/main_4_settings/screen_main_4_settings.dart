@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/main_4_settings/screen_main_4_settings_vm.dart';
-import 'package:places/ui_commons/ui_image_paths.dart';
 
 /// Экран 4. Настройки
 /// Четвертый из четырех главных экранов, доступных по нажатию на

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:places/domain_models/place.dart';
+import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
-import 'package:places/ui_screens/place_details_screen/screen_place_details_vm.dart';
 import 'package:places/ui_commons/ui_strings.dart';
-import 'package:places/ui_commons/my_scroll_physics.dart';
+import 'package:places/ui_screens/place_details_screen/screen_place_details_vm.dart';
 import 'package:places/ui_screens/place_details_screen/widget_back_button.dart';
 import 'package:places/ui_widgets_commons/widget_my_image.dart';
-import 'package:places/domain_models/place.dart';
 
 /// Экран "Детальная страница места"
 class ScreenPlaceDetails extends StatefulWidget {

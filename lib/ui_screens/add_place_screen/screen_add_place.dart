@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:places/ui_commons/my_scroll_physics.dart';
+import 'package:places/ui_commons/platform_detector.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_commons/validator_for.dart';
 import 'package:places/ui_screens/add_place_screen/screen_add_place_vm.dart';
 import 'package:places/ui_screens/add_place_screen/widget_new_place_app_bar.dart';
-import 'package:places/ui_widgets_commons/widget_bottom_button.dart';
-import 'package:places/ui_widgets_commons/widget_textfield_clear_button.dart';
-import 'package:places/ui_commons/platform_detector.dart';
-import 'package:places/ui_commons/ui_strings.dart';
-import 'package:flutter/services.dart';
-import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_screens/add_place_screen/widget_small_category_header.dart';
+import 'package:places/ui_widgets_commons/widget_bottom_button.dart';
 import 'package:places/ui_widgets_commons/widget_my_image.dart';
+import 'package:places/ui_widgets_commons/widget_textfield_clear_button.dart';
 
 /// Экран - Добавить место
 ///

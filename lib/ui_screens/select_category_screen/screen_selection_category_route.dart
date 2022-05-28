@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui_screens/select_category_screen/screen_selection_category_vm.dart';
 import 'package:places/ui_screens/select_category_screen/screen_selection_category.dart';
+import 'package:places/ui_screens/select_category_screen/screen_selection_category_vm.dart';
 import 'package:provider/provider.dart';
 
 class ScreenSelectionCategoryRoute extends StatefulWidget {

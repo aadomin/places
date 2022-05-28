@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:places/data_other/exceptions.dart';
 import 'package:places/data_other/mocks.dart';
 
@@ -31,7 +32,7 @@ class PlaceRepository {
         final Response response = await dio.get<String>(
           _path,
         );
-        print(response.statusCode);
+        debugPrint(response.statusCode.toString());
         if (response.statusCode != 200) {
           // TODO(me): переделать обработку ошибок
           throw NetworkException(
@@ -43,11 +44,11 @@ class PlaceRepository {
             _parsePlaces(response.data.toString());
         return _loadedPlaces;
       } on NetworkException catch (e) {
-        print('${e.errorName}, ${e.queryPath}, ${e.toString()}');
+        debugPrint('${e.errorName}, ${e.queryPath}, ${e.toString()}');
         return [];
         //ignore: avoid_catches_without_on_clauses
       } catch (e) { //ТУТ ВОПРОС
-        print(e);
+        debugPrint(e.toString());
         return [];
       }
     }
@@ -83,10 +84,10 @@ class PlaceRepository {
             errorName: '${response.statusCode} ${response.statusMessage}',
           );
         } else {
-          print('Place added on the server');
+          debugPrint('Place added on the server');
         }
       } on NetworkException catch (e) {
-        print(e);
+        debugPrint(e.toString());
         return;
       }
       return;

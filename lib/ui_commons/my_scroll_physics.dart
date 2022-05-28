@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/widgets.dart';
 
 //внимание! библиотека не поддерживается Flutter for Web
 

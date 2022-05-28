@@ -1,11 +1,13 @@
-// This is a basic Flutter widget test.
+// ignore_for_file: avoid_types_on_closure_parameters
+//
+//// This is a basic Flutter widget test.
 //
 // To perform an interaction with a widget in your test, use the WidgetTester
 // utility that Flutter provides. For example, you can send tap and scroll
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:places/di_provider.dart';
@@ -21,7 +23,6 @@ const bool isDebugUserMove = false;
 void main() {
   // LiveTestWidgetsFlutterBinding();
 
-  // ignore: avoid_types_on_closure_parameters
   testWidgets('Onboarding screen must be shown', (WidgetTester tester) async {
     Bloc.observer = MyBlocObserver();
     final di = FakeDI();

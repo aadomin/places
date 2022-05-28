@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:places/domain_models/place.dart';
-import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_fav_and_visit_state.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_fav_and_visit.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_fav_and_visit_cubit.dart';
+import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_fav_and_visit_state.dart';
 
 /// Экран 3. DI
 ///

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
-import 'package:places/ui_screens/filter_screen/widget_checkmark.dart';
-
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/filter_screen/screen_filter_vm.dart';
+import 'package:places/ui_screens/filter_screen/widget_checkmark.dart';
 
 /// Экран Фильтр
 class ScreenFilter extends StatefulWidget {

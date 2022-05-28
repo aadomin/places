@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui_commons/ui_strings.dart';
-import 'package:provider/provider.dart';
 import 'package:places/ui_screens/select_category_screen/screen_selection_category_vm.dart';
+import 'package:provider/provider.dart';
 
 /// Экран "Выбор категории"
 class ScreenSelectionCategory extends StatefulWidget {

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:places/data_other/exceptions.dart';
 
 ///
@@ -20,7 +21,7 @@ class DioServices {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
-          print(
+          debugPrint(
             'Запрос: ${options.method} ${options.path} ${options.queryParameters}',
           );
           return handler.next(options);
@@ -30,7 +31,7 @@ class DioServices {
           final txtFromResponseCropped = txtFromResponse.length <= 201
               ? txtFromResponse
               : txtFromResponse.substring(0, 200);
-          print('Ответ получен $txtFromResponseCropped ');
+          debugPrint('Ответ получен $txtFromResponseCropped ');
           return handler.next(response);
         },
         onError: (DioError e, handler) {
