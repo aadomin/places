@@ -26,16 +26,18 @@ class _ScreenMain4SettingsState extends State<ScreenMain4Settings> {
   @override
   void initState() {
     super.initState();
-    ___viewModel.addListener(_vmListener);
-    ___viewModel.initVM();
+    ___viewModel
+      ..addListener(_vmListener)
+      ..initVM();
   }
 
   void _vmListener() => setState(() {});
 
   @override
   void dispose() {
-    ___viewModel.disposeVM();
-    ___viewModel.removeListener(_vmListener);
+    ___viewModel
+      ..disposeVM()
+      ..removeListener(_vmListener);
     super.dispose();
   }
 

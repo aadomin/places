@@ -25,7 +25,7 @@ class DialogAddPhoto extends StatelessWidget {
                   width: 24,
                   height: 24,
                   child: SvgPicture.asset(
-                    UiImagePaths.icon_take_photo,
+                    UiImagePaths.iconTakePhoto,
                     width: 22,
                     height: 20,
                     color: Theme.of(context).colorScheme.secondary,
@@ -51,7 +51,7 @@ class DialogAddPhoto extends StatelessWidget {
                   width: 24,
                   height: 24,
                   child: SvgPicture.asset(
-                    UiImagePaths.icon_select_image,
+                    UiImagePaths.iconSelectImage,
                     width: 24,
                     height: 24,
                     color: Theme.of(context).colorScheme.secondary,
@@ -77,7 +77,7 @@ class DialogAddPhoto extends StatelessWidget {
                   width: 24,
                   height: 24,
                   child: SvgPicture.asset(
-                    UiImagePaths.icon_select_file,
+                    UiImagePaths.iconSelectFile,
                     width: 18,
                     height: 20,
                     color: Theme.of(context).colorScheme.secondary,

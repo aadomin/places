@@ -38,5 +38,9 @@ linter:
     always_put_required_named_parameters_first: false
     always_use_package_imports: true
 
-    # конфликтует с ChangeNotifier
+    # конфликтует с ChangeNotifier 
     prefer_mixin: false
+
+    avoid_types_on_closure_parameters: false
+
+    sized_box_for_whitespace: true

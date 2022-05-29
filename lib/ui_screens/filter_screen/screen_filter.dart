@@ -24,16 +24,18 @@ class _ScreenFilterState extends State<ScreenFilter> {
   @override
   void initState() {
     super.initState();
-    ___viewModel.addListener(_vmListener);
-    ___viewModel.initVM();
+    ___viewModel
+      ..addListener(_vmListener)
+      ..initVM();
   }
 
   void _vmListener() => setState(() {});
 
   @override
   void dispose() {
-    ___viewModel.disposeVM();
-    ___viewModel.removeListener(_vmListener);
+    ___viewModel
+      ..disposeVM()
+      ..removeListener(_vmListener);
     super.dispose();
   }
 
@@ -198,7 +200,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
               onTap: () {},
             ),
 
-            // TODO(me): цвета слайдера, не работает слайдер
+            // СДЕЛАТЬ: цвета слайдера, не работает слайдер
             //
             // Слайдер
             //

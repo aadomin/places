@@ -90,7 +90,7 @@ class UiStrings {
   static const String park = 'Парк';
   static const String museum = 'Музей';
   static const String cafe = 'Кафе';
-  static const String theatre = 'Театр'; // TODO(me): почему ее не было????
+  static const String theatre = 'Театр'; // СДЕЛАТЬ: почему ее не было????
   static const String notSelected = 'не выбрана';
 
   static const String done = 'Готово';

@@ -28,7 +28,7 @@ class ScreenSplashVM with ChangeNotifier {
     final _delayProcess = _doDelayForBeautifulChangeScreen();
     await _doInitializeApp();
     await _delayProcess;
-    await Navigator.of(context).pushReplacementNamed(ROUTE_ONBOARDING);
+    await Navigator.of(context).pushReplacementNamed(appRouteOnboarding);
   }
 
   ///

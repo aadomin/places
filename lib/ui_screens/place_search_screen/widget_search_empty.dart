@@ -9,7 +9,7 @@ class WidgetSearchEmpty extends StatelessWidget {
   const WidgetSearchEmpty({
     required this.viewModel,
     required this.textController,
-    this.keyOfSearchTextField, // TODO(me): убрать
+    this.keyOfSearchTextField, // СДЕЛАТЬ: убрать
     Key? key,
   }) : super(key: key);
 
@@ -66,12 +66,12 @@ class WidgetSearchEmpty extends StatelessWidget {
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: TextButton(
+              onPressed: viewModel.onTapOnRemoveAllItemsFromHistory,
               child: Text(
                 UiStrings.clearHistory,
                 style:
                     TextStyle(color: Theme.of(context).colorScheme.secondary),
               ),
-              onPressed: () => ___viewModel.onTapOnRemoveAllItemsFromHistory(),
             ),
           ),
       ],

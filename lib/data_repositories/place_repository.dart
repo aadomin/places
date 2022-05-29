@@ -23,7 +23,7 @@ class PlaceRepository {
   Future<List<Place>> getAllPlaces() async {
     if (isDebugMockDataInPlaceOfHttp) {
       await Future<dynamic>.delayed(const Duration(seconds: 3));
-      // TODO(me): переделать мокирование
+      // СДЕЛАТЬ: переделать мокирование
       return mocks;
     } else {
       const String _path = '/place';
@@ -34,7 +34,7 @@ class PlaceRepository {
         );
         debugPrint(response.statusCode.toString());
         if (response.statusCode != 200) {
-          // TODO(me): переделать обработку ошибок
+          // СДЕЛАТЬ: переделать обработку ошибок
           throw NetworkException(
             queryPath: response.realUri.path,
             errorName: '${response.statusCode} ${response.statusMessage}',

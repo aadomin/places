@@ -17,27 +17,27 @@ class UiImagePaths {
 
   // BNB и сердце на карточках
   static const String places = 'res/images/places.svg';
-  static const String places_filled = 'res/images/places_filled.svg';
+  static const String placesFilled = 'res/images/places_filled.svg';
   static const String maps = 'res/images/map.svg';
-  static const String maps_filled = 'res/images/map_filled.svg';
+  static const String mapsFilled = 'res/images/map_filled.svg';
   static const String heart = 'res/images/heart.svg';
-  static const String heart_filled = 'res/images/heart_filled.svg';
+  static const String heartFilled = 'res/images/heart_filled.svg';
   static const String settings = 'res/images/settings.svg';
-  static const String settings_filled = 'res/images/settings_filled.svg';
+  static const String settingsFilled = 'res/images/settings_filled.svg';
   // иконки на карточках
   static const String close = 'res/images/close.svg';
   static const String share = 'res/images/share.svg';
   static const String trash = 'res/images/trash.svg';
   // детальное место и календарь на карточках
   static const String calendar = 'res/images/calendar.svg';
-  static const String calendar_filled = 'res/images/calendar_filled.svg';
+  static const String calendarFilled = 'res/images/calendar_filled.svg';
   // детальное место
   static const String route = 'res/images/route.svg';
 
   // Добавить новое место
-  static const String icon_select_file = 'res/images/icon_select_file.svg';
-  static const String icon_select_image = 'res/images/icon_select_image.svg';
-  static const String icon_take_photo = 'res/images/icon_take_photo.svg';
+  static const String iconSelectFile = 'res/images/icon_select_file.svg';
+  static const String iconSelectImage = 'res/images/icon_select_image.svg';
+  static const String iconTakePhoto = 'res/images/icon_take_photo.svg';
 
   // Фильтр
   static const String hotel = 'res/images/hotel.svg';

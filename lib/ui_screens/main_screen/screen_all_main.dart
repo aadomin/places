@@ -47,11 +47,11 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedSwitcher(
-        child: _wPageList[numOfCurrentPage].call(), //ТУТВОПРОС
         duration: const Duration(milliseconds: 200),
         transitionBuilder: (Widget child, Animation<double> animation) {
           return ScaleTransition(scale: animation, child: child);
         },
+        child: _wPageList[numOfCurrentPage].call(),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: numOfCurrentPage,
@@ -63,7 +63,7 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               numOfCurrentPage == 0
-                  ? UiImagePaths.places_filled
+                  ? UiImagePaths.placesFilled
                   : UiImagePaths.places,
               color: Theme.of(context).primaryColor,
               height: 20,
@@ -73,7 +73,7 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               numOfCurrentPage == 1
-                  ? UiImagePaths.maps_filled
+                  ? UiImagePaths.mapsFilled
                   : UiImagePaths.maps,
               color: Theme.of(context).primaryColor,
               height: 20,
@@ -83,7 +83,7 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               numOfCurrentPage == 2
-                  ? UiImagePaths.heart_filled
+                  ? UiImagePaths.heartFilled
                   : UiImagePaths.heart,
               color: Theme.of(context).primaryColor,
               height: 20,
@@ -93,7 +93,7 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
               numOfCurrentPage == 3
-                  ? UiImagePaths.settings_filled
+                  ? UiImagePaths.settingsFilled
                   : UiImagePaths.settings,
               color: Theme.of(context).primaryColor,
               height: 20,

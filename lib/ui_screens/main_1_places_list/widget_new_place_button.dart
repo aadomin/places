@@ -24,7 +24,7 @@ class WidgetNewPlaceButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(32),
               child: InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, ROUTE_ADD);
+                  Navigator.pushNamed(context, appRouteAdd);
                 },
                 child: Ink(
                   decoration: BoxDecoration(

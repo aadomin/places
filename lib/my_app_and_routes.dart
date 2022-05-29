@@ -9,14 +9,14 @@ import 'package:places/ui_screens/place_search_screen/screen_search_di.dart';
 import 'package:places/ui_screens/select_category_screen/screen_selection_category_route.dart';
 import 'package:places/ui_screens/splash_screen/screen_splash_di.dart';
 
-// TODO(me): переделать в ScreenAllMain.routeName и static const routeName = '/extractArguments';
-const String ROUTE_HOME = '/home';
-const String ROUTE_FILTER = '/filter';
-const String ROUTE_ADD = '/add';
-const String ROUTE_SELECT_CATEGORY = '/select_category';
-const String ROUTE_SEARCH = '/search';
-const String ROUTE_ONBOARDING = '/onboarding';
-const String ROUTE_SPLASH = '/';
+// СДЕЛАТЬ: переделать в ScreenAllMain.routeName и static const routeName = '/extractArguments';
+const String appRouteHome = '/home';
+const String appRouteFilter = '/filter';
+const String appRouteAdd = '/add';
+const String appRouteSelectCategory = '/select_category';
+const String appRouteSearch = '/search';
+const String appRouteOnboarding = '/onboarding';
+const String appRouteSplash = '/';
 
 ///
 /// Класс содержит маршруты в приложении и виджет MaterialApp
@@ -36,8 +36,9 @@ class _MyAppAndRoutesState extends State<MyAppAndRoutes> {
   @override
   void initState() {
     super.initState();
-    ___viewModel.addListener(_vmListener);
-    ___viewModel.initVM();
+    ___viewModel
+      ..addListener(_vmListener)
+      ..initVM();
   }
 
   void _vmListener() => setState(() {});
@@ -57,17 +58,17 @@ class _MyAppAndRoutesState extends State<MyAppAndRoutes> {
         theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: snapshot.data == true ? ThemeMode.dark : ThemeMode.light,
-        initialRoute: ROUTE_SPLASH,
+        initialRoute: appRouteSplash,
         debugShowCheckedModeBanner: false,
         routes: {
-          ROUTE_HOME: (context) => const ScreenAllMain(),
-          ROUTE_FILTER: (context) => createScreenFilter(context: context),
-          ROUTE_ADD: (context) => createScreenAddPlace(context: context),
-          ROUTE_SELECT_CATEGORY: (context) =>
+          appRouteHome: (context) => const ScreenAllMain(),
+          appRouteFilter: (context) => createScreenFilter(context: context),
+          appRouteAdd: (context) => createScreenAddPlace(context: context),
+          appRouteSelectCategory: (context) =>
               const ScreenSelectionCategoryRoute(),
-          ROUTE_SEARCH: (context) => createScreenSearch(context: context),
-          ROUTE_ONBOARDING: (context) => const ScreenOnboarding(),
-          ROUTE_SPLASH: (context) => createScreenSplash(context: context),
+          appRouteSearch: (context) => createScreenSearch(context: context),
+          appRouteOnboarding: (context) => const ScreenOnboarding(),
+          appRouteSplash: (context) => createScreenSplash(context: context),
         },
       ),
     );

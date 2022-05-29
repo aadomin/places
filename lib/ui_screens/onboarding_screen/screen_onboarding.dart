@@ -41,7 +41,7 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
                   ? const SizedBox.shrink() // на последней кнопку не отображаем 
                   : TextButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(context, ROUTE_HOME);
+                        Navigator.pushReplacementNamed(context, appRouteHome);
                       },
                       style: TextButton.styleFrom(
                         primary: const Color(0xFF4CAF50),

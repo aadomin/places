@@ -44,7 +44,7 @@ class WidgetPlaceCardIcons extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
                 child: SvgPicture.asset(
                   isHeartFilled
-                      ? UiImagePaths.heart_filled
+                      ? UiImagePaths.heartFilled
                       : UiImagePaths.heart,
                   height: 22,
                   color: Colors.white,

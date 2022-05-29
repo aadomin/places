@@ -33,8 +33,9 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
 
   @override
   void initState() {
-    ___viewModel.initVM();
-    ___viewModel.addListener(_vmListener);
+    ___viewModel
+      ..initVM()
+      ..addListener(_vmListener);
     super.initState();
   }
 
@@ -42,8 +43,9 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
 
   @override
   void dispose() {
-    ___viewModel.removeListener(_vmListener);
-    ___viewModel.disposeVM();
+    ___viewModel
+      ..removeListener(_vmListener)
+      ..disposeVM();
     super.dispose();
   }
 
@@ -212,7 +214,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            // TODO(me): реализовать построение маршрута
+                            // СДЕЛАТЬ: реализовать построение маршрута
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
@@ -298,7 +300,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                                     //ignore: prefer_if_elements_to_conditional_expressions
                                     SvgPicture.asset(
                                       ___sight.wished
-                                          ? UiImagePaths.heart_filled
+                                          ? UiImagePaths.heartFilled
                                           : UiImagePaths.heart,
                                       height: 12,
                                       color: Theme.of(context).primaryColor,

@@ -29,7 +29,7 @@ class GeoRepository {
     }
     // базовый режим - получение координат со спутника - нереализован
     else {
-      // TODO(me): implement user locator
+      // СДЕЛАТЬ: implement user locator
       throw Exception('Unimplemented');
     }
   }

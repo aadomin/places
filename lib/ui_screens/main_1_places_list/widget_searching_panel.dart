@@ -32,7 +32,7 @@ class WidgetSearchingPanel extends StatelessWidget {
                 readOnly: true,
                 onTap: () {
                   focusNode1.unfocus();
-                  Navigator.pushNamed(context, ROUTE_SEARCH);
+                  Navigator.pushNamed(context, appRouteSearch);
                 },
                 decoration: InputDecoration(
                   hintText: UiStrings.searching,
@@ -63,7 +63,7 @@ class WidgetSearchingPanel extends StatelessWidget {
               child: IconButton(
                 onPressed: () {
                   focusNode1.unfocus();
-                  Navigator.pushNamed(context, ROUTE_FILTER);
+                  Navigator.pushNamed(context, appRouteFilter);
                 },
                 icon: SvgPicture.asset(
                   UiImagePaths.filter,

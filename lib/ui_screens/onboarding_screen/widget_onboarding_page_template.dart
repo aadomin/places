@@ -89,7 +89,7 @@ class WidgetOnboargindPageTemplate extends StatelessWidget {
                   child: isFinalPage == true
                       ? ElevatedButton(
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, ROUTE_HOME);
+                            Navigator.pushReplacementNamed(context, appRouteHome);
                           },
                           child: const Padding(
                             padding: EdgeInsets.all(12.0),

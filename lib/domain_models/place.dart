@@ -8,12 +8,12 @@ class Place {
     this.lat = 0,
     this.lon = 0,
 
-    // TODO(me): время работы
+    // СДЕЛАТЬ: время работы
     this.url = const ['http'],
     this.details = 'Description',
     this.type = 'Type',
 
-    // TODO(me): время работы
+    // СДЕЛАТЬ: время работы
     this.timeOfWork = 'Закрыто до 09:00',
     this.wished = false,
     this.seen = false,
@@ -47,7 +47,7 @@ class Place {
     if (json['urls'] != null) {
       final dynamic temp = json['urls'];
       final arr0 = <String>[];
-      //ignore: avoid_dynamic_calls
+      //ignore: avoid_dynamic_calls, avoid_annotating_with_dynamic
       temp.forEach((dynamic e) {
         arr0.add(e.toString());
       });

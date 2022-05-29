@@ -28,7 +28,7 @@ class ScreenMain4SettingsVM with ChangeNotifier {
   bool get isDarkThemeOn => settingsInteractor.isDarkThemeOn;
 
   void onTapOnTutorialLink() {
-    Navigator.of(context).pushNamed(ROUTE_ONBOARDING);
+    Navigator.of(context).pushNamed(appRouteOnboarding);
   }
 
   void onTapOnThemeSwitch() {
