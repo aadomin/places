@@ -135,7 +135,7 @@ class WidgetPlaceCard extends StatelessWidget {
                         //
                         // Картинка
                         //
-                        Container(
+                        SizedBox(
                           width: double.infinity,
                           height: 100,
                           child: ClipRRect(

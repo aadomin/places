@@ -71,7 +71,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
               SliverAppBar(
                 automaticallyImplyLeading: false,
                 expandedHeight: 250,
-                flexibleSpace: Container(
+                flexibleSpace: SizedBox(
                   height: 250,
                   child: Stack(
                     children: [
@@ -87,7 +87,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                         },
                         children: [
                           for (var i = 0; i < ___countOfPages; i++)
-                            Container(
+                            SizedBox(
                               height: 300,
                               width: 300,
                               child: WidgetMyImage(

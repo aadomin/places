@@ -81,7 +81,7 @@ class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
           ),
         ),
       ),
-      bottomSheet: Container(
+      bottomSheet: SizedBox(
         width: double.infinity,
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),

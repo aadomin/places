@@ -12,7 +12,7 @@ class WidgetCheckmark extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: ___radiusOfRoundElement * 2,
       height: ___radiusOfRoundElement * 2,
       child: Align(

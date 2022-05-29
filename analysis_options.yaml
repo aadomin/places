@@ -43,4 +43,4 @@ linter:
 
     avoid_types_on_closure_parameters: false
 
-    sized_box_for_whitespace: true
+    

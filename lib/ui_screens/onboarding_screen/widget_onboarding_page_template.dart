@@ -82,7 +82,7 @@ class WidgetOnboargindPageTemplate extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: SizedBox(
               height: 60,
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),

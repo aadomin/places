@@ -217,7 +217,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
           ],
         ),
       ),
-      bottomSheet: Container(
+      bottomSheet: SizedBox(
         //
         // Кнопка ПОКАЗАТЬ
         //

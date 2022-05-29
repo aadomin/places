@@ -23,7 +23,7 @@ class WidgetBottomButton extends StatefulWidget {
 class _WidgetBottomButtonState extends State<WidgetBottomButton> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       child: Container(
         color: Theme.of(context).canvasColor,
