@@ -54,7 +54,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
     final Place ___sight = ___viewModel.getPlaceDetails(
       placeId: widget.placeId,
     );
-    final int ___countOfPages = ___sight.url.length;
+    final int ___countOfPhotos = ___sight.url.length;
 
     return Padding(
       padding: const EdgeInsets.only(top: 100),
@@ -86,7 +86,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                           });
                         },
                         children: [
-                          for (var i = 0; i < ___countOfPages; i++)
+                          for (var i = 0; i < ___countOfPhotos; i++)
                             SizedBox(
                               height: 300,
                               width: 300,
@@ -109,27 +109,30 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                       //
                       // Индикатор текущей фотки
                       //
-                      Align(
-                        alignment: Alignment.bottomLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              // рассчитываю отступ
-                              left: _selectedPage *
-                                  MediaQuery.of(context).size.width /
-                                  ___countOfPages),
-                          child: SizedBox(
-                            // рассчитываю ширину
-                            width: MediaQuery.of(context).size.width /
-                                ___countOfPages,
-                            height: 6,
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(3),
-                              ),
-                              child: Container(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .detailScreenPhotoIndicator,
+                      Visibility(
+                        visible: ___countOfPhotos > 1,
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                // рассчитываю отступ
+                                left: _selectedPage *
+                                    MediaQuery.of(context).size.width /
+                                    ___countOfPhotos),
+                            child: SizedBox(
+                              // рассчитываю ширину
+                              width: MediaQuery.of(context).size.width /
+                                  ___countOfPhotos,
+                              height: 6,
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(3),
+                                ),
+                                child: Container(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .detailScreenPhotoIndicator,
+                                ),
                               ),
                             ),
                           ),
