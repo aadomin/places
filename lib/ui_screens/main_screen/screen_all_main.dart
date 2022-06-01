@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/main_1_places_list/screen_main1_places_di.dart';
@@ -20,10 +21,13 @@ class ScreenAllMain extends StatefulWidget {
 class _ScreenAllMainState extends State<ScreenAllMain> {
   late List<Widget Function()> _wPageList;
   int numOfCurrentPage = 0;
+  bool firstRunOfApp = false;
 
   @override
   void initState() {
+    // ТУТВОПРОС
     super.initState();
+
     _wPageList = [
       // ТУТВОПРОС как это сделать лучше
       () => SafeArea(
@@ -44,10 +48,20 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
   }
 
   @override
+  void didChangeDependencies() {
+    // ТУТВОПРОС
+    super.didChangeDependencies();
+    if (firstRunOfApp) {
+      Navigator.of(context).pushNamed(appRouteOnboarding);
+      firstRunOfApp = false;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 400),
         transitionBuilder: (Widget child, Animation<double> animation) {
           return ScaleTransition(scale: animation, child: child);
         },

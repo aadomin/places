@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:places/my_app_and_routes.dart';
 
 import 'package:places/ui_commons/ui_strings.dart';
 
@@ -88,9 +87,7 @@ class WidgetOnboargindPageTemplate extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
                   child: isFinalPage == true
                       ? ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushReplacementNamed(context, appRouteHome);
-                          },
+                          onPressed: () => onStartButtonPressed(context),
                           child: const Padding(
                             padding: EdgeInsets.all(12.0),
                             child: Text(UiStrings.onboardingGogogo),
@@ -104,5 +101,9 @@ class WidgetOnboargindPageTemplate extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void onStartButtonPressed(BuildContext context) {
+    Navigator.of(context).pop();
   }
 }

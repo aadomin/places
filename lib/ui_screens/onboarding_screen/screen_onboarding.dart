@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/onboarding_screen/widget_selected_page_indicator.dart';
 import 'package:places/ui_screens/onboarding_screen/widgets_all_onboarding_pages.dart';
@@ -38,11 +37,9 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
             //
             Expanded(
               child: currentPage == 2
-                  ? const SizedBox.shrink() // на последней кнопку не отображаем 
+                  ? const SizedBox.shrink() // на последней кнопку не отображаем
                   : TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacementNamed(context, appRouteHome);
-                      },
+                      onPressed: () => onMissButtonPressed(context),
                       style: TextButton.styleFrom(
                         primary: const Color(0xFF4CAF50),
                       ),
@@ -103,5 +100,9 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
         ],
       ),
     );
+  }
+
+  void onMissButtonPressed(BuildContext ctx) {
+    Navigator.of(ctx).pop();
   }
 }

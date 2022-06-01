@@ -45,7 +45,9 @@ class _MyAppAndRoutesState extends State<MyAppAndRoutes> {
 
   @override
   void dispose() {
-    ___viewModel.removeListener(_vmListener);
+    ___viewModel
+      ..disposeVM()
+      ..removeListener(_vmListener);
     super.dispose();
   }
 
