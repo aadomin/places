@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/my_app_and_routes_vm.dart';
 import 'package:places/ui_commons/themes.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/add_place_screen/screen_add_place_di.dart';
 import 'package:places/ui_screens/filter_screen/screen_filter_di.dart';
 import 'package:places/ui_screens/main_screen/screen_all_main.dart';
@@ -56,7 +57,7 @@ class _MyAppAndRoutesState extends State<MyAppAndRoutes> {
     return StreamBuilder(
       stream: ___viewModel.streamIsDartThemeOn,
       builder: (context, snapshot) => MaterialApp(
-        title: 'Hey, Flutter!',
+        title: UiStrings.appTitle,
         theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: snapshot.data == true ? ThemeMode.dark : ThemeMode.light,

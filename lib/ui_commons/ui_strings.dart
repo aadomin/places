@@ -1,6 +1,10 @@
 /// Строки текста в приложении
 ///
 class UiStrings {
+  // Главное
+  static const String appTitle = 'Places';
+
+  // далее
   static const String listOfInterestingPlaces = 'Список интересных мест';
   static const String searching = 'Поиск';
   static const String newPlaceCap = 'НОВОЕ МЕСТО';
