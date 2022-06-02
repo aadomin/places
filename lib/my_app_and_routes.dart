@@ -10,7 +10,7 @@ import 'package:places/ui_screens/place_search_screen/screen_search_di.dart';
 import 'package:places/ui_screens/select_category_screen/screen_selection_category_route.dart';
 import 'package:places/ui_screens/splash_screen/screen_splash_di.dart';
 
-// СДЕЛАТЬ: переделать в ScreenAllMain.routeName и static const routeName = '/extractArguments';
+// TODO(me): переделать в ScreenAllMain.routeName и static const routeName = '/extractArguments';
 const String appRouteHome = '/home';
 const String appRouteFilter = '/filter';
 const String appRouteAdd = '/add';

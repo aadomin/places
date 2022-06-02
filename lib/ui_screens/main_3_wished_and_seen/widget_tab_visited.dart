@@ -57,7 +57,7 @@ class _WidgetTabVisitedState extends State<WidgetTabVisited> {
                           onTapOnCard(i.value.id);
                         },
                         onShare: () {
-                          // СДЕЛАТЬ: реализовать sharing
+                          // TODO(me): реализовать sharing
                         },
                         onDeleteFromSeen: () {
                           context

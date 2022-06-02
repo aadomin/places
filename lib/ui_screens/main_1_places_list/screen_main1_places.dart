@@ -53,7 +53,7 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
   Widget build(BuildContext context) {
     final FocusNode focusNode1 = FocusNode();
 
-    ___filteredPlaces = ___viewModel.filteredPlaces; // СДЕЛАТЬ: убрать вторую
+    ___filteredPlaces = ___viewModel.filteredPlaces; // TODO(me): убрать вторую
 
     return Scaffold(
       body: Stack(

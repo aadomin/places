@@ -8,12 +8,12 @@ class Place {
     this.lat = 0,
     this.lon = 0,
 
-    // СДЕЛАТЬ: время работы
+    // TODO(me): время работы
     this.url = const ['http'],
     this.details = 'Description',
     this.type = 'Type',
 
-    // СДЕЛАТЬ: время работы
+    // TODO(me): время работы
     this.timeOfWork = 'Закрыто до 09:00',
     this.wished = false,
     this.seen = false,

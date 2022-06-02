@@ -84,7 +84,7 @@ class PlacesInteractor with ChangeNotifier {
     }).toList();
   }
 
-  // СДЕЛАТЬ: ну теперь тут переделать
+  // TODO(me): ну теперь тут переделать
 
   /// Лист отфильтрованных мест, которые отображаются на экране "Список интересных мест"
   Future<List<Place>> get filteredWithFilterPlaces async {
@@ -175,7 +175,7 @@ class PlacesInteractor with ChangeNotifier {
       id: random.nextInt(50000),
     );
 
-    // СДЕЛАТЬ: подумать, как сделать сброс кэша
+    // TODO(me): подумать, как сделать сброс кэша
     await placesRepository.addPlace(newPlace);
     _allPlacesLoaded.add(newPlace);
     notifyListeners();

@@ -9,7 +9,7 @@ class WidgetSearchEmpty extends StatelessWidget {
   const WidgetSearchEmpty({
     required this.viewModel,
     required this.textController,
-    this.keyOfSearchTextField, // СДЕЛАТЬ: убрать
+    this.keyOfSearchTextField, // TODO(me): убрать
     Key? key,
   }) : super(key: key);
 

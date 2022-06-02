@@ -33,7 +33,7 @@ class ScreenAddPlaceVM with ChangeNotifier {
   ///
   List<String>? _listOfPhotos;
 
-  // СДЕЛАТЬ: убрать listOfInitialPhotosForAdding
+  // TODO(me): убрать listOfInitialPhotosForAdding
   ///
   /// Список изначальных фоток
   ///
@@ -70,12 +70,12 @@ class ScreenAddPlaceVM with ChangeNotifier {
         name: textControllerName.text,
         lat: double.parse(textControllerLat.text),
         lon: double.parse(textControllerLon.text),
-        // СДЕЛАТЬ: добавить url к создаваемому месту
+        // TODO(me): добавить url к создаваемому месту
         url: 'исправить',
         details: textControllerDescription.text,
         type: currentlySelectedCategory,
       );
-      // СДЕЛАТЬ: тут так ли - мифическая ошибка
+      // TODO(me): тут так ли - мифическая ошибка
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text(UiStrings.newPlaceCreated)),
       );
@@ -118,7 +118,7 @@ class ScreenAddPlaceVM with ChangeNotifier {
       isButtonSaveActive = isFormValid;
       notifyListeners();
     }
-    // СДЕЛАТЬ: тут еще исправить
+    // TODO(me): тут еще исправить
   }
 
   Future<void> onTapOnCategorySelection(BuildContext context) async {

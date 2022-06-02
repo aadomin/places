@@ -53,7 +53,7 @@ class ScreenMain1PlacesVM with ChangeNotifier {
       notifyListeners();
       return;
     } on Object catch (e) {
-      debugPrint('$e'); // СДЕЛАТЬ: error log
+      debugPrint('$e'); // TODO(me): error log
       status = VMStatus.isError;
       notifyListeners();
       return;
@@ -69,7 +69,7 @@ class ScreenMain1PlacesVM with ChangeNotifier {
 
   void onRemoveAtAll(int id) => placesInteractor.removeAtAll(id);
 
-  // СДЕЛАТЬ: 3
+  // TODO(me): 3
   void onTapOnPlace(BuildContext context, int id) {
     showModalBottomSheet<bool>(
       isScrollControlled: true,

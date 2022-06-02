@@ -34,7 +34,7 @@ class ScreenFilterVM with ChangeNotifier {
 
   //
 
-  // СДЕЛАТЬ: переделать
+  // TODO(me): переделать
   List<Place> get filteredPlaces => placesInteractor.getFilteredPlaces;
 
   FilterCondition get filterConditions => filterInteractor.filterConditions;
@@ -63,7 +63,7 @@ class ScreenFilterVM with ChangeNotifier {
 
     filterInteractor.filterConditions = _newFilterConditions;
 
-    setSliderState(1); // СДЕЛАТЬ: так не должно быть - получить из интерактора значение!
+    setSliderState(1); // TODO(me): так не должно быть - получить из интерактора значение!
   }
 
   /// Нажатие на "Показать"
@@ -91,7 +91,7 @@ class ScreenFilterVM with ChangeNotifier {
     filterInteractor.filterConditions = _newFilterConditions;
   }
 
-  // СДЕЛАТЬ: реализовать фильтрацию еще и по расстоянию
+  // TODO(me): реализовать фильтрацию еще и по расстоянию
   Map<int, String> distancesMap = <int, String>{
     100: 'до 100м',
     200: 'до 200м',

@@ -200,7 +200,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
               onTap: () {},
             ),
 
-            // СДЕЛАТЬ: цвета слайдера, не работает слайдер
+            // TODO(me): цвета слайдера, не работает слайдер
             //
             // Слайдер
             //

@@ -217,7 +217,7 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            // СДЕЛАТЬ: реализовать построение маршрута
+                            // TODO(me): реализовать построение маршрута
                           },
                           child: Padding(
                             padding: const EdgeInsets.all(12.0),
