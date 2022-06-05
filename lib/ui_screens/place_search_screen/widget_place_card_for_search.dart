@@ -7,10 +7,60 @@ import 'package:places/ui_widgets_commons/widget_my_image.dart';
 class WidgetPlaceCartForSearch extends StatelessWidget {
   const WidgetPlaceCartForSearch({
     required this.place,
+    required this.searchingText,
     Key? key,
   }) : super(key: key);
 
   final Place place;
+  final String searchingText;
+
+  /// Делаем так, чтобы искомый текст был выделен
+  List<InlineSpan> _makeNameWithPartlyBoldText({
+    required String searchingText,
+    required String text,
+    required BuildContext context,
+  }) {
+    final List<String> textParts = [];
+    final List<bool> textPartsBoldeness = [];
+
+    // разрезаем
+    text.toLowerCase().splitMapJoin(
+      searchingText.toLowerCase(),
+      onMatch: (t) {
+        textParts.add(searchingText);
+        textPartsBoldeness.add(true);
+        return '';
+      },
+      onNonMatch: (t) {
+        textParts.add(t);
+        textPartsBoldeness.add(false);
+        return '';
+      },
+    );
+
+    //мы потеряли информацию о регистре, восстанавливаем ее
+    int _pointer = 0;
+    for (var i = 0; i < textParts.length; i++) {
+      textParts[i] = text.substring(_pointer, _pointer + textParts[i].length);
+      _pointer = _pointer + textParts[i].length;
+    }
+
+    // делаем лист виджетов
+    final List<InlineSpan> ___result = [];
+    for (var i = 0; i < textParts.length; i++) {
+      ___result.add(
+        TextSpan(
+          text: textParts[i],
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
+            fontWeight:
+                textPartsBoldeness[i] ? FontWeight.bold : FontWeight.normal,
+          ),
+        ),
+      );
+    }
+    return ___result;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,43 +78,30 @@ class WidgetPlaceCartForSearch extends StatelessWidget {
             );
           },
           leading: WidgetImageWithRoundedCorners(place: place),
-          title: WidgetSearchDescriptionOfPlace(place: place),
-        ),
-        const Divider(),
-      ],
-    );
-  }
-}
-
-class WidgetSearchDescriptionOfPlace extends StatelessWidget {
-  const WidgetSearchDescriptionOfPlace({
-    required this.place,
-    Key? key,
-  }) : super(key: key);
-
-  final Place place;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.zero,
-          child: Text(
-            place.name,
-            maxLines: 2,
-            style: TextStyle(
-              color: Theme.of(context).primaryColor,
-              fontWeight: FontWeight.bold,
-            ),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.zero,
+                child: RichText(
+                  text: TextSpan(
+                    children: _makeNameWithPartlyBoldText(
+                      text: place.name,
+                      searchingText: searchingText,
+                      context: context,
+                    ),
+                  ),
+                ),
+              ),
+              Text(
+                place.type,
+                maxLines: 1,
+                style: TextStyle(color: Theme.of(context).primaryColorLight),
+              ),
+            ],
           ),
         ),
-        Text(
-          place.type,
-          maxLines: 1,
-          style: TextStyle(color: Theme.of(context).primaryColorLight),
-        ),
+        const Divider(),
       ],
     );
   }

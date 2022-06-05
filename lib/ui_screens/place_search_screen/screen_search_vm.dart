@@ -26,6 +26,8 @@ class ScreenSearchVM with ChangeNotifier {
 
   //
 
+final textController = TextEditingController();
+
   void onSearchFieldChanged(String value) =>
       searchInteractor.searchPlaces(value);
 

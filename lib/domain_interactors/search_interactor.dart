@@ -49,7 +49,6 @@ class SearchInteractor with ChangeNotifier {
     _doSearchItself(searchText);
     _updateListOfLastSearches(searchText);
     notifyListeners();
-    debugPrint('searchPlaces');
   }
 
   ///

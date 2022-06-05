@@ -44,7 +44,9 @@ class _ScreenSearchState extends State<ScreenSearch> {
   //
 
   final FocusNode focusNode1 = FocusNode();
-  final textController = TextEditingController();
+
+  late final textController = ___viewModel.textController;
+
   final keyOfSearchTextField = GlobalKey();
 
   @override
@@ -113,6 +115,7 @@ class _ScreenSearchState extends State<ScreenSearch> {
                   case SearchStatus.haveResult:
                     return WidgetSearchResult(
                       searchResult: ___viewModel.searchResult,
+                      textOfSearching: ___viewModel.textController.text,
                     );
                   case SearchStatus.empty:
                     return WidgetSearchEmpty(
