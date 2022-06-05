@@ -67,8 +67,6 @@ class ScreenMain1PlacesVM with ChangeNotifier {
 
   void onAddToFavorites(int id) => placesInteractor.addToFavorites(id);
 
-  void onRemoveAtAll(int id) => placesInteractor.removeAtAll(id);
-
   // TODO(me): 3
   void onTapOnPlace(BuildContext context, int id) {
     showModalBottomSheet<bool>(

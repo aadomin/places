@@ -134,12 +134,6 @@ class PlacesInteractor with ChangeNotifier {
     notifyListeners();
   }
 
-  /// Удаляет совсем
-  void removeAtAll(int id) {
-    _allPlacesLoaded.removeWhere((item) => item.id == id);
-    notifyListeners();
-  }
-
   /// Добавляет место в избранные
   void addToFavorites(int id) {
     _allPlacesLoaded.where((item) => item.id == id).first.wished = true;

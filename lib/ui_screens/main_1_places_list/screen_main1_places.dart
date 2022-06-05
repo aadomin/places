@@ -129,9 +129,6 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
                   ___viewModel.onAddToFavorites(___filteredPlaces[i].id);
                 }
               },
-              onDeleteAtAll: () {
-                ___viewModel.onRemoveAtAll(___filteredPlaces[i].id);
-              },
             ),
           );
         },
@@ -168,9 +165,6 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
                 } else {
                   ___viewModel.onAddToFavorites(___filteredPlaces[i].id);
                 }
-              },
-              onDeleteAtAll: () {
-                ___viewModel.onRemoveAtAll(___filteredPlaces[i].id);
               },
             ),
           ),

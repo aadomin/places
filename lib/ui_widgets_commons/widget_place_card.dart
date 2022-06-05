@@ -18,7 +18,6 @@ class WidgetPlaceCard extends StatelessWidget {
     this.onDeleteFromWished,
     this.onShare,
     this.onDeleteFromSeen,
-    this.onDeleteAtAll,
     this.isLiked,
     Key? key,
   }) :
@@ -47,19 +46,16 @@ class WidgetPlaceCard extends StatelessWidget {
   final VoidCallback? onDeleteFromWished;
   final VoidCallback? onShare;
   final VoidCallback? onDeleteFromSeen;
-  final VoidCallback? onDeleteAtAll;
 
   final bool? isLiked;
 
   @override
   Widget build(BuildContext context) {
-    void Function(DismissDirection _) onDismissedAction;
+    late void Function(DismissDirection _) onDismissedAction;
+    String textWhenDeletion = '';
 
-    late String textWhenDeletion;
     switch (placeCardType) {
       case PlaceCardType.general:
-        textWhenDeletion = UiStrings.delAtAll;
-        onDismissedAction = (DismissDirection _) => onDeleteAtAll?.call();
         break;
       case PlaceCardType.seen:
         textWhenDeletion = UiStrings.delFromSeen;
