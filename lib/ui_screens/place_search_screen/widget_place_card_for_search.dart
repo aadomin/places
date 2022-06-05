@@ -15,6 +15,7 @@ class WidgetPlaceCartForSearch extends StatelessWidget {
   final String searchingText;
 
   /// Делаем так, чтобы искомый текст был выделен
+  /// ТУТ ВОПРОС оптимизация производительности
   List<InlineSpan> _makeNameWithPartlyBoldText({
     required String searchingText,
     required String text,
