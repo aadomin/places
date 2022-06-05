@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:places/ui_commons/formatters_for.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_commons/platform_detector.dart';
 import 'package:places/ui_commons/ui_strings.dart';
@@ -206,6 +207,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                   child: TextFormField(
                     controller: ___viewModel.textControllerName,
                     validator: ValidatorFor.nameOfPlace,
+                    inputFormatters: FormattersFor.nameOfPlace(),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     onChanged: (value) {
                       ___viewModel.activateButtonSaveIfPossible();
@@ -248,6 +250,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                           TextFormField(
                             controller: ___viewModel.textControllerLat,
                             validator: ValidatorFor.longitudeOrLatit,
+                            inputFormatters: FormattersFor.longitudeOrLatit(),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             onChanged: (value) {
@@ -297,6 +300,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                           TextFormField(
                             controller: ___viewModel.textControllerLon,
                             validator: ValidatorFor.longitudeOrLatit,
+                            inputFormatters: FormattersFor.longitudeOrLatit(),
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             onChanged: (value) {
@@ -354,6 +358,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
                 TextFormField(
                   controller: ___viewModel.textControllerDescription,
                   validator: ValidatorFor.descriptionOfPlace,
+                  inputFormatters: FormattersFor.descriptionOfPlace(),
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   onChanged: (value) {
                     ___viewModel.activateButtonSaveIfPossible();
