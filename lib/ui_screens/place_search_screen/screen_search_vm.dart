@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/search_interactor.dart';
 import 'package:places/domain_models/place.dart';
+import 'package:places/ui_commons/debouncer.dart';
 import 'package:places/ui_commons/enums.dart';
 
 /// VM экрана поиска
@@ -26,10 +27,15 @@ class ScreenSearchVM with ChangeNotifier {
 
   //
 
-final textController = TextEditingController();
+  final textController = TextEditingController();
 
-  void onSearchFieldChanged(String value) =>
-      searchInteractor.searchPlaces(value);
+  final _debouncer = Debouncer(milliseconds: 500);
+
+  void onSearchFieldChanged(String value) {
+    _debouncer.run(
+      () => searchInteractor.searchPlaces(value),
+    );
+  }
 
   void onTapOnClearButton() => searchInteractor.searchPlaces('');
 
