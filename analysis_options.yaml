@@ -1,22 +1,46 @@
 include: package:surf_lint_rules/analysis_options.yaml
 
+analyzer:
+  exclude:
+    - "build/**"
+    - "script/**"
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+
+dart_code_metrics:
+  metrics:
+    cyclomatic-complexity: 20
+    maximum-nesting-level: 5
+    number-of-parameters: 4
+    source-lines-of-code: 50
+    number-of-methods: 10
+    weight-of-class: 0.33
+    maintainability-index: 50
+  anti-patterns:
+    - long-method
+    - long-parameter-list
+  metrics-exclude:
+    - test/**
+  rules:
+    - always-remove-listener
+    - avoid-unused-parameters
+    - avoid-unnecessary-setstate
+    - double-literal-format
+    - newline-before-return
+    - no-boolean-literal-compare
+    - prefer-conditional-expressions
+    - prefer-intl-name
+    - provide-correct-intl-args
+
 linter:
   rules:
-    # опускайте типы в стрелочных функциях
-    avoid_types_on_closure_parameters: false
+    public_member_api_docs: false
+    always_put_required_named_parameters_first: false
+    always_use_package_imports: true
 
-    # конфликтует с with ChangeNotifier
+    # конфликтует с ChangeNotifier 
     prefer_mixin: false
 
-    # Container ее бесит
-    sized_box_for_whitespace: false
+    avoid_types_on_closure_parameters: false
 
-    # имена констант в camel case
-    constant_identifier_names: false
-
-    # опускать dynamic
-    avoid_annotating_with_dynamic: false
-
-    # не писать принт
-    avoid_print: false
     

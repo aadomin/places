@@ -4,21 +4,25 @@ publish_to: 'none'
 version: 1.0.1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.14.0 <3.0.0"
 
 dependencies:
+  bloc: ^7.2.0
   cupertino_icons: ^0.1.3
   dio: ^4.0.0
+  equatable: ^2.0.3
   flutter:
     sdk: flutter
-  flutter_svg: ^0.19.3
-  provider: ^5.0.0
+  flutter_bloc: ^7.3.0
+  flutter_svg: ^1.0.3
+  provider: ^6.0.0
   rxdart: ^0.27.1
   
 dev_dependencies:
   flutter_test:
     sdk: flutter
   surf_lint_rules: ^1.0.0
+  
 
 flutter:
   uses-material-design: true
@@ -29,6 +33,35 @@ flutter:
   fonts:
     - family: Roboto
       fonts:
+        - asset: res/fonts/Roboto-Thin.ttf
+          weight: 100
+        - asset: res/fonts/Roboto-Light.ttf
+          weight: 300
         - asset: res/fonts/Roboto-Regular.ttf
+          weight: 400
+        - asset: res/fonts/Roboto-Medium.ttf
+          weight: 500
+        - asset: res/fonts/Roboto-Bold.ttf
+          weight: 700
+        - asset: res/fonts/Roboto-Black.ttf
+          weight: 900
+        - asset: res/fonts/Roboto-ThinItalic.ttf
+          weight: 100
+          style: italic
+        - asset: res/fonts/Roboto-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: res/fonts/Roboto-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: res/fonts/Roboto-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: res/fonts/Roboto-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: res/fonts/Roboto-BlackItalic.ttf
+          weight: 900
+          style: italic
 
 

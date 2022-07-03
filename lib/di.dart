@@ -1,38 +1,44 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:places/data_repositories/dio_services.dart';
+import 'package:places/data_repositories/geo_repository.dart';
+import 'package:places/data_repositories/place_repository.dart';
+import 'package:places/data_repositories/search_repository.dart';
+import 'package:places/data_repositories/settings_repository.dart';
+import 'package:places/domain_interactors/filter_interactor.dart';
+import 'package:places/domain_interactors/geo_interactor.dart';
+import 'package:places/domain_interactors/hardwork_interactor.dart';
+import 'package:places/domain_interactors/place_interactor.dart';
+import 'package:places/domain_interactors/search_interactor.dart';
+import 'package:places/domain_interactors/settings_interactor.dart';
+import 'package:places/ui_commons/platform_detector.dart';
+import 'package:places/ui_screens/popups/popup_manager.dart';
 
-import 'package:places/ui/my_app/my_app.dart';
+class DI {
+  final platformDetector = PlatformDetector();
 
-import 'package:places/data/interactors/place_interactor.dart';
-import 'package:places/data/interactors/settings_interactor.dart';
-import 'package:places/data/interactors/filter_interactor.dart';
-import 'package:places/ui/screens/select_category_screen/select_category_screen_model.dart';
-import 'package:places/data/interactors/search_interactor.dart';
+  final _settingsRepository = SettingsRepository();
+  late final settingsInteractor =
+      SettingsInteractor(settingsRepository: _settingsRepository);
 
-class DI extends StatelessWidget {
-  const DI({Key? key}) : super(key: key);
+  final _geoRepository = GeoRepository();
+  late final geoInteractor = GeoInteractor(geoRepository: _geoRepository);
 
-  @override
-  Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => SettingsInteractor(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => FilterInteractor(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => PlaceInteractor(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => SearchInteractor(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => SelectCategoryScreenModel(),
-        ),
-      ],
-      child: const MyApp(),
-    );
-  }
+  final filterInteractor = FilterInteractor();
+
+  final _dioServices = DioServices();
+  late final _placesRepository = PlaceRepository(dio: _dioServices.dio);
+  late final placesInteractor = PlacesInteractor(
+    placesRepository: _placesRepository,
+    geoInteractor: geoInteractor,
+    filterInteractor: filterInteractor,
+  )..initInteractor();
+
+  final _searchRepository = SearchRepository();
+  late final searchInteractor = SearchInteractor(
+    searchRepository: _searchRepository,
+    placesInteractor: placesInteractor,
+  );
+
+  final hardworkInteractor = HardworkInteractor();
+
+  final popupManager = PopupManager();
 }

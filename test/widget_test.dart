@@ -1,31 +1,52 @@
-// This is a basic Flutter widget test.
+// ignore_for_file: avoid_types_on_closure_parameters
+//
+//// This is a basic Flutter widget test.
 //
 // To perform an interaction with a widget in your test, use the WidgetTester
 // utility that Flutter provides. For example, you can send tap and scroll
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:places/di_provider.dart';
+import 'package:places/ui_commons/my_bloc_observer.dart';
+import 'fake_di.dart';
 
-import 'package:places/ui/my_app/my_app.dart';
+const bool isDebugMockImagesInPlaceOfHttp = false;
+const bool isDebugMockDataInPlaceOfHttp = false;
+
+const bool isDebugUserStay = true;
+const bool isDebugUserMove = false;
 
 void main() {
-  // ignore: avoid_types_on_closure_parameters
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  // LiveTestWidgetsFlutterBinding();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets('Onboarding screen must be shown', (WidgetTester tester) async {
+    Bloc.observer = MyBlocObserver();
+    final di = FakeDI();
+    await tester.pumpWidget(DIProvider(di));
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    await tester.pumpAndSettle(const Duration(seconds: 5));
+
+    expect(find.text('Добро пожаловать в Путеводитель'), findsOneWidget);
+  });
+
+  testWidgets('Main screen must be shown', (WidgetTester tester) async {
+    Bloc.observer = MyBlocObserver();
+    final di = FakeDI();
+    await tester.pumpWidget(DIProvider(di));
+
+    await tester.pumpAndSettle(const Duration(seconds: 5));
+
+    expect(find.text('Пропустить'), findsOneWidget);
+
+    await tester.tap(find.text('Пропустить'));
+
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(
+        find.text('Воронежский областной краеведческий музей'), findsOneWidget);
   });
 }

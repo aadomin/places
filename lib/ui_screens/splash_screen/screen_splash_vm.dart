@@ -1,0 +1,66 @@
+import 'package:flutter/material.dart';
+import 'package:places/di.dart';
+import 'package:places/my_app_and_routes.dart';
+import 'package:provider/provider.dart';
+
+///
+/// Имитация загрузки приложения
+///
+class ScreenSplashVM with ChangeNotifier {
+  ScreenSplashVM({
+    required this.context,
+  });
+
+  BuildContext context;
+
+  bool firstRunOfApp = true;
+
+  void initVM() {
+    initAppAndThenPopPage(context);
+  }
+
+  void disposeVM() {}
+
+  ///
+  /// Инициализация, одновременно с этим задержка
+  /// и после переход к другому экрану
+  ///
+  Future<void> initAppAndThenPopPage(BuildContext context) async {
+    debugPrint('starting application');
+    final _delayProcess = _doDelayForBeautifulChangeScreen();
+    await _doInitializeApp();
+    await _delayProcess;
+
+    // ТУТВОПРОС! dispose splash screen'a
+
+    // ignore: unawaited_futures
+    Navigator.of(context).pushReplacementNamed(appRouteHome);
+    if (firstRunOfApp) {
+      // ignore: unawaited_futures
+      Navigator.of(context).pushNamed(appRouteOnboarding);
+
+      firstRunOfApp = false;
+    }
+  }
+
+  ///
+  /// Процедура загрузки
+  ///
+  Future<void> _doInitializeApp() async {
+    debugPrint('loading started at: ${DateTime.now()}');
+
+    context.read<DI>().hardworkInteractor.hardwork();
+
+    debugPrint('loading done at: ${DateTime.now()}');
+  }
+
+  ///
+  /// Задержка для красоты (если загрузка выполнилась меньше чем за 2 секунды)
+  ///
+  Future<bool> _doDelayForBeautifulChangeScreen() async {
+    debugPrint('delaying started at: ${DateTime.now()}');
+    await Future<dynamic>.delayed(const Duration(seconds: 2));
+    debugPrint('delaying done at: ${DateTime.now()}');
+    return true;
+  }
+}
