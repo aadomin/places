@@ -47,11 +47,20 @@ class Place {
     if (json['urls'] != null) {
       final dynamic temp = json['urls'];
       final arr0 = <String>[];
-      //ignore: avoid_dynamic_calls, avoid_annotating_with_dynamic
-      temp.forEach((dynamic e) {
-        arr0.add(e.toString());
-      });
-      url = arr0;
+      //TODO(me): проверить что temp это действительно масссив
+
+      if (temp is List)
+      //TODO(me): cast
+      //ТУТВОПРОС!
+      //temp.cast<String>()
+      {
+        //ignore: avoid_dynamic_calls, avoid_annotating_with_dynamic
+        for (final dynamic e in temp) {
+          if (e is String) arr0.add(e.toString());
+        }
+
+        url = arr0;
+      }
     }
     details = json['description'].toString();
 

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/main_1_places_list/screen_main1_places_di.dart';
 import 'package:places/ui_screens/main_2_map/screen_main_2_map.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_fav_and_visit_di.dart';
 import 'package:places/ui_screens/main_4_settings/screen_main_4_settings_di.dart';
+// import 'package:places/my_app_and_routes.dart';
 
 /// ГЛАВНЫЙ ЭКРАН.
 /// Состоит из 4х частей - переход к ним
@@ -21,11 +21,12 @@ class ScreenAllMain extends StatefulWidget {
 class _ScreenAllMainState extends State<ScreenAllMain> {
   late List<Widget Function()> _wPageList;
   int numOfCurrentPage = 0;
+
+  // ТУТВОПРОС остался
   bool firstRunOfApp = false;
 
   @override
   void initState() {
-    // ТУТВОПРОС
     super.initState();
 
     _wPageList = [
@@ -49,12 +50,13 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
 
   @override
   void didChangeDependencies() {
-    // ТУТВОПРОС
     super.didChangeDependencies();
-    if (firstRunOfApp) {
-      Navigator.of(context).pushNamed(appRouteOnboarding);
-      firstRunOfApp = false;
-    }
+    // ТУТВОПРОС
+
+    // if (firstRunOfApp) {
+    //   Navigator.of(context).pushNamed(appRouteOnboarding);
+    //   firstRunOfApp = false;
+    // }
   }
 
   @override

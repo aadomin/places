@@ -13,22 +13,34 @@ class ScreenSplashVM with ChangeNotifier {
 
   BuildContext context;
 
+  bool firstRunOfApp = true;
+
   void initVM() {
     initAppAndThenPopPage(context);
   }
 
   void disposeVM() {}
 
+  ///
   /// Инициализация, одновременно с этим задержка
   /// и после переход к другому экрану
   ///
-  // ignore: avoid_void_async
-  void initAppAndThenPopPage(BuildContext context) async {
+  Future<void> initAppAndThenPopPage(BuildContext context) async {
     debugPrint('starting application');
     final _delayProcess = _doDelayForBeautifulChangeScreen();
     await _doInitializeApp();
     await _delayProcess;
-    await Navigator.of(context).pushReplacementNamed(appRouteHome);
+
+    // ТУТВОПРОС! dispose splash screen'a
+
+    // ignore: unawaited_futures
+    Navigator.of(context).pushReplacementNamed(appRouteHome);
+    if (firstRunOfApp) {
+      // ignore: unawaited_futures
+      Navigator.of(context).pushNamed(appRouteOnboarding);
+
+      firstRunOfApp = false;
+    }
   }
 
   ///
