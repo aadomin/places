@@ -5,10 +5,10 @@ import 'package:places/redux_store.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
 
-enum Actions { Increment }
+enum Actions { increment }
 
 int counterReducer(int state, dynamic action) {
-  return action == Actions.Increment ? state + 1 : state;
+  return action == Actions.increment ? state + 1 : state;
 }
 
 void main() {
