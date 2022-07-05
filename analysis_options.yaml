@@ -1,4 +1,4 @@
-include: package:surf_lint_rules/analysis_options.yaml
+# include: package:surf_lint_rules/analysis_options.yaml
 
 analyzer:
   exclude:
@@ -43,4 +43,6 @@ linter:
 
     avoid_types_on_closure_parameters: false
 
+    # убрать
+    use_build_context_synchronously: false
     

@@ -76,9 +76,11 @@ class ScreenAddPlaceVM with ChangeNotifier {
         type: currentlySelectedCategory,
       );
       // TODO(me): тут так ли - мифическая ошибка
+      // ТУТВОПРОС!
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text(UiStrings.newPlaceCreated)),
       );
+      
       Navigator.pop(context);
     }
   }

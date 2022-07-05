@@ -8,10 +8,10 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 // import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:places/di_provider.dart';
-import 'package:places/ui_commons/my_bloc_observer.dart';
+// import 'package:places/ui_commons/my_bloc_observer.dart';
 import 'fake_di.dart';
 
 const bool isDebugMockImagesInPlaceOfHttp = false;
@@ -24,7 +24,7 @@ void main() {
   // LiveTestWidgetsFlutterBinding();
 
   testWidgets('Onboarding screen must be shown', (WidgetTester tester) async {
-    Bloc.observer = MyBlocObserver();
+    // Bloc.observer = MyBlocObserver();
     final di = FakeDI();
     await tester.pumpWidget(DIProvider(di));
 
@@ -34,7 +34,7 @@ void main() {
   });
 
   testWidgets('Main screen must be shown', (WidgetTester tester) async {
-    Bloc.observer = MyBlocObserver();
+    // Bloc.observer = MyBlocObserver();
     final di = FakeDI();
     await tester.pumpWidget(DIProvider(di));
 
