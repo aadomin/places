@@ -1,11 +1,12 @@
-# include: package:surf_lint_rules/analysis_options.yaml
-
 analyzer:
   exclude:
     - "build/**"
     - "script/**"
     - "**/*.g.dart"
     - "**/*.freezed.dart"
+  errors:
+    # todo: error
+    todo: ignore
 
 dart_code_metrics:
   metrics:
@@ -31,7 +32,7 @@ dart_code_metrics:
     - prefer-conditional-expressions
     - prefer-intl-name
     - provide-correct-intl-args
-
+    
 linter:
   rules:
     public_member_api_docs: false
@@ -41,8 +42,13 @@ linter:
     # конфликтует с ChangeNotifier 
     prefer_mixin: false
 
+    # тут удобно видеть типы
     avoid_types_on_closure_parameters: false
 
-    # убрать
+    # // ТУТВОПРОС!
+    # а вот тут вопрос
     use_build_context_synchronously: false
+
+    
+    
     
