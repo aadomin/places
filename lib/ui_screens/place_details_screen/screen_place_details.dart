@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
+import 'package:places/ui_screens/main_3_wished_and_seen/app_actions.dart';
+import 'package:places/ui_screens/main_3_wished_and_seen/redux_store.dart';
 import 'package:places/ui_screens/place_details_screen/screen_place_details_vm.dart';
 import 'package:places/ui_screens/place_details_screen/widget_back_button.dart';
 import 'package:places/ui_widgets_commons/widget_my_image.dart';
@@ -285,41 +288,51 @@ class _ScreenPlaceDetailsState extends State<ScreenPlaceDetails> {
                             //
                             // Кнопка В избранное
                             //
-                            TextButton(
-                              onPressed: ___sight.wished
-                                  ? () {
+
+                            StoreConnector<ReduxStore, void Function()>(
+                              converter: (store) {
+                                return () => store.dispatch(LoadDataAction());
+                              },
+                              builder: (context, loadDataActionCallback) {
+                                return TextButton(
+                                  onPressed: () {
+                                    if (___sight.wished) {
                                       ___viewModel.onRemoveFromFavorites(
                                           placeId: ___sight.id);
-                                    }
-                                  : () {
+                                      loadDataActionCallback.call();
+                                    } else {
                                       ___viewModel.onAddToFavorites(
                                           placeId: ___sight.id);
-                                    },
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 6, top: 12, bottom: 12),
-                                child: Row(
-                                  children: [
-                                    //ignore: prefer_if_elements_to_conditional_expressions
-                                    SvgPicture.asset(
-                                      ___sight.wished
-                                          ? UiImagePaths.heartFilled
-                                          : UiImagePaths.heart,
-                                      height: 12,
-                                      color: Theme.of(context).primaryColor,
-                                    ),
+                                      loadDataActionCallback.call();
+                                    }
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 6, top: 12, bottom: 12),
+                                    child: Row(
+                                      children: [
+                                        //ignore: prefer_if_elements_to_conditional_expressions
+                                        SvgPicture.asset(
+                                          ___sight.wished
+                                              ? UiImagePaths.heartFilled
+                                              : UiImagePaths.heart,
+                                          height: 12,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
 
-                                    Text(
-                                      ___sight.wished
-                                          ? '  ${UiStrings.removeFromFavorites}'
-                                          : '  ${UiStrings.addToFavorites}',
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                      ),
+                                        Text(
+                                          ___sight.wished
+                                              ? '  ${UiStrings.removeFromFavorites}'
+                                              : '  ${UiStrings.addToFavorites}',
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              ),
+                                  ),
+                                );
+                              },
                             ),
                           ],
                         ),

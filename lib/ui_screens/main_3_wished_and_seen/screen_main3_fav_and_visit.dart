@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:places/domain_models/place.dart';
+import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/ui_strings.dart';
+import 'package:places/ui_screens/main_3_wished_and_seen/app_actions.dart';
+import 'package:places/ui_screens/main_3_wished_and_seen/redux_store.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_fav_and_visit_vm.dart';
 
 import 'package:places/ui_screens/main_3_wished_and_seen/widget_tab_favorite.dart';
@@ -35,6 +40,7 @@ class _ScreenMain3FavAndVisitState extends State<ScreenMain3FavAndVisit>
       ..initVM()
       ..addListener(_vmListener);
     _tabController = TabController(length: 2, vsync: this);
+    store.dispatch(LoadDataAction());
   }
 
   void _vmListener() => setState(() {});
@@ -108,10 +114,22 @@ class _ScreenMain3FavAndVisitState extends State<ScreenMain3FavAndVisit>
         body: TabBarView(
           children: [
             Tab(
-              child: WidgetTabFavorite(
-                favoritePlaces: ___vm.favoritePlaces,
-                removeFromFavorites: ___vm.removeFromFavorites,
-              ),
+              child: StoreConnector<ReduxStore, List<Place>>(
+                  converter: (store) => store.state.favoritePlaces,
+                  builder: (context, ___favoritePlaces) {
+                    return StoreConnector<ReduxStore, void Function(int)>(
+                      converter: (store) {
+                        return (id) =>
+                            store.dispatch(RemoveFromFavoritesAction(id));
+                      },
+                      builder: (context, ___onRemoveFromFavorites) {
+                        return WidgetTabFavorite(
+                          favoritePlaces: ___favoritePlaces,
+                          removeFromFavorites: ___onRemoveFromFavorites,
+                        );
+                      },
+                    );
+                  }),
             ),
             Tab(
               child: WidgetTabVisited(
