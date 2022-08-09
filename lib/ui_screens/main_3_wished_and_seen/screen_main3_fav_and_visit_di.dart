@@ -5,8 +5,6 @@ import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_fav_and_vi
 import 'package:provider/provider.dart';
 
 /// Экран 3. DI
-///
-
 ScreenMain3FavAndVisit createScreenMain3FavAndVisit(BuildContext context) {
   return ScreenMain3FavAndVisit(
     viewModel: ScreenMain3FavAndVisitVM(
