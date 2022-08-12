@@ -3,6 +3,9 @@ import 'package:places/domain_interactors/search_interactor.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_commons/debouncer.dart';
 import 'package:places/ui_commons/enums.dart';
+import 'package:places/ui_screens/place_search_screen/redux_reducers.dart';
+import 'package:places/ui_screens/place_search_screen/redux_store.dart';
+import 'package:redux/redux.dart';
 
 /// VM экрана поиска
 class ScreenSearchVM with ChangeNotifier {
@@ -53,4 +56,12 @@ class ScreenSearchVM with ChangeNotifier {
   List<Place> get searchResult => searchInteractor.searchResult;
 
   List<String> get lastSearchesSnapshot => searchInteractor.lastSearches;
+
+  late final store = Store<ReduxStore>(appReducers,
+      initialState: ReduxStore(
+        searchStatus: SearchStatus.notFound,
+        searchResult: [],
+        lastSearchesSnapshot: [],
+        searchInteractor: searchInteractor,
+      ));
 }
