@@ -119,9 +119,14 @@ class _ScreenSearchState extends State<ScreenSearch> {
                     );
                   case SearchStatus.empty:
                     return WidgetSearchEmpty(
-                      viewModel: ___viewModel,
+                      lastSearchesSnapshot: ___viewModel.lastSearchesSnapshot,
                       textController: textController,
-                      keyOfSearchTextField: keyOfSearchTextField,
+                      onTapOnOneOfLastSearchesDo:
+                          ___viewModel.onTapOnOneOfLastSearches,
+                      onTapOnRemoveAllItemsFromHistory:
+                          ___viewModel.onTapOnRemoveAllItemsFromHistory,
+                      onTapOnRemoveItemFromHistory:
+                          ___viewModel.onTapOnRemoveItemFromHistory,
                     );
                   case SearchStatus.notFound:
                     return const WidgetSearchNotFound();
