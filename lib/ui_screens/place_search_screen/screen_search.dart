@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:places/domain_models/place.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
+import 'package:places/ui_screens/place_search_screen/redux_actions.dart';
 import 'package:places/ui_screens/place_search_screen/redux_reducers.dart';
 import 'package:places/ui_screens/place_search_screen/redux_store.dart';
 import 'package:places/ui_screens/place_search_screen/screen_search_vm.dart';
@@ -33,9 +35,15 @@ class _ScreenSearchState extends State<ScreenSearch> {
     ___viewModel
       ..addListener(_vmListener)
       ..initVM();
+    ___viewModel.store.dispatch(OnInitAction(
+      ___viewModel.searchInteractor,
+    ));
   }
 
-  void _vmListener() => setState(() {});
+  void _vmListener() {
+    setState(() {});
+    ___viewModel.store.dispatch(OnStateWasUpdatedAction());
+  }
 
   @override
   void dispose() {
@@ -101,10 +109,16 @@ class _ScreenSearchState extends State<ScreenSearch> {
                           color: Theme.of(context).colorScheme.secondary,
                         ),
                       ),
-                      suffixIcon: WidgetTextFieldClearButton(
-                        textController: textController,
-                        onTap: () => ___viewModel.onTapOnClearButton(),
-                      ),
+                      suffixIcon: StoreConnector<ReduxStore, void Function()>(
+                          converter: (store) => () => store.dispatch(
+                                OnTapOnClearButtonAction(),
+                              ),
+                          builder: (context, ___onTapOnClearButton) {
+                            return WidgetTextFieldClearButton(
+                              textController: textController,
+                              onTap: () => ___onTapOnClearButton(),
+                            );
+                          }),
                     ),
                   ),
                 ),
@@ -112,30 +126,78 @@ class _ScreenSearchState extends State<ScreenSearch> {
               //
               // Основная страница
               //
-              Builder(
-                builder: (context) {
-                  switch (___viewModel.searchStatus) {
-                    case SearchStatus.haveResult:
-                      return WidgetSearchResult(
-                        searchResult: ___viewModel.searchResult,
-                        textOfSearching: ___viewModel.textController.text,
-                      );
-                    case SearchStatus.empty:
-                      return WidgetSearchEmpty(
-                        lastSearchesSnapshot: ___viewModel.lastSearchesSnapshot,
-                        textController: textController,
-                        onTapOnOneOfLastSearchesDo:
-                            ___viewModel.onTapOnOneOfLastSearches,
-                        onTapOnRemoveAllItemsFromHistory:
-                            ___viewModel.onTapOnRemoveAllItemsFromHistory,
-                        onTapOnRemoveItemFromHistory:
-                            ___viewModel.onTapOnRemoveItemFromHistory,
-                      );
-                    case SearchStatus.notFound:
-                      return const WidgetSearchNotFound();
-                  }
-                },
-              )
+              StoreConnector<ReduxStore, SearchStatus>(
+                  converter: (store) => store.state.searchStatus,
+                  builder: (context, ___searchStatus) {
+                    return StoreConnector<ReduxStore, List<Place>>(
+                        converter: (store) => store.state.searchResult,
+                        builder: (context, ___searchResult) {
+                          return StoreConnector<ReduxStore, List<String>>(
+                              converter: (store) =>
+                                  store.state.lastSearchesSnapshot,
+                              builder: (context, ___lastSearchesSnapshot) {
+                                return StoreConnector<ReduxStore,
+                                        void Function(int)>(
+                                    converter: (store) => (i) => store.dispatch(
+                                          OnTapOnOneOfLastSearchesAction(i),
+                                        ),
+                                    builder:
+                                        (context, ___onTapOnOneOfLastSearches) {
+                                      return StoreConnector<ReduxStore,
+                                              void Function()>(
+                                          converter: (store) =>
+                                              () => store.dispatch(
+                                                    OnTapOnRemoveAllItemsFromHistoryAction(),
+                                                  ),
+                                          builder: (context,
+                                              ___onTapOnRemoveAllItemsFromHistory) {
+                                            return StoreConnector<ReduxStore,
+                                                    void Function(int)>(
+                                                converter: (store) =>
+                                                    (i) => store.dispatch(
+                                                          OnTapOnRemoveItemFromHistoryAction(
+                                                              i),
+                                                        ),
+                                                builder: (context,
+                                                    ___onTapOnRemoveItemFromHistory) {
+                                                  return Builder(
+                                                    builder: (context) {
+                                                      switch (___searchStatus) {
+                                                        case SearchStatus
+                                                            .haveResult:
+                                                          return WidgetSearchResult(
+                                                            searchResult:
+                                                                ___searchResult,
+                                                            textOfSearching:
+                                                                ___viewModel
+                                                                    .textController
+                                                                    .text,
+                                                          );
+                                                        case SearchStatus.empty:
+                                                          return WidgetSearchEmpty(
+                                                            lastSearchesSnapshot:
+                                                                ___lastSearchesSnapshot,
+                                                            textController:
+                                                                textController,
+                                                            onTapOnOneOfLastSearchesDo:
+                                                                ___onTapOnOneOfLastSearches,
+                                                            onTapOnRemoveAllItemsFromHistory:
+                                                                ___onTapOnRemoveAllItemsFromHistory,
+                                                            onTapOnRemoveItemFromHistory:
+                                                                ___onTapOnRemoveItemFromHistory,
+                                                          );
+                                                        case SearchStatus
+                                                            .notFound:
+                                                          return const WidgetSearchNotFound();
+                                                      }
+                                                    },
+                                                  );
+                                                });
+                                          });
+                                    });
+                              });
+                        });
+                  })
             ],
           ),
         ),

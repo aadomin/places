@@ -9,9 +9,9 @@ ReduxStore appReducers(ReduxStore state, dynamic action) {
   if (action is OnInitAction) {
     return ReduxStore(
       searchInteractor: action.searchInteractor,
-      lastSearchesSnapshot: state.lastSearchesSnapshot,
-      searchResult: state.searchResult,
-      searchStatus: state.searchStatus,
+      lastSearchesSnapshot: [],
+      searchResult: [],
+      searchStatus: SearchStatus.empty,
     );
   } else if (action is OnStateWasUpdatedAction) {
     return ReduxStore(

@@ -3,6 +3,7 @@ import 'package:places/domain_interactors/search_interactor.dart';
 import 'package:places/domain_models/place.dart';
 import 'package:places/ui_commons/debouncer.dart';
 import 'package:places/ui_commons/enums.dart';
+import 'package:places/ui_screens/place_search_screen/redux_actions.dart';
 import 'package:places/ui_screens/place_search_screen/redux_reducers.dart';
 import 'package:places/ui_screens/place_search_screen/redux_store.dart';
 import 'package:redux/redux.dart';
@@ -21,7 +22,10 @@ class ScreenSearchVM with ChangeNotifier {
     searchInteractor.addListener(_searchInteractorListener);
   }
 
-  void _searchInteractorListener() => notifyListeners();
+  void _searchInteractorListener() {
+    notifyListeners();
+    store.dispatch(OnStateWasUpdatedAction());
+  }
 
   //method dispose должен быть вызван из виджета
   void disposeVM() {
@@ -40,22 +44,22 @@ class ScreenSearchVM with ChangeNotifier {
     );
   }
 
-  void onTapOnClearButton() => searchInteractor.searchPlaces('');
+  // void onTapOnClearButton() => searchInteractor.searchPlaces('');
 
-  void onTapOnRemoveItemFromHistory(int i) =>
-      searchInteractor.removeItemFromHistory(i);
+  // void onTapOnRemoveItemFromHistory(int i) =>
+  //     searchInteractor.removeItemFromHistory(i);
 
-  void onTapOnRemoveAllItemsFromHistory() =>
-      searchInteractor.removeAllHelpersFromHistory();
+  // void onTapOnRemoveAllItemsFromHistory() =>
+  //     searchInteractor.removeAllHelpersFromHistory();
 
-  void onTapOnOneOfLastSearches(int i) =>
-      searchInteractor.searchPlaces(lastSearchesSnapshot[i]);
+  // void onTapOnOneOfLastSearches(int i) =>
+  //     searchInteractor.searchPlaces(lastSearchesSnapshot[i]);
 
-  SearchStatus get searchStatus => searchInteractor.searchStatus;
+  // SearchStatus get searchStatus => searchInteractor.searchStatus;
 
-  List<Place> get searchResult => searchInteractor.searchResult;
+  // List<Place> get searchResult => searchInteractor.searchResult;
 
-  List<String> get lastSearchesSnapshot => searchInteractor.lastSearches;
+  // List<String> get lastSearchesSnapshot => searchInteractor.lastSearches;
 
   late final store = Store<ReduxStore>(appReducers,
       initialState: ReduxStore(
