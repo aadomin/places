@@ -75,10 +75,12 @@ class ScreenAddPlaceVM with ChangeNotifier {
         details: textControllerDescription.text,
         type: currentlySelectedCategory,
       );
-      // TODO(me): тут так ли - мифическая ошибка
+      // TODO(me): тут так ли - исправить на чтобы тост отображал прошлый экран!
+      // ТУТВОПРОС! почему все же другой экран
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text(UiStrings.newPlaceCreated)),
       );
+      
       Navigator.pop(context);
     }
   }
