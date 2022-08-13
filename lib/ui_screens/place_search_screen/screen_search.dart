@@ -42,7 +42,6 @@ class _ScreenSearchState extends State<ScreenSearch> {
 
   void _vmListener() {
     setState(() {});
-    ___viewModel.store.dispatch(OnStateWasUpdatedAction());
   }
 
   @override

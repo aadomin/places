@@ -15,23 +15,43 @@ ReduxStore appReducers(ReduxStore state, dynamic action) {
     );
   } else if (action is OnStateWasUpdatedAction) {
     return ReduxStore(
-      searchInteractor: state.searchInteractor,
       lastSearchesSnapshot: state.searchInteractor.lastSearches,
       searchResult: state.searchInteractor.searchResult,
       searchStatus: state.searchInteractor.searchStatus,
+      searchInteractor: state.searchInteractor,
     );
   } else if (action is OnTapOnClearButtonAction) {
     state.searchInteractor.searchPlaces('');
-    return state;
+    return ReduxStore(
+      lastSearchesSnapshot: state.searchInteractor.lastSearches,
+      searchResult: state.searchInteractor.searchResult,
+      searchStatus: state.searchInteractor.searchStatus,
+      searchInteractor: state.searchInteractor,
+    );
   } else if (action is OnTapOnRemoveItemFromHistoryAction) {
     state.searchInteractor.removeItemFromHistory(action.i);
-    return state;
+    return ReduxStore(
+      lastSearchesSnapshot: state.searchInteractor.lastSearches,
+      searchResult: state.searchInteractor.searchResult,
+      searchStatus: state.searchInteractor.searchStatus,
+      searchInteractor: state.searchInteractor,
+    );
   } else if (action is OnTapOnRemoveAllItemsFromHistoryAction) {
     state.searchInteractor.removeAllHelpersFromHistory();
-    return state;
+    return ReduxStore(
+      lastSearchesSnapshot: state.searchInteractor.lastSearches,
+      searchResult: state.searchInteractor.searchResult,
+      searchStatus: state.searchInteractor.searchStatus,
+      searchInteractor: state.searchInteractor,
+    );
   } else if (action is OnTapOnOneOfLastSearchesAction) {
     state.searchInteractor.searchPlaces(state.lastSearchesSnapshot[action.i]);
-    return state;
+    return ReduxStore(
+      lastSearchesSnapshot: state.searchInteractor.lastSearches,
+      searchResult: state.searchInteractor.searchResult,
+      searchStatus: state.searchInteractor.searchStatus,
+      searchInteractor: state.searchInteractor,
+    );
   }
   throw Exception();
 }
