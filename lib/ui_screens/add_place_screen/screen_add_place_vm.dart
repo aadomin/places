@@ -76,11 +76,10 @@ class ScreenAddPlaceVM with ChangeNotifier {
         type: currentlySelectedCategory,
       );
       // TODO(me): тут так ли - исправить на чтобы тост отображал прошлый экран!
-      // ТУТВОПРОС! почему все же другой экран
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text(UiStrings.newPlaceCreated)),
       );
-      
+
       Navigator.pop(context);
     }
   }
