@@ -106,6 +106,7 @@ class ScreenFilterVM with ChangeNotifier {
 
   int get indexOfSelectedRadiusItem =>
       int.parse((_sliderValue * (countOfRadiusSliderItems - 1)).toString());
+      // TODO бред разобраться
 
   String get descriptionOfSelectedRadiusItem =>
       distancesMap.values.toList()[indexOfSelectedRadiusItem];
