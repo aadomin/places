@@ -70,21 +70,21 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
               // Заголовок "Поиск"
               WidgetSearchingPanel(focusNode1: focusNode1),
 
-              if (___viewModel.status == VMStatus.isLoading)
+              if (___viewModel.state == WidgetStatus.isLoading)
                 const SliverToBoxAdapter(
                   child: Center(
                     child: CircularProgressIndicator(),
                   ),
                 ),
 
-              if (___viewModel.status == VMStatus.isEmpty)
+              if (___viewModel.state == WidgetStatus.isEmpty)
                 const SliverToBoxAdapter(
                   child: Center(
                     child: Text('Пустой список'),
                   ),
                 ),
 
-              if (___viewModel.status == VMStatus.isError)
+              if (___viewModel.state == WidgetStatus.isError)
                 const SliverToBoxAdapter(
                   child: Center(
                     child: WidgetNetworkError(),
@@ -92,15 +92,17 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
                 ),
 
               // ОСНОВНОЙ СПИСОК узкий и широкий вариант (в два столбца)
-              if (___viewModel.status == VMStatus.isReady)
+              if (___viewModel.state == WidgetStatus.isReady)
                 if (MediaQuery.of(context).size.width <= criticalWidth)
                   wNarrowList(context),
-              if (___viewModel.status == VMStatus.isReady)
+              if (___viewModel.state == WidgetStatus.isReady)
                 if (MediaQuery.of(context).size.width > criticalWidth)
                   wWideList(context),
             ],
           ),
-          const WidgetNewPlaceButton(),
+          WidgetNewPlaceButton(
+            onPressed: ___viewModel.onNewPlace,
+          ),
         ],
       ),
     );

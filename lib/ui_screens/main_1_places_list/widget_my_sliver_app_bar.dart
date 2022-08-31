@@ -21,15 +21,16 @@ class WidgetMySliverAppBar extends SliverPersistentHeaderDelegate {
         (MediaQuery.of(context).size.width > 330) ? 32 : 25;
     return Stack(
       children: [
-        // Первоначальный заголовок
         //
+        // Первоначальный заголовок
         // Список интересных мест
         //
         Opacity(
           opacity: 1 - shrinkOffset / expandedHeight,
           child: Container(
             color: Theme.of(context).canvasColor,
-            padding: const EdgeInsets.only(top: 40, bottom: 10, left: 50, right: 20),
+            padding:
+                const EdgeInsets.only(top: 40, bottom: 10, left: 50, right: 20),
             alignment: Alignment.centerLeft,
             child: RichText(
               text: TextSpan(
@@ -44,7 +45,9 @@ class WidgetMySliverAppBar extends SliverPersistentHeaderDelegate {
           ),
         ),
 
+        //
         // Постоянный заголовок
+        //
         Opacity(
           opacity: shrinkOffset / expandedHeight,
           child: Container(

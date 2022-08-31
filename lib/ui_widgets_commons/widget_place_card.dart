@@ -38,16 +38,14 @@ class WidgetPlaceCard extends StatelessWidget {
 
   final Place place;
   final PlaceCardType placeCardType;
+  final bool? isLiked;
 
   final VoidCallback onTap;
-
   final VoidCallback? onToggleWished;
   final VoidCallback? onAddToCalendar;
   final VoidCallback? onDeleteFromWished;
   final VoidCallback? onShare;
   final VoidCallback? onDeleteFromSeen;
-
-  final bool? isLiked;
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +123,7 @@ class WidgetPlaceCard extends StatelessWidget {
                       ),
                     ),
                     //
-                    // Сама карточка
+                    // Card itselt
                     //
                     child: widgetCardItself(context),
                   ),
@@ -135,9 +133,7 @@ class WidgetPlaceCard extends StatelessWidget {
     );
   }
 
-  //
-  // Сама карточка
-  //
+  ///  Card itselt
   Widget widgetCardItself(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(bottom: 16),
@@ -158,7 +154,7 @@ class WidgetPlaceCard extends StatelessWidget {
                   ),
                   child: WidgetMyImageInk(
                     url: place.url.isNotEmpty ? place.url[0] : '',
-                    // TODO(me): не помню
+                    // TODO(me): c Ink разобраться
                     fit: BoxFit.fitWidth,
                   ),
                 ),

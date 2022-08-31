@@ -15,7 +15,7 @@ class WidgetNewPlaceAppBar extends StatelessWidget {
     return Row(
       children: [
         //
-        // Кнопка "Отмена"
+        // Cancel button
         //
         Expanded(
           child: Row(
@@ -37,7 +37,7 @@ class WidgetNewPlaceAppBar extends StatelessWidget {
           ),
         ),
         //
-        // Заголовок "Новое место"
+        // NEW PLACE TITLE
         //
         Text(
           UiStrings.newPlace,

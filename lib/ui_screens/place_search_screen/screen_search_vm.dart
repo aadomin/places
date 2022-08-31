@@ -20,7 +20,6 @@ class ScreenSearchVM with ChangeNotifier {
 
   void _searchInteractorListener() => notifyListeners();
 
-  //method dispose должен быть вызван из виджета
   void disposeVM() {
     searchInteractor.removeListener(_searchInteractorListener);
   }

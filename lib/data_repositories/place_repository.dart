@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:places/data_other/exceptions.dart';
+import 'package:places/ui_commons/exceptions.dart';
 import 'package:places/data_other/mocks.dart';
 
 import 'package:places/domain_models/place.dart';

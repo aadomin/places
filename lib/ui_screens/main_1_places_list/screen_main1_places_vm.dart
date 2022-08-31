@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/domain_models/place.dart';
+import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/enums.dart';
+import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/place_details_screen/screen_place_details_di.dart';
 
 /// VM экрана Главный экран 1 - список мест
@@ -30,7 +32,7 @@ class ScreenMain1PlacesVM with ChangeNotifier {
 
   //
 
-  VMStatus status = VMStatus.isLoading;
+  WidgetStatus state = WidgetStatus.isLoading;
 
   List<Place> _filteredPlaces = [];
 
@@ -40,21 +42,21 @@ class ScreenMain1PlacesVM with ChangeNotifier {
 
   Future<void> _loadFilteredPlaces({required bool showLoadingIndicator}) async {
     if (showLoadingIndicator) {
-      status = VMStatus.isLoading;
+      state = WidgetStatus.isLoading;
       notifyListeners();
     }
     try {
       _filteredPlaces = await placesInteractor.filteredWithFilterPlaces;
       if (filteredPlaces.isEmpty) {
-        status = VMStatus.isEmpty;
+        state = WidgetStatus.isEmpty;
       } else {
-        status = VMStatus.isReady;
+        state = WidgetStatus.isReady;
       }
       notifyListeners();
       return;
     } on Object catch (e) {
       debugPrint('$e'); // TODO(me): error log
-      status = VMStatus.isError;
+      state = WidgetStatus.isError;
       notifyListeners();
       return;
     }
@@ -67,7 +69,6 @@ class ScreenMain1PlacesVM with ChangeNotifier {
 
   void onAddToFavorites(int id) => placesInteractor.addToFavorites(id);
 
-  // TODO(me): 3
   void onTapOnPlace(BuildContext context, int id) {
     showModalBottomSheet<bool>(
       isScrollControlled: true,
@@ -77,5 +78,16 @@ class ScreenMain1PlacesVM with ChangeNotifier {
         placeId: id,
       ),
     );
+  }
+
+  Future<void> onNewPlace() async {
+    //ТУТВОПРОС
+    dynamic result = await Navigator.pushNamed(context, appRouteAdd);
+    bool? isAdded = result as bool?;
+    if (isAdded ?? false) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text(UiStrings.newPlaceCreated)),
+      );
+    }
   }
 }

@@ -88,7 +88,9 @@ class _ScreenSearchState extends State<ScreenSearch> {
                     hintText: UiStrings.searching,
                     filled: true,
                     fillColor: Theme.of(context).disabledColor,
+                    //
                     // Значок Поиск
+                    //
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(9),
                       child: SvgPicture.asset(

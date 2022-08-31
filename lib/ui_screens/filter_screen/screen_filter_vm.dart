@@ -21,7 +21,6 @@ class ScreenFilterVM with ChangeNotifier {
   void initVM() {
     filterInteractor.addListener(_placesInteractorListener);
     placesInteractor.addListener(_filterInteractorListener);
-
   }
 
   void _placesInteractorListener() => notifyListeners();
@@ -63,7 +62,8 @@ class ScreenFilterVM with ChangeNotifier {
 
     filterInteractor.filterConditions = _newFilterConditions;
 
-    setSliderState(1); // TODO(me): так не должно быть - получить из интерактора значение!
+    setSliderState(
+        1); // TODO(me): так не должно быть - получить из интерактора значение!
   }
 
   /// Нажатие на "Показать"
@@ -105,8 +105,7 @@ class ScreenFilterVM with ChangeNotifier {
   };
 
   int get indexOfSelectedRadiusItem =>
-      int.parse((_sliderValue * (countOfRadiusSliderItems - 1)).toString());
-      // TODO бред разобраться
+      (_sliderValue * (countOfRadiusSliderItems - 1)).toInt();
 
   String get descriptionOfSelectedRadiusItem =>
       distancesMap.values.toList()[indexOfSelectedRadiusItem];

@@ -14,12 +14,12 @@ import 'package:provider/provider.dart';
 class WidgetTabFavorite extends StatefulWidget {
   const WidgetTabFavorite({
     required this.favoritePlaces,
-    required this.removeFromFavorites,
+    required this.onRemoveFromFavorites,
     Key? key,
   }) : super(key: key);
 
   final List<Place> favoritePlaces;
-  final void Function(int) removeFromFavorites;
+  final void Function(int) onRemoveFromFavorites;
 
   @override
   _WidgetTabFavoriteState createState() => _WidgetTabFavoriteState();
@@ -69,7 +69,7 @@ class _WidgetTabFavoriteState extends State<WidgetTabFavorite> {
                             );
                           },
                           onDeleteFromWished: () {
-                            widget.removeFromFavorites(_listOfItems[i.key].id);
+                            widget.onRemoveFromFavorites(_listOfItems[i.key].id);
                           },
                         ),
                       ),

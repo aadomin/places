@@ -35,11 +35,11 @@ class ScreenMain3FavAndVisitVM with ChangeNotifier {
     visitedPlaces = placesInteractor.getVisitedPlaces;
   }
 
-  void removeFromFavorites(int id) {
+  void onRemoveFromFavorites(int id) {
     placesInteractor.removeFromFavorites(id);
   }
 
-  void removeFromVisited(int id) {
+  void onRemoveFromVisited(int id) {
     placesInteractor.removeFromVisited(id);
   }
 }

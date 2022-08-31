@@ -12,12 +12,12 @@ import 'package:places/ui_widgets_commons/widget_place_card.dart';
 class WidgetTabVisited extends StatefulWidget {
   const WidgetTabVisited({
     required this.visitedPlaces,
-    required this.removeFromVisited,
+    required this.onRemoveFromVisited,
     Key? key,
   }) : super(key: key);
 
   final List<Place> visitedPlaces;
-  final void Function(int) removeFromVisited;
+  final void Function(int) onRemoveFromVisited;
 
   @override
   _WidgetTabVisitedState createState() => _WidgetTabVisitedState();
@@ -60,7 +60,7 @@ class _WidgetTabVisitedState extends State<WidgetTabVisited> {
                           // TODO(me): реализовать sharing
                         },
                         onDeleteFromSeen: () {
-                          widget.removeFromVisited(_visitedPlaces[i.key].id);
+                          widget.onRemoveFromVisited(_visitedPlaces[i.key].id);
                         },
                       ),
                     ],

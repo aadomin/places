@@ -50,8 +50,6 @@ class _ScreenMain3FavAndVisitState extends State<ScreenMain3FavAndVisit>
 
   @override
   Widget build(BuildContext context) {
-    const String _header = UiStrings.favorites;
-
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -63,7 +61,7 @@ class _ScreenMain3FavAndVisitState extends State<ScreenMain3FavAndVisit>
                 automaticallyImplyLeading: false,
                 backgroundColor: Theme.of(context).canvasColor,
                 elevation: 0,
-                title: const WidgetMyHeader(header: _header),
+                title: const WidgetMyHeader(header: UiStrings.favorites),
               ),
               Container(
                 margin: const EdgeInsets.all(16),
@@ -83,7 +81,9 @@ class _ScreenMain3FavAndVisitState extends State<ScreenMain3FavAndVisit>
                     color: Theme.of(context).selectedRowColor,
                   ),
                   tabs: const [
+                    //
                     // Хочу посетить
+                    //
                     Tab(
                       child: Align(
                         child: Text(
@@ -91,7 +91,9 @@ class _ScreenMain3FavAndVisitState extends State<ScreenMain3FavAndVisit>
                         ),
                       ),
                     ),
+                    //
                     // Посетил
+                    //
                     Tab(
                       child: Align(
                         child: Text(
@@ -110,13 +112,13 @@ class _ScreenMain3FavAndVisitState extends State<ScreenMain3FavAndVisit>
             Tab(
               child: WidgetTabFavorite(
                 favoritePlaces: ___vm.favoritePlaces,
-                removeFromFavorites: ___vm.removeFromFavorites,
+                onRemoveFromFavorites: ___vm.onRemoveFromFavorites,
               ),
             ),
             Tab(
               child: WidgetTabVisited(
                 visitedPlaces: ___vm.visitedPlaces,
-                removeFromVisited: ___vm.removeFromVisited,
+                onRemoveFromVisited: ___vm.onRemoveFromVisited,
               ),
             ),
           ],

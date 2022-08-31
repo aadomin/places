@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
 /// Кнопка "Новое место"
 class WidgetNewPlaceButton extends StatelessWidget {
   const WidgetNewPlaceButton({
+    required this.onPressed,
     Key? key,
   }) : super(key: key);
+
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +25,7 @@ class WidgetNewPlaceButton extends StatelessWidget {
             child: Material(
               borderRadius: BorderRadius.circular(32),
               child: InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, appRouteAdd);
-                },
+                onTap: onPressed,
                 child: Ink(
                   decoration: BoxDecoration(
                       gradient: Theme.of(context).colorScheme.newPlaceGradient,
