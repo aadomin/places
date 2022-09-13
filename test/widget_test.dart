@@ -10,9 +10,10 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:places/di_provider.dart';
+import 'package:places/di.dart';
+import 'package:places/di_mock.dart';
+import 'package:places/provider_di.dart';
 // import 'package:places/ui_commons/my_bloc_observer.dart';
-import 'fake_di.dart';
 
 const bool isDebugMockImagesInPlaceOfHttp = false;
 const bool isDebugMockDataInPlaceOfHttp = false;
@@ -25,8 +26,9 @@ void main() {
 
   testWidgets('Onboarding screen must be shown', (WidgetTester tester) async {
     // Bloc.observer = MyBlocObserver();
-    final di = FakeDI();
-    await tester.pumpWidget(DIProvider(di));
+    final DI di = DIMock();
+
+    await tester.pumpWidget(ProviderDI(di));
 
     await tester.pumpAndSettle(const Duration(seconds: 5));
 
@@ -35,8 +37,8 @@ void main() {
 
   testWidgets('Main screen must be shown', (WidgetTester tester) async {
     // Bloc.observer = MyBlocObserver();
-    final di = FakeDI();
-    await tester.pumpWidget(DIProvider(di));
+    final DI di = DIMock();
+    await tester.pumpWidget(ProviderDI(di));
 
     await tester.pumpAndSettle(const Duration(seconds: 5));
 

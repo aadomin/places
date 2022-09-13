@@ -1,12 +1,37 @@
-import 'package:places/domain_models/place.dart';
 // ignore_for_file: avoid_redundant_argument_values
 
+import 'package:dio/dio.dart';
+import 'package:places/data_repositories/place_repository.dart';
+import 'package:places/domain_models/place.dart';
+
 ///
-/// Моковые данные
-/// применяются только для
-/// isDebugMockDataInPlaceOfHttp = true
+/// Saving mock places data
 ///
-final List<Place> mocks = [
+class PlaceRepositoryMock implements PlaceRepository {
+  PlaceRepositoryMock({
+    required this.dio,
+  });
+
+  final Dio dio;
+
+  /// Mock - Load all places and return it
+  @override
+  Future<List<Place>> getAllPlaces() async {
+    await Future<dynamic>.delayed(const Duration(seconds: 3));
+    // TODO(me): переделать мокирование - добавить возможность ошибки
+    return _mocks;
+  }
+
+  /// Mock - Add place to the server
+  @override
+  Future<void> addPlace(Place newPlace) async {
+    await Future<dynamic>.delayed(const Duration(seconds: 3));
+    return;
+  }
+}
+
+/// Mock data
+final List<Place> _mocks = [
   Place(
     name: 'Воронежский областной краеведческий музей',
     lat: 42.8423437,
