@@ -1,0 +1,11 @@
+https://test-backend-flutter.surfstudio.ru/place
+
+
+
+int id;
+double lat;
+double lng;
+String name;
+List<String> urls;
+String placeType;
+String description;

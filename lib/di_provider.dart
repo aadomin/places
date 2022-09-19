@@ -3,8 +3,8 @@ import 'package:places/di.dart';
 import 'package:places/my_app_and_routes_di.dart';
 import 'package:provider/provider.dart';
 
-class ProviderDI extends StatelessWidget {
-  const ProviderDI(
+class DIProvider extends StatelessWidget {
+  const DIProvider(
     this.di, {
     Key? key,
   }) : super(key: key);

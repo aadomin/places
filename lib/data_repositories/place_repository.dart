@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:places/data_api/places_get_api.dart';
 import 'package:places/ui_commons/exceptions.dart';
 import 'package:places/domain_models/place.dart';
 
@@ -26,14 +27,45 @@ class PlaceRepository {
       );
       debugPrint(response.statusCode.toString());
       if (response.statusCode != 200) {
+        //200 201 300 - тоже успех
         // TODO(me): переделать обработку ошибок
         throw NetworkException(
           queryPath: response.realUri.path,
           errorName: '${response.statusCode} ${response.statusMessage}',
         );
       }
-      final List<Place> _loadedPlaces = _parsePlaces(response.data.toString());
-      return _loadedPlaces;
+      // final List<Place> _loadedPlaces = _parsePlaces(response.data.toString());
+
+      String rawJson = '{"places": ${response.data.toString()}}';
+
+      final List<PlaceDTO> _listOfPlacesDTO =
+          PlacesGetAPI.fromJson(jsonDecode(rawJson)).places;
+
+      final Map<String, String> replaceTable = {
+        'other': 'Особое место',
+        'monument': 'Особое место',
+        'theatre': 'Особое место',
+        'museum': 'Музей',
+        'park': 'Парк',
+        'hotel': 'Отель',
+        'restaurant': 'Ресторан',
+        'temple': 'Особое место',
+        'cafe': 'Кафе',
+      };
+
+      return PlacesGetAPI.fromJson(jsonDecode(rawJson)).places.map(
+        (e) {
+          return Place(
+            id: e.id.toInt(),
+            name: e.name,
+            lat: e.lat.toDouble(),
+            lon: e.lng.toDouble(),
+            url: e.urls,
+            details: e.description,
+            type: replaceTable[e.placeType.toString] ?? 'Особое место',
+          );
+        },
+      ).toList();
     } on NetworkException catch (e) {
       debugPrint('${e.errorName}, ${e.queryPath}, ${e.toString()}');
       return [];

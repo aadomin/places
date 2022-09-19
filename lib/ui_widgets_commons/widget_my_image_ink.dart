@@ -54,7 +54,7 @@ class _WidgetMyImageInkState extends State<WidgetMyImageInk> {
   @override
   Widget build(BuildContext context) {
     // отладочный режим
-    if (isDebugMockImagesInPlaceOfHttp) {
+    if (isDebugModeForImages) {
       return Ink.image(
         image: const AssetImage('res/images/mock.jpg'),
         fit: widget.fit,

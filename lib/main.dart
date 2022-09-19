@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:places/di.dart';
-import 'package:places/provider_di.dart';
+import 'package:places/di_provider.dart';
 
-const bool isDebugMockImagesInPlaceOfHttp = false;
-const bool isDebugUserStay = true;
-const bool isDebugUserMove = false;
+enum DebugUserLocation { takenFromServer, fixed, changing }
+
+const DebugUserLocation debugUserLocation = DebugUserLocation.fixed;
+const bool isDebugModeForImages = false; // TODO repository
 
 void main() {
   final DI di = DI();
 
-  runApp(ProviderDI(di));
+  runApp(DIProvider(di));
 }

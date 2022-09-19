@@ -12,7 +12,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:places/di.dart';
 import 'package:places/di_mock.dart';
-import 'package:places/provider_di.dart';
+import 'package:places/di_provider.dart';
 // import 'package:places/ui_commons/my_bloc_observer.dart';
 
 const bool isDebugMockImagesInPlaceOfHttp = false;
@@ -28,7 +28,7 @@ void main() {
     // Bloc.observer = MyBlocObserver();
     final DI di = DIMock();
 
-    await tester.pumpWidget(ProviderDI(di));
+    await tester.pumpWidget(DIProvider(di));
 
     await tester.pumpAndSettle(const Duration(seconds: 5));
 
@@ -38,7 +38,7 @@ void main() {
   testWidgets('Main screen must be shown', (WidgetTester tester) async {
     // Bloc.observer = MyBlocObserver();
     final DI di = DIMock();
-    await tester.pumpWidget(ProviderDI(di));
+    await tester.pumpWidget(DIProvider(di));
 
     await tester.pumpAndSettle(const Duration(seconds: 5));
 
