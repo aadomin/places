@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
 import 'dart:convert';
-import 'package:places/data_api/places_get_api.dart';
+import 'package:places/data_repositories/places/dto/places_get_api.dart';
 
 void main() {
   test('api parsing must work', () {

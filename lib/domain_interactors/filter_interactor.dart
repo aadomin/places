@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_models/category_item.dart';
-import 'package:places/domain_models/filter_condition.dart';
+import 'package:places/ui_models/category_item.dart';
+import 'package:places/ui_models/filter_condition.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
 ///

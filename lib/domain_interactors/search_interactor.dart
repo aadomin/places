@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:places/data_repositories/search_repository.dart';
 import 'package:places/domain_interactors/history_of_search_services.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
-import 'package:places/domain_models/place.dart';
+import 'package:places/domain_entities/place.dart';
 import 'package:places/ui_commons/enums.dart';
 
 ///

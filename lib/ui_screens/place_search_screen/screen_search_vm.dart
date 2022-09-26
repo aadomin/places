@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/search_interactor.dart';
-import 'package:places/domain_models/place.dart';
+import 'package:places/domain_entities/place.dart';
 import 'package:places/ui_commons/debouncer.dart';
 import 'package:places/ui_commons/enums.dart';
 

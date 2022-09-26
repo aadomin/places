@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'package:places/domain_models/object_location.dart';
+import 'package:places/domain_entities/object_location.dart';
 import 'package:places/main.dart';
 
 /// Repository of user coordinates. Getting it from outer storage

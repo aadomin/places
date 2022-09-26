@@ -1,11 +1,11 @@
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:places/data_repositories/place_repository.dart';
+import 'package:places/data_repositories/places/place_repository.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
 import 'package:places/domain_interactors/geo_interactor.dart';
-import 'package:places/domain_models/category_item.dart';
-import 'package:places/domain_models/place.dart';
+import 'package:places/ui_models/category_item.dart';
+import 'package:places/domain_entities/place.dart';
 
 ///
 /// Интерактор списка мест
@@ -170,8 +170,12 @@ class PlacesInteractor with ChangeNotifier {
     );
 
     // TODO(me): подумать, как сделать сброс кэша
-    await placesRepository.addPlace(newPlace);
-    _allPlacesLoaded.add(newPlace);
-    notifyListeners();
+    try {
+      await placesRepository.addPlace(newPlace);
+      _allPlacesLoaded.add(newPlace);
+      notifyListeners();
+    } catch (e) {
+      rethrow;
+    }
   }
 }

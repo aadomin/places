@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_models/place.dart';
+import 'package:places/domain_entities/place.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_screens/main_1_places_list/screen_main1_places_vm.dart';

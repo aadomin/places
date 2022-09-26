@@ -2,8 +2,8 @@
 
 import 'package:places/data_repositories/dio_services.dart';
 import 'package:places/data_repositories/geo_repository.dart';
-import 'package:places/data_repositories/place_repository.dart';
-import 'package:places/data_repositories/place_repository_mock.dart';
+import 'package:places/data_repositories/places/place_repository.dart';
+import 'package:places/data_repositories/places/place_repository_mock.dart';
 import 'package:places/data_repositories/search_repository.dart';
 import 'package:places/data_repositories/settings_repository.dart';
 import 'package:places/di.dart';

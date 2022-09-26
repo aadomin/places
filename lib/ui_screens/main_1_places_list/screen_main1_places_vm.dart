@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
-import 'package:places/domain_models/place.dart';
+import 'package:places/domain_entities/place.dart';
 import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/ui_strings.dart';
@@ -81,12 +81,17 @@ class ScreenMain1PlacesVM with ChangeNotifier {
   }
 
   Future<void> onNewPlace() async {
-    //ТУТВОПРОС
-    dynamic result = await Navigator.pushNamed(context, appRouteAdd);
-    bool? isAdded = result as bool?;
+    //ТУТВОПРОС нормально ли сделано?
+    dynamic isAdded = await Navigator.pushNamed(context, appRouteAdd);
+    if (isAdded is! bool?) throw Exception();
+    
     if (isAdded ?? false) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text(UiStrings.newPlaceCreated)),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text(UiStrings.error)),
       );
     }
   }

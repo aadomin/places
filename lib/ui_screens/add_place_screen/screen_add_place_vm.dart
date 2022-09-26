@@ -35,17 +35,21 @@ class ScreenAddPlaceVM with ChangeNotifier {
 
   Future<void> onTapOnSave() async {
     if (keyFormAddPlace.currentState?.validate() ?? false) {
-      await placesInteractor.addNewPlace(
-        name: textControllerName.text,
-        lat: double.parse(textControllerLat.text),
-        lon: double.parse(textControllerLon.text),
-        // TODO(me): добавить url к создаваемому месту
-        url: 'исправить',
-        details: textControllerDescription.text,
-        type: currentlySelectedCategory,
-      );
-
-      Navigator.pop<bool>(context, true);
+      try {
+        await placesInteractor.addNewPlace(
+          name: textControllerName.text,
+          lat: double.parse(textControllerLat.text),
+          lon: double.parse(textControllerLon.text),
+          // TODO(me): добавить url к создаваемому месту
+          url: 'исправить',
+          details: textControllerDescription.text,
+          type: currentlySelectedCategory,
+        );
+        Navigator.pop<bool>(context, true);
+      } catch (e) {
+        debugPrint(e.toString());
+        Navigator.pop<bool>(context, false);
+      }
     }
   }
 

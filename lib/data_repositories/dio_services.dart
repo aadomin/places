@@ -36,10 +36,14 @@ class DioServices {
         },
         onError: (DioError e, handler) {
           // DioError взять статус-код
-          NetworkException(
-            queryPath: '',
-            errorName: 'dio error',
-          );
+          
+          if (e.response?.statusCode == 401) {
+            throw NetworkException(
+              queryPath: e.requestOptions.path,
+              errorName: 'auth error',
+            );
+          }
+          // handler.reject(error)
           return handler.next(e);
         },
       ),

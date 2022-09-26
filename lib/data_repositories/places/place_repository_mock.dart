@@ -1,8 +1,8 @@
 // ignore_for_file: avoid_redundant_argument_values
 
 import 'package:dio/dio.dart';
-import 'package:places/data_repositories/place_repository.dart';
-import 'package:places/domain_models/place.dart';
+import 'package:places/data_repositories/places/place_repository.dart';
+import 'package:places/domain_entities/place.dart';
 
 ///
 /// Saving mock places data
