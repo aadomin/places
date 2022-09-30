@@ -8,12 +8,6 @@ class ScreenAddPlaceModel extends ElementaryModel {
 
   final PlacesInteractor _placesInteractor;
 
-  //Location? get location => _location;
-
-  // Future<List<Weather>?> getWeather() async {
-  //   return _weatherService.getWeather(location?.woeid ?? 0);
-  // }
-
   Future<void> addNewPlace({
     required String name,
     required double lat,

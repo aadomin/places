@@ -8,40 +8,7 @@ import 'package:places/ui_screens/add_place_screen/screen_add_place_model.dart';
 import 'package:places/ui_screens/add_place_screen/screen_add_place_state.dart';
 import 'package:places/ui_screens/add_place_screen/widgets/dialog_add_photo.dart';
 
-abstract class IScreenAddPlaceVm extends IWidgetModel {
-  TextEditingController textControllerName = TextEditingController();
-  TextEditingController textControllerLat = TextEditingController();
-  TextEditingController textControllerLon = TextEditingController();
-  TextEditingController textControllerDescription = TextEditingController();
-
-  GlobalKey<FormState> keyFormAddPlace = GlobalKey<FormState>();
-
-  ListenableState<EntityState<ScreenAddPlaceState?>> get screenAddPlaceState;
-
-  Future<void> onTapOnSave();
-
-  void onDeletePhoto(int index);
-
-  void onDismissPhoto(int index);
-
-  void onTapOnPlus();
-
-  void onCancelOnAppbar();
-
-  void activateButtonSaveIfPossible();
-
-  Future<void> onTapOnCategorySelection(BuildContext context);
-
-  void onShowTheMap();
-}
-
-ScreenAddPlaceVm createScreenAddPlaceVm(BuildContext _) => ScreenAddPlaceVm(
-      ScreenAddPlaceModel(
-        placesInteractorG,
-      ),
-    );
-
-/// Add Place ViewModel
+/// Add Place Screen - ViewModel
 class ScreenAddPlaceVm extends WidgetModel<ScreenAddPlace, ScreenAddPlaceModel>
     implements IScreenAddPlaceVm {
   ScreenAddPlaceVm(ScreenAddPlaceModel model) : super(model) {
@@ -72,7 +39,6 @@ class ScreenAddPlaceVm extends WidgetModel<ScreenAddPlace, ScreenAddPlaceModel>
   @override
   TextEditingController textControllerDescription = TextEditingController();
 
-  //TODO(me): del global key
   @override
   GlobalKey<FormState> keyFormAddPlace = GlobalKey<FormState>();
 
@@ -91,11 +57,9 @@ class ScreenAddPlaceVm extends WidgetModel<ScreenAddPlace, ScreenAddPlaceModel>
           name: textControllerName.text,
           lat: double.parse(textControllerLat.text),
           lon: double.parse(textControllerLon.text),
-          // TODO(me): добавить url к создаваемому месту
-          url: 'исправить',
+          url: 'url',
           details: textControllerDescription.text,
-          type: screenAddPlaceState
-              .value!.data!.currentlySelectedCategory, //TODO(me): !
+          type: screenAddPlaceState.value!.data!.currentlySelectedCategory,
         );
         Navigator.pop<bool>(context, true);
       } catch (e) {
@@ -107,16 +71,12 @@ class ScreenAddPlaceVm extends WidgetModel<ScreenAddPlace, ScreenAddPlaceModel>
 
   @override
   void onDeletePhoto(int index) {
-    //freezed
     screenAddPlaceState.value!.data!.listOfPhotos.removeAt(index);
-    //notifyListeners();
   }
 
   @override
   void onDismissPhoto(int index) {
-    //freezed
     screenAddPlaceState.value!.data!.listOfPhotos.removeAt(index);
-    // notifyListeners();
   }
 
   @override
@@ -150,10 +110,7 @@ class ScreenAddPlaceVm extends WidgetModel<ScreenAddPlace, ScreenAddPlaceModel>
         _screenAddPlaceState.value!.data!
             .copyWith(isButtonSaveActive: isFormValid),
       );
-
-      // notifyListeners();
     }
-    // TODO(me): тут еще исправить
   }
 
   @override
@@ -166,8 +123,6 @@ class ScreenAddPlaceVm extends WidgetModel<ScreenAddPlace, ScreenAddPlaceModel>
         ) as String,
       ),
     );
-
-    // notifyListeners();
   }
 
   @override
@@ -179,3 +134,39 @@ class ScreenAddPlaceVm extends WidgetModel<ScreenAddPlace, ScreenAddPlaceModel>
     );
   }
 }
+
+abstract class IScreenAddPlaceVm extends IWidgetModel {
+  ListenableState<EntityState<ScreenAddPlaceState?>> get screenAddPlaceState;
+
+  Future<void> onTapOnSave();
+
+  void onDeletePhoto(int index);
+
+  void onDismissPhoto(int index);
+
+  void onTapOnPlus();
+
+  void onCancelOnAppbar();
+
+  void activateButtonSaveIfPossible();
+
+  Future<void> onTapOnCategorySelection(BuildContext context);
+
+  void onShowTheMap();
+
+  GlobalKey<FormState> keyFormAddPlace = GlobalKey<FormState>();
+
+  TextEditingController textControllerName = TextEditingController();
+
+  TextEditingController textControllerLat = TextEditingController();
+
+  TextEditingController textControllerLon = TextEditingController();
+
+  TextEditingController textControllerDescription = TextEditingController();
+}
+
+ScreenAddPlaceVm createScreenAddPlaceVm(BuildContext _) => ScreenAddPlaceVm(
+      ScreenAddPlaceModel(
+        placesInteractorG,
+      ),
+    );
