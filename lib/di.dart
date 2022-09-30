@@ -48,4 +48,4 @@ class DI {
   final popupManager = PopupManager();
 }
 
-late final placesInteractorG;
+late final PlacesInteractor placesInteractorG;

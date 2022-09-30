@@ -1,7 +1,6 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:places/di.dart';
-import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/add_place_screen/screen_add_place.dart';
@@ -64,12 +63,17 @@ class ScreenAddPlaceVm extends WidgetModel<ScreenAddPlace, ScreenAddPlaceModel>
     );
   }
 
+  @override
   TextEditingController textControllerName = TextEditingController();
+  @override
   TextEditingController textControllerLat = TextEditingController();
+  @override
   TextEditingController textControllerLon = TextEditingController();
+  @override
   TextEditingController textControllerDescription = TextEditingController();
 
   //TODO(me): del global key
+  @override
   GlobalKey<FormState> keyFormAddPlace = GlobalKey<FormState>();
 
   late EntityStateNotifier<ScreenAddPlaceState> _screenAddPlaceState =
@@ -79,6 +83,7 @@ class ScreenAddPlaceVm extends WidgetModel<ScreenAddPlace, ScreenAddPlaceModel>
   ListenableState<EntityState<ScreenAddPlaceState?>> get screenAddPlaceState =>
       _screenAddPlaceState;
 
+  @override
   Future<void> onTapOnSave() async {
     if (keyFormAddPlace.currentState?.validate() ?? false) {
       try {
@@ -100,18 +105,21 @@ class ScreenAddPlaceVm extends WidgetModel<ScreenAddPlace, ScreenAddPlaceModel>
     }
   }
 
+  @override
   void onDeletePhoto(int index) {
     //freezed
     screenAddPlaceState.value!.data!.listOfPhotos.removeAt(index);
     //notifyListeners();
   }
 
+  @override
   void onDismissPhoto(int index) {
     //freezed
     screenAddPlaceState.value!.data!.listOfPhotos.removeAt(index);
     // notifyListeners();
   }
 
+  @override
   void onTapOnPlus() {
     showModalBottomSheet<bool>(
       context: context,
@@ -125,8 +133,10 @@ class ScreenAddPlaceVm extends WidgetModel<ScreenAddPlace, ScreenAddPlaceModel>
     );
   }
 
+  @override
   void onCancelOnAppbar() => Navigator.of(context).pop();
 
+  @override
   void activateButtonSaveIfPossible() {
     final bool allFieldsFilled = (textControllerName.text != '') &&
         (textControllerLon.text != '') &&
@@ -146,6 +156,7 @@ class ScreenAddPlaceVm extends WidgetModel<ScreenAddPlace, ScreenAddPlaceModel>
     // TODO(me): тут еще исправить
   }
 
+  @override
   Future<void> onTapOnCategorySelection(BuildContext context) async {
     _screenAddPlaceState.content(
       _screenAddPlaceState.value!.data!.copyWith(

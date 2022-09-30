@@ -13,14 +13,14 @@ final lightTheme = ThemeData(
   //
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      primary: const Color(0xFF4CAF50),
+      backgroundColor: const Color(0xFF4CAF50),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
       ),
     ),
   ),
   textButtonTheme: TextButtonThemeData(
-    style: TextButton.styleFrom(primary: const Color(0xff3b3e5b)),
+    style: TextButton.styleFrom(foregroundColor: const Color(0xff3b3e5b)),
   ),
   sliderTheme: SliderThemeData.fromPrimaryColors(
     primaryColor: const Color(0xFF4CAF50),
@@ -53,14 +53,14 @@ final darkTheme = ThemeData(
   //
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      primary: const Color(0xFF4CAF50),
+      backgroundColor: const Color(0xFF4CAF50),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
       ),
     ),
   ),
   textButtonTheme: TextButtonThemeData(
-    style: TextButton.styleFrom(primary: Colors.white),
+    style: TextButton.styleFrom(foregroundColor: Colors.white),
   ),
   sliderTheme: SliderThemeData.fromPrimaryColors(
     primaryColor: Colors.white,

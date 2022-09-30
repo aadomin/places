@@ -21,29 +21,29 @@ class ScreenAddPlace extends ElementaryWidget<IScreenAddPlaceVm> {
     WidgetModelFactory<ScreenAddPlaceVm> wmFactory = createScreenAddPlaceVm,
   }) : super(wmFactory, key: key);
 
-  FocusNode focusNodeName = FocusNode();
-  FocusNode focusNodeLat = FocusNode();
-  FocusNode focusNodeLon = FocusNode();
-  FocusNode focusNodeDescription = FocusNode();
+  final FocusNode focusNodeName = FocusNode();
+  final FocusNode focusNodeLat = FocusNode();
+  final FocusNode focusNodeLon = FocusNode();
+  final FocusNode focusNodeDescription = FocusNode();
 
   @override
-  Widget build(IScreenAddPlaceVm ___viewModel) {
+  Widget build(IScreenAddPlaceVm wm) {
     return EntityStateNotifierBuilder<ScreenAddPlaceState?>(
-        listenableEntityState: ___viewModel.screenAddPlaceState,
+        listenableEntityState: wm.screenAddPlaceState,
         builder: (context, ___data) {
           return Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
               backgroundColor: Theme.of(context).canvasColor,
               title: WidgetNewPlaceAppBar(
-                onCancel: ___viewModel.onCancelOnAppbar,
+                onCancel: wm.onCancelOnAppbar,
               ),
             ),
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                 child: Form(
-                  key: ___viewModel.keyFormAddPlace,
+                  key: wm.keyFormAddPlace,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -57,7 +57,7 @@ class ScreenAddPlace extends ElementaryWidget<IScreenAddPlaceVm> {
                             Container(
                               margin: const EdgeInsets.only(right: 16),
                               child: InkWell(
-                                onTap: ___viewModel.onTapOnPlus,
+                                onTap: wm.onTapOnPlus,
                                 child: Container(
                                   padding: const EdgeInsets.all(1),
                                   decoration: BoxDecoration(
@@ -114,7 +114,7 @@ class ScreenAddPlace extends ElementaryWidget<IScreenAddPlaceVm> {
                                     key: ObjectKey(item),
                                     direction: DismissDirection.vertical,
                                     onDismissed: (_) =>
-                                        ___viewModel.onDismissPhoto(item.key),
+                                        wm.onDismissPhoto(item.key),
                                     child: Stack(
                                       alignment: Alignment.topRight,
                                       children: [
@@ -145,7 +145,7 @@ class ScreenAddPlace extends ElementaryWidget<IScreenAddPlaceVm> {
                                           ),
                                           child: GestureDetector(
                                             onTap: () {
-                                              ___viewModel
+                                              wm
                                                   .onDeletePhoto(item.key);
                                             },
                                             child: const Icon(
@@ -171,7 +171,7 @@ class ScreenAddPlace extends ElementaryWidget<IScreenAddPlaceVm> {
                           UiStrings.addPlaceCategory),
                       InkWell(
                         onTap: () =>
-                            ___viewModel.onTapOnCategorySelection(context),
+                            wm.onTapOnCategorySelection(context),
                         child: Row(
                           children: [
                             Expanded(
@@ -195,12 +195,12 @@ class ScreenAddPlace extends ElementaryWidget<IScreenAddPlaceVm> {
                       Padding(
                         padding: EdgeInsets.zero,
                         child: TextFormField(
-                          controller: ___viewModel.textControllerName,
+                          controller: wm.textControllerName,
                           validator: ValidatorFor.nameOfPlace,
                           inputFormatters: FormattersFor.nameOfPlace(),
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           onChanged: (value) {
-                            ___viewModel.activateButtonSaveIfPossible();
+                            wm.activateButtonSaveIfPossible();
                           },
                           focusNode: focusNodeName,
                           keyboardType: TextInputType.text,
@@ -221,7 +221,7 @@ class ScreenAddPlace extends ElementaryWidget<IScreenAddPlaceVm> {
                             border: const OutlineInputBorder(),
                             suffixIcon: WidgetTextFieldClearButton(
                               showOnlyItHasThatFocus: focusNodeName.hasFocus,
-                              textController: ___viewModel.textControllerName,
+                              textController: wm.textControllerName,
                             ),
                           ),
                         ),
@@ -239,14 +239,14 @@ class ScreenAddPlace extends ElementaryWidget<IScreenAddPlaceVm> {
                                 const WidgetSmallCategoryHeader(
                                     UiStrings.addPlaceLat),
                                 TextFormField(
-                                  controller: ___viewModel.textControllerLat,
+                                  controller: wm.textControllerLat,
                                   validator: ValidatorFor.longitudeOrLatit,
                                   inputFormatters:
                                       FormattersFor.longitudeOrLatit(),
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
                                   onChanged: (value) {
-                                    ___viewModel.activateButtonSaveIfPossible();
+                                    wm.activateButtonSaveIfPossible();
                                   },
                                   focusNode: focusNodeLat,
                                   keyboardType: PlatformDetector.isIOS
@@ -274,7 +274,7 @@ class ScreenAddPlace extends ElementaryWidget<IScreenAddPlaceVm> {
                                       showOnlyItHasThatFocus:
                                           focusNodeLat.hasFocus,
                                       textController:
-                                          ___viewModel.textControllerLat,
+                                          wm.textControllerLat,
                                     ),
                                   ),
                                 ),
@@ -294,14 +294,14 @@ class ScreenAddPlace extends ElementaryWidget<IScreenAddPlaceVm> {
                                 const WidgetSmallCategoryHeader(
                                     UiStrings.addPlaceLon),
                                 TextFormField(
-                                  controller: ___viewModel.textControllerLon,
+                                  controller: wm.textControllerLon,
                                   validator: ValidatorFor.longitudeOrLatit,
                                   inputFormatters:
                                       FormattersFor.longitudeOrLatit(),
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
                                   onChanged: (value) {
-                                    ___viewModel.activateButtonSaveIfPossible();
+                                    wm.activateButtonSaveIfPossible();
                                   },
                                   focusNode: focusNodeLon,
                                   keyboardType: PlatformDetector.isIOS
@@ -328,7 +328,7 @@ class ScreenAddPlace extends ElementaryWidget<IScreenAddPlaceVm> {
                                       showOnlyItHasThatFocus:
                                           focusNodeLon.hasFocus,
                                       textController:
-                                          ___viewModel.textControllerLon,
+                                          wm.textControllerLon,
                                     ),
                                   ),
                                 ),
@@ -342,7 +342,7 @@ class ScreenAddPlace extends ElementaryWidget<IScreenAddPlaceVm> {
                       // Кнопка УКАЗАТЬ НА КАРТЕ
                       //
                       TextButton(
-                        onPressed: ___viewModel.onShowTheMap,
+                        onPressed: wm.onShowTheMap,
                         child: Text(
                           UiStrings.addPlaceShowMap,
                           style: TextStyle(
@@ -358,12 +358,12 @@ class ScreenAddPlace extends ElementaryWidget<IScreenAddPlaceVm> {
                       const WidgetSmallCategoryHeader(
                           UiStrings.addPlaceDescription),
                       TextFormField(
-                        controller: ___viewModel.textControllerDescription,
+                        controller: wm.textControllerDescription,
                         validator: ValidatorFor.descriptionOfPlace,
                         inputFormatters: FormattersFor.descriptionOfPlace(),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
                         onChanged: (value) {
-                          ___viewModel.activateButtonSaveIfPossible();
+                          wm.activateButtonSaveIfPossible();
                         },
                         focusNode: focusNodeDescription,
                         keyboardType: TextInputType.text,
@@ -385,7 +385,7 @@ class ScreenAddPlace extends ElementaryWidget<IScreenAddPlaceVm> {
                             showOnlyItHasThatFocus:
                                 focusNodeDescription.hasFocus,
                             textController:
-                                ___viewModel.textControllerDescription,
+                                wm.textControllerDescription,
                           ),
                         ),
                       ),
@@ -400,7 +400,7 @@ class ScreenAddPlace extends ElementaryWidget<IScreenAddPlaceVm> {
             bottomSheet: WidgetBottomButton(
               isActive: ___data.isButtonSaveActive,
               onPressOnButton: () {
-                ___viewModel.onTapOnSave();
+                wm.onTapOnSave();
               },
               buttonName: UiStrings.addPlaceAddPlace,
             ),

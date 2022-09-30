@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:test/test.dart';
 import 'dart:convert';
 import 'package:places/data_repositories/places/dto/places_get_api.dart';
@@ -19,7 +20,7 @@ void main() {
 
     rawJson = '{"places": $rawJson}';
     PlacesGetAPI data = PlacesGetAPI.fromJson(jsonDecode(rawJson));
-    print(data);
+    debugPrint(data.toString());
 
     expect(data.places.first.name, equals("местечко"));
   });
