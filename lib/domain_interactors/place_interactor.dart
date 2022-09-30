@@ -170,12 +170,11 @@ class PlacesInteractor with ChangeNotifier {
     );
 
     // TODO(me): подумать, как сделать сброс кэша
-    try {
-      await placesRepository.addPlace(newPlace);
-      _allPlacesLoaded.add(newPlace);
-      notifyListeners();
-    } catch (e) {
-      rethrow;
-    }
+    placesRepository.addPlace(newPlace);
+
+    _allPlacesLoaded.add(newPlace);
+    notifyListeners();
+
+    return;
   }
 }

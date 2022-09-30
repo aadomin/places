@@ -24,9 +24,9 @@ class PlaceRepositoryMock implements PlaceRepository {
 
   /// Mock - Add place to the server
   @override
-  Future<void> addPlace(Place newPlace) async {
+  Future<bool> addPlace(Place newPlace) async {
     await Future<dynamic>.delayed(const Duration(seconds: 3));
-    return;
+    return true;
   }
 }
 

@@ -1,8 +1,10 @@
+import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/ui_strings.dart';
-import 'package:places/ui_screens/add_place_screen/dialog_add_photo.dart';
+import 'package:places/ui_screens/add_place_screen/screen_add_place_state.dart';
+import 'package:places/ui_screens/add_place_screen/widgets/dialog_add_photo.dart';
 
 /// Add Place ViewModel
 class ScreenAddPlaceVM with ChangeNotifier {
@@ -14,7 +16,24 @@ class ScreenAddPlaceVM with ChangeNotifier {
   final PlacesInteractor placesInteractor;
   BuildContext context;
 
-  void initVM() {}
+  void initVM() {
+    _screenAddPlaceState = EntityStateNotifier(
+      const EntityState(
+        data: ScreenAddPlaceState(
+          listOfPhotos: [],
+          isButtonSaveActive: false,
+          currentlySelectedCategory: UiStrings.notSelected,
+        ),
+      ),
+    );
+    _screenAddPlaceState.content(
+      const ScreenAddPlaceState(
+        listOfPhotos: [],
+        isButtonSaveActive: false,
+        currentlySelectedCategory: UiStrings.notSelected,
+      ),
+    );
+  }
 
   void disposeVM() {}
   //
@@ -27,11 +46,12 @@ class ScreenAddPlaceVM with ChangeNotifier {
   //TODO(me): del global key
   final keyFormAddPlace = GlobalKey<FormState>();
 
-  String currentlySelectedCategory = UiStrings.notSelected;
+  late EntityStateNotifier<ScreenAddPlaceState> _screenAddPlaceState =
+      EntityStateNotifier(null);
 
-  List<String> listOfPhotos = [];
-
-  bool isButtonSaveActive = false;
+  @override
+  ListenableState<EntityState<ScreenAddPlaceState?>> get screenAddPlaceState =>
+      _screenAddPlaceState;
 
   Future<void> onTapOnSave() async {
     if (keyFormAddPlace.currentState?.validate() ?? false) {
@@ -43,7 +63,8 @@ class ScreenAddPlaceVM with ChangeNotifier {
           // TODO(me): добавить url к создаваемому месту
           url: 'исправить',
           details: textControllerDescription.text,
-          type: currentlySelectedCategory,
+          type: screenAddPlaceState
+              .value!.data!.currentlySelectedCategory, //TODO(me): !
         );
         Navigator.pop<bool>(context, true);
       } catch (e) {
@@ -54,12 +75,14 @@ class ScreenAddPlaceVM with ChangeNotifier {
   }
 
   void onDeletePhoto(int index) {
-    listOfPhotos.removeAt(index);
+    //freezed
+    screenAddPlaceState.value!.data!.listOfPhotos.removeAt(index);
     notifyListeners();
   }
 
   void onDismissPhoto(int index) {
-    listOfPhotos.removeAt(index);
+    //freezed
+    screenAddPlaceState.value!.data!.listOfPhotos.removeAt(index);
     notifyListeners();
   }
 
@@ -86,16 +109,25 @@ class ScreenAddPlaceVM with ChangeNotifier {
     if (allFieldsFilled) {
       final bool isFormValid =
           keyFormAddPlace.currentState?.validate() ?? false;
-      isButtonSaveActive = isFormValid;
+      final oldState = _screenAddPlaceState.value!.data!;
+      final newState = oldState.copyWith(isButtonSaveActive: isFormValid);
+      _screenAddPlaceState.content(newState);
+
       notifyListeners();
     }
     // TODO(me): тут еще исправить
   }
 
   Future<void> onTapOnCategorySelection(BuildContext context) async {
-    currentlySelectedCategory = await Navigator.of(context).pushNamed(
-        appRouteSelectCategory,
-        arguments: currentlySelectedCategory) as String;
+    _screenAddPlaceState.content(
+      _screenAddPlaceState.value!.data!.copyWith(
+        currentlySelectedCategory: await Navigator.of(context).pushNamed(
+          appRouteSelectCategory,
+          arguments: screenAddPlaceState.value!.data!.currentlySelectedCategory,
+        ) as String,
+      ),
+    );
+
     notifyListeners();
   }
 

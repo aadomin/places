@@ -15,6 +15,9 @@ import 'package:places/ui_commons/platform_detector.dart';
 import 'package:places/ui_screens/popups/popup_manager.dart';
 
 class DI {
+  DI() {
+    placesInteractorG = placesInteractor;
+  }
   late final platformDetector = PlatformDetector();
 
   late final _settingsRepository = SettingsRepository();
@@ -44,3 +47,5 @@ class DI {
 
   final popupManager = PopupManager();
 }
+
+late final placesInteractorG;
