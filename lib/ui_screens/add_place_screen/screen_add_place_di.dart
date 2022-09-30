@@ -8,10 +8,5 @@ import 'package:provider/provider.dart';
 ScreenAddPlace createScreenAddPlace({
   required BuildContext context,
 }) {
-  return ScreenAddPlace(
-    viewModel: ScreenAddPlaceVM(
-      context: context,
-      placesInteractor: context.watch<DI>().placesInteractor,
-    ),
-  );
+  return ScreenAddPlace();
 }

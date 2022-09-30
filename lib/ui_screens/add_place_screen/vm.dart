@@ -5,11 +5,11 @@ import 'package:places/ui_screens/add_place_screen/screen_add_place_state.dart';
 //import 'package:flutter/widgets.dart';
 
 import 'wi.dart';
-import 'mo.dart';
+import 'screen_add_place_model.dart';
 
-class WeatherScreenWM extends WidgetModel<WeatherScreen, WeatherScreenModel>
+class WeatherScreenWM extends WidgetModel<WeatherScreen, ScreenAddPlaceModel>
     implements IWeatherWm {
-  WeatherScreenWM(WeatherScreenModel model) : super(model);
+  WeatherScreenWM(ScreenAddPlaceModel model) : super(model);
 
   final EntityStateNotifier<ScreenAddPlaceState?> _currentScreenState =
       EntityStateNotifier(null);
@@ -45,7 +45,7 @@ class WeatherScreenWM extends WidgetModel<WeatherScreen, WeatherScreenModel>
 }
 
 WeatherScreenWM createWeatherScreenWM(BuildContext context) => WeatherScreenWM(
-      WeatherScreenModel(
+      ScreenAddPlaceModel(
         placesInteractorG,
       ),
     );

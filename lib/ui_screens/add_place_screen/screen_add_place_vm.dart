@@ -1,22 +1,51 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
+import 'package:places/di.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
 import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/ui_strings.dart';
+import 'package:places/ui_screens/add_place_screen/screen_add_place.dart';
+import 'package:places/ui_screens/add_place_screen/screen_add_place_model.dart';
 import 'package:places/ui_screens/add_place_screen/screen_add_place_state.dart';
 import 'package:places/ui_screens/add_place_screen/widgets/dialog_add_photo.dart';
 
+abstract class IScreenAddPlaceVm extends IWidgetModel {
+  TextEditingController textControllerName = TextEditingController();
+  TextEditingController textControllerLat = TextEditingController();
+  TextEditingController textControllerLon = TextEditingController();
+  TextEditingController textControllerDescription = TextEditingController();
+
+  GlobalKey<FormState> keyFormAddPlace = GlobalKey<FormState>();
+
+  ListenableState<EntityState<ScreenAddPlaceState?>> get screenAddPlaceState;
+
+  Future<void> onTapOnSave();
+
+  void onDeletePhoto(int index);
+
+  void onDismissPhoto(int index);
+
+  void onTapOnPlus();
+
+  void onCancelOnAppbar();
+
+  void activateButtonSaveIfPossible();
+
+  Future<void> onTapOnCategorySelection(BuildContext context);
+
+  void onShowTheMap();
+}
+
+ScreenAddPlaceVm createScreenAddPlaceVm(BuildContext _) => ScreenAddPlaceVm(
+      ScreenAddPlaceModel(
+        placesInteractorG,
+      ),
+    );
+
 /// Add Place ViewModel
-class ScreenAddPlaceVM with ChangeNotifier {
-  ScreenAddPlaceVM({
-    required this.context,
-    required this.placesInteractor,
-  });
-
-  final PlacesInteractor placesInteractor;
-  BuildContext context;
-
-  void initVM() {
+class ScreenAddPlaceVm extends WidgetModel<ScreenAddPlace, ScreenAddPlaceModel>
+    implements IScreenAddPlaceVm {
+  ScreenAddPlaceVm(ScreenAddPlaceModel model) : super(model) {
     _screenAddPlaceState = EntityStateNotifier(
       const EntityState(
         data: ScreenAddPlaceState(
@@ -35,16 +64,13 @@ class ScreenAddPlaceVM with ChangeNotifier {
     );
   }
 
-  void disposeVM() {}
-  //
-
-  final textControllerName = TextEditingController();
-  final textControllerLat = TextEditingController();
-  final textControllerLon = TextEditingController();
-  final textControllerDescription = TextEditingController();
+  TextEditingController textControllerName = TextEditingController();
+  TextEditingController textControllerLat = TextEditingController();
+  TextEditingController textControllerLon = TextEditingController();
+  TextEditingController textControllerDescription = TextEditingController();
 
   //TODO(me): del global key
-  final keyFormAddPlace = GlobalKey<FormState>();
+  GlobalKey<FormState> keyFormAddPlace = GlobalKey<FormState>();
 
   late EntityStateNotifier<ScreenAddPlaceState> _screenAddPlaceState =
       EntityStateNotifier(null);
@@ -56,7 +82,7 @@ class ScreenAddPlaceVM with ChangeNotifier {
   Future<void> onTapOnSave() async {
     if (keyFormAddPlace.currentState?.validate() ?? false) {
       try {
-        await placesInteractor.addNewPlace(
+        await model.addNewPlace(
           name: textControllerName.text,
           lat: double.parse(textControllerLat.text),
           lon: double.parse(textControllerLon.text),
@@ -77,13 +103,13 @@ class ScreenAddPlaceVM with ChangeNotifier {
   void onDeletePhoto(int index) {
     //freezed
     screenAddPlaceState.value!.data!.listOfPhotos.removeAt(index);
-    notifyListeners();
+    //notifyListeners();
   }
 
   void onDismissPhoto(int index) {
     //freezed
     screenAddPlaceState.value!.data!.listOfPhotos.removeAt(index);
-    notifyListeners();
+    // notifyListeners();
   }
 
   void onTapOnPlus() {
@@ -109,11 +135,13 @@ class ScreenAddPlaceVM with ChangeNotifier {
     if (allFieldsFilled) {
       final bool isFormValid =
           keyFormAddPlace.currentState?.validate() ?? false;
-      final oldState = _screenAddPlaceState.value!.data!;
-      final newState = oldState.copyWith(isButtonSaveActive: isFormValid);
-      _screenAddPlaceState.content(newState);
 
-      notifyListeners();
+      _screenAddPlaceState.content(
+        _screenAddPlaceState.value!.data!
+            .copyWith(isButtonSaveActive: isFormValid),
+      );
+
+      // notifyListeners();
     }
     // TODO(me): тут еще исправить
   }
@@ -128,9 +156,10 @@ class ScreenAddPlaceVM with ChangeNotifier {
       ),
     );
 
-    notifyListeners();
+    // notifyListeners();
   }
 
+  @override
   void onShowTheMap() {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(

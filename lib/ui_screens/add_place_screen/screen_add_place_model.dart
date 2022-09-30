@@ -1,8 +1,8 @@
 import 'package:elementary/elementary.dart';
 import 'package:places/domain_interactors/place_interactor.dart';
 
-class WeatherScreenModel extends ElementaryModel {
-  WeatherScreenModel(
+class ScreenAddPlaceModel extends ElementaryModel {
+  ScreenAddPlaceModel(
     this._placesInteractor,
   );
 
@@ -14,7 +14,7 @@ class WeatherScreenModel extends ElementaryModel {
   //   return _weatherService.getWeather(location?.woeid ?? 0);
   // }
 
-  Future<void> onTapOnSave({
+  Future<void> addNewPlace({
     required String name,
     required double lat,
     required double lon,

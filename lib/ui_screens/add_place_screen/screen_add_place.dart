@@ -15,36 +15,11 @@ import 'package:places/ui_widgets_commons/widget_my_image.dart';
 import 'package:places/ui_widgets_commons/widget_textfield_clear_button.dart';
 
 /// Экран - Добавить место
-///
-class ScreenAddPlace extends StatefulWidget {
-  const ScreenAddPlace({
-    required this.viewModel,
+class ScreenAddPlace extends ElementaryWidget<IScreenAddPlaceVm> {
+  ScreenAddPlace({
     Key? key,
-  }) : super(key: key);
-
-  final ScreenAddPlaceVM viewModel;
-  @override
-  _ScreenAddPlaceState createState() => _ScreenAddPlaceState();
-}
-
-class _ScreenAddPlaceState extends State<ScreenAddPlace> {
-  ScreenAddPlaceVM get ___viewModel => widget.viewModel;
-
-  @override
-  void initState() {
-    widget.viewModel.addListener(_vmListener);
-    widget.viewModel.initVM();
-    super.initState();
-  }
-
-  void _vmListener() => setState(() {});
-
-  @override
-  void dispose() {
-    widget.viewModel.disposeVM();
-    widget.viewModel.removeListener(_vmListener);
-    super.dispose();
-  }
+    WidgetModelFactory<ScreenAddPlaceVm> wmFactory = createScreenAddPlaceVm,
+  }) : super(wmFactory, key: key);
 
   FocusNode focusNodeName = FocusNode();
   FocusNode focusNodeLat = FocusNode();
@@ -52,7 +27,7 @@ class _ScreenAddPlaceState extends State<ScreenAddPlace> {
   FocusNode focusNodeDescription = FocusNode();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(IScreenAddPlaceVm ___viewModel) {
     return EntityStateNotifierBuilder<ScreenAddPlaceState?>(
         listenableEntityState: ___viewModel.screenAddPlaceState,
         builder: (context, ___data) {
