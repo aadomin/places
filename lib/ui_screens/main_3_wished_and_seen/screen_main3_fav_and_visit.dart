@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_models/place.dart';
 import 'package:places/ui_commons/ui_strings.dart';
+import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_fav_and_visit_vm.dart';
 
 import 'package:places/ui_screens/main_3_wished_and_seen/widget_tab_favorite.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/widget_tab_visited.dart';
@@ -12,40 +12,44 @@ import 'package:places/ui_widgets_commons/widget_my_header.dart';
 ///
 class ScreenMain3FavAndVisit extends StatefulWidget {
   const ScreenMain3FavAndVisit({
-    required this.visitedPlaces,
-    required this.favoritePlaces,
+    required this.viewModel,
     Key? key,
   }) : super(key: key);
 
-  final List<Place> visitedPlaces;
-  final List<Place> favoritePlaces;
+  final ScreenMain3FavAndVisitVM viewModel;
 
   @override
-  _ScreenMain3FavAndVisitState createState() =>
-      _ScreenMain3FavAndVisitState();
+  _ScreenMain3FavAndVisitState createState() => _ScreenMain3FavAndVisitState();
 }
 
-class _ScreenMain3FavAndVisitState
-    extends State<ScreenMain3FavAndVisit>
+class _ScreenMain3FavAndVisitState extends State<ScreenMain3FavAndVisit>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+
+  ScreenMain3FavAndVisitVM get ___vm => widget.viewModel;
 
   @override
   void initState() {
     super.initState();
+    ___vm
+      ..initVM()
+      ..addListener(_vmListener);
     _tabController = TabController(length: 2, vsync: this);
   }
 
+  void _vmListener() => setState(() {});
+
   @override
   void dispose() {
+    ___vm
+      ..removeListener(_vmListener)
+      ..disposeVM();
     super.dispose();
     _tabController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    const String _header = UiStrings.favorites;
-
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -57,7 +61,7 @@ class _ScreenMain3FavAndVisitState
                 automaticallyImplyLeading: false,
                 backgroundColor: Theme.of(context).canvasColor,
                 elevation: 0,
-                title: const WidgetMyHeader(header: _header),
+                title: const WidgetMyHeader(header: UiStrings.favorites),
               ),
               Container(
                 margin: const EdgeInsets.all(16),
@@ -77,7 +81,9 @@ class _ScreenMain3FavAndVisitState
                     color: Theme.of(context).selectedRowColor,
                   ),
                   tabs: const [
+                    //
                     // Хочу посетить
+                    //
                     Tab(
                       child: Align(
                         child: Text(
@@ -85,7 +91,9 @@ class _ScreenMain3FavAndVisitState
                         ),
                       ),
                     ),
+                    //
                     // Посетил
+                    //
                     Tab(
                       child: Align(
                         child: Text(
@@ -103,12 +111,14 @@ class _ScreenMain3FavAndVisitState
           children: [
             Tab(
               child: WidgetTabFavorite(
-                favoritePlaces: widget.favoritePlaces,
+                favoritePlaces: ___vm.favoritePlaces,
+                onRemoveFromFavorites: ___vm.onRemoveFromFavorites,
               ),
             ),
             Tab(
               child: WidgetTabVisited(
-                visitedPlaces: widget.visitedPlaces,
+                visitedPlaces: ___vm.visitedPlaces,
+                onRemoveFromVisited: ___vm.onRemoveFromVisited,
               ),
             ),
           ],

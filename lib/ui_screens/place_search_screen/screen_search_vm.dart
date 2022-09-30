@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/search_interactor.dart';
-import 'package:places/domain_models/place.dart';
+import 'package:places/domain_entities/place.dart';
 import 'package:places/ui_commons/debouncer.dart';
 import 'package:places/ui_commons/enums.dart';
 
@@ -20,7 +20,6 @@ class ScreenSearchVM with ChangeNotifier {
 
   void _searchInteractorListener() => notifyListeners();
 
-  //method dispose должен быть вызван из виджета
   void disposeVM() {
     searchInteractor.removeListener(_searchInteractorListener);
   }

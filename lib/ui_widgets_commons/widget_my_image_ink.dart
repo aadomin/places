@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:places/main.dart';
+import 'package:places/ui_commons/enums.dart';
 
+///
+/// ТУТВОПРОС
 ///
 /// Виджет-обертка для Ink (Image для работы ribble effect'a)
 /// (нужен для того, чтобы в режиме отладки работал flutter for web:
@@ -22,8 +25,8 @@ class WidgetMyImageInk extends StatefulWidget {
 
 class _WidgetMyImageInkState extends State<WidgetMyImageInk> {
   late NetworkImage _imageFromNetwork;
-  bool _isLoading = true;
-  bool _isError = false;
+
+  WidgetStatus status = WidgetStatus.isLoading;
 
   @override
   void initState() {
@@ -32,17 +35,16 @@ class _WidgetMyImageInkState extends State<WidgetMyImageInk> {
     _imageFromNetwork.resolve(ImageConfiguration.empty).addListener(
           ImageStreamListener(
             (_, __) {
-              // ТУТВОПРОС про изображения и про mounted
+              // ВАЖНО
               if (mounted) {
                 setState(() {
-                  _isLoading = false;
+                  status = WidgetStatus.isReady;
                 });
               }
             },
             onError: (_, __) {
               setState(() {
-                _isError = true;
-                _isLoading = false;
+                status = WidgetStatus.isError;
               });
             },
           ),
@@ -52,30 +54,43 @@ class _WidgetMyImageInkState extends State<WidgetMyImageInk> {
   @override
   Widget build(BuildContext context) {
     // отладочный режим
-    if (isDebugMockImagesInPlaceOfHttp) {
+    if (isDebugModeForImages) {
       return Ink.image(
         image: const AssetImage('res/images/mock.jpg'),
         fit: widget.fit,
       );
     }
 
-    if (_isLoading) {
-      return const Center(
-        child: SizedBox(
-          width: 20,
-          height: 20,
-          child: CircularProgressIndicator(),
-        ),
-      );
+    switch (status) {
+      case WidgetStatus.isEmpty:
+        {
+          return const ColoredBox(
+            color: Colors.grey,
+          );
+        }
+      case WidgetStatus.isLoading:
+        {
+          return const Center(
+            child: SizedBox(
+              width: 20,
+              height: 20,
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+      case WidgetStatus.isError:
+        {
+          return const ColoredBox(
+            color: Colors.grey,
+          );
+        }
+      case WidgetStatus.isReady:
+        {
+          return Ink.image(
+            image: _imageFromNetwork,
+            fit: widget.fit,
+          );
+        }
     }
-
-    if (_isError) {
-      return const ColoredBox(color: Colors.grey,);
-    }
-
-    return Ink.image(
-      image: _imageFromNetwork,
-      fit: widget.fit,
-    );
   }
 }

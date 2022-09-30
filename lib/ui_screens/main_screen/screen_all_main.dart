@@ -39,8 +39,8 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
       () => const Center(
             child: ScreenMain2Map(),
           ),
-      () => const Center(
-            child: ScreenMain3FavoriteAndVisitedDI(),
+      () => Center(
+            child: createScreenMain3FavAndVisit(context),
           ),
       () => Center(
             child: createScreenMain4Settings(context),

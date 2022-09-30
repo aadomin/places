@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:places/domain_models/place.dart';
+import 'package:places/domain_entities/place.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';

@@ -88,7 +88,9 @@ class _ScreenSearchState extends State<ScreenSearch> {
                     hintText: UiStrings.searching,
                     filled: true,
                     fillColor: Theme.of(context).disabledColor,
+                    //
                     // Значок Поиск
+                    //
                     prefixIcon: Padding(
                       padding: const EdgeInsets.all(9),
                       child: SvgPicture.asset(
@@ -119,9 +121,14 @@ class _ScreenSearchState extends State<ScreenSearch> {
                     );
                   case SearchStatus.empty:
                     return WidgetSearchEmpty(
-                      viewModel: ___viewModel,
+                      lastSearchesSnapshot: ___viewModel.lastSearchesSnapshot,
                       textController: textController,
-                      keyOfSearchTextField: keyOfSearchTextField,
+                      onTapOnOneOfLastSearchesDo:
+                          ___viewModel.onTapOnOneOfLastSearches,
+                      onTapOnRemoveAllItemsFromHistory:
+                          ___viewModel.onTapOnRemoveAllItemsFromHistory,
+                      onTapOnRemoveItemFromHistory:
+                          ___viewModel.onTapOnRemoveItemFromHistory,
                     );
                   case SearchStatus.notFound:
                     return const WidgetSearchNotFound();

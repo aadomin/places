@@ -37,7 +37,7 @@ class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
                   Navigator.pop(context);
                 },
                 style: TextButton.styleFrom(
-                  primary: Theme.of(context).primaryColorLight,
+                  foregroundColor: Theme.of(context).primaryColorLight,
                 ),
                 child: const Align(
                   alignment: Alignment.centerLeft,

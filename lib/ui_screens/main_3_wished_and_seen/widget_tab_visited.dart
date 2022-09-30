@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_models/place.dart';
+import 'package:places/domain_entities/place.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
-import 'package:places/ui_screens/main_3_wished_and_seen/screen_main3_fav_and_visit_cubit.dart';
 import 'package:places/ui_screens/main_3_wished_and_seen/widget_empty_list.dart';
 import 'package:places/ui_screens/place_details_screen/screen_place_details_di.dart';
 import 'package:places/ui_widgets_commons/widget_place_card.dart';
-import 'package:provider/provider.dart';
 
 /// Экран "Избранные и посещенные", вкладка "Посещенные"
 class WidgetTabVisited extends StatefulWidget {
   const WidgetTabVisited({
     required this.visitedPlaces,
+    required this.onRemoveFromVisited,
     Key? key,
   }) : super(key: key);
 
   final List<Place> visitedPlaces;
+  final void Function(int) onRemoveFromVisited;
 
   @override
   _WidgetTabVisitedState createState() => _WidgetTabVisitedState();
@@ -60,9 +60,7 @@ class _WidgetTabVisitedState extends State<WidgetTabVisited> {
                           // TODO(me): реализовать sharing
                         },
                         onDeleteFromSeen: () {
-                          context
-                              .read<ScreenMain3FavAndVisitCubit>()
-                              .removeFromVisited(_visitedPlaces[i.key].id);
+                          widget.onRemoveFromVisited(_visitedPlaces[i.key].id);
                         },
                       ),
                     ],

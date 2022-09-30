@@ -19,7 +19,7 @@ class WidgetMyImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // отладочный режим
-    if (isDebugMockImagesInPlaceOfHttp) {
+    if (isDebugModeForImages) {
       return Image.asset(
         'res/images/mock.jpg',
         fit: fit,

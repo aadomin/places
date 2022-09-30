@@ -15,7 +15,7 @@ class WidgetNewPlaceAppBar extends StatelessWidget {
     return Row(
       children: [
         //
-        // Кнопка "Отмена"
+        // Cancel button
         //
         Expanded(
           child: Row(
@@ -23,7 +23,7 @@ class WidgetNewPlaceAppBar extends StatelessWidget {
               TextButton(
                 onPressed: ___onCancel,
                 style: TextButton.styleFrom(
-                  primary: Theme.of(context).primaryColorLight,
+                  foregroundColor: Theme.of(context).primaryColorLight,
                 ),
                 child: const Align(
                   alignment: Alignment.centerLeft,
@@ -37,7 +37,7 @@ class WidgetNewPlaceAppBar extends StatelessWidget {
           ),
         ),
         //
-        // Заголовок "Новое место"
+        // NEW PLACE TITLE
         //
         Text(
           UiStrings.newPlace,

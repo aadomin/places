@@ -7,8 +7,6 @@ class Place {
     this.name = 'Example object',
     this.lat = 0,
     this.lon = 0,
-
-    // TODO(me): время работы
     this.url = const ['http'],
     this.details = 'Description',
     this.type = 'Type',
