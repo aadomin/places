@@ -20,7 +20,7 @@ PlacesGetAPI _$PlacesGetAPIFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PlacesGetAPI {
-  List<PlaceDTO> get places => throw _privateConstructorUsedError;
+  List<PlaceDto> get places => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +33,7 @@ abstract class $PlacesGetAPICopyWith<$Res> {
   factory $PlacesGetAPICopyWith(
           PlacesGetAPI value, $Res Function(PlacesGetAPI) then) =
       _$PlacesGetAPICopyWithImpl<$Res>;
-  $Res call({List<PlaceDTO> places});
+  $Res call({List<PlaceDto> places});
 }
 
 /// @nodoc
@@ -52,7 +52,7 @@ class _$PlacesGetAPICopyWithImpl<$Res> implements $PlacesGetAPICopyWith<$Res> {
       places: places == freezed
           ? _value.places
           : places // ignore: cast_nullable_to_non_nullable
-              as List<PlaceDTO>,
+              as List<PlaceDto>,
     ));
   }
 }
@@ -64,7 +64,7 @@ abstract class _$$_PlacesGetAPICopyWith<$Res>
           _$_PlacesGetAPI value, $Res Function(_$_PlacesGetAPI) then) =
       __$$_PlacesGetAPICopyWithImpl<$Res>;
   @override
-  $Res call({List<PlaceDTO> places});
+  $Res call({List<PlaceDto> places});
 }
 
 /// @nodoc
@@ -86,7 +86,7 @@ class __$$_PlacesGetAPICopyWithImpl<$Res>
       places: places == freezed
           ? _value._places
           : places // ignore: cast_nullable_to_non_nullable
-              as List<PlaceDTO>,
+              as List<PlaceDto>,
     ));
   }
 }
@@ -94,15 +94,15 @@ class __$$_PlacesGetAPICopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PlacesGetAPI implements _PlacesGetAPI {
-  const _$_PlacesGetAPI({required final List<PlaceDTO> places})
+  const _$_PlacesGetAPI({required final List<PlaceDto> places})
       : _places = places;
 
   factory _$_PlacesGetAPI.fromJson(Map<String, dynamic> json) =>
       _$$_PlacesGetAPIFromJson(json);
 
-  final List<PlaceDTO> _places;
+  final List<PlaceDto> _places;
   @override
-  List<PlaceDTO> get places {
+  List<PlaceDto> get places {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_places);
   }
@@ -139,26 +139,26 @@ class _$_PlacesGetAPI implements _PlacesGetAPI {
 }
 
 abstract class _PlacesGetAPI implements PlacesGetAPI {
-  const factory _PlacesGetAPI({required final List<PlaceDTO> places}) =
+  const factory _PlacesGetAPI({required final List<PlaceDto> places}) =
       _$_PlacesGetAPI;
 
   factory _PlacesGetAPI.fromJson(Map<String, dynamic> json) =
       _$_PlacesGetAPI.fromJson;
 
   @override
-  List<PlaceDTO> get places;
+  List<PlaceDto> get places;
   @override
   @JsonKey(ignore: true)
   _$$_PlacesGetAPICopyWith<_$_PlacesGetAPI> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-PlaceDTO _$PlaceDTOFromJson(Map<String, dynamic> json) {
-  return _PlaceDTO.fromJson(json);
+PlaceDto _$PlaceDtoFromJson(Map<String, dynamic> json) {
+  return _PlaceDto.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PlaceDTO {
+mixin _$PlaceDto {
   int get id => throw _privateConstructorUsedError;
   double get lat => throw _privateConstructorUsedError;
   double get lng => throw _privateConstructorUsedError;
@@ -169,14 +169,14 @@ mixin _$PlaceDTO {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PlaceDTOCopyWith<PlaceDTO> get copyWith =>
+  $PlaceDtoCopyWith<PlaceDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PlaceDTOCopyWith<$Res> {
-  factory $PlaceDTOCopyWith(PlaceDTO value, $Res Function(PlaceDTO) then) =
-      _$PlaceDTOCopyWithImpl<$Res>;
+abstract class $PlaceDtoCopyWith<$Res> {
+  factory $PlaceDtoCopyWith(PlaceDto value, $Res Function(PlaceDto) then) =
+      _$PlaceDtoCopyWithImpl<$Res>;
   $Res call(
       {int id,
       double lat,
@@ -188,12 +188,12 @@ abstract class $PlaceDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PlaceDTOCopyWithImpl<$Res> implements $PlaceDTOCopyWith<$Res> {
-  _$PlaceDTOCopyWithImpl(this._value, this._then);
+class _$PlaceDtoCopyWithImpl<$Res> implements $PlaceDtoCopyWith<$Res> {
+  _$PlaceDtoCopyWithImpl(this._value, this._then);
 
-  final PlaceDTO _value;
+  final PlaceDto _value;
   // ignore: unused_field
-  final $Res Function(PlaceDTO) _then;
+  final $Res Function(PlaceDto) _then;
 
   @override
   $Res call({
@@ -239,10 +239,10 @@ class _$PlaceDTOCopyWithImpl<$Res> implements $PlaceDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_PlaceDTOCopyWith<$Res> implements $PlaceDTOCopyWith<$Res> {
-  factory _$$_PlaceDTOCopyWith(
-          _$_PlaceDTO value, $Res Function(_$_PlaceDTO) then) =
-      __$$_PlaceDTOCopyWithImpl<$Res>;
+abstract class _$$_PlaceDtoCopyWith<$Res> implements $PlaceDtoCopyWith<$Res> {
+  factory _$$_PlaceDtoCopyWith(
+          _$_PlaceDto value, $Res Function(_$_PlaceDto) then) =
+      __$$_PlaceDtoCopyWithImpl<$Res>;
   @override
   $Res call(
       {int id,
@@ -255,14 +255,14 @@ abstract class _$$_PlaceDTOCopyWith<$Res> implements $PlaceDTOCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_PlaceDTOCopyWithImpl<$Res> extends _$PlaceDTOCopyWithImpl<$Res>
-    implements _$$_PlaceDTOCopyWith<$Res> {
-  __$$_PlaceDTOCopyWithImpl(
-      _$_PlaceDTO _value, $Res Function(_$_PlaceDTO) _then)
-      : super(_value, (v) => _then(v as _$_PlaceDTO));
+class __$$_PlaceDtoCopyWithImpl<$Res> extends _$PlaceDtoCopyWithImpl<$Res>
+    implements _$$_PlaceDtoCopyWith<$Res> {
+  __$$_PlaceDtoCopyWithImpl(
+      _$_PlaceDto _value, $Res Function(_$_PlaceDto) _then)
+      : super(_value, (v) => _then(v as _$_PlaceDto));
 
   @override
-  _$_PlaceDTO get _value => super._value as _$_PlaceDTO;
+  _$_PlaceDto get _value => super._value as _$_PlaceDto;
 
   @override
   $Res call({
@@ -274,7 +274,7 @@ class __$$_PlaceDTOCopyWithImpl<$Res> extends _$PlaceDTOCopyWithImpl<$Res>
     Object? placeType = freezed,
     Object? description = freezed,
   }) {
-    return _then(_$_PlaceDTO(
+    return _then(_$_PlaceDto(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -309,8 +309,8 @@ class __$$_PlaceDTOCopyWithImpl<$Res> extends _$PlaceDTOCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PlaceDTO implements _PlaceDTO {
-  const _$_PlaceDTO(
+class _$_PlaceDto implements _PlaceDto {
+  const _$_PlaceDto(
       {required this.id,
       required this.lat,
       required this.lng,
@@ -320,8 +320,8 @@ class _$_PlaceDTO implements _PlaceDTO {
       required this.description})
       : _urls = urls;
 
-  factory _$_PlaceDTO.fromJson(Map<String, dynamic> json) =>
-      _$$_PlaceDTOFromJson(json);
+  factory _$_PlaceDto.fromJson(Map<String, dynamic> json) =>
+      _$$_PlaceDtoFromJson(json);
 
   @override
   final int id;
@@ -345,14 +345,14 @@ class _$_PlaceDTO implements _PlaceDTO {
 
   @override
   String toString() {
-    return 'PlaceDTO(id: $id, lat: $lat, lng: $lng, name: $name, urls: $urls, placeType: $placeType, description: $description)';
+    return 'PlaceDto(id: $id, lat: $lat, lng: $lng, name: $name, urls: $urls, placeType: $placeType, description: $description)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PlaceDTO &&
+            other is _$_PlaceDto &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.lat, lat) &&
             const DeepCollectionEquality().equals(other.lng, lng) &&
@@ -377,28 +377,28 @@ class _$_PlaceDTO implements _PlaceDTO {
 
   @JsonKey(ignore: true)
   @override
-  _$$_PlaceDTOCopyWith<_$_PlaceDTO> get copyWith =>
-      __$$_PlaceDTOCopyWithImpl<_$_PlaceDTO>(this, _$identity);
+  _$$_PlaceDtoCopyWith<_$_PlaceDto> get copyWith =>
+      __$$_PlaceDtoCopyWithImpl<_$_PlaceDto>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PlaceDTOToJson(
+    return _$$_PlaceDtoToJson(
       this,
     );
   }
 }
 
-abstract class _PlaceDTO implements PlaceDTO {
-  const factory _PlaceDTO(
+abstract class _PlaceDto implements PlaceDto {
+  const factory _PlaceDto(
       {required final int id,
       required final double lat,
       required final double lng,
       required final String name,
       required final List<String> urls,
       required final String placeType,
-      required final String description}) = _$_PlaceDTO;
+      required final String description}) = _$_PlaceDto;
 
-  factory _PlaceDTO.fromJson(Map<String, dynamic> json) = _$_PlaceDTO.fromJson;
+  factory _PlaceDto.fromJson(Map<String, dynamic> json) = _$_PlaceDto.fromJson;
 
   @override
   int get id;
@@ -416,6 +416,6 @@ abstract class _PlaceDTO implements PlaceDTO {
   String get description;
   @override
   @JsonKey(ignore: true)
-  _$$_PlaceDTOCopyWith<_$_PlaceDTO> get copyWith =>
+  _$$_PlaceDtoCopyWith<_$_PlaceDto> get copyWith =>
       throw _privateConstructorUsedError;
 }

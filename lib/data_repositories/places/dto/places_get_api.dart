@@ -9,7 +9,7 @@ part 'places_get_api.g.dart';
 @freezed
 class PlacesGetAPI with _$PlacesGetAPI {
   const factory PlacesGetAPI({
-    required List<PlaceDTO> places,
+    required List<PlaceDto> places,
   }) = _PlacesGetAPI;
 
   factory PlacesGetAPI.fromJson(Map<String, Object?> json) =>
@@ -17,8 +17,8 @@ class PlacesGetAPI with _$PlacesGetAPI {
 }
 
 @freezed
-class PlaceDTO with _$PlaceDTO {
-  const factory PlaceDTO({
+class PlaceDto with _$PlaceDto {
+  const factory PlaceDto({
     required int id,
     required double lat,
     required double lng,
@@ -26,8 +26,8 @@ class PlaceDTO with _$PlaceDTO {
     required List<String> urls,
     required String placeType,
     required String description,
-  }) = _PlaceDTO;
+  }) = _PlaceDto;
 
-  factory PlaceDTO.fromJson(Map<String, Object?> json) =>
-      _$PlaceDTOFromJson(json);
+  factory PlaceDto.fromJson(Map<String, Object?> json) =>
+      _$PlaceDtoFromJson(json);
 }
