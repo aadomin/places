@@ -5,10 +5,12 @@ import 'package:places/ui_commons/ui_strings.dart';
 /// View-model for selection of category screen
 class ScreenSelectionCategoryVM with ChangeNotifier {
   ScreenSelectionCategoryVM({
+    required this.context,
     this.selectedCategory = UiStrings.notSelected,
   });
 
   String selectedCategory;
+  BuildContext context;
 
   /// List of categories
   final _allCategories = [
@@ -28,7 +30,7 @@ class ScreenSelectionCategoryVM with ChangeNotifier {
   }
 
   /// Toggle selected category
-  void toggleSelectedCategory(String categoryName) {
+  void onToggleSelectedCategory(String categoryName) {
     selectedCategory = categoryName;
     _updateCaterogiesList();
   }
@@ -39,5 +41,13 @@ class ScreenSelectionCategoryVM with ChangeNotifier {
       item.isSelected = (item.name == selectedCategory);
     }
     notifyListeners();
+  }
+
+  void onCancel() {
+    Navigator.pop(context);
+  }
+
+  void onSave() {
+    Navigator.pop(context, selectedCategory);
   }
 }

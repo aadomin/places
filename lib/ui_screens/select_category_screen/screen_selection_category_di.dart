@@ -11,17 +11,24 @@ class ScreenSelectionCategoryDi extends StatefulWidget {
       _ScreenSelectionCategoryDiState();
 }
 
-class _ScreenSelectionCategoryDiState
-    extends State<ScreenSelectionCategoryDi> {
+// ТУТВОПРОС потому что не помню почему watch
+
+class _ScreenSelectionCategoryDiState extends State<ScreenSelectionCategoryDi> {
   @override
   Widget build(BuildContext context) {
     final _selectedCategory =
         ModalRoute.of(context)?.settings.arguments as String;
+
     return ChangeNotifierProvider(
       create: (context) => ScreenSelectionCategoryVM(
+        context: context,
         selectedCategory: _selectedCategory,
       )..init(),
-      child: const ScreenSelectionCategory(),
+      child: Builder(builder: (context) {
+        return ScreenSelectionCategory(
+          viewModel: context.watch<ScreenSelectionCategoryVM>(),
+        );
+      }),
     );
   }
 }
