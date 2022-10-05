@@ -3,7 +3,7 @@ import 'package:places/main.dart';
 import 'package:places/ui_commons/enums.dart';
 
 ///
-/// ТУТВОПРОС
+/// ТУТВОПРОС серьезный
 ///
 /// Виджет-обертка для Ink (Image для работы ribble effect'a)
 /// (нужен для того, чтобы в режиме отладки работал flutter for web:

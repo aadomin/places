@@ -34,7 +34,6 @@ class SearchInteractor with ChangeNotifier {
   /// История поиска
   set _lastSearches(List<String> value) {
     searchRepository.lastSearches = value;
-    // ТУТВОПРОС был TODO(me): убрать
     notifyListeners();
   }
 

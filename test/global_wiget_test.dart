@@ -15,11 +15,13 @@ import 'package:places/di_mock.dart';
 import 'package:places/di_provider.dart';
 // import 'package:places/ui_commons/my_bloc_observer.dart';
 
-const bool isDebugMockImagesInPlaceOfHttp = false;
-const bool isDebugMockDataInPlaceOfHttp = false;
+// const bool isDebugMockImagesInPlaceOfHttp = false;
+// const bool isDebugMockDataInPlaceOfHttp = false;
 
-const bool isDebugUserStay = true;
-const bool isDebugUserMove = false;
+// const bool isDebugUserStay = true;
+// const bool isDebugUserMove = false;
+
+const bool isDebugModeForImages = true; // TODO repository
 
 void main() {
   // LiveTestWidgetsFlutterBinding();

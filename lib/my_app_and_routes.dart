@@ -7,7 +7,7 @@ import 'package:places/ui_screens/filter_screen/screen_filter_di.dart';
 import 'package:places/ui_screens/main_screen/screen_all_main.dart';
 import 'package:places/ui_screens/onboarding_screen/screen_onboarding.dart';
 import 'package:places/ui_screens/place_search_screen/screen_search_di.dart';
-import 'package:places/ui_screens/select_category_screen/screen_selection_category_route.dart';
+import 'package:places/ui_screens/select_category_screen/screen_selection_category_di.dart';
 import 'package:places/ui_screens/splash_screen/screen_splash_di.dart';
 
 // TODO(me): переделать в ScreenAllMain.routeName и static const routeName = '/extractArguments';
@@ -68,7 +68,7 @@ class _MyAppAndRoutesState extends State<MyAppAndRoutes> {
           appRouteFilter: (context) => createScreenFilter(context: context),
           appRouteAdd: (context) => createScreenAddPlace(context: context),
           appRouteSelectCategory: (context) =>
-              const ScreenSelectionCategoryRoute(),
+              const ScreenSelectionCategoryDi(),
           appRouteSearch: (context) => createScreenSearch(context: context),
           appRouteOnboarding: (context) => const ScreenOnboarding(),
           appRouteSplash: (context) => createScreenSplash(context: context),

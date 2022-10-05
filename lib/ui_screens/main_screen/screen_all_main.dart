@@ -30,7 +30,7 @@ class _ScreenAllMainState extends State<ScreenAllMain> {
     super.initState();
 
     _wPageList = [
-      // ТУТВОПРОС как это сделать лучше
+      // ТУТВОПРОС все же правильно ли это сделано?
       () => SafeArea(
             child: Center(
               child: createScreenMain1Places(context),

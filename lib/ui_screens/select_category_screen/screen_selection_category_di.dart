@@ -3,24 +3,24 @@ import 'package:places/ui_screens/select_category_screen/screen_selection_catego
 import 'package:places/ui_screens/select_category_screen/screen_selection_category_vm.dart';
 import 'package:provider/provider.dart';
 
-class ScreenSelectionCategoryRoute extends StatefulWidget {
-  const ScreenSelectionCategoryRoute({Key? key}) : super(key: key);
+class ScreenSelectionCategoryDi extends StatefulWidget {
+  const ScreenSelectionCategoryDi({Key? key}) : super(key: key);
 
   @override
-  _ScreenSelectionCategoryRouteState createState() =>
-      _ScreenSelectionCategoryRouteState();
+  _ScreenSelectionCategoryDiState createState() =>
+      _ScreenSelectionCategoryDiState();
 }
 
-class _ScreenSelectionCategoryRouteState
-    extends State<ScreenSelectionCategoryRoute> {
+class _ScreenSelectionCategoryDiState
+    extends State<ScreenSelectionCategoryDi> {
   @override
   Widget build(BuildContext context) {
     final _selectedCategory =
         ModalRoute.of(context)?.settings.arguments as String;
     return ChangeNotifierProvider(
-      create: (context) => SelectionCategoryVM(
+      create: (context) => ScreenSelectionCategoryVM(
         selectedCategory: _selectedCategory,
-      ),
+      )..init(),
       child: const ScreenSelectionCategory(),
     );
   }

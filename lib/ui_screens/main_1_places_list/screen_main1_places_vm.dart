@@ -81,7 +81,7 @@ class ScreenMain1PlacesVM with ChangeNotifier {
   }
 
   Future<void> onNewPlace() async {
-    //ТУТВОПРОС нормально ли сделано?
+    //ТУТВОПРОС нормально ли сделано? нужны ли такие проверки?
     dynamic isAdded = await Navigator.pushNamed(context, appRouteAdd);
     if (isAdded is! bool?) throw Exception();
     

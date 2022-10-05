@@ -17,13 +17,13 @@ class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
   void initState() {
     super.initState();
     // ТУТВОПРОС потому что не помню почему watch
-    context.read<SelectionCategoryVM>().init();
+    context.read<ScreenSelectionCategoryVM>().init();
   }
 
   @override
   Widget build(BuildContext context) {
     final _categories =
-        context.watch<SelectionCategoryVM>().allCategories;
+        context.watch<ScreenSelectionCategoryVM>().allCategories;
 
     return Scaffold(
       appBar: AppBar(
@@ -68,8 +68,8 @@ class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
               return ListTile(
                 onTap: () {
                   context
-                      .read<SelectionCategoryVM>()
-                      .toggleCategorySelection(item.value.name);
+                      .read<ScreenSelectionCategoryVM>()
+                      .toggleSelectedCategory(item.value.name);
                 },
                 title: Text(item.value.name),
                 trailing: item.value.isSelected
@@ -88,7 +88,7 @@ class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
           child: ElevatedButton(
             onPressed: () {
               final _selectedCategory =
-                  context.read<SelectionCategoryVM>().selectedCategory;
+                  context.read<ScreenSelectionCategoryVM>().selectedCategory;
               Navigator.pop(context, _selectedCategory);
             },
             child: const Padding(
