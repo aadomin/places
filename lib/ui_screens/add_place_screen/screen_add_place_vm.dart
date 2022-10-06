@@ -89,7 +89,7 @@ class ScreenAddPlaceVM with ChangeNotifier {
       isButtonSaveActive = isFormValid;
       notifyListeners();
     }
-    // TODO(me): тут еще исправить
+    // TODO(me): тут можно лучше?
   }
 
   Future<void> onTapOnCategorySelection(BuildContext context) async {

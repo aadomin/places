@@ -33,7 +33,6 @@ class ScreenFilterVM with ChangeNotifier {
 
   //
 
-  // TODO(me): переделать
   List<Place> get filteredPlaces => placesInteractor.getFilteredPlaces;
 
   FilterCondition get filterConditions => filterInteractor.filterConditions;
