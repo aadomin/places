@@ -10,7 +10,7 @@ import 'package:places/di.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
 import 'package:places/domain_interactors/geo_interactor.dart';
 import 'package:places/domain_interactors/hardwork_interactor.dart';
-import 'package:places/domain_interactors/place_interactor.dart';
+import 'package:places/domain_interactors/places_interactor.dart';
 import 'package:places/domain_interactors/search_interactor.dart';
 import 'package:places/domain_interactors/settings_interactor.dart';
 import 'package:places/ui_commons/platform_detector.dart';

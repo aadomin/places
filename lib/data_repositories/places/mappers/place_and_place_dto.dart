@@ -1,13 +1,12 @@
-import 'package:places/data_repositories/places/dto/place_post_api.dart';
-import 'package:places/data_repositories/places/dto/places_get_api.dart';
+import 'package:places/data_repositories/places/dto/place_dto.dart';
 import 'package:places/domain_entities/place.dart';
 
-PlacePostAPI mapPlaceToPlacePostAPI(Place e) {
+PlaceDto mapPlaceToPlaceDto(Place e) {
   final String? placeType = _reversedReplaceTable[e.type];
 
   if (placeType == null) throw Exception('not valid api');
 
-  return PlacePostAPI(
+  return PlaceDto(
     id: e.id,
     lat: e.lat,
     lng: e.lon,

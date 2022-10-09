@@ -21,7 +21,7 @@ class DIProvider extends StatelessWidget {
         ),
       ],
       child: Builder(builder: (context) {
-        return createMyAppAndRoutes(context: context);
+        return const MyAppAndRoutesDI();
       }),
     );
   }

@@ -1,13 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'place_post_api.dart';
+part of 'place_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PlacePostAPI _$$_PlacePostAPIFromJson(Map<String, dynamic> json) =>
-    _$_PlacePostAPI(
+_$_PlaceDto _$$_PlaceDtoFromJson(Map<String, dynamic> json) => _$_PlaceDto(
       id: json['id'] as int,
       lat: (json['lat'] as num).toDouble(),
       lng: (json['lng'] as num).toDouble(),
@@ -17,7 +16,7 @@ _$_PlacePostAPI _$$_PlacePostAPIFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String,
     );
 
-Map<String, dynamic> _$$_PlacePostAPIToJson(_$_PlacePostAPI instance) =>
+Map<String, dynamic> _$$_PlaceDtoToJson(_$_PlaceDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'lat': instance.lat,

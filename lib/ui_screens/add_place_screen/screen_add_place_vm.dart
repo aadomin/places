@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_interactors/place_interactor.dart';
+import 'package:places/domain_interactors/places_interactor.dart';
 import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/add_place_screen/dialog_add_photo.dart';

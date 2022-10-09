@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:places/data_repositories/places/dto/place_post_api.dart';
 import 'package:places/data_repositories/places/dto/places_get_api.dart';
 import 'package:places/data_repositories/places/mappers/place_and_place_dto.dart';
 import 'package:places/ui_commons/exceptions.dart';
@@ -48,10 +47,10 @@ class PlaceRepository {
   Future<void> addPlace(Place newPlace) async {
     const String _path = '/place';
 
-    final placePostApi = mapPlaceToPlacePostAPI(newPlace);
+    final placeDto = mapPlaceToPlaceDto(newPlace);
 
     final Response response =
-        await dio.post<String>(_path, data: placePostApi.toJson());
+        await dio.post<String>(_path, data: placeDto.toJson());
 
     if (response.statusCode != 200) {
       throw NetworkException(

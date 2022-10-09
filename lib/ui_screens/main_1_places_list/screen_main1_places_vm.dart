@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_interactors/place_interactor.dart';
+import 'package:places/domain_interactors/places_interactor.dart';
 import 'package:places/domain_entities/place.dart';
 import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/enums.dart';
@@ -84,7 +84,7 @@ class ScreenMain1PlacesVM with ChangeNotifier {
     //ТУТВОПРОС нормально ли сделано? нужны ли такие проверки?
     dynamic isAdded = await Navigator.pushNamed(context, appRouteAdd);
     if (isAdded is! bool?) throw Exception();
-    
+
     if (isAdded ?? false) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text(UiStrings.newPlaceCreated)),

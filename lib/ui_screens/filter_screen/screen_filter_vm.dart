@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
-import 'package:places/domain_interactors/place_interactor.dart';
+import 'package:places/domain_interactors/places_interactor.dart';
 import 'package:places/ui_models/filter_condition.dart';
 import 'package:places/domain_entities/place.dart';
 

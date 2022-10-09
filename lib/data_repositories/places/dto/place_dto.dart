@@ -1,14 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'place_post_api.freezed.dart';
-part 'place_post_api.g.dart';
+part 'place_dto.freezed.dart';
+part 'place_dto.g.dart';
 
 // flutter pub run build_runner build
 
 @freezed
-class PlacePostAPI with _$PlacePostAPI {
-  const factory PlacePostAPI({
+class PlaceDto with _$PlaceDto {
+  const factory PlaceDto({
     required int id,
     required double lat,
     required double lng,
@@ -16,8 +16,8 @@ class PlacePostAPI with _$PlacePostAPI {
     required List<String> urls,
     required String placeType,
     required String description,
-  }) = _PlacePostAPI;
+  }) = _PlaceDto;
 
-  factory PlacePostAPI.fromJson(Map<String, Object?> json) =>
-      _$PlacePostAPIFromJson(json);
+  factory PlaceDto.fromJson(Map<String, Object?> json) =>
+      _$PlaceDtoFromJson(json);
 }

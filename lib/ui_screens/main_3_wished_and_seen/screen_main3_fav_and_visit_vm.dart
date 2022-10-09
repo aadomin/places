@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_interactors/place_interactor.dart';
+import 'package:places/domain_interactors/places_interactor.dart';
 import 'package:places/domain_entities/place.dart';
 
 class ScreenMain3FavAndVisitVM with ChangeNotifier {

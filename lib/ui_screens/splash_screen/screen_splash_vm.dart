@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:places/di.dart';
+
+import 'package:places/domain_interactors/hardwork_interactor.dart';
 import 'package:places/my_app_and_routes.dart';
-import 'package:provider/provider.dart';
 
 ///
 /// Имитация загрузки приложения
@@ -9,11 +9,11 @@ import 'package:provider/provider.dart';
 class ScreenSplashVM with ChangeNotifier {
   ScreenSplashVM({
     required this.context,
+    required this.hardworkInteractor,
   });
 
   BuildContext context;
-
-  bool firstRunOfApp = true;
+  HardworkInteractor hardworkInteractor;
 
   void initVM() {
     initAppAndThenPopPage(context);
@@ -22,40 +22,33 @@ class ScreenSplashVM with ChangeNotifier {
   void disposeVM() {}
 
   ///
-  /// Инициализация, одновременно с этим задержка
-  /// и после переход к другому экрану
+  /// Init
   ///
   Future<void> initAppAndThenPopPage(BuildContext context) async {
     debugPrint('starting application');
+    // Run futures
     final _delayProcess = _doDelayForBeautifulChangeScreen();
-    await _doInitializeApp();
-    await _delayProcess;
+    final _loadingProcess = _doInitializeApp();
 
-    // ТУТВОПРОС! dispose splash screen'a
+    // Wait for futures
+    await _loadingProcess;
+    await _delayProcess;
 
     // ignore: unawaited_futures
     Navigator.of(context).pushReplacementNamed(appRouteHome);
-    if (firstRunOfApp) {
-      // ignore: unawaited_futures
-      Navigator.of(context).pushNamed(appRouteOnboarding);
-
-      firstRunOfApp = false;
-    }
   }
 
   ///
-  /// Процедура загрузки
+  /// Loading of app
   ///
   Future<void> _doInitializeApp() async {
     debugPrint('loading started at: ${DateTime.now()}');
-
-    context.read<DI>().hardworkInteractor.hardwork();
-
+    hardworkInteractor.hardwork();
     debugPrint('loading done at: ${DateTime.now()}');
   }
 
   ///
-  /// Задержка для красоты (если загрузка выполнилась меньше чем за 2 секунды)
+  /// Delay for beaty (to splash screen was shown in not shorter that 2 seconds)
   ///
   Future<bool> _doDelayForBeautifulChangeScreen() async {
     debugPrint('delaying started at: ${DateTime.now()}');
