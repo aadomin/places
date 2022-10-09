@@ -169,7 +169,7 @@ class PlacesInteractor with ChangeNotifier {
       id: random.nextInt(50000),
     );
 
-    // TODO(me): подумать, как сделать сброс кэша
+    // TODO(me): maybe remake after some thoughts about cash
     try {
       await placesRepository.addPlace(newPlace);
       _allPlacesLoaded.add(newPlace);

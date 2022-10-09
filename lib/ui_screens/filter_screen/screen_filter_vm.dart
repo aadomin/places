@@ -61,8 +61,8 @@ class ScreenFilterVM with ChangeNotifier {
 
     filterInteractor.filterConditions = _newFilterConditions;
 
-    setSliderState(
-        1); // TODO(me): так не должно быть - получить из интерактора значение!
+    setSliderState(1);
+    // TODO(me): так не должно быть - потом получить из интерактора значение!
   }
 
   /// Нажатие на "Показать"
@@ -90,7 +90,6 @@ class ScreenFilterVM with ChangeNotifier {
     filterInteractor.filterConditions = _newFilterConditions;
   }
 
-  // TODO(me): реализовать фильтрацию еще и по расстоянию
   Map<int, String> distancesMap = <int, String>{
     100: 'до 100м',
     200: 'до 200м',

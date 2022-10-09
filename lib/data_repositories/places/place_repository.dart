@@ -62,15 +62,3 @@ class PlaceRepository {
     }
   }
 }
-
-//TODO(me): return error catching
-
-// /// Old version - parsing
-  // List<Place> _parsePlaces(String rawJson) {
-  //   final List postListJson = jsonDecode(rawJson) as List;
-  //   return postListJson
-  //       //ignore: avoid_annotating_with_dynamic
-  //       .map((dynamic placeJson) =>
-  //           Place.fromJson(placeJson as Map<String, dynamic>))
-  //       .toList();
-  // }

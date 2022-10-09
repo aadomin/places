@@ -6,7 +6,7 @@ enum DebugUserLocation { takenFromServer, fixed, changing }
 
 const DebugUserLocation debugUserLocation = DebugUserLocation.fixed;
 
-const bool isDebugModeForImages = false; // TODO repository
+const bool isDebugModeForImages = false; // TODO after image uploading implementing
 
 void main() {
   final DI di = DI();

@@ -4,14 +4,13 @@ import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/add_place_screen/screen_add_place_di.dart';
 import 'package:places/ui_screens/filter_screen/screen_filter_di.dart';
-import 'package:places/ui_screens/main_screen/screen_all_main.dart';
 import 'package:places/ui_screens/main_screen/screen_all_main_di.dart';
 import 'package:places/ui_screens/onboarding_screen/screen_onboarding.dart';
 import 'package:places/ui_screens/place_search_screen/screen_search_di.dart';
 import 'package:places/ui_screens/select_category_screen/screen_selection_category_di.dart';
 import 'package:places/ui_screens/splash_screen/screen_splash_di.dart';
 
-// TODO(me): переделать в ScreenAllMain.routeName и static const routeName = '/extractArguments';
+// TODO(me): переделать в ScreenAllMain.routeName и static const routeName = '/extractArguments'; ?
 const String appRouteHome = '/home';
 const String appRouteFilter = '/filter';
 const String appRouteAdd = '/add';

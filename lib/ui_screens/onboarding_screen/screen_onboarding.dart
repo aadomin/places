@@ -41,7 +41,7 @@ class _ScreenOnboardingState extends State<ScreenOnboarding> {
                   : TextButton(
                       onPressed: () => onMissButtonPressed(context),
                       style: TextButton.styleFrom(
-                        primary: const Color(0xFF4CAF50),
+                        foregroundColor: const Color(0xFF4CAF50),
                       ),
                       child: const Align(
                         child: Text(

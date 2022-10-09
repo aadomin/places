@@ -24,8 +24,8 @@ class ScreenAddPlaceVM with ChangeNotifier {
   final textControllerLon = TextEditingController();
   final textControllerDescription = TextEditingController();
 
-  //TODO(me): del global key
-  final keyFormAddPlace = GlobalKey<FormState>();
+  final keyFormAddPlace =
+      GlobalKey<FormState>(); //TODO(me): del global key maybe
 
   String currentlySelectedCategory = UiStrings.notSelected;
 

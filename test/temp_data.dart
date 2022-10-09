@@ -1,4 +1,4 @@
-String temp_data = r'''
+String tempData = r'''
 [
   {
     "id": 173,

@@ -12,6 +12,7 @@ class PlaceRepositoryMock implements PlaceRepository {
     required this.dio,
   });
 
+  @override
   final Dio dio;
 
   /// Mock - Load all places and return it

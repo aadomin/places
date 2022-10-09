@@ -23,7 +23,7 @@ class WidgetNewPlaceAppBar extends StatelessWidget {
               TextButton(
                 onPressed: ___onCancel,
                 style: TextButton.styleFrom(
-                  primary: Theme.of(context).primaryColorLight,
+                  foregroundColor: Theme.of(context).primaryColorLight,
                 ),
                 child: const Align(
                   alignment: Alignment.centerLeft,
