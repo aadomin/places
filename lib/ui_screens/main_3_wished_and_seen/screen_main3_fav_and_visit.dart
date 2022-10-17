@@ -30,11 +30,17 @@ class _ScreenMain3FavAndVisitState extends State<ScreenMain3FavAndVisit>
 
   @override
   void initState() {
+    _tabController = TabController(
+      length: 2,
+      vsync: this,
+      animationDuration: const Duration(
+        milliseconds: 850,
+      ),
+    );
     super.initState();
     ___vm
       ..initVM()
       ..addListener(_vmListener);
-    _tabController = TabController(length: 2, vsync: this);
   }
 
   void _vmListener() => setState(() {});
@@ -50,79 +56,78 @@ class _ScreenMain3FavAndVisitState extends State<ScreenMain3FavAndVisit>
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(140),
-          child: Column(
-            children: [
-              AppBar(
-                automaticallyImplyLeading: false,
-                backgroundColor: Theme.of(context).canvasColor,
-                elevation: 0,
-                title: const WidgetMyHeader(header: UiStrings.favorites),
-              ),
-              Container(
-                margin: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  //grey background
-                  color: Theme.of(context).disabledColor,
-                  borderRadius: BorderRadius.circular(
-                    25.0,
-                  ),
-                ),
-                child: TabBar(
-                  unselectedLabelColor: Theme.of(context).primaryColorLight,
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  labelColor: Theme.of(context).canvasColor,
-                  indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: Theme.of(context).selectedRowColor,
-                  ),
-                  tabs: const [
-                    //
-                    // Хочу посетить
-                    //
-                    Tab(
-                      child: Align(
-                        child: Text(
-                          UiStrings.wantToSee,
-                        ),
-                      ),
-                    ),
-                    //
-                    // Посетил
-                    //
-                    Tab(
-                      child: Align(
-                        child: Text(
-                          UiStrings.haveSeen,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        body: TabBarView(
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(140),
+        child: Column(
           children: [
-            Tab(
-              child: WidgetTabFavorite(
-                favoritePlaces: ___vm.favoritePlaces,
-                onRemoveFromFavorites: ___vm.onRemoveFromFavorites,
-              ),
+            AppBar(
+              automaticallyImplyLeading: false,
+              backgroundColor: Theme.of(context).canvasColor,
+              elevation: 0,
+              title: const WidgetMyHeader(header: UiStrings.favorites),
             ),
-            Tab(
-              child: WidgetTabVisited(
-                visitedPlaces: ___vm.visitedPlaces,
-                onRemoveFromVisited: ___vm.onRemoveFromVisited,
+            Container(
+              margin: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                //grey background
+                color: Theme.of(context).disabledColor,
+                borderRadius: BorderRadius.circular(
+                  25.0,
+                ),
+              ),
+              child: TabBar(
+                controller: _tabController,
+                unselectedLabelColor: Theme.of(context).primaryColorLight,
+                indicatorSize: TabBarIndicatorSize.tab,
+                labelColor: Theme.of(context).canvasColor,
+                indicator: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: Theme.of(context).selectedRowColor,
+                ),
+                tabs: const [
+                  //
+                  // Хочу посетить
+                  //
+                  Tab(
+                    child: Align(
+                      child: Text(
+                        UiStrings.wantToSee,
+                      ),
+                    ),
+                  ),
+                  //
+                  // Посетил
+                  //
+                  Tab(
+                    child: Align(
+                      child: Text(
+                        UiStrings.haveSeen,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
         ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          Tab(
+            child: WidgetTabFavorite(
+              favoritePlaces: ___vm.favoritePlaces,
+              onRemoveFromFavorites: ___vm.onRemoveFromFavorites,
+            ),
+          ),
+          Tab(
+            child: WidgetTabVisited(
+              visitedPlaces: ___vm.visitedPlaces,
+              onRemoveFromVisited: ___vm.onRemoveFromVisited,
+            ),
+          ),
+        ],
       ),
     );
   }

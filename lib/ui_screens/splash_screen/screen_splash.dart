@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'dart:math' as math;
 import 'package:places/ui_commons/themes.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_screens/splash_screen/screen_splash_vm.dart';
@@ -17,18 +18,27 @@ class ScreenSplash extends StatefulWidget {
   _ScreenSplashState createState() => _ScreenSplashState();
 }
 
-class _ScreenSplashState extends State<ScreenSplash> {
+class _ScreenSplashState extends State<ScreenSplash>
+    with SingleTickerProviderStateMixin {
   ScreenSplashVM get _viewModel => widget.viewModel;
+
+  late AnimationController _animationController;
 
   @override
   void initState() {
     super.initState();
     _viewModel.initVM(); //Тут не просто инит, тут работа
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 3000),
+    );
+    _animationController.repeat();
   }
 
   @override
   void dispose() {
     _viewModel.disposeVM();
+    _animationController.dispose();
     super.dispose();
   }
 
@@ -45,11 +55,26 @@ class _ScreenSplashState extends State<ScreenSplash> {
           ),
         ),
         child: Center(
-          child: SvgPicture.asset(
-            UiImagePaths.logo,
+          child: SizedBox(
             width: 100,
             height: 100,
-            color: Theme.of(context).colorScheme.textOnBottomButtonActive,
+            child: Center(
+              child: AnimatedBuilder(
+                animation: _animationController,
+                builder: (context, child) {
+                  return Transform.rotate(
+                    angle: _animationController.value * math.pi * 2,
+                    child: child!,
+                  );
+                },
+                child: SvgPicture.asset(
+                  UiImagePaths.logo,
+                  width: 100,
+                  height: 100,
+                  color: Theme.of(context).colorScheme.textOnBottomButtonActive,
+                ),
+              ),
+            ),
           ),
         ),
       ),
