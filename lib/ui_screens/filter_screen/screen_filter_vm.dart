@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
-import 'package:places/domain_interactors/place_interactor.dart';
-import 'package:places/domain_models/filter_condition.dart';
-import 'package:places/domain_models/place.dart';
+import 'package:places/domain_interactors/places_interactor.dart';
+import 'package:places/ui_models/filter_condition.dart';
+import 'package:places/domain_entities/place.dart';
 
 ///
 /// Вью-модель Фильтра
@@ -21,7 +21,6 @@ class ScreenFilterVM with ChangeNotifier {
   void initVM() {
     filterInteractor.addListener(_placesInteractorListener);
     placesInteractor.addListener(_filterInteractorListener);
-
   }
 
   void _placesInteractorListener() => notifyListeners();
@@ -34,7 +33,6 @@ class ScreenFilterVM with ChangeNotifier {
 
   //
 
-  // TODO(me): переделать
   List<Place> get filteredPlaces => placesInteractor.getFilteredPlaces;
 
   FilterCondition get filterConditions => filterInteractor.filterConditions;
@@ -63,7 +61,8 @@ class ScreenFilterVM with ChangeNotifier {
 
     filterInteractor.filterConditions = _newFilterConditions;
 
-    setSliderState(1); // TODO(me): так не должно быть - получить из интерактора значение!
+    setSliderState(1);
+    // TODO(me): так не должно быть - потом получить из интерактора значение!
   }
 
   /// Нажатие на "Показать"
@@ -91,7 +90,6 @@ class ScreenFilterVM with ChangeNotifier {
     filterInteractor.filterConditions = _newFilterConditions;
   }
 
-  // TODO(me): реализовать фильтрацию еще и по расстоянию
   Map<int, String> distancesMap = <int, String>{
     100: 'до 100м',
     200: 'до 200м',
@@ -105,7 +103,7 @@ class ScreenFilterVM with ChangeNotifier {
   };
 
   int get indexOfSelectedRadiusItem =>
-      int.parse((_sliderValue * (countOfRadiusSliderItems - 1)).toString());
+      (_sliderValue * (countOfRadiusSliderItems - 1)).toInt();
 
   String get descriptionOfSelectedRadiusItem =>
       distancesMap.values.toList()[indexOfSelectedRadiusItem];

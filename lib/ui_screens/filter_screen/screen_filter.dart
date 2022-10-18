@@ -69,7 +69,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
           child: TextButton(
             onPressed: () => ___viewModel.clearActiveCategories(),
             style: TextButton.styleFrom(
-              primary: Theme.of(context).colorScheme.secondary,
+              foregroundColor: Theme.of(context).colorScheme.secondary,
             ),
             child: const Text(
               UiStrings.clear,
@@ -200,7 +200,6 @@ class _ScreenFilterState extends State<ScreenFilter> {
               onTap: () {},
             ),
 
-            // TODO(me): цвета слайдера, не работает слайдер
             //
             // Слайдер
             //

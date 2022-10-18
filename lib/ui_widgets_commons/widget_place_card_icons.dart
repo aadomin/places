@@ -20,15 +20,13 @@ class WidgetPlaceCardIcons extends StatelessWidget {
   }) : super(key: key);
 
   final PlaceCardType placeCardType;
+  final bool? isLiked;
 
   final VoidCallback? onToggleWished;
-
   final VoidCallback? onAddToCalendar;
   final VoidCallback? onDeleteFromWished;
-
   final VoidCallback? onShare;
   final VoidCallback? onDeleteFromSeen;
-  final bool? isLiked;
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +41,7 @@ class WidgetPlaceCardIcons extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(8),
                 child: SvgPicture.asset(
-                  isHeartFilled
-                      ? UiImagePaths.heartFilled
-                      : UiImagePaths.heart,
+                  isHeartFilled ? UiImagePaths.heartFilled : UiImagePaths.heart,
                   height: 22,
                   color: Colors.white,
                 ),

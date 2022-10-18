@@ -8,24 +8,28 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 // import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:places/di.dart';
+import 'package:places/di_mock.dart';
 import 'package:places/di_provider.dart';
-import 'package:places/ui_commons/my_bloc_observer.dart';
-import 'fake_di.dart';
+// import 'package:places/ui_commons/my_bloc_observer.dart';
 
-const bool isDebugMockImagesInPlaceOfHttp = false;
-const bool isDebugMockDataInPlaceOfHttp = false;
+// const bool isDebugMockImagesInPlaceOfHttp = false;
+// const bool isDebugMockDataInPlaceOfHttp = false;
 
-const bool isDebugUserStay = true;
-const bool isDebugUserMove = false;
+// const bool isDebugUserStay = true;
+// const bool isDebugUserMove = false;
+
+const bool isDebugModeForImages = true; // TODO repository
 
 void main() {
   // LiveTestWidgetsFlutterBinding();
 
   testWidgets('Onboarding screen must be shown', (WidgetTester tester) async {
-    Bloc.observer = MyBlocObserver();
-    final di = FakeDI();
+    // Bloc.observer = MyBlocObserver();
+    final DI di = DIMock();
+
     await tester.pumpWidget(DIProvider(di));
 
     await tester.pumpAndSettle(const Duration(seconds: 5));
@@ -34,8 +38,8 @@ void main() {
   });
 
   testWidgets('Main screen must be shown', (WidgetTester tester) async {
-    Bloc.observer = MyBlocObserver();
-    final di = FakeDI();
+    // Bloc.observer = MyBlocObserver();
+    final DI di = DIMock();
     await tester.pumpWidget(DIProvider(di));
 
     await tester.pumpAndSettle(const Duration(seconds: 5));

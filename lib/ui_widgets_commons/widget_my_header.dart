@@ -7,17 +7,17 @@ class WidgetMyHeader extends StatelessWidget {
   const WidgetMyHeader({
     required String header,
     Key? key,
-  })  : _header = header,
+  })  : ___header = header,
         super(key: key);
 
-  final String _header;
+  final String ___header;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Text(
-        _header,
+        ___header,
         style: TextStyle(
           color: Theme.of(context).primaryColorDark,
           fontWeight: FontWeight.bold,

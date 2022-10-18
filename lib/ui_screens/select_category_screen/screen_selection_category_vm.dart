@@ -1,33 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_models/category_item.dart';
+import 'package:places/ui_models/category_item.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
-///
-/// Интерактор выбора категории
-///
-class SelectionCategoryVM with ChangeNotifier {
-  SelectionCategoryVM({
+/// View-model for selection of category screen
+class ScreenSelectionCategoryVM with ChangeNotifier {
+  ScreenSelectionCategoryVM({
+    required this.context,
     this.selectedCategory = UiStrings.notSelected,
-  }) {
-    init();
-  }
+  });
 
-  ///
-  /// Инициализация
-  ///
-  void init() {
-    for (final item in _allCategories) {
-      // ignore: unnecessary_parenthesis
-      item.isSelected = (item.name == selectedCategory);
-    }
-  }
-
-  /// Выбранная в данный момент категория
   String selectedCategory;
+  BuildContext context;
 
-  ///
-  /// Список категорий
-  ///
+  /// List of categories
   final _allCategories = [
     CategoryItem(name: UiStrings.notSelected, isSelected: false),
     CategoryItem(name: UiStrings.hotel, isSelected: false),
@@ -38,20 +23,31 @@ class SelectionCategoryVM with ChangeNotifier {
     CategoryItem(name: UiStrings.cafe, isSelected: false),
   ];
 
-  ///
-  /// Список категорий
-  ///
   List<CategoryItem> get allCategories => _allCategories;
 
-  ///
-  /// Переключить выбранность категории
-  ///
-  void toggleCategorySelection(String categoryName) {
+  void init() {
+    _updateCaterogiesList();
+  }
+
+  /// Toggle selected category
+  void onToggleSelectedCategory(String categoryName) {
     selectedCategory = categoryName;
+    _updateCaterogiesList();
+  }
+
+  void _updateCaterogiesList() {
     for (final item in _allCategories) {
       // ignore: unnecessary_parenthesis
       item.isSelected = (item.name == selectedCategory);
     }
     notifyListeners();
+  }
+
+  void onCancel() {
+    Navigator.pop(context);
+  }
+
+  void onSave() {
+    Navigator.pop(context, selectedCategory);
   }
 }

@@ -7,16 +7,25 @@ import 'package:places/ui_commons/ui_strings.dart';
 
 /// Диалог "Добавить фото"
 class DialogAddPhoto extends StatelessWidget {
-  const DialogAddPhoto({Key? key}) : super(key: key);
+  const DialogAddPhoto({
+    required this.onTakePhoto,
+    required this.onSelectFile,
+    required this.onSelectImage,
+    required this.onCancel,
+    Key? key,
+  }) : super(key: key);
+
+  final VoidCallback onTakePhoto;
+  final VoidCallback onSelectImage;
+  final VoidCallback onSelectFile;
+  final VoidCallback onCancel;
 
   @override
   Widget build(BuildContext context) {
     return CupertinoActionSheet(
       actions: [
         CupertinoActionSheetAction(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: onTakePhoto,
           child: Row(
             children: [
               Padding(
@@ -40,9 +49,7 @@ class DialogAddPhoto extends StatelessWidget {
           ),
         ),
         CupertinoActionSheetAction(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: onSelectImage,
           child: Row(
             children: [
               Padding(
@@ -66,9 +73,7 @@ class DialogAddPhoto extends StatelessWidget {
           ),
         ),
         CupertinoActionSheetAction(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: onSelectFile,
           child: Row(
             children: [
               Padding(
@@ -93,9 +98,7 @@ class DialogAddPhoto extends StatelessWidget {
         ),
       ],
       cancelButton: CupertinoActionSheetAction(
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
+        onPressed: onCancel,
         child: Text(
           UiStrings.cancelCaps,
           style: Theme.of(context).textTheme.bodyText1?.copyWith(

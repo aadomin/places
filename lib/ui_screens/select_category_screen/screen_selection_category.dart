@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 import 'package:places/ui_screens/select_category_screen/screen_selection_category_vm.dart';
-import 'package:provider/provider.dart';
 
 /// Экран "Выбор категории"
 class ScreenSelectionCategory extends StatefulWidget {
-  const ScreenSelectionCategory({Key? key}) : super(key: key);
+  const ScreenSelectionCategory({
+    required this.viewModel,
+    Key? key,
+  }) : super(key: key);
+
+  final ScreenSelectionCategoryVM viewModel;
 
   @override
   State<ScreenSelectionCategory> createState() =>
@@ -13,18 +17,16 @@ class ScreenSelectionCategory extends StatefulWidget {
 }
 
 class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
+  ScreenSelectionCategoryVM get ___vm => widget.viewModel;
+
   @override
   void initState() {
     super.initState();
-    // ТУТВОПРОС потому что не помню почему watch
-    context.read<SelectionCategoryVM>().init();
+    ___vm.init();
   }
 
   @override
   Widget build(BuildContext context) {
-    final _categories =
-        context.watch<SelectionCategoryVM>().allCategories;
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -33,11 +35,9 @@ class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
           children: [
             Expanded(
               child: TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
+                onPressed: () => ___vm.onCancel(),
                 style: TextButton.styleFrom(
-                  primary: Theme.of(context).primaryColorLight,
+                  foregroundColor: Theme.of(context).primaryColorLight,
                 ),
                 child: const Align(
                   alignment: Alignment.centerLeft,
@@ -64,13 +64,9 @@ class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
           padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: _categories.asMap().entries.map((item) {
+            children: ___vm.allCategories.asMap().entries.map((item) {
               return ListTile(
-                onTap: () {
-                  context
-                      .read<SelectionCategoryVM>()
-                      .toggleCategorySelection(item.value.name);
-                },
+                onTap: () => ___vm.onToggleSelectedCategory(item.value.name),
                 title: Text(item.value.name),
                 trailing: item.value.isSelected
                     ? Icon(Icons.done,
@@ -86,11 +82,7 @@ class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
           child: ElevatedButton(
-            onPressed: () {
-              final _selectedCategory =
-                  context.read<SelectionCategoryVM>().selectedCategory;
-              Navigator.pop(context, _selectedCategory);
-            },
+            onPressed: () => ___vm.onSave(),
             child: const Padding(
               padding: EdgeInsets.all(12.0),
               child: Text(UiStrings.saveCaps),

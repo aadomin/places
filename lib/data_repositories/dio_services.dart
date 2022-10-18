@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:places/data_other/exceptions.dart';
+import 'package:places/ui_commons/exceptions.dart';
 
 ///
 /// Сервис отвечающий за отправку и прием http запросов
@@ -36,10 +36,14 @@ class DioServices {
         },
         onError: (DioError e, handler) {
           // DioError взять статус-код
-          NetworkException(
-            queryPath: '',
-            errorName: 'dio error',
-          );
+          
+          if (e.response?.statusCode == 401) {
+            throw NetworkException(
+              queryPath: e.requestOptions.path,
+              errorName: 'auth error',
+            );
+          }
+          // handler.reject(error)
           return handler.next(e);
         },
       ),

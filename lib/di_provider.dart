@@ -3,6 +3,7 @@ import 'package:places/di.dart';
 import 'package:places/my_app_and_routes_di.dart';
 import 'package:provider/provider.dart';
 
+//Providing DI container "DI()"
 class DIProvider extends StatelessWidget {
   const DIProvider(
     this.di, {
@@ -20,7 +21,7 @@ class DIProvider extends StatelessWidget {
         ),
       ],
       child: Builder(builder: (context) {
-        return createMyAppAndRoutes(context: context);
+        return const MyAppAndRoutesDI();
       }),
     );
   }

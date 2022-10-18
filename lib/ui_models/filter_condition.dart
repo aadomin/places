@@ -1,4 +1,4 @@
-import 'package:places/domain_models/category_item.dart';
+import 'package:places/ui_models/category_item.dart';
 
 class FilterCondition {
   FilterCondition({

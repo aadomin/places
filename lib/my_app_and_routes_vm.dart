@@ -14,13 +14,13 @@ class MyAppAndRoutesVM with ChangeNotifier {
       settingsInteractor.streamIsDarkThemeOn;
 
   void initVM() {
-    //  settingsInteractor.addListener(_settingsEntityListener);
+    //  settingsInteractor.addListener(_settingsInteractorListener);
   }
 
-  // void _settingsEntityListener() => notifyListeners();
+  // void _settingsInteractorListener() => notifyListeners();
 
   void disposeVM() {
-    // settingsInteractor.removeListener(_settingsEntityListener);
+    // settingsInteractor.removeListener(_settingsInteractorListener);
   }
 
   bool get isDarkThemeOn => settingsInteractor.isDarkThemeOn;

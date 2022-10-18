@@ -5,13 +5,15 @@ import 'package:places/ui_screens/add_place_screen/screen_add_place_vm.dart';
 import 'package:provider/provider.dart';
 
 /// DI для экрана добавления места
-ScreenAddPlace createScreenAddPlace({
-  required BuildContext context,
-}) {
-  return ScreenAddPlace(
-    viewModel: ScreenAddPlaceVM(
-      context: context,
-      placesInteractor: context.watch<DI>().placesInteractor,
-    ),
-  );
+class ScreenAddPlaceDI extends StatelessWidget {
+  const ScreenAddPlaceDI({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return ScreenAddPlace(
+      viewModel: ScreenAddPlaceVM(
+        context: context,
+        placesInteractor: context.watch<DI>().placesInteractor,
+      ),
+    );
+  }
 }

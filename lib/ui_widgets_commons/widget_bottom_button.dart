@@ -3,7 +3,7 @@ import 'package:places/ui_commons/themes.dart';
 
 ///
 /// Кнопка, прикрепленная к низу экрана
-/// 
+///
 class WidgetBottomButton extends StatefulWidget {
   const WidgetBottomButton({
     required this.onPressOnButton,
@@ -31,12 +31,12 @@ class _WidgetBottomButtonState extends State<WidgetBottomButton> {
         child: ElevatedButton(
           onPressed: widget.onPressOnButton,
           style: ElevatedButton.styleFrom(
-            primary: widget.isActive
-                ? Theme.of(context).colorScheme.secondary
-                : Theme.of(context).disabledColor,
-            onPrimary: widget.isActive
+            foregroundColor: widget.isActive
                 ? Theme.of(context).colorScheme.textOnBottomButtonActive
                 : Theme.of(context).colorScheme.textOnBottomButtonDisabled,
+            backgroundColor: widget.isActive
+                ? Theme.of(context).colorScheme.secondary
+                : Theme.of(context).disabledColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             ),

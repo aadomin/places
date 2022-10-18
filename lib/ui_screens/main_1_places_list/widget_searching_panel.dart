@@ -4,7 +4,9 @@ import 'package:places/my_app_and_routes.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
+///
 /// Поле с поиском
+///
 class WidgetSearchingPanel extends StatelessWidget {
   const WidgetSearchingPanel({
     required this.focusNode1,
@@ -41,7 +43,9 @@ class WidgetSearchingPanel extends StatelessWidget {
                   border: InputBorder.none,
                   filled: true,
                   fillColor: Theme.of(context).disabledColor,
+                  //
                   // Значок Поиск
+                  //
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(9),
                     child: SvgPicture.asset(
