@@ -52,7 +52,7 @@ class ScreenSplashVM with ChangeNotifier {
   ///
   Future<bool> _doDelayForBeautifulChangeScreen() async {
     debugPrint('delaying started at: ${DateTime.now()}');
-    await Future<dynamic>.delayed(const Duration(seconds: 2));
+    await Future<dynamic>.delayed(const Duration(seconds: 5));
     debugPrint('delaying done at: ${DateTime.now()}');
     return true;
   }
