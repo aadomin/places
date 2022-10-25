@@ -25,9 +25,11 @@ class ScreenSelectionCategoryVM with ChangeNotifier {
 
   List<CategoryItem> get allCategories => _allCategories;
 
-  void init() {
+  void initVM() {
     _updateCaterogiesList();
   }
+
+  void disposeVM() {}
 
   /// Toggle selected category
   void onToggleSelectedCategory(String categoryName) {

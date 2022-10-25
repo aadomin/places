@@ -21,7 +21,7 @@ class WidgetSearchEmpty extends StatelessWidget {
   final void Function(int) onTapOnOneOfLastSearchesDo;
 
   void onTapOnOneOfLastSearches(int i) {
-    //TODO(me): del textController from here
+    //ТУТМОЖНО del textController from here
     textController.text = lastSearchesSnapshot[i];
     onTapOnOneOfLastSearchesDo(i);
   }

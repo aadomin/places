@@ -40,10 +40,21 @@ class WidgetPlaceCardIcons extends StatelessWidget {
               onTap: onToggleWished,
               child: Container(
                 padding: const EdgeInsets.all(8),
-                child: SvgPicture.asset(
-                  isHeartFilled ? UiImagePaths.heartFilled : UiImagePaths.heart,
-                  height: 22,
-                  color: Colors.white,
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 600),
+                  child: isHeartFilled
+                      ? SvgPicture.asset(
+                          key: const Key('heard filled'),
+                          UiImagePaths.heartFilled,
+                          height: 22,
+                          color: Colors.white,
+                        )
+                      : SvgPicture.asset(
+                          key: const Key('heard not filled'),
+                          UiImagePaths.heart,
+                          height: 22,
+                          color: Colors.white,
+                        ),
                 ),
               ),
             ),

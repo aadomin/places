@@ -82,6 +82,10 @@ final darkTheme = ThemeData(
 );
 
 extension CustomColorScheme on ColorScheme {
+  Color get sightImagePlaceholder => brightness == Brightness.light
+      ? const Color(0xBB21222C)
+      : const Color(0xBB1A1A20);
+
   Color get textOnBottomButtonActive =>
       brightness == Brightness.light ? Colors.white : Colors.white;
   Color get textOnBottomButtonDisabled => brightness == Brightness.light

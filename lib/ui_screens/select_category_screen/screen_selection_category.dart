@@ -22,7 +22,13 @@ class _ScreenSelectionCategoryState extends State<ScreenSelectionCategory> {
   @override
   void initState() {
     super.initState();
-    ___vm.init();
+    ___vm.initVM();
+  }
+
+  @override
+  void dispose() {
+    ___vm.disposeVM();
+    super.dispose();
   }
 
   @override

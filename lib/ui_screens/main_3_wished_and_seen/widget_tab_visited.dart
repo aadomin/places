@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:places/domain_entities/place.dart';
 import 'package:places/ui_commons/enums.dart';
+import 'package:places/ui_commons/my_circle_progress_indicator.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
@@ -12,11 +13,13 @@ import 'package:places/ui_widgets_commons/widget_place_card.dart';
 class WidgetTabVisited extends StatefulWidget {
   const WidgetTabVisited({
     required this.visitedPlaces,
+    required this.isLoading,
     required this.onRemoveFromVisited,
     Key? key,
   }) : super(key: key);
 
   final List<Place> visitedPlaces;
+  final bool isLoading;
   final void Function(int) onRemoveFromVisited;
 
   @override
@@ -28,6 +31,10 @@ class _WidgetTabVisitedState extends State<WidgetTabVisited> {
   Widget build(BuildContext context) {
     final List<Place> _visitedPlaces = widget.visitedPlaces;
 
+    if (widget.isLoading) {
+      return const Center(
+          child: MyCircleProgressIndicator(isBigAndColorful: false));
+    }
     if (_visitedPlaces.isEmpty) {
       return const WidgetEmptyList(
         imagePath: UiImagePaths.emptySeenTab,

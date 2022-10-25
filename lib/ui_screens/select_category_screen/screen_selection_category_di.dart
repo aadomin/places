@@ -11,8 +11,6 @@ class ScreenSelectionCategoryDi extends StatefulWidget {
       _ScreenSelectionCategoryDiState();
 }
 
-// ТУТВОПРОС потому что не помню почему watch
-
 class _ScreenSelectionCategoryDiState extends State<ScreenSelectionCategoryDi> {
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,7 @@ class _ScreenSelectionCategoryDiState extends State<ScreenSelectionCategoryDi> {
       create: (context) => ScreenSelectionCategoryVM(
         context: context,
         selectedCategory: _selectedCategory,
-      )..init(),
+      )..initVM(),
       child: Builder(builder: (context) {
         return ScreenSelectionCategory(
           viewModel: context.watch<ScreenSelectionCategoryVM>(),

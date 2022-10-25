@@ -73,13 +73,18 @@ class WidgetPlaceCard extends StatelessWidget {
           child: InkWell(
             onTap: onTap,
             child: (placeCardType == PlaceCardType.general)
+                //
                 // Карточка
+                //
                 ? widgetCardItself(context)
 
+                //
                 // Смещабельная карточка
+                //
                 : Dismissible(
                     key: ValueKey(place.id),
                     onDismissed: onDismissedAction,
+                    // фон при смещении
                     background: Container(
                       alignment: Alignment.centerLeft,
                       color: Colors.red,
@@ -100,6 +105,7 @@ class WidgetPlaceCard extends StatelessWidget {
                         ),
                       ),
                     ),
+                    // фон при смещении в другую сторону
                     secondaryBackground: Container(
                       alignment: Alignment.centerRight,
                       color: Colors.red,

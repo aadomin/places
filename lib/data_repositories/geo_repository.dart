@@ -11,8 +11,8 @@ class GeoRepository {
     switch (debugUserLocation) {
       case DebugUserLocation.fixed:
         return PointGetCoordinates(
-          latitude: 54,
-          longitude: 54,
+          latitude: 55,
+          longitude: 37,
         );
       case DebugUserLocation.changing:
         final random = Random();
