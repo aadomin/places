@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui_commons/my_circle_progress_indicator.dart';
+import 'package:places/ui_widgets_commons/my_circle_progress_indicator.dart';
 import 'package:places/domain_entities/place.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';

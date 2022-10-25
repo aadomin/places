@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui_commons/my_infinite_rotator.dart';
+import 'package:places/ui_widgets_commons/my_infinite_rotator.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 
 /// Custom  loading indicator
