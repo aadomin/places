@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:places/ui_widgets_commons/my_circle_progress_indicator.dart';
 import 'package:places/domain_entities/place.dart';
 import 'package:places/ui_commons/enums.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
@@ -71,9 +72,15 @@ class _ScreenMain1PlacesState extends State<ScreenMain1Places> {
               WidgetSearchingPanel(focusNode1: focusNode1),
 
               if (___viewModel.state == WidgetStatus.isLoading)
-                const SliverToBoxAdapter(
+                SliverToBoxAdapter(
                   child: Center(
-                    child: CircularProgressIndicator(),
+                    child: Container(
+                      margin: const EdgeInsets.only(top: 50),
+                      width: 75,
+                      height: 75,
+                      child: const MyCircleProgressIndicator(
+                          isBigAndColorful: true),
+                    ),
                   ),
                 ),
 

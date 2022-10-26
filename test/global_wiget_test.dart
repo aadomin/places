@@ -21,7 +21,7 @@ import 'package:places/di_provider.dart';
 // const bool isDebugUserStay = true;
 // const bool isDebugUserMove = false;
 
-const bool isDebugModeForImages = true; // TODO repository
+const bool isDebugModeForImages = true;
 
 void main() {
   // LiveTestWidgetsFlutterBinding();

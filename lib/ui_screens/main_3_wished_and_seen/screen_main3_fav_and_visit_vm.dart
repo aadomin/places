@@ -14,14 +14,15 @@ class ScreenMain3FavAndVisitVM with ChangeNotifier {
   List<Place> favoritePlaces = [];
   List<Place> visitedPlaces = [];
 
+  bool isLoading = true;
+
   void initVM() {
-    loadData();
+    _loadData();
     placesInteractor.addListener(_placesInteractorListener);
   }
 
   void _placesInteractorListener() {
-    loadData();
-    notifyListeners();
+    _loadData();
   }
 
   void disposeVM() {
@@ -30,9 +31,14 @@ class ScreenMain3FavAndVisitVM with ChangeNotifier {
 
   //
 
-  void loadData() {
+  Future<void> _loadData() async {
+    isLoading = true;
+    notifyListeners();
     favoritePlaces = placesInteractor.getFavoritesPlaces;
     visitedPlaces = placesInteractor.getVisitedPlaces;
+    await Future.delayed(const Duration(seconds: 1));
+    isLoading = false;
+    notifyListeners();
   }
 
   void onRemoveFromFavorites(int id) {

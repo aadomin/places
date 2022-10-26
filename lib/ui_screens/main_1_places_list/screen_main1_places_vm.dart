@@ -45,6 +45,8 @@ class ScreenMain1PlacesVM with ChangeNotifier {
       state = WidgetStatus.isLoading;
       notifyListeners();
     }
+    // TODO(me): удалить, искуственная пауза
+    await Future.delayed(const Duration(seconds: 1));
     try {
       _filteredPlaces = await placesInteractor.filteredWithFilterPlaces;
       if (filteredPlaces.isEmpty) {
@@ -55,7 +57,6 @@ class ScreenMain1PlacesVM with ChangeNotifier {
       notifyListeners();
       return;
     } on Object catch (e) {
-      debugPrint('$e'); // TODO(me): error log
       state = WidgetStatus.isError;
       notifyListeners();
       return;
@@ -81,11 +82,10 @@ class ScreenMain1PlacesVM with ChangeNotifier {
   }
 
   Future<void> onNewPlace() async {
-    //ТУТВОПРОС нормально ли сделано? нужны ли такие проверки?
     dynamic isAdded = await Navigator.pushNamed(context, appRouteAdd);
     if (isAdded is! bool?) throw Exception();
 
-    if (isAdded ?? false) {
+    if (isAdded == true) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text(UiStrings.newPlaceCreated)),
       );

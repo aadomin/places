@@ -118,12 +118,14 @@ class _ScreenMain3FavAndVisitState extends State<ScreenMain3FavAndVisit>
           Tab(
             child: WidgetTabFavorite(
               favoritePlaces: ___vm.favoritePlaces,
+              isLoading: ___vm.isLoading,
               onRemoveFromFavorites: ___vm.onRemoveFromFavorites,
             ),
           ),
           Tab(
             child: WidgetTabVisited(
               visitedPlaces: ___vm.visitedPlaces,
+              isLoading: ___vm.isLoading,
               onRemoveFromVisited: ___vm.onRemoveFromVisited,
             ),
           ),

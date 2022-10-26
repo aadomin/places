@@ -49,4 +49,13 @@ class UiImagePaths {
 
   // Настройки
   static const String info = 'res/images/info.svg';
+
+  // Place card
+  static const String placePlaceholder = 'res/images/place_placeholder.png';
+
+  // General
+  static const String loaderBigWhite = 'res/images/loader_big_white.png';
+  static const String loaderBigBlack = 'res/images/loader_big_black.png';
+  static const String loaderSmallWhite = 'res/images/loader_small_white.png';
+  static const String loaderSmallBlack = 'res/images/loader_small_black.png';
 }

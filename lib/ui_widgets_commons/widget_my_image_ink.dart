@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:places/main.dart';
 import 'package:places/ui_commons/enums.dart';
+import 'package:places/ui_commons/themes.dart';
+import 'package:places/ui_commons/ui_image_paths.dart';
 
 ///
 /// ТУТВОПРОС серьезный
@@ -34,7 +36,10 @@ class _WidgetMyImageInkState extends State<WidgetMyImageInk> {
     _imageFromNetwork = NetworkImage(widget.url);
     _imageFromNetwork.resolve(ImageConfiguration.empty).addListener(
           ImageStreamListener(
-            (_, __) {
+            (_, __) async {
+              // // TODO(me): удалить, искуственная пауза
+              // await Future.delayed(const Duration(seconds: 1));
+
               // ВАЖНО
               if (mounted) {
                 setState(() {
@@ -61,36 +66,32 @@ class _WidgetMyImageInkState extends State<WidgetMyImageInk> {
       );
     }
 
-    switch (status) {
-      case WidgetStatus.isEmpty:
-        {
-          return const ColoredBox(
-            color: Colors.grey,
-          );
-        }
-      case WidgetStatus.isLoading:
-        {
-          return const Center(
-            child: SizedBox(
-              width: 20,
-              height: 20,
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-      case WidgetStatus.isError:
-        {
-          return const ColoredBox(
-            color: Colors.grey,
-          );
-        }
-      case WidgetStatus.isReady:
-        {
-          return Ink.image(
-            image: _imageFromNetwork,
-            fit: widget.fit,
-          );
-        }
-    }
+    return AnimatedCrossFade(
+      crossFadeState:
+          (status == WidgetStatus.isLoading) || (status == WidgetStatus.isError)
+              ? CrossFadeState.showSecond
+              : CrossFadeState.showFirst,
+      duration: const Duration(seconds: 1),
+      //
+      // Image
+      //
+      firstChild: Ink.image(
+        image: _imageFromNetwork,
+        fit: widget.fit,
+      ),
+      //
+      // Placeholder
+      //
+      secondChild: ColoredBox(
+        color: Theme.of(context).colorScheme.sightImagePlaceholder,
+        child: Center(
+          child: Image.asset(
+            UiImagePaths.placePlaceholder,
+            width: 200,
+            height: 200,
+          ),
+        ),
+      ),
+    );
   }
 }

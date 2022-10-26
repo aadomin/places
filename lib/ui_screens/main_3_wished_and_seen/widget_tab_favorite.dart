@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:places/di.dart';
 import 'package:places/domain_entities/place.dart';
 import 'package:places/ui_commons/enums.dart';
+import 'package:places/ui_widgets_commons/my_circle_progress_indicator.dart';
 import 'package:places/ui_commons/my_scroll_physics.dart';
 import 'package:places/ui_commons/ui_image_paths.dart';
 import 'package:places/ui_commons/ui_strings.dart';
@@ -14,11 +15,13 @@ import 'package:provider/provider.dart';
 class WidgetTabFavorite extends StatefulWidget {
   const WidgetTabFavorite({
     required this.favoritePlaces,
+    required this.isLoading,
     required this.onRemoveFromFavorites,
     Key? key,
   }) : super(key: key);
 
   final List<Place> favoritePlaces;
+  final bool isLoading;
   final void Function(int) onRemoveFromFavorites;
 
   @override
@@ -28,11 +31,15 @@ class WidgetTabFavorite extends StatefulWidget {
 class _WidgetTabFavoriteState extends State<WidgetTabFavorite> {
   @override
   Widget build(BuildContext context) {
-    final List<Place> _listOfItems = widget.favoritePlaces;
+    final List<Place> ___listOfItems = widget.favoritePlaces;
 
-    final __popupManager = context.read<DI>().popupManager;
+    final ___popupManager = context.read<DI>().popupManager;
 
-    if (_listOfItems.isEmpty) {
+    if (widget.isLoading) {
+      return const Center(
+          child: MyCircleProgressIndicator(isBigAndColorful: false));
+    }
+    if (___listOfItems.isEmpty) {
       return const WidgetEmptyList(
         imagePath: UiImagePaths.emptyFavoriteTab,
         headerLine: UiStrings.empty,
@@ -48,7 +55,7 @@ class _WidgetTabFavoriteState extends State<WidgetTabFavorite> {
           padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
           child: ListView(
             physics: MyScrollPhysics.physics,
-            children: _listOfItems
+            children: ___listOfItems
                 .asMap()
                 .entries
                 .map(
@@ -63,13 +70,14 @@ class _WidgetTabFavoriteState extends State<WidgetTabFavorite> {
                             onTapOnCard(i.value.id);
                           },
                           onAddToCalendar: () {
-                            __popupManager.showPopupSchedulePlace(
+                            ___popupManager.showPopupSchedulePlace(
                               context,
                               i.value.id,
                             );
                           },
                           onDeleteFromWished: () {
-                            widget.onRemoveFromFavorites(_listOfItems[i.key].id);
+                            widget.onRemoveFromFavorites(
+                                ___listOfItems[i.key].id);
                           },
                         ),
                       ),
