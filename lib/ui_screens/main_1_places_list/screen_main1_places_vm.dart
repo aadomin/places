@@ -71,14 +71,35 @@ class ScreenMain1PlacesVM with ChangeNotifier {
   void onAddToFavorites(int id) => placesInteractor.addToFavorites(id);
 
   void onTapOnPlace(BuildContext context, int id) {
-    showModalBottomSheet<bool>(
-      isScrollControlled: true,
-      context: context,
-      builder: (_) => createScreenPlaceDetails(
-        context: context,
-        placeId: id,
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (context, _, __) {
+          return createScreenPlaceDetails(
+            context: context,
+            placeId: id,
+          );
+        },
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return FadeTransition(
+            opacity: Tween<double>(
+              begin: 0,
+              end: 1,
+            ).animate(animation),
+            child: child,
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 500),
+        reverseTransitionDuration: const Duration(milliseconds: 500),
       ),
     );
+    // showModalBottomSheet<bool>(
+    //   isScrollControlled: true,
+    //   context: context,
+    //   builder: (_) => createScreenPlaceDetails(
+    //     context: context,
+    //     placeId: id,
+    //   ),
+    // );
   }
 
   Future<void> onNewPlace() async {
