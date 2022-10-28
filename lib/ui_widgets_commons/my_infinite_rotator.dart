@@ -17,6 +17,7 @@ class _MyInfiniteRotatorState extends State<MyInfiniteRotator> {
     // the homework task was to implement indicator in implicit animations
     // that's the reason that weird next line:
     WidgetsBinding.instance.addPostFrameCallback((_) => _asyncIncrementor());
+    // TODO(me): НЕ ЗАБЫТЬ УДАЛЯТЬ!!!
 
     return AnimatedRotation(
       turns: turns,
