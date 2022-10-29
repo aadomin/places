@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:places/domain_entities/category_item.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
 import 'package:places/domain_interactors/places_interactor.dart';
-import 'package:places/ui_models/filter_condition.dart';
+import 'package:places/domain_entities/filter_settings.dart';
 import 'package:places/domain_entities/place.dart';
 
 ///
@@ -35,31 +36,33 @@ class ScreenFilterVM with ChangeNotifier {
 
   List<Place> get filteredPlaces => placesInteractor.getFilteredPlaces;
 
-  FilterCondition get filterConditions => filterInteractor.filterConditions;
+  FilterSettings get filterConditions => filterInteractor.filterConditions;
 
   /// Переключить выбранность категории
-  void switchActiveCategories(int index) {
-    final FilterCondition _newFilterConditions = FilterCondition(
-      filterItemsState: filterConditions.filterItemsState,
+  void switchActiveCategories(String name) {
+    filterInteractor.filterConditions = FilterSettings(
+      filterItemsState: filterConditions.filterItemsState.map((item) {
+        return CategoryItem(
+          name: item.name,
+          isSelected:
+              item.name == name ? !item.isSelected : item.isSelected, // <-
+        );
+      }).toList(),
       radiusOfSearch: filterConditions.radiusOfSearch,
     );
-    _newFilterConditions.filterItemsState[index].isSelected =
-        !_newFilterConditions.filterItemsState[index].isSelected;
-    //
-    filterInteractor.filterConditions = _newFilterConditions;
   }
 
   /// Очистить выбранные категории
   void clearActiveCategories() {
-    final FilterCondition _newFilterConditions = FilterCondition(
-      filterItemsState: filterConditions.filterItemsState,
+    filterInteractor.filterConditions = FilterSettings(
+      filterItemsState: filterConditions.filterItemsState.map((item) {
+        return CategoryItem(
+          name: item.name,
+          isSelected: false, // <-
+        );
+      }).toList(),
       radiusOfSearch: filterConditions.radiusOfSearch,
     );
-    for (final element in _newFilterConditions.filterItemsState) {
-      element.isSelected = false;
-    }
-
-    filterInteractor.filterConditions = _newFilterConditions;
 
     setSliderState(1);
     // TODO(me): так не должно быть - потом получить из интерактора значение!
@@ -83,11 +86,11 @@ class ScreenFilterVM with ChangeNotifier {
   /// Изменить положение слайдера по расстоянию
   void setSliderState(double newValue) {
     _sliderValue = newValue;
-    final FilterCondition _newFilterConditions = FilterCondition(
+
+    filterInteractor.filterConditions = FilterSettings(
       filterItemsState: filterConditions.filterItemsState,
       radiusOfSearch: valueOfSelectedRadiusItem,
     );
-    filterInteractor.filterConditions = _newFilterConditions;
   }
 
   Map<int, String> distancesMap = <int, String>{

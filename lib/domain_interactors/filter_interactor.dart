@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui_models/category_item.dart';
-import 'package:places/ui_models/filter_condition.dart';
+import 'package:places/domain_entities/category_item.dart';
+import 'package:places/domain_entities/filter_settings.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
 ///
@@ -8,8 +8,9 @@ import 'package:places/ui_commons/ui_strings.dart';
 ///
 class FilterInteractor with ChangeNotifier {
   FilterInteractor() {
-    _filterConditions = FilterCondition(
+    _filterConditions = const FilterSettings(
       filterItemsState: [
+        //TODO(me): more clean
         CategoryItem(name: UiStrings.hotel, isSelected: true),
         CategoryItem(name: UiStrings.restaurant, isSelected: true),
         CategoryItem(name: UiStrings.specialPlace, isSelected: true),
@@ -21,11 +22,11 @@ class FilterInteractor with ChangeNotifier {
     );
   }
 
-  late FilterCondition _filterConditions;
+  late FilterSettings _filterConditions;
 
-  FilterCondition get filterConditions => _filterConditions;
+  FilterSettings get filterConditions => _filterConditions;
 
-  set filterConditions(FilterCondition value) {
+  set filterConditions(FilterSettings value) {
     _filterConditions = value;
     notifyListeners();
   }

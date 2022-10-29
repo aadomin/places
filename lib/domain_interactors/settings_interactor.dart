@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:places/data_repositories/settings_repository.dart';
+import 'package:places/data_repositories/setting/dto/settings_dto.dart';
+import 'package:places/data_repositories/setting/settings_repository.dart';
 
 ///
 /// Интерактор настроек приложения
@@ -10,6 +11,12 @@ class SettingsInteractor with ChangeNotifier {
   SettingsInteractor({
     required this.settingsRepository,
   });
+
+  late SettingsDto settings;
+
+  // void initInteractor() {
+  //   settings = settingsRepository.getSettings();
+  // }
 
   final SettingsRepository settingsRepository;
 

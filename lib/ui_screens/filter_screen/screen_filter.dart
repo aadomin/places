@@ -113,7 +113,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
                       width: 110,
                       height: 105,
                       child: TextButton(
-                        onPressed: () => ___viewModel.switchActiveCategories(i),
+                        onPressed: () => ___viewModel.switchActiveCategories(___viewModel.filterConditions.filterItemsState[i].name),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 10.0),
                           child: Column(
