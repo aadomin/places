@@ -8,7 +8,7 @@ import 'package:places/ui_commons/ui_strings.dart';
 ///
 class FilterInteractor with ChangeNotifier {
   FilterInteractor() {
-    _filterConditions = const FilterSettings(
+    _filterSettings = const FilterSettings(
       filterItemsState: [
         //TODO(me): more clean
         CategoryItem(name: UiStrings.hotel, isSelected: true),
@@ -22,12 +22,12 @@ class FilterInteractor with ChangeNotifier {
     );
   }
 
-  late FilterSettings _filterConditions;
+  late FilterSettings _filterSettings;
 
-  FilterSettings get filterConditions => _filterConditions;
+  FilterSettings get filterSettings => _filterSettings;
 
-  set filterConditions(FilterSettings value) {
-    _filterConditions = value;
+  set filterSettings(FilterSettings value) {
+    _filterSettings = value;
     notifyListeners();
   }
 }

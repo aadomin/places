@@ -91,16 +91,16 @@ class PlacesInteractor with ChangeNotifier {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
 
     return getPlaces(
-      radius: filterInteractor.filterConditions.radiusOfSearch,
-      categories: filterInteractor.filterConditions.filterItemsState,
+      radius: filterInteractor.filterSettings.radiusOfSearch,
+      categories: filterInteractor.filterSettings.filterItemsState,
     );
   }
 
   /// Возвращает лист мест, которые отображаются на экране Поиска
   List<Place> get getFilteredPlaces {
     return getPlaces(
-      radius: filterInteractor.filterConditions.radiusOfSearch,
-      categories: filterInteractor.filterConditions.filterItemsState,
+      radius: filterInteractor.filterSettings.radiusOfSearch,
+      categories: filterInteractor.filterSettings.filterItemsState,
     );
   }
 

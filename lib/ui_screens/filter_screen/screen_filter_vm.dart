@@ -36,32 +36,32 @@ class ScreenFilterVM with ChangeNotifier {
 
   List<Place> get filteredPlaces => placesInteractor.getFilteredPlaces;
 
-  FilterSettings get filterConditions => filterInteractor.filterConditions;
+  FilterSettings get filterSettings => filterInteractor.filterSettings;
 
   /// Переключить выбранность категории
   void switchActiveCategories(String name) {
-    filterInteractor.filterConditions = FilterSettings(
-      filterItemsState: filterConditions.filterItemsState.map((item) {
+    filterInteractor.filterSettings = FilterSettings(
+      filterItemsState: filterSettings.filterItemsState.map((item) {
         return CategoryItem(
           name: item.name,
           isSelected:
               item.name == name ? !item.isSelected : item.isSelected, // <-
         );
       }).toList(),
-      radiusOfSearch: filterConditions.radiusOfSearch,
+      radiusOfSearch: filterSettings.radiusOfSearch,
     );
   }
 
   /// Очистить выбранные категории
   void clearActiveCategories() {
-    filterInteractor.filterConditions = FilterSettings(
-      filterItemsState: filterConditions.filterItemsState.map((item) {
+    filterInteractor.filterSettings = FilterSettings(
+      filterItemsState: filterSettings.filterItemsState.map((item) {
         return CategoryItem(
           name: item.name,
           isSelected: false, // <-
         );
       }).toList(),
-      radiusOfSearch: filterConditions.radiusOfSearch,
+      radiusOfSearch: filterSettings.radiusOfSearch,
     );
 
     setSliderState(1);
@@ -87,8 +87,8 @@ class ScreenFilterVM with ChangeNotifier {
   void setSliderState(double newValue) {
     _sliderValue = newValue;
 
-    filterInteractor.filterConditions = FilterSettings(
-      filterItemsState: filterConditions.filterItemsState,
+    filterInteractor.filterSettings = FilterSettings(
+      filterItemsState: filterSettings.filterItemsState,
       radiusOfSearch: valueOfSelectedRadiusItem,
     );
   }
