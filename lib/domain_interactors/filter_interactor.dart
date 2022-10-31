@@ -1,33 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:places/domain_entities/category_item.dart';
 import 'package:places/domain_entities/filter_settings.dart';
-import 'package:places/ui_commons/ui_strings.dart';
+import 'package:places/domain_interactors/settings_interactor.dart';
 
 ///
 /// Интерактор. Фильтр по местам
 ///
 class FilterInteractor with ChangeNotifier {
-  FilterInteractor() {
-    _filterSettings = const FilterSettings(
-      filterItemsState: [
-        //TODO(me): more clean
-        CategoryItem(name: UiStrings.hotel, isSelected: true),
-        CategoryItem(name: UiStrings.restaurant, isSelected: true),
-        CategoryItem(name: UiStrings.specialPlace, isSelected: true),
-        CategoryItem(name: UiStrings.park, isSelected: true),
-        CategoryItem(name: UiStrings.museum, isSelected: true),
-        CategoryItem(name: UiStrings.cafe, isSelected: true),
-      ],
-      radiusOfSearch: 10000,
-    );
+  FilterInteractor({required this.settingsInteractor});
+
+  SettingsInteractor settingsInteractor;
+
+  //
+
+  late FilterSettings _newFilterSettings;
+  FilterSettings get newFilterSettings => _newFilterSettings;
+  set newFilterSettings(FilterSettings value) {
+    _newFilterSettings = value;
+    notifyListeners();
   }
 
-  late FilterSettings _filterSettings;
+  FilterSettings get savedFilterSettings =>
+      settingsInteractor.settings.filterSettings;
+  set savedFilterSettings(FilterSettings value) {
+    settingsInteractor.settings =
+        settingsInteractor.settings.copyWith(filterSettings: value);
+    notifyListeners();
+  }
 
-  FilterSettings get filterSettings => _filterSettings;
+  void init() {}
 
-  set filterSettings(FilterSettings value) {
-    _filterSettings = value;
+  void reloadNewSettings() {
+    _newFilterSettings = settingsInteractor.settings.filterSettings;
     notifyListeners();
   }
 }

@@ -3,7 +3,6 @@ import 'package:places/domain_entities/category_item.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
 import 'package:places/domain_interactors/places_interactor.dart';
 import 'package:places/domain_entities/filter_settings.dart';
-import 'package:places/domain_entities/place.dart';
 
 ///
 /// Вью-модель Фильтра
@@ -22,6 +21,11 @@ class ScreenFilterVM with ChangeNotifier {
   void initVM() {
     filterInteractor.addListener(_placesInteractorListener);
     placesInteractor.addListener(_filterInteractorListener);
+    filterInteractor.reloadNewSettings();
+    _sliderValue = _mapRadiusToSliderValue(
+            filterInteractor.savedFilterSettings.radiusOfSearch,
+            distancesMap) ??
+        0;
   }
 
   void _placesInteractorListener() => notifyListeners();
@@ -34,42 +38,48 @@ class ScreenFilterVM with ChangeNotifier {
 
   //
 
-  List<Place> get filteredPlaces => placesInteractor.getFilteredPlaces;
+  //
+  // ФИЛЬТР
+  //
 
-  FilterSettings get filterSettings => filterInteractor.filterSettings;
+  int get countOfNewFilteredPlaces => placesInteractor
+      .getCountOfFilteredPlacesWithFilter(filterInteractor.newFilterSettings);
+
+  FilterSettings get newFilterSettings => filterInteractor.newFilterSettings;
 
   /// Переключить выбранность категории
   void switchActiveCategories(String name) {
-    filterInteractor.filterSettings = FilterSettings(
-      filterItemsState: filterSettings.filterItemsState.map((item) {
+    filterInteractor.newFilterSettings = FilterSettings(
+      filterItemsState: newFilterSettings.filterItemsState.map((item) {
         return CategoryItem(
           name: item.name,
           isSelected:
               item.name == name ? !item.isSelected : item.isSelected, // <-
         );
       }).toList(),
-      radiusOfSearch: filterSettings.radiusOfSearch,
+      radiusOfSearch: newFilterSettings.radiusOfSearch,
     );
   }
 
   /// Очистить выбранные категории
   void clearActiveCategories() {
-    filterInteractor.filterSettings = FilterSettings(
-      filterItemsState: filterSettings.filterItemsState.map((item) {
+    _sliderValue = 1; //TODO(me): потом можно убрать
+    notifyListeners();
+
+    filterInteractor.newFilterSettings = FilterSettings(
+      filterItemsState: newFilterSettings.filterItemsState.map((item) {
         return CategoryItem(
           name: item.name,
           isSelected: false, // <-
         );
       }).toList(),
-      radiusOfSearch: filterSettings.radiusOfSearch,
+      radiusOfSearch: newFilterSettings.radiusOfSearch,
     );
-
-    setSliderState(1);
-    // TODO(me): так не должно быть - потом получить из интерактора значение!
   }
 
   /// Нажатие на "Показать"
   void onTapOnShow() {
+    filterInteractor.savedFilterSettings = filterInteractor.newFilterSettings;
     Navigator.of(context).pop();
   }
 
@@ -87,8 +97,8 @@ class ScreenFilterVM with ChangeNotifier {
   void setSliderState(double newValue) {
     _sliderValue = newValue;
 
-    filterInteractor.filterSettings = FilterSettings(
-      filterItemsState: filterSettings.filterItemsState,
+    filterInteractor.newFilterSettings =
+        filterInteractor.newFilterSettings.copyWith(
       radiusOfSearch: valueOfSelectedRadiusItem,
     );
   }
@@ -118,4 +128,26 @@ class ScreenFilterVM with ChangeNotifier {
 
   int get countOfRadiusSliderDivisions =>
       distancesMap.values.toList().length - 1;
+
+  int _mapSliderValueToRadius(
+      double sliderValue, Map<int, String> distancesMap) {
+    final countOfItems = distancesMap.length;
+    final indexOfSelectedItem = (sliderValue * countOfItems.toDouble()).round();
+    final radius = distancesMap.keys.toList()[indexOfSelectedItem];
+    return radius;
+  }
+
+  double? _mapRadiusToSliderValue(int raduis, Map<int, String> distancesMap) {
+    late int? foundI;
+    final distances = distancesMap.keys.toList();
+    for (var i = 0; i < distances.length; i++) {
+      if (distances[i] == raduis) {
+        foundI = i;
+      }
+    }
+    if (foundI == null) return null;
+
+    final sliderValue = foundI / (distancesMap.length - 1);
+    return sliderValue;
+  }
 }

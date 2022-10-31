@@ -107,6 +107,19 @@ class _ScreenMain4SettingsState extends State<ScreenMain4Settings> {
               ),
               onTap: ___viewModel.onTapOnTutorialLink,
             ),
+
+            //
+            // Сбросить настройки
+            //
+            ListTile(
+              title: Text(
+                UiStrings.resetSettings,
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+              onTap: ___viewModel.onResetSettings,
+            )
           ],
         ),
       ),

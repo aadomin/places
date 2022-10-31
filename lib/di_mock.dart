@@ -18,18 +18,21 @@ import 'package:places/ui_commons/platform_detector.dart';
 import 'package:places/ui_screens/popups/popup_manager.dart';
 
 class DIMock implements DI {
-  final platformDetector = PlatformDetector();
+  late final platformDetector = PlatformDetector();
 
   late final _settingsRepository = SettingsRepository(
     settingsDataSource: SettingsDataSource(),
   );
-  late final settingsInteractor =
-      SettingsInteractor(settingsRepository: _settingsRepository);
+  late final settingsInteractor = SettingsInteractor(
+    settingsRepository: _settingsRepository,
+  )..init();
 
-  final _geoRepository = GeoRepository();
+  late final _geoRepository = GeoRepository();
   late final geoInteractor = GeoInteractor(geoRepository: _geoRepository);
 
-  final filterInteractor = FilterInteractor();
+  late final filterInteractor = FilterInteractor(
+    settingsInteractor: settingsInteractor,
+  )..init();
 
   final _dioServices = DioServices();
   late final PlaceRepository _placesRepository =
@@ -38,7 +41,7 @@ class DIMock implements DI {
     placesRepository: _placesRepository,
     geoInteractor: geoInteractor,
     filterInteractor: filterInteractor,
-  )..initInteractor();
+  )..init();
 
   final _searchRepository = SearchRepository();
   late final searchInteractor = SearchInteractor(

@@ -12,6 +12,7 @@ class ScreenAddPlaceDI extends StatelessWidget {
     return ScreenAddPlace(
       viewModel: ScreenAddPlaceVM(
         context: context,
+        //TODO(me): убрать watch
         placesInteractor: context.watch<DI>().placesInteractor,
       ),
     );

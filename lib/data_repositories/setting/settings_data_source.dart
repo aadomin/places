@@ -2,24 +2,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /// Обертка над shared_preferences
 class SettingsDataSource {
-  Future<int> getInt(String key) async {
+  Future<int?> getInt(String key) async {
     final prefs = await SharedPreferences.getInstance();
     int? result = prefs.getInt(key);
-    if (result == null) throw Exception('key not found, internal error');
     return result;
   }
 
-  Future<bool> getBool(String key) async {
+  Future<bool?> getBool(String key) async {
     final prefs = await SharedPreferences.getInstance();
     bool? result = prefs.getBool(key);
-    if (result == null) throw Exception('key not found, internal error');
     return result;
   }
 
-  Future<String> getString(String key) async {
+  Future<String?> getString(String key) async {
     final prefs = await SharedPreferences.getInstance();
     String? result = prefs.getString(key);
-    if (result == null) throw Exception('key not found, internal error');
     return result;
   }
 

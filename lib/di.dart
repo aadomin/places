@@ -23,12 +23,14 @@ class DI {
   );
   late final settingsInteractor = SettingsInteractor(
     settingsRepository: _settingsRepository,
-  );
+  )..init();
 
   late final _geoRepository = GeoRepository();
   late final geoInteractor = GeoInteractor(geoRepository: _geoRepository);
 
-  late final filterInteractor = FilterInteractor();
+  late final filterInteractor = FilterInteractor(
+    settingsInteractor: settingsInteractor,
+  )..init();
 
   late final _dioServices = DioServices();
   late final _placesRepository = PlaceRepository(dio: _dioServices.dio);
@@ -36,7 +38,7 @@ class DI {
     placesRepository: _placesRepository,
     geoInteractor: geoInteractor,
     filterInteractor: filterInteractor,
-  )..initInteractor();
+  )..init();
 
   late final _searchRepository = SearchRepository();
   late final searchInteractor = SearchInteractor(

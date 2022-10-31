@@ -11,9 +11,9 @@ part 'settings_dto.g.dart';
 @freezed
 class SettingsDto with _$SettingsDto {
   const factory SettingsDto({
-    required bool isDarkThemeOn,
-    required FilterSettings filterCondition, //TODO(me) FilterCondition
-    required bool isThatTheFirstRun,
+    required bool? isDarkThemeOn,
+    required FilterSettings? filterSettings,
+    required bool? isThatTheFirstRun,
   }) = _SettingsDto;
 
   factory SettingsDto.fromJson(Map<String, Object?> json) =>

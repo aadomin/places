@@ -1,40 +1,66 @@
+import 'dart:convert';
+
 import 'package:places/data_repositories/setting/dto/settings_dto.dart';
 import 'package:places/data_repositories/setting/settings_data_source.dart';
+import 'package:places/domain_entities/filter_settings.dart';
+import 'package:places/domain_entities/settings_entity.dart';
 
-const String _isDarkThemeOnKey = 'isDarkThemeOn';
-const String _filterStateKey = 'filterState';
-const String _isThatTheFirstRunKey = 'isThatTheFirstRunKey';
+const String _keyIsDarkThemeOn = 'isDarkThemeOn';
+const String _keyFilterSettings = 'filterState';
+const String _keyIsThatTheFirstRun = 'isThatTheFirstRunKey';
 
 ///
 /// Репозиторий. Хранение настроек
 ///
 class SettingsRepository {
-  SettingsRepository({required this.settingsDataSource}) {}
+  SettingsRepository({required this.settingsDataSource});
 
   final SettingsDataSource settingsDataSource;
 
   //
 
-  bool _isDarkThemeOn = false;
+  Future<SettingsEntity?> getSettings() async {
+    //null checking
+    bool? isDarkThemeOn = await settingsDataSource.getBool(_keyIsDarkThemeOn);
+    if (isDarkThemeOn == null) return null;
 
-  bool get isDarkThemeOn {
-    return _isDarkThemeOn;
+    String? rawFilterSettings =
+        await settingsDataSource.getString(_keyFilterSettings);
+    if (rawFilterSettings == null) return null;
+    FilterSettings filterSettings =
+        FilterSettings.fromJson(jsonDecode(rawFilterSettings));
+
+    var isThatTheFirstRun =
+        await settingsDataSource.getBool(_keyIsThatTheFirstRun);
+    if (isThatTheFirstRun == null) return null;
+
+    return SettingsEntity(
+      isDarkThemeOn: isDarkThemeOn,
+      filterSettings: filterSettings,
+      isThatTheFirstRun: isThatTheFirstRun,
+    );
   }
 
-  set isDarkThemeOn(bool value) {
-    _isDarkThemeOn = value;
+  Future<void> setSettings(SettingsEntity entity) async {
+    await settingsDataSource.setBool(
+      _keyIsDarkThemeOn,
+      entity.isDarkThemeOn,
+    );
+    await settingsDataSource.setString(
+      _keyFilterSettings,
+      jsonEncode(entity.filterSettings.toJson()),
+    );
+    await settingsDataSource.setBool(
+      _keyIsThatTheFirstRun,
+      entity.isThatTheFirstRun,
+    );
   }
 
-  // Future<SettingsDto> getSettings() async {
-  //   return  SettingsDto(
-  //     isDarkThemeOn: await settingsDataSource.getBool(_isDarkThemeOnKey),
-  //     filterState: await settingsDataSource.getString(_filterStateKey),
-  //     isThatTheFirstRun: await settingsDataSource.getBool(_isThatTheFirstRunKey),
-  //   );
-  // }
-
-  void eraseSettings() {
-    isDarkThemeOn = false;
-    settingsDataSource.remove(_isDarkThemeOnKey);
+  Future<void> resetSettings() async {
+    settingsDataSource.remove(_keyIsDarkThemeOn);
+    settingsDataSource.remove(_keyFilterSettings);
+    settingsDataSource.remove(_keyIsThatTheFirstRun);
   }
+
+  // TODO(me): тут можно лучше ТУТВОПРОС
 }
