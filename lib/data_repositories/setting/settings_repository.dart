@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:places/data_repositories/setting/dto/settings_dto.dart';
 import 'package:places/data_repositories/setting/settings_data_source.dart';
 import 'package:places/domain_entities/filter_settings.dart';
 import 'package:places/domain_entities/settings_entity.dart';

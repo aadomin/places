@@ -56,6 +56,7 @@ class ScreenMain1PlacesVM with ChangeNotifier {
       }
       notifyListeners();
       return;
+      // ignore: unused_catch_clause
     } on Object catch (e) {
       state = WidgetStatus.isError;
       notifyListeners();

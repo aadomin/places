@@ -129,14 +129,6 @@ class ScreenFilterVM with ChangeNotifier {
   int get countOfRadiusSliderDivisions =>
       distancesMap.values.toList().length - 1;
 
-  int _mapSliderValueToRadius(
-      double sliderValue, Map<int, String> distancesMap) {
-    final countOfItems = distancesMap.length;
-    final indexOfSelectedItem = (sliderValue * countOfItems.toDouble()).round();
-    final radius = distancesMap.keys.toList()[indexOfSelectedItem];
-    return radius;
-  }
-
   double? _mapRadiusToSliderValue(int raduis, Map<int, String> distancesMap) {
     late int? foundI;
     final distances = distancesMap.keys.toList();

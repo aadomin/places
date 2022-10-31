@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:places/di.dart';
-import 'package:places/domain_interactors/settings_interactor.dart';
 import 'package:places/ui_screens/main_screen/screen_all_main.dart';
 import 'package:places/ui_screens/main_screen/screen_all_main_vm.dart';
 import 'package:provider/provider.dart';
