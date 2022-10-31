@@ -66,29 +66,31 @@ class _WidgetMyImageInkState extends State<WidgetMyImageInk> {
       );
     }
 
-    return AnimatedCrossFade(
-      crossFadeState:
-          (status == WidgetStatus.isLoading) || (status == WidgetStatus.isError)
-              ? CrossFadeState.showSecond
-              : CrossFadeState.showFirst,
-      duration: const Duration(seconds: 1),
-      //
-      // Image
-      //
-      firstChild: Ink.image(
-        image: _imageFromNetwork,
-        fit: widget.fit,
-      ),
-      //
-      // Placeholder
-      //
-      secondChild: ColoredBox(
-        color: Theme.of(context).colorScheme.sightImagePlaceholder,
-        child: Center(
-          child: Image.asset(
-            UiImagePaths.placePlaceholder,
-            width: 200,
-            height: 200,
+    return Material(
+      child: AnimatedCrossFade(
+        crossFadeState: (status == WidgetStatus.isLoading) ||
+                (status == WidgetStatus.isError)
+            ? CrossFadeState.showSecond
+            : CrossFadeState.showFirst,
+        duration: const Duration(seconds: 1),
+        //
+        // Image
+        //
+        firstChild: Ink.image(
+          image: _imageFromNetwork,
+          fit: widget.fit,
+        ),
+        //
+        // Placeholder
+        //
+        secondChild: ColoredBox(
+          color: Theme.of(context).colorScheme.sightImagePlaceholder,
+          child: Center(
+            child: Image.asset(
+              UiImagePaths.placePlaceholder,
+              width: 200,
+              height: 200,
+            ),
           ),
         ),
       ),

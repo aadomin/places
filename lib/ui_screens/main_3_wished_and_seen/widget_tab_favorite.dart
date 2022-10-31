@@ -92,12 +92,25 @@ class _WidgetTabFavoriteState extends State<WidgetTabFavorite> {
   }
 
   void onTapOnCard(int id) {
-    showModalBottomSheet<bool>(
-      isScrollControlled: true,
-      context: context,
-      builder: (_) => createScreenPlaceDetails(
-        context: context,
-        placeId: id,
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (context, _, __) {
+          return createScreenPlaceDetails(
+            context: context,
+            placeId: id,
+          );
+        },
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return FadeTransition(
+            opacity: Tween<double>(
+              begin: 0,
+              end: 1,
+            ).animate(animation),
+            child: child,
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 500),
+        reverseTransitionDuration: const Duration(milliseconds: 500),
       ),
     );
   }

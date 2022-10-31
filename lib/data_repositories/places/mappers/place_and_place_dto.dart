@@ -27,7 +27,7 @@ Place mapPlaceDtoToPlace(PlaceDto e) {
     name: e.name,
     lat: e.lat.toDouble(),
     lon: e.lng.toDouble(),
-    url: e.urls,
+    urls: e.urls,
     details: e.description,
     type: type,
   );

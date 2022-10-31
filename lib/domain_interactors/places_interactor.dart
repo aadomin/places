@@ -163,7 +163,7 @@ class PlacesInteractor with ChangeNotifier {
       name: name,
       lat: lat,
       lon: lon,
-      url: [url],
+      urls: [url],
       details: details,
       type: type,
       id: random.nextInt(50000),

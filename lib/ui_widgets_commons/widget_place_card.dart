@@ -158,11 +158,28 @@ class WidgetPlaceCard extends StatelessWidget {
                     topLeft: Radius.circular(12),
                     topRight: Radius.circular(12),
                   ),
-                  child: WidgetMyImageInk(
-                    url: place.url.isNotEmpty ? place.url[0] : '',
-                    // TODO(me): c Ink разобраться
-                    fit: BoxFit.fitWidth,
-                  ),
+                  child: Builder(builder: (context) {
+                    String url = place.urls.isNotEmpty ? place.urls[0] : '';
+
+                    //TODO(me): del
+                    debugPrint(url + place.name);
+
+                    if (url != '') {
+                      return Hero(
+                        tag: url + place.name,
+                        child: WidgetMyImageInk(
+                          url: url,
+                          fit: BoxFit.fitWidth,
+                        ),
+                      );
+                    } else {
+                      return WidgetMyImageInk(
+                        url: url,
+                        // TODO(me): c Ink разобраться
+                        fit: BoxFit.fitWidth,
+                      );
+                    }
+                  }),
                 ),
               ),
               //
