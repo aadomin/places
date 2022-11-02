@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:places/ui_models/category_item.dart';
+import 'package:places/domain_entities/category_item.dart';
 import 'package:places/ui_commons/ui_strings.dart';
 
 /// View-model for selection of category screen
@@ -13,7 +13,7 @@ class ScreenSelectionCategoryVM with ChangeNotifier {
   BuildContext context;
 
   /// List of categories
-  final _allCategories = [
+  final _allCategories = const [
     CategoryItem(name: UiStrings.notSelected, isSelected: false),
     CategoryItem(name: UiStrings.hotel, isSelected: false),
     CategoryItem(name: UiStrings.restaurant, isSelected: false),
@@ -38,10 +38,12 @@ class ScreenSelectionCategoryVM with ChangeNotifier {
   }
 
   void _updateCaterogiesList() {
-    for (final item in _allCategories) {
-      // ignore: unnecessary_parenthesis
-      item.isSelected = (item.name == selectedCategory);
-    }
+    _allCategories.map((item) {
+      return CategoryItem(
+        name: item.name,
+        isSelected: item.name == selectedCategory,
+      );
+    });
     notifyListeners();
   }
 

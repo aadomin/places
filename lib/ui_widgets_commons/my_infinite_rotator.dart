@@ -36,5 +36,8 @@ class _MyInfiniteRotatorState extends State<MyInfiniteRotator> {
       await Future.delayed(const Duration(seconds: 1));
     }
     if (mounted) setState(() {});
+
+    // TODO(me): overflow protection
+    if (turns > 10000) turns = 1;
   }
 }

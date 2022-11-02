@@ -107,13 +107,15 @@ class _ScreenFilterState extends State<ScreenFilter> {
                 spacing: 20,
                 children: [
                   for (var i = 0;
-                      i < ___viewModel.filterConditions.filterItemsState.length;
+                      i < ___viewModel.newFilterSettings.filterItemsState.length;
                       i++)
                     SizedBox(
                       width: 110,
                       height: 105,
                       child: TextButton(
-                        onPressed: () => ___viewModel.switchActiveCategories(i),
+                        onPressed: () => ___viewModel.switchActiveCategories(
+                            ___viewModel
+                                .newFilterSettings.filterItemsState[i].name),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 10.0),
                           child: Column(
@@ -136,7 +138,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
                                             // чтобы не было null - берем первую
                                             // (любую) картинку
                                             _imagePathOfCategory[___viewModel
-                                                    .filterConditions
+                                                    .newFilterSettings
                                                     .filterItemsState[i]
                                                     .name] ??
                                                 _imagePathOfCategory
@@ -153,7 +155,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
                                     ),
                                   ),
                                   //ignore: prefer_if_elements_to_conditional_expressions
-                                  ___viewModel.filterConditions
+                                  ___viewModel.newFilterSettings
                                           .filterItemsState[i].isSelected
                                       ? WidgetCheckmark(
                                           radiusOfRoundElement:
@@ -165,8 +167,8 @@ class _ScreenFilterState extends State<ScreenFilter> {
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(4, 12, 4, 0),
                                 child: Text(
-                                  ___viewModel.filterConditions
-                                      .filterItemsState[i].name,
+                                  ___viewModel
+                                      .newFilterSettings.filterItemsState[i].name,
                                   style: const TextStyle(
                                     fontSize: 12,
                                   ),
@@ -228,7 +230,7 @@ class _ScreenFilterState extends State<ScreenFilter> {
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Text(
-                  '${UiStrings.filterShow} (${___viewModel.filteredPlaces.length})'),
+                  '${UiStrings.filterShow} (${___viewModel.countOfNewFilteredPlaces})'),
             ),
           ),
         ),

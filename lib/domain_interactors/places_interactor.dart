@@ -2,9 +2,10 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:places/data_repositories/places/place_repository.dart';
+import 'package:places/domain_entities/filter_settings.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
 import 'package:places/domain_interactors/geo_interactor.dart';
-import 'package:places/ui_models/category_item.dart';
+import 'package:places/domain_entities/category_item.dart';
 import 'package:places/domain_entities/place.dart';
 
 ///
@@ -21,7 +22,7 @@ class PlacesInteractor with ChangeNotifier {
   final GeoInteractor geoInteractor;
   final FilterInteractor filterInteractor;
 
-  void initInteractor() {
+  void init() {
     filterInteractor.addListener(filterInteractorListener);
     _loadAllPlaces();
   }
@@ -91,17 +92,27 @@ class PlacesInteractor with ChangeNotifier {
     await Future<dynamic>.delayed(const Duration(seconds: 1));
 
     return getPlaces(
-      radius: filterInteractor.filterConditions.radiusOfSearch,
-      categories: filterInteractor.filterConditions.filterItemsState,
+      radius: filterInteractor.savedFilterSettings.radiusOfSearch,
+      categories: filterInteractor.savedFilterSettings.filterItemsState,
     );
   }
 
   /// Возвращает лист мест, которые отображаются на экране Поиска
   List<Place> get getFilteredPlaces {
     return getPlaces(
-      radius: filterInteractor.filterConditions.radiusOfSearch,
-      categories: filterInteractor.filterConditions.filterItemsState,
+      radius: filterInteractor.savedFilterSettings.radiusOfSearch,
+      categories: filterInteractor.savedFilterSettings.filterItemsState,
     );
+  }
+
+  /// Возвращает лист мест, которые будут отображаться на экране Поиска,
+  /// если пользователь нажмет сохранить на экране Фильтра
+  /// (для определения количества мест)
+  int getCountOfFilteredPlacesWithFilter(FilterSettings filterSetting) {
+    return getPlaces(
+      radius: filterSetting.radiusOfSearch,
+      categories: filterSetting.filterItemsState,
+    ).length;
   }
 
   /////

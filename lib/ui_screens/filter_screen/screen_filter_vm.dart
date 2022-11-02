@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:places/domain_entities/category_item.dart';
 import 'package:places/domain_interactors/filter_interactor.dart';
 import 'package:places/domain_interactors/places_interactor.dart';
-import 'package:places/ui_models/filter_condition.dart';
-import 'package:places/domain_entities/place.dart';
+import 'package:places/domain_entities/filter_settings.dart';
 
 ///
 /// Вью-модель Фильтра
@@ -21,6 +21,11 @@ class ScreenFilterVM with ChangeNotifier {
   void initVM() {
     filterInteractor.addListener(_placesInteractorListener);
     placesInteractor.addListener(_filterInteractorListener);
+    filterInteractor.reloadNewSettings();
+    _sliderValue = _mapRadiusToSliderValue(
+            filterInteractor.savedFilterSettings.radiusOfSearch,
+            distancesMap) ??
+        0;
   }
 
   void _placesInteractorListener() => notifyListeners();
@@ -33,40 +38,48 @@ class ScreenFilterVM with ChangeNotifier {
 
   //
 
-  List<Place> get filteredPlaces => placesInteractor.getFilteredPlaces;
+  //
+  // ФИЛЬТР
+  //
 
-  FilterCondition get filterConditions => filterInteractor.filterConditions;
+  int get countOfNewFilteredPlaces => placesInteractor
+      .getCountOfFilteredPlacesWithFilter(filterInteractor.newFilterSettings);
+
+  FilterSettings get newFilterSettings => filterInteractor.newFilterSettings;
 
   /// Переключить выбранность категории
-  void switchActiveCategories(int index) {
-    final FilterCondition _newFilterConditions = FilterCondition(
-      filterItemsState: filterConditions.filterItemsState,
-      radiusOfSearch: filterConditions.radiusOfSearch,
+  void switchActiveCategories(String name) {
+    filterInteractor.newFilterSettings = FilterSettings(
+      filterItemsState: newFilterSettings.filterItemsState.map((item) {
+        return CategoryItem(
+          name: item.name,
+          isSelected:
+              item.name == name ? !item.isSelected : item.isSelected, // <-
+        );
+      }).toList(),
+      radiusOfSearch: newFilterSettings.radiusOfSearch,
     );
-    _newFilterConditions.filterItemsState[index].isSelected =
-        !_newFilterConditions.filterItemsState[index].isSelected;
-    //
-    filterInteractor.filterConditions = _newFilterConditions;
   }
 
   /// Очистить выбранные категории
   void clearActiveCategories() {
-    final FilterCondition _newFilterConditions = FilterCondition(
-      filterItemsState: filterConditions.filterItemsState,
-      radiusOfSearch: filterConditions.radiusOfSearch,
+    _sliderValue = 1; //TODO(me): потом можно убрать
+    notifyListeners();
+
+    filterInteractor.newFilterSettings = FilterSettings(
+      filterItemsState: newFilterSettings.filterItemsState.map((item) {
+        return CategoryItem(
+          name: item.name,
+          isSelected: false, // <-
+        );
+      }).toList(),
+      radiusOfSearch: newFilterSettings.radiusOfSearch,
     );
-    for (final element in _newFilterConditions.filterItemsState) {
-      element.isSelected = false;
-    }
-
-    filterInteractor.filterConditions = _newFilterConditions;
-
-    setSliderState(1);
-    // TODO(me): так не должно быть - потом получить из интерактора значение!
   }
 
   /// Нажатие на "Показать"
   void onTapOnShow() {
+    filterInteractor.savedFilterSettings = filterInteractor.newFilterSettings;
     Navigator.of(context).pop();
   }
 
@@ -83,11 +96,11 @@ class ScreenFilterVM with ChangeNotifier {
   /// Изменить положение слайдера по расстоянию
   void setSliderState(double newValue) {
     _sliderValue = newValue;
-    final FilterCondition _newFilterConditions = FilterCondition(
-      filterItemsState: filterConditions.filterItemsState,
+
+    filterInteractor.newFilterSettings =
+        filterInteractor.newFilterSettings.copyWith(
       radiusOfSearch: valueOfSelectedRadiusItem,
     );
-    filterInteractor.filterConditions = _newFilterConditions;
   }
 
   Map<int, String> distancesMap = <int, String>{
@@ -115,4 +128,18 @@ class ScreenFilterVM with ChangeNotifier {
 
   int get countOfRadiusSliderDivisions =>
       distancesMap.values.toList().length - 1;
+
+  double? _mapRadiusToSliderValue(int raduis, Map<int, String> distancesMap) {
+    late int? foundI;
+    final distances = distancesMap.keys.toList();
+    for (var i = 0; i < distances.length; i++) {
+      if (distances[i] == raduis) {
+        foundI = i;
+      }
+    }
+    if (foundI == null) return null;
+
+    final sliderValue = foundI / (distancesMap.length - 1);
+    return sliderValue;
+  }
 }

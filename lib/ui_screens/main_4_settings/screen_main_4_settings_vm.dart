@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:places/domain_interactors/settings_interactor.dart';
 import 'package:places/my_app_and_routes.dart';
@@ -41,5 +43,9 @@ class ScreenMain4SettingsVM with ChangeNotifier {
 
   void _changeTheme() {
     settingsInteractor.changeTheme();
+  }
+
+  Future<void> onResetSettings() async {
+    await settingsInteractor.resetSettings();
   }
 }
