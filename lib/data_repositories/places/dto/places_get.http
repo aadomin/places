@@ -1,5 +1,7 @@
-https://test-backend-flutter.surfstudio.ru/place
+https://test-backend-flutter.surfstudio.ru/place/1
 
+swagger:
+https://test-backend-flutter.surfstudio.ru/client/client.html#/
 
 
 int id;

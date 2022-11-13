@@ -21,8 +21,7 @@ SettingsDto _$SettingsDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SettingsDto {
   bool? get isDarkThemeOn => throw _privateConstructorUsedError;
-  FilterSettings? get filterSettings =>
-      throw _privateConstructorUsedError; //TODO(me) FilterCondition
+  FilterSettings? get filterSettings => throw _privateConstructorUsedError;
   bool? get isThatTheFirstRun => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -150,7 +149,6 @@ class _$_SettingsDto implements _SettingsDto {
   final bool? isDarkThemeOn;
   @override
   final FilterSettings? filterSettings;
-//TODO(me) FilterCondition
   @override
   final bool? isThatTheFirstRun;
 
@@ -206,7 +204,7 @@ abstract class _SettingsDto implements SettingsDto {
   bool? get isDarkThemeOn;
   @override
   FilterSettings? get filterSettings;
-  @override //TODO(me) FilterCondition
+  @override
   bool? get isThatTheFirstRun;
   @override
   @JsonKey(ignore: true)
